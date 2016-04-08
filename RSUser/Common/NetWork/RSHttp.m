@@ -80,7 +80,8 @@
     NSInteger code = [[responseObject valueForKey:@"code"] integerValue];
     //如果成功
     if(code == 0) {
-        success(responseObject);
+        id body = [responseObject valueForKey:@"body"];
+        success(body);
     } else {
         NSDictionary *userInfo;
         if([responseObject objectForKey:@"msg"]) {

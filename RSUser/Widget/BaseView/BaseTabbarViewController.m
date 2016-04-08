@@ -47,11 +47,11 @@ typedef void (^TabBarTapBlock)(NSInteger index);
  
         NSDictionary *dic = self.tabbars[i];
         
-        UIViewController *vc = [RSRoute getViewControllerByPath:[dic valueForKey:@"vcUrl"]];
+        UIViewController *vc = [RSRoute getViewControllerByHost:[dic valueForKey:@"host"]];
         UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
         
         vc.title = [dic valueForKey:@"title"];
-        [nav.tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RS_7d_color,NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+        [nav.tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RS_TabBar_Title_Color,NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
         [nav.tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RS_Theme_Color, NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
         
         nav.tabBarItem.image = [[UIImage imageNamed:[dic valueForKey:@"normalIcon"]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -91,7 +91,7 @@ typedef void (^TabBarTapBlock)(NSInteger index);
     [cartLabel autoSetDimensionsToSize:CGSizeMake(60, 10)];
     cartLabel.font = [UIFont systemFontOfSize:10];
     cartLabel.textAlignment = NSTextAlignmentCenter;
-    cartLabel.textColor = RS_7d_color;
+    cartLabel.textColor = RS_TabBar_Title_Color;
     cartLabel.text = @"购物车";
     self.cartLabel = cartLabel;
     
@@ -102,7 +102,7 @@ typedef void (^TabBarTapBlock)(NSInteger index);
     [countLabel autoSetDimensionsToSize:CGSizeMake(16, 16)];
     countLabel.font = Font(12);
     countLabel.adjustsFontSizeToFitWidth = YES;
-    countLabel.textColor = RS_ff_color;
+    countLabel.textColor = RS_TabBar_count_Color;
     countLabel.backgroundColor = [NSString colorFromHexString:@"ffa53a"];
     countLabel.clipsToBounds = YES;
     countLabel.textAlignment = NSTextAlignmentCenter;
@@ -115,7 +115,7 @@ typedef void (^TabBarTapBlock)(NSInteger index);
     {
         //弹出购物车视图
         if ([self.countLabel.text integerValue] == 0) {
-            [RSAlertView alertView:@"您还没有选择商品呢"];
+            [RSToastView alertView:@"您还没有选择商品呢"];
         }
         return NO;
     }

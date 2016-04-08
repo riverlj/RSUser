@@ -143,9 +143,8 @@ static RSRoute *gsharedAccount = nil;
     return 0;
 }
 
-+(id)getViewControllerByPath:(NSString *)path{
-    
-    NSString *vcName = [[path capitalizedString] append:@"ViewController"];
++(id)getViewControllerByHost:(NSString *)host {
+    NSString *vcName = [[host capitalizedString] append:@"ViewController"];
     if(NSClassFromString(vcName)) {
         UIViewController *vc = [[NSClassFromString(vcName) alloc] init];
         return vc;

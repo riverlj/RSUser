@@ -32,7 +32,7 @@
     bannerView.delegate = self;
     url = [NSURL URLWithString:self.urlString];
     if(!url) {
-        [RSAlertView alertView:@"URL地址错误"];
+        [RSToastView alertView:@"URL地址错误"];
         return;
     }
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
@@ -57,19 +57,19 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [[RSAlertView shareRSAlertView]showHUD:@"加载中"];
+    [[RSToastView shareRSAlertView]showHUD:@"加载中"];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [[RSAlertView shareRSAlertView]hidHUD];
+    [[RSToastView shareRSAlertView]hidHUD];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error
 {
-    [[RSAlertView shareRSAlertView]hidHUD];
+    [[RSToastView shareRSAlertView]hidHUD];
     NSString *errmsg = [error.userInfo valueForKey:@"NSLocalizedDescription"];
-    [RSAlertView alertView:errmsg];
+    [RSToastView alertView:errmsg];
 }
 
 @end

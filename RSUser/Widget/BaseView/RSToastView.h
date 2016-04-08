@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RSAlertView : NSObject
+@interface RSToastView : NSObject
 @property (nonatomic, strong)MBProgressHUD *hud;
 +(id)shareRSAlertView;
 +(void)alertView:(NSString *)msg;

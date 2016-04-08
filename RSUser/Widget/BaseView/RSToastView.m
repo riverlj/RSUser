@@ -6,17 +6,17 @@
 //  Copyright © 2016年 RedScarf. All rights reserved.
 //
 
-#import "RSAlertView.h"
+#import "RSToastView.h"
 
-static RSAlertView *shareObject = nil;
-@implementation RSAlertView
+static RSToastView *shareObject = nil;
+@implementation RSToastView
 
 +(id)shareRSAlertView{
     @synchronized(self)
     {
         if (shareObject == nil)
         {
-            shareObject = [[RSAlertView alloc]init];
+            shareObject = [[RSToastView alloc]init];
         }
     }
     return shareObject;

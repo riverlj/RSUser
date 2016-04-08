@@ -16,19 +16,19 @@
             @"title":@"首页",
             @"normalIcon":@"tab_home_normal",
             @"selectedIcon":@"tab_home_selected",
-            @"vcUrl":@"home"
+            @"host":@"home"
         },
         @{
             @"title":@"订单",
             @"normalIcon":@"tab_order_normal",
             @"selectedIcon":@"tab_order_selected",
-            @"vcUrl":@"order"
+            @"host":@"order"
         },
         @{
             @"title":@"我的",
             @"normalIcon":@"tab_person_normal",
             @"selectedIcon":@"tab_person_selected",
-            @"vcUrl":@"Profile"
+            @"host":@"Profile"
         }
     ];
     return tabBars;

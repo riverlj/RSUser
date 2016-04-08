@@ -32,10 +32,11 @@
 		B19E1B9F1CB6674B009C38CD /* RSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B19E1B9E1CB6674B009C38CD /* RSModel.m */; };
 		B1E81D4C1CB7553E00F587D1 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */; };
 		B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4F1CB7622E00F587D1 /* AppConfig.m */; };
-		B1E81D571CB780C900F587D1 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D561CB780C900F587D1 /* HomeViewController.m */; };
-		B1E81D5A1CB780E100F587D1 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D591CB780E100F587D1 /* ProfileViewController.m */; };
-		B1E81D5D1CB780FD00F587D1 /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D5C1CB780FD00F587D1 /* OrderViewController.m */; };
-		B1E81D631CB78A7D00F587D1 /* RSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D621CB78A7D00F587D1 /* RSAlertView.m */; };
+		B1E81D631CB78A7D00F587D1 /* RSToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D621CB78A7D00F587D1 /* RSToastView.m */; };
+		B1E81D6B1CB7B04100F587D1 /* RSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D6A1CB7B04100F587D1 /* RSAlertView.m */; };
+		B1E81D781CB7B21300F587D1 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D711CB7B21300F587D1 /* HomeViewController.m */; };
+		B1E81D791CB7B21300F587D1 /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D741CB7B21300F587D1 /* OrderViewController.m */; };
+		B1E81D7A1CB7B21300F587D1 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D771CB7B21300F587D1 /* ProfileViewController.m */; };
 		B1FFB87B1CB64DCA00255F21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FFB87A1CB64DCA00255F21 /* main.m */; };
 		B1FFB87E1CB64DCA00255F21 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FFB87D1CB64DCA00255F21 /* AppDelegate.m */; };
 		B1FFB8861CB64DCA00255F21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1FFB8851CB64DCA00255F21 /* Assets.xcassets */; };
@@ -121,14 +122,17 @@
 		B1E81D4D1CB7564F00F587D1 /* UtilMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilMacro.h; sourceTree = "<group>"; };
 		B1E81D4E1CB7622E00F587D1 /* AppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfig.h; sourceTree = "<group>"; };
 		B1E81D4F1CB7622E00F587D1 /* AppConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConfig.m; sourceTree = "<group>"; };
-		B1E81D551CB780C900F587D1 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		B1E81D561CB780C900F587D1 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		B1E81D581CB780E100F587D1 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
-		B1E81D591CB780E100F587D1 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		B1E81D5B1CB780FD00F587D1 /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
-		B1E81D5C1CB780FD00F587D1 /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
-		B1E81D611CB78A7D00F587D1 /* RSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSAlertView.h; path = ../BaseView/RSAlertView.h; sourceTree = "<group>"; };
-		B1E81D621CB78A7D00F587D1 /* RSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSAlertView.m; path = ../BaseView/RSAlertView.m; sourceTree = "<group>"; };
+		B1E81D611CB78A7D00F587D1 /* RSToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSToastView.h; path = ../BaseView/RSToastView.h; sourceTree = "<group>"; };
+		B1E81D621CB78A7D00F587D1 /* RSToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSToastView.m; path = ../BaseView/RSToastView.m; sourceTree = "<group>"; };
+		B1E81D681CB7A6EE00F587D1 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		B1E81D691CB7B04100F587D1 /* RSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAlertView.h; sourceTree = "<group>"; };
+		B1E81D6A1CB7B04100F587D1 /* RSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAlertView.m; sourceTree = "<group>"; };
+		B1E81D701CB7B21300F587D1 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		B1E81D711CB7B21300F587D1 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		B1E81D731CB7B21300F587D1 /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
+		B1E81D741CB7B21300F587D1 /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
+		B1E81D761CB7B21300F587D1 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		B1E81D771CB7B21300F587D1 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		B1FFB8761CB64DCA00255F21 /* RSUser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSUser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1FFB87A1CB64DCA00255F21 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B1FFB87C1CB64DCA00255F21 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -212,8 +216,10 @@
 		B1738D4D1CB65CCB006C7207 /* UIWidget */ = {
 			isa = PBXGroup;
 			children = (
-				B1E81D611CB78A7D00F587D1 /* RSAlertView.h */,
-				B1E81D621CB78A7D00F587D1 /* RSAlertView.m */,
+				B1E81D691CB7B04100F587D1 /* RSAlertView.h */,
+				B1E81D6A1CB7B04100F587D1 /* RSAlertView.m */,
+				B1E81D611CB78A7D00F587D1 /* RSToastView.h */,
+				B1E81D621CB78A7D00F587D1 /* RSToastView.m */,
 				B1738D9B1CB665C3006C7207 /* RSCalendar.h */,
 				B1738D9C1CB665C3006C7207 /* RSCalendar.m */,
 				B1738D9D1CB665C3006C7207 /* RSHeadView.h */,
@@ -291,46 +297,70 @@
 		B1E81D511CB7800F00F587D1 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				B1E81D641CB7941A00F587D1 /* Cart */,
-				B1E81D531CB7809B00F587D1 /* Order */,
-				B1E81D541CB7809B00F587D1 /* Profile */,
-				B1E81D521CB7803600F587D1 /* Home */,
+				B1E81D7B1CB7B22700F587D1 /* Models */,
+				B1E81D6D1CB7B1A900F587D1 /* Views */,
+				B1E81D6C1CB7B16800F587D1 /* Controllers */,
 			);
 			path = App;
 			sourceTree = "<group>";
 		};
-		B1E81D521CB7803600F587D1 /* Home */ = {
+		B1E81D6C1CB7B16800F587D1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B1E81D551CB780C900F587D1 /* HomeViewController.h */,
-				B1E81D561CB780C900F587D1 /* HomeViewController.m */,
+				B1E81D6E1CB7B21300F587D1 /* Cart */,
+				B1E81D6F1CB7B21300F587D1 /* Home */,
+				B1E81D721CB7B21300F587D1 /* Order */,
+				B1E81D751CB7B21300F587D1 /* Profile */,
 			);
-			path = Home;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		B1E81D531CB7809B00F587D1 /* Order */ = {
+		B1E81D6D1CB7B1A900F587D1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B1E81D5B1CB780FD00F587D1 /* OrderViewController.h */,
-				B1E81D5C1CB780FD00F587D1 /* OrderViewController.m */,
 			);
-			path = Order;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		B1E81D541CB7809B00F587D1 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				B1E81D581CB780E100F587D1 /* ProfileViewController.h */,
-				B1E81D591CB780E100F587D1 /* ProfileViewController.m */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
-		B1E81D641CB7941A00F587D1 /* Cart */ = {
+		B1E81D6E1CB7B21300F587D1 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Cart;
+			sourceTree = "<group>";
+		};
+		B1E81D6F1CB7B21300F587D1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B1E81D701CB7B21300F587D1 /* HomeViewController.h */,
+				B1E81D711CB7B21300F587D1 /* HomeViewController.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B1E81D721CB7B21300F587D1 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				B1E81D731CB7B21300F587D1 /* OrderViewController.h */,
+				B1E81D741CB7B21300F587D1 /* OrderViewController.m */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
+		B1E81D751CB7B21300F587D1 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B1E81D761CB7B21300F587D1 /* ProfileViewController.h */,
+				B1E81D771CB7B21300F587D1 /* ProfileViewController.m */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		B1E81D7B1CB7B22700F587D1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B1FFB86D1CB64DCA00255F21 = {
@@ -416,6 +446,7 @@
 				B1E81D4D1CB7564F00F587D1 /* UtilMacro.h */,
 				B1E81D4E1CB7622E00F587D1 /* AppConfig.h */,
 				B1E81D4F1CB7622E00F587D1 /* AppConfig.m */,
+				B1E81D681CB7A6EE00F587D1 /* Constant.h */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -657,39 +688,40 @@
 				B1FFB8CC1CB6566100255F21 /* UITabBarController+ViewController.m in Sources */,
 				B1FFB8CF1CB6566100255F21 /* UIView+CustomFrame.m in Sources */,
 				B1FFB8CD1CB6566100255F21 /* UIView+ViewController.m in Sources */,
-				B1E81D631CB78A7D00F587D1 /* RSAlertView.m in Sources */,
+				B1E81D631CB78A7D00F587D1 /* RSToastView.m in Sources */,
 				B1738DB61CB665C3006C7207 /* RSSubTitleView.m in Sources */,
 				B1738D891CB65E71006C7207 /* RSHttp.m in Sources */,
 				B1FFB8D01CB6566100255F21 /* UIDeviceAdditions.m in Sources */,
 				B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */,
 				B1738D911CB6626E006C7207 /* RSWebView.m in Sources */,
 				B1738DBE1CB665E2006C7207 /* RSRefreshTableViewController.m in Sources */,
-				B1E81D5A1CB780E100F587D1 /* ProfileViewController.m in Sources */,
 				B1FFB87E1CB64DCA00255F21 /* AppDelegate.m in Sources */,
 				B1738D9A1CB6647F006C7207 /* LoginViewController.m in Sources */,
 				B1738DC71CB665EC006C7207 /* RSTableViewCell.m in Sources */,
 				B1738DB31CB665C3006C7207 /* RSProgressView.m in Sources */,
-				B1E81D5D1CB780FD00F587D1 /* OrderViewController.m in Sources */,
+				B1E81D791CB7B21300F587D1 /* OrderViewController.m in Sources */,
 				B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */,
 				B1738DB21CB665C3006C7207 /* RSHeadView.m in Sources */,
 				B1FFB8CE1CB6566100255F21 /* NSString+RSHttp.m in Sources */,
 				B1738D8E1CB6625A006C7207 /* RSWebViewController.m in Sources */,
 				B1FFB8D51CB6568200255F21 /* RSFileStorage.m in Sources */,
 				B1E81D4C1CB7553E00F587D1 /* NSString+Helper.m in Sources */,
+				B1E81D7A1CB7B21300F587D1 /* ProfileViewController.m in Sources */,
 				B1738DB91CB665C3006C7207 /* RSInputField.m in Sources */,
 				B1738DBA1CB665C3006C7207 /* RSUIView.m in Sources */,
 				B1738DB81CB665C3006C7207 /* RSTipsView.m in Sources */,
 				B1738DB41CB665C3006C7207 /* RSMenuButton.m in Sources */,
+				B1E81D6B1CB7B04100F587D1 /* RSAlertView.m in Sources */,
 				B1738DB51CB665C3006C7207 /* RSPlaceHolderTextView.m in Sources */,
 				B1738DB71CB665C3006C7207 /* RSRadioGroup.m in Sources */,
 				B1FFB8D81CB656DA00255F21 /* RSRoute.m in Sources */,
 				B1FFB8CB1CB6566100255F21 /* NSDate+RSFormatter.m in Sources */,
 				B1738DBB1CB665C3006C7207 /* RSCatchline.m in Sources */,
+				B1E81D781CB7B21300F587D1 /* HomeViewController.m in Sources */,
 				B1738DC91CB665EC006C7207 /* BaseTabbarViewController.m in Sources */,
 				B1738DC81CB665EC006C7207 /* RSTableViewController.m in Sources */,
 				B1FFB8D11CB6566100255F21 /* NSUserDefaults+Token.m in Sources */,
 				B1738DB11CB665C3006C7207 /* RSCalendar.m in Sources */,
-				B1E81D571CB780C900F587D1 /* HomeViewController.m in Sources */,
 				B1FFB87B1CB64DCA00255F21 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
