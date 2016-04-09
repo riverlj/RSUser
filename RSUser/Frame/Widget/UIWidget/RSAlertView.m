@@ -1,28 +1,28 @@
 //
-//  MTAlertViewController.m
+//  RSAlertViewController.m
 //  iMerchant
 //
 //  Created by lishipeng on 14-7-9.
 //  Copyright (c) 2014年 Sankuai. All rights reserved.
 //
 
-#import "MTAlertView.h"
+#import "RSAlertView.h"
 
 #define ALERTVIEW_WIDTH 270
 #define ALERTVIEW_TITLE_HEIGHT 47
 
-@interface MTAlertView ()
+@interface RSAlertView ()
 
 @end
 
-@implementation MTAlertView
+@implementation RSAlertView
 
 -(id)initWithTile:(NSString *)title msg:(NSString *)msg leftButtonTitle:(NSString *)leftBtnText rightButtonTitle:(NSString *)rightBtnText
 {
     self = [super init];
     if(self){
-        self.frame = MTRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-        [self setBackgroundColor:RGBACOLOR(0x33, 0x33, 0x33,0.5)];
+        self.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        [self setBackgroundColor:RGBA(0x33, 0x33, 0x33,0.5)];
         self.title = title;
         self.msg = msg;
         self.leftBtnText = leftBtnText;
@@ -36,9 +36,9 @@
     if(_titleLabel) {
         return _titleLabel;
     }
-    _titleLabel = [[UILabel alloc] initWithFrame:MTRectMake(0, 0, ALERTVIEW_WIDTH, ALERTVIEW_TITLE_HEIGHT)];
-    _titleLabel.textColor = IMERCHANT_GRAY1;
-    _titleLabel.backgroundColor = IMERCHANT_BACKGROUND;
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ALERTVIEW_WIDTH, ALERTVIEW_TITLE_HEIGHT)];
+    _titleLabel.textColor = RS_Sub_Text_Color;
+    _titleLabel.backgroundColor = RS_Main_Text_Color;
     _titleLabel.font = BoldFont(17);
     _titleLabel.numberOfLines = 1;
     return _titleLabel;
@@ -49,9 +49,9 @@
     if(_contentLabel) {
         return _contentLabel;
     }
-    _contentLabel = [[UILabel alloc] initWithFrame:MTRectMake(19, 15, ALERTVIEW_WIDTH-30, 100)];
-    _contentLabel.textColor = IMERCHANT_GRAY1;
-    _contentLabel.font = FONT_BOLD_BIG;
+    _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(19, 15, ALERTVIEW_WIDTH-30, 100)];
+    _contentLabel.textColor = RS_Sub_Text_Color;
+    _contentLabel.font = RS_Main_FontSize;
     _contentLabel.numberOfLines = 0;
     return _contentLabel;
     
@@ -63,7 +63,7 @@
         return _leftButton;
     }
     _leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _leftButton.frame = MTRectMake(0, 0, 124, 35);
+    _leftButton.frame = CGRectMake(0, 0, 124, 35);
     
     [_leftButton setBackgroundImage:[[UIImage imageNamed:@"normalButton.png"] stretchableImageWithLeftCapWidth:5.0f topCapHeight:5.0f] forState:UIControlStateNormal];
     [_leftButton setBackgroundImage:[[UIImage imageNamed:@"normalButton_pressed.png"] stretchableImageWithLeftCapWidth:5.0f topCapHeight:5.0f] forState:UIControlStateHighlighted];
@@ -76,8 +76,8 @@
     if(_alertView) {
         return _alertView;
     }
-    _alertView = [[UIView alloc] initWithFrame:MTRectMake(0, 0, ALERTVIEW_WIDTH, 300)];
-    [_alertView setBackgroundColor:IMERCHANT_WHITE];
+    _alertView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ALERTVIEW_WIDTH, 300)];
+    [_alertView setBackgroundColor:RS_White_Color];
     CALayer *layer=[_alertView layer];
     //是否设置边框以及是否可见
     [layer setMasksToBounds:YES];
@@ -110,7 +110,7 @@
     height += 30;
     
     if(self.leftBtnText) {
-        self.leftButton.title = self.leftBtnText;
+        self.leftButton.titleLabel.text = self.leftBtnText;
         [self.alertView addSubview:self.leftButton];
         self.leftButton.top = height;
         self.leftButton.left = 73;
@@ -118,7 +118,7 @@
         height+=30;
     }
     
-    self.alertView.frame = MTRectMake((self.width - ALERTVIEW_WIDTH)/2, (self.height-height)/2, ALERTVIEW_WIDTH, height);
+    self.alertView.frame = CGRectMake((self.width - ALERTVIEW_WIDTH)/2, (self.height-height)/2, ALERTVIEW_WIDTH, height);
     [self addSubview:self.alertView];
 }
 
@@ -135,7 +135,7 @@
 - (void)show
 {
     UIViewController *topVC = [self superViewController];
-    self.alertView.frame = MTRectMake(self.width/2, self.height/2, 0, 0);
+    self.alertView.frame = CGRectMake(self.width/2, self.height/2, 0, 0);
     [UIView animateWithDuration:0.35f animations:^{
         [self layout];
         [topVC.view addSubview:self];
@@ -158,7 +158,7 @@
     [self.bgImgView removeFromSuperview];
     self.bgImgView = nil;
     [UIView animateWithDuration:0.35f animations:^{
-        self.alertView.frame = MTRectMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 0, 0);
+        self.alertView.frame = CGRectMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 0, 0);
         self.backgroundColor = [UIColor clearColor];
     } completion:^(BOOL finished) {
         [super removeFromSuperview];

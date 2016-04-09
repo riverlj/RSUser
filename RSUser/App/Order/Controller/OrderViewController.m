@@ -9,5 +9,9 @@
 #import "OrderViewController.h"
 
 @implementation OrderViewController
-
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.hasBackBtn = NO;
+}
 @end

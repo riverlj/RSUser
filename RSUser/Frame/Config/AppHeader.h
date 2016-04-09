@@ -22,6 +22,6 @@
 #import "AppConfig.h"
 #import "RSRoute.h"
 #import "MBProgressHUD.h"
-#import "RSTipView.h"
+#import "RSToastView.h"
 #import <PureLayout/PureLayout.h>
 #endif /* AppHeader_h */

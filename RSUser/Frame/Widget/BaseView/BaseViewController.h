@@ -11,7 +11,7 @@
 #import "RSTipsView.h"
 
 @interface BaseViewController : UIViewController
-//该页面所要请求的网络地址
-@property (nonatomic, copy)NSString *requestUrl;
 @property (nonatomic, strong) RSTipsView *tips;
+@property (nonatomic, assign)Boolean hasBackBtn;
+
 @end

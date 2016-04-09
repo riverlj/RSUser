@@ -7,7 +7,7 @@
 //
 
 
-@interface RSTAlertView : UIView
+@interface RSAlertView : UIView
 
 @property (nonatomic, strong) UIView *alertView;
 @property (nonatomic, strong) UILabel *titleLabel;

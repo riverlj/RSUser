@@ -9,5 +9,9 @@
 #import "ProfileViewController.h"
 
 @implementation ProfileViewController
-
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.hasBackBtn = NO;
+}
 @end

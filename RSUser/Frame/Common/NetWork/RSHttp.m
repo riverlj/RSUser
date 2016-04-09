@@ -7,7 +7,6 @@
 //
 
 #import "RSHttp.h"
-#import "LoginViewController.h"
 @implementation RSHttp
 
 + (void)baseRequestWithURL:(NSString *)url

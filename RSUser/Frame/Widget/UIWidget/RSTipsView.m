@@ -37,7 +37,7 @@
     [super setFrame:frame];
     self.imgView.centerX = self.width/2;
     self.titleLabel.centerX = self.width/2;
-    self.imgView.top = (self.height - self.imgView.height - 10 - self.titleLabel.height)/2 - kUITabBarHeight;
+    self.imgView.top = (self.height - self.imgView.height - 10 - self.titleLabel.height)/2 - TABBARHEIGHT;
     self.titleLabel.top = self.imgView.bottom + 10;
 }
 

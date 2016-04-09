@@ -66,6 +66,14 @@ typedef void (^TabBarTapBlock)(NSInteger index);
 
 - (void)createCartView
 {
+    UIView *topView = [UIView newAutoLayoutView];
+    [self.tabBar addSubview:topView];
+    [topView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:0];
+    [topView autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0];
+    [topView autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:0];
+    [topView autoSetDimension:ALDimensionHeight toSize:.5];
+    [topView setBackgroundColor:RS_Line_Color];
+    
     CGFloat width = self.view.frame.size.width/4.f;
     UIView *cartView = [UIView newAutoLayoutView];
     [self.tabBar addSubview:cartView];
@@ -89,7 +97,7 @@ typedef void (^TabBarTapBlock)(NSInteger index);
     [cartLabel autoAlignAxisToSuperviewAxis:ALAxisVertical];
     [cartLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:2];
     [cartLabel autoSetDimensionsToSize:CGSizeMake(60, 10)];
-    cartLabel.font = [UIFont systemFontOfSize:10];
+    cartLabel.font = Font(10);
     cartLabel.textAlignment = NSTextAlignmentCenter;
     cartLabel.textColor = RS_TabBar_Title_Color;
     cartLabel.text = @"购物车";

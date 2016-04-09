@@ -33,4 +33,18 @@
     ];
     return tabBars;
 }
+
++ (void)customsizeInterface
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav-background"] forBarMetrics:UIBarMetricsDefault];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                          [UIColor whiteColor], NSForegroundColorAttributeName,
+                                                          [UIFont boldSystemFontOfSize:17.0], NSFontAttributeName, nil]];
+    [[UINavigationBar appearance] setBackgroundColor:RS_Theme_Color];
+    [[UIBarButtonItem appearance] setTintColor:RS_TabBar_count_Color];
+}
 @end

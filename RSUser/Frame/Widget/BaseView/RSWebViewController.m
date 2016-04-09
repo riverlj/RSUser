@@ -28,7 +28,7 @@
 -(void)initWebView
 {
     NSURL *url;
-    bannerView = [[RSWebView alloc] initWithFrame:CGRectMake(0, 0, kUIScreenWidth, kUIScreenHeigth+kUITabBarHeight)];
+    bannerView = [[RSWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT+TABBARHEIGHT)];
     bannerView.delegate = self;
     url = [NSURL URLWithString:self.urlString];
     if(!url) {

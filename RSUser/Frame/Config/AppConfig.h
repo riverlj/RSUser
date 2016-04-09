@@ -11,5 +11,5 @@
 @interface AppConfig : NSObject
 
 +(NSArray *)tabBarConfig;
-
++ (void)customsizeInterface;
 @end
