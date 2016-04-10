@@ -31,6 +31,16 @@
     return self;
 }
 
+-(id) initWithTile:(NSString *)title msg:(NSString *)msg leftButtonTitle:(NSString *)leftBtnText rightButtonTitle:(NSString *)rightBtnText AndLeftBlock:(dispatch_block_t)leftBlock RightBlock:(dispatch_block_t)rightBlock {
+    self = [self initWithTile:title msg:msg leftButtonTitle:leftBtnText rightButtonTitle:rightBtnText];
+    if (self) {
+        self.leftBlock = leftBlock;
+        self.rightBlock = rightBlock;
+    }
+    
+    return self;
+}
+
 -(UILabel *) titleLabel
 {
     if(_titleLabel) {
@@ -63,12 +73,24 @@
         return _leftButton;
     }
     _leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _leftButton.frame = CGRectMake(0, 0, 124, 35);
-    
-    [_leftButton setBackgroundImage:[[UIImage imageNamed:@"normalButton.png"] stretchableImageWithLeftCapWidth:5.0f topCapHeight:5.0f] forState:UIControlStateNormal];
-    [_leftButton setBackgroundImage:[[UIImage imageNamed:@"normalButton_pressed.png"] stretchableImageWithLeftCapWidth:5.0f topCapHeight:5.0f] forState:UIControlStateHighlighted];
-    [_leftButton addTarget:self action:@selector(dismissAlert) forControlEvents:UIControlEventTouchUpInside];
+    _leftButton.frame = CGRectMake(0, 0, (ALERTVIEW_WIDTH-1)/2.0, 44);
+//    [_leftButton setBackgroundImage:[[UIImage imageNamed:@"normalButton.png"] stretchableImageWithLeftCapWidth:5.0f topCapHeight:5.0f] forState:UIControlStateNormal];
+//    [_leftButton setBackgroundImage:[[UIImage imageNamed:@"normalButton_pressed.png"] stretchableImageWithLeftCapWidth:5.0f topCapHeight:5.0f] forState:UIControlStateHighlighted];
+    [_leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
     return _leftButton;
+}
+
+- (UIButton *)rightButton
+{
+    if (_rightButton) {
+        return _rightButton;
+    }
+    _rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _rightButton.frame = CGRectMake(_leftButton.x+_leftButton.width+1, _leftButton.y, _leftButton.width, _leftButton.height);
+    _rightButton.backgroundColor = _leftButton.backgroundColor;
+    
+    [_rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    return _rightButton;
 }
 
 -(UIView *) alertView
@@ -110,23 +132,40 @@
     height += 30;
     
     if(self.leftBtnText) {
-        self.leftButton.titleLabel.text = self.leftBtnText;
+        [self.leftButton setTitle:self.leftBtnText forState:UIControlStateNormal];
+        [self.leftButton setTitleColor:RS_TabBar_count_Color forState:UIControlStateNormal];
+        self.leftButton.backgroundColor = [UIColor redColor];
         [self.alertView addSubview:self.leftButton];
         self.leftButton.top = height;
-        self.leftButton.left = 73;
+        self.leftButton.left = 0;
         height += self.leftButton.height;
-        height+=30;
+    }
+    
+    if (self.rightBtnText) {
+        [self.rightButton setTitle:self.rightBtnText forState:UIControlStateNormal];
+        [self.rightButton setTitleColor:RS_TabBar_count_Color forState:UIControlStateNormal];
+        self.rightButton.backgroundColor = [UIColor redColor];
+        _rightButton.frame = CGRectMake(_leftButton.x+_leftButton.width+1, _leftButton.y, _leftButton.width, _leftButton.height);
+        [self.alertView addSubview:self.rightButton];
     }
     
     self.alertView.frame = CGRectMake((self.width - ALERTVIEW_WIDTH)/2, (self.height-height)/2, ALERTVIEW_WIDTH, height);
     [self addSubview:self.alertView];
 }
 
-//将当前view从主界面中移除
--(void) dismissAlert
+
+-(void) leftButtonClick
 {
-    if(self.dismissBlock) {
-        self.dismissBlock();
+    if(self.leftBlock) {
+        self.leftBlock();
+    }
+    [self removeFromSuperview];
+}
+
+- (void)rightButtonClick
+{
+    if (self.rightBlock) {
+        self.rightBlock();
     }
     [self removeFromSuperview];
 }
@@ -153,6 +192,9 @@
     return topVC;
 }
 
+/**
+ *  点击按钮后消失
+ */
 - (void)removeFromSuperview
 {
     [self.bgImgView removeFromSuperview];
