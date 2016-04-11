@@ -7,6 +7,7 @@
 //
 
 #import "RSAlertView.h"
+#import "RSLineView.h"
 
 #define ALERTVIEW_WIDTH 270
 #define ALERTVIEW_TITLE_HEIGHT 47
@@ -47,9 +48,8 @@
         return _titleLabel;
     }
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ALERTVIEW_WIDTH, ALERTVIEW_TITLE_HEIGHT)];
-    _titleLabel.textColor = RS_Sub_Text_Color;
-    _titleLabel.backgroundColor = RS_Main_Text_Color;
-    _titleLabel.font = BoldFont(17);
+    _titleLabel.textColor = RS_SubMain_Text_Color;
+    _titleLabel.font = RS_Button_Font;
     _titleLabel.numberOfLines = 1;
     return _titleLabel;
 }
@@ -60,8 +60,9 @@
         return _contentLabel;
     }
     _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(19, 15, ALERTVIEW_WIDTH-30, 100)];
-    _contentLabel.textColor = RS_Sub_Text_Color;
-    _contentLabel.font = RS_Main_FontSize;
+    _contentLabel.textAlignment = NSTextAlignmentCenter;
+    _contentLabel.textColor = RS_SubMain_Text_Color;
+    _contentLabel.font = RS_Button_Font;
     _contentLabel.numberOfLines = 0;
     return _contentLabel;
     
@@ -74,8 +75,6 @@
     }
     _leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _leftButton.frame = CGRectMake(0, 0, (ALERTVIEW_WIDTH-1)/2.0, 44);
-//    [_leftButton setBackgroundImage:[[UIImage imageNamed:@"normalButton.png"] stretchableImageWithLeftCapWidth:5.0f topCapHeight:5.0f] forState:UIControlStateNormal];
-//    [_leftButton setBackgroundImage:[[UIImage imageNamed:@"normalButton_pressed.png"] stretchableImageWithLeftCapWidth:5.0f topCapHeight:5.0f] forState:UIControlStateHighlighted];
     [_leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
     return _leftButton;
 }
@@ -114,11 +113,16 @@
     [self.alertView removeAllSubviews];
     float height = 0;
     if(self.title) {
-        self.titleLabel.text = [NSString stringWithFormat:@"    %@", self.title ];
+        self.titleLabel.text = [NSString stringWithFormat:@"%@", self.title ];
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
         [self.alertView addSubview:self.titleLabel];
         height += self.titleLabel.height;
     }
+    RSLineView *hlineView = [RSLineView lineViewHorizontalWithFrame:CGRectMake(0, height, ALERTVIEW_WIDTH, 1) Color:RS_Line_Color];
+    [self.alertView addSubview:hlineView];
+    height += 1;
     height += 15;
+    
     if(self.msg) {
         self.contentLabel.text = self.msg;
         //动态调整content的高度
@@ -131,20 +135,27 @@
     }
     height += 30;
     
+    RSLineView *hlineView2 = [RSLineView lineViewHorizontalWithFrame:CGRectMake(0, height, ALERTVIEW_WIDTH, 1) Color:RS_Line_Color];
+    [self.alertView addSubview:hlineView2];
+    height += 1;
+
     if(self.leftBtnText) {
         [self.leftButton setTitle:self.leftBtnText forState:UIControlStateNormal];
-        [self.leftButton setTitleColor:RS_TabBar_count_Color forState:UIControlStateNormal];
-        self.leftButton.backgroundColor = [UIColor redColor];
+        [self.leftButton.titleLabel setFont:RS_Button_Font];
+        [self.leftButton setTitleColor:RS_SubMain_Text_Color forState:UIControlStateNormal];
         [self.alertView addSubview:self.leftButton];
         self.leftButton.top = height;
         self.leftButton.left = 0;
         height += self.leftButton.height;
     }
     
+    RSLineView *vLine = [RSLineView lineViewVerticalWithFrame:CGRectMake(self.leftButton.right, self.leftButton.top, 1, self.leftButton.height) Color:RS_Line_Color];
+    [self.alertView addSubview:vLine];
+    
     if (self.rightBtnText) {
         [self.rightButton setTitle:self.rightBtnText forState:UIControlStateNormal];
-        [self.rightButton setTitleColor:RS_TabBar_count_Color forState:UIControlStateNormal];
-        self.rightButton.backgroundColor = [UIColor redColor];
+        [self.rightButton.titleLabel setFont:RS_Button_Font];
+        [self.rightButton setTitleColor:RS_SubMain_Text_Color forState:UIControlStateNormal];
         _rightButton.frame = CGRectMake(_leftButton.x+_leftButton.width+1, _leftButton.y, _leftButton.width, _leftButton.height);
         [self.alertView addSubview:self.rightButton];
     }

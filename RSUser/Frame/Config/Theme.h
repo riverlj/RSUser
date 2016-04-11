@@ -40,6 +40,7 @@
 
 /*主要字体*/
 #define RS_Main_FontSize BoldFont(24)
-
+#define RS_Button_Font Font(16)
+#define RS_SubButton_Font Font(12)
 
 #endif /* Theme_h */

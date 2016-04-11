@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - CYLTabBarController (1.2.4)
   - FCUUID (1.2.0):
     - UICKeyChainStore (~> 2.1.0)
   - Mantle (2.0.6):
@@ -44,6 +45,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.1)
+  - CYLTabBarController
   - FCUUID
   - Mantle (~> 2.0.6)
   - MBProgressHUD (~> 0.9.1)
@@ -56,6 +58,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  CYLTabBarController: 3e963ce54375bcd4dabc4365990e6d723a48b0c1
   FCUUID: 9bfe031d35b7c221a7c66156a0af45d4eb49c3b6
   Mantle: 299966b00759634931699f69cb6a30b9239b944d
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1

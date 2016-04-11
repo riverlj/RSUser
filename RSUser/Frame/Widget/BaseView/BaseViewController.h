@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 #import "RSTipsView.h"
+#import "CartNumberLabel.h"
+
 
 @interface BaseViewController : UIViewController
 @property (nonatomic, strong) RSTipsView *tips;
 @property (nonatomic, assign)Boolean hasBackBtn;
+@property (nonatomic, strong) CartNumberLabel *countLabel;
+
 
 @end

@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "RSAlertView.h"
+#import "RSCartButtion.h"
 
 @implementation HomeViewController
 -(void)viewDidLoad
@@ -23,20 +24,12 @@
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-//    RSAlertView *alerView = [[RSAlertView alloc]initWithTile:@"消息" msg:@"XXXXXXX" leftButtonTitle:@"左边" rightButtonTitle:@"右边"];
-//    alerView.leftBlock = ^(){
-//        NSLog(@"leftBlock");
-//    };
-//    
-//    alerView.rightBlock = ^(){
-//        NSLog(@"XXXXXXXX");
-//    };
-    RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"提示" msg:@"请选择你的订单～" leftButtonTitle:@"确定" rightButtonTitle:@"取消" AndLeftBlock:^{
-        NSLog(@"left");
+    RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:@"确认删除此条地址" leftButtonTitle:@"确认" rightButtonTitle:@"再想想" AndLeftBlock:^{
+        NSLog(@"确认");
     } RightBlock:^{
-        NSLog(@"right");
+        NSLog(@"再想想");
     }];
-    
     [alertView show];
+    
 }
 @end
