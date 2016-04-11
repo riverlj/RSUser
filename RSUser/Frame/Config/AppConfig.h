@@ -7,9 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+@class CYLTabBarController;
 
 @interface AppConfig : NSObject
-
-+(NSArray *)tabBarConfig;
+/**
+ *  tabBar数据源
+ *
+ *  @return 数据源字典
+ */
++(NSDictionary *)tabBarConfig;
+/**
+ *  app样式设置
+ */
 + (void)customsizeInterface;
 @end

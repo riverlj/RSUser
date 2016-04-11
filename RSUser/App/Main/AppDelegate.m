@@ -7,23 +7,26 @@
 //
 
 #import "AppDelegate.h"
-#import "BaseTabbarViewController.h"
-
+#import "RSTabBarControllerConfig.h"
+#import "RSCartButtion.h"
 @interface AppDelegate ()
-
+{
+}
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [AppConfig customsizeInterface];
-    self.window.rootViewController = [[BaseTabbarViewController alloc]init];
-    [self.window makeKeyAndVisible];
     
+    RSTabBarControllerConfig *tabBarControllerConfig = [[RSTabBarControllerConfig alloc] init];
+    [self.window setRootViewController:tabBarControllerConfig.tabBarController];
+    
+    [AppConfig customsizeInterface];
+    [self.window makeKeyAndVisible];
     return YES;
 }
+
 
 @end

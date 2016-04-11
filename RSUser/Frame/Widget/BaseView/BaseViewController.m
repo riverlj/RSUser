@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "UIView+ViewController.h"
+#import "RSCartButtion.h"
 
 @interface BaseViewController ()
 
@@ -26,8 +27,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = self.tabBarItem.title;
     self.view.backgroundColor = RS_Background_Color;
+    [self creatCountLable];
 }
+
+- (void)creatCountLable
+{
+    UITabBar *tabBar = self.tabBarController.tabBar;
+    _countLabel = [CartNumberLabel shareCartNumberLabel];
+    
+    for (UIView *view in tabBar.subviews)
+    {
+        if ([view isKindOfClass:[RSCartButtion class]] && ![view.subviews containsObject:[CartNumberLabel shareCartNumberLabel]])
+        {
+            _countLabel.right = view.bounds.size.width - 12;
+            [view addSubview:_countLabel];
+        }
+    }
+}
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -66,7 +85,8 @@
 
 -(RSTipsView *) tips
 {
-    if(_tips) {
+    if(_tips)
+    {
         return _tips;
     }
     _tips = [[RSTipsView alloc] initWithFrame:self.view.bounds];

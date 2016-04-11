@@ -14,4 +14,8 @@
     [super viewDidLoad];
     self.hasBackBtn = NO;
 }
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    self.countLabel.text = @"14";
+}
 @end

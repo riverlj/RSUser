@@ -24,4 +24,5 @@
 #import "MBProgressHUD.h"
 #import "RSToastView.h"
 #import <PureLayout/PureLayout.h>
+#import "UIImage+Helper.h"
 #endif /* AppHeader_h */
