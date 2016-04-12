@@ -19,12 +19,7 @@
     self = [super init];
     if (self)
     {
-        self.httpMethod = @"GET";
-        self.pageNum = 1;
-        self.pageSize = 10;
-        refreshMethod = 0;
-        self.params = [NSMutableDictionary dictionary];
-        self.models = [NSMutableArray array];
+    
     }
     return self;
 }
@@ -32,6 +27,12 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    self.httpMethod = @"GET";
+    self.pageNum = 1;
+    self.pageSize = 10;
+    refreshMethod = 0;
+    self.params = [NSMutableDictionary dictionary];
+    self.models = [NSMutableArray array];
 }
 
 -(void) setModels:(NSMutableArray *)models
@@ -96,7 +97,7 @@
         return;
     }
     NSLog(@"请求参数－－－%@", self.params);
-    [RSHttp requestWithURL:self.url params:self.params httpMethod:self.httpMethod success:^(NSDictionary *data) {
+    [RSHttp requestWithURL:self.url params:self.params httpMethod:self.httpMethod success:^(NSArray *data) {
         [self beforeProcessHttpData];
         NSInteger before = [self.models count];
         NSLog(@"返回结果－－－%@", data);
@@ -132,7 +133,7 @@
     }
 }
 
--(void) afterHttpSuccess:(NSDictionary *)data
+-(void) afterHttpSuccess:(NSArray *)data
 {
 }
 

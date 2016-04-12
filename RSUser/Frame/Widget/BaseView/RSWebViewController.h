@@ -7,9 +7,10 @@
 //
 
 #import "BaseViewController.h"
-
+#import "RSWebView.h"
 @interface RSWebViewController : BaseViewController<UIWebViewDelegate>
 
 @property(nonatomic,strong)NSString *urlString;
+@property (nonatomic ,strong)RSWebView *bannerView;
 
 @end

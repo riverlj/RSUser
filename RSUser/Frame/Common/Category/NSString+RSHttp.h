@@ -17,6 +17,7 @@
 - (NSComparisonResult)versionStringCompare:(NSString *)other;
 - (NSString *)addString:(NSString *)string every:(NSInteger)charCount;
 - (NSDictionary *)parseURLParams;//把url中的参数转成NSDictionary
+-(NSDictionary *) parseUrl;
 - (BOOL)isCardNum;
 - (BOOL)isEmail;
 - (BOOL)isCharacter;

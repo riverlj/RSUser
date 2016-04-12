@@ -23,5 +23,5 @@
 -(void)register:(NSString *)name vcName:(NSString *)vcName;
 
 +(id)getViewControllerByHost:(NSString *)host;
-
++(id)getViewControllerByPath:(NSString *)path;
 @end

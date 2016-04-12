@@ -43,4 +43,9 @@
 #define RS_Button_Font Font(16)
 #define RS_SubButton_Font Font(12)
 
+#define RS_MainLable_Font Font(15)
+#define RS_PriceLable_Font Font(14)
+#define RS_SubLable_Font Font(12)
+#define RS_CountLable_Font Font(17)
+#define RS_CostPriceLable Font(9)
 #endif /* Theme_h */

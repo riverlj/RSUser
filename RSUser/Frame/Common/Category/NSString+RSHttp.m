@@ -131,7 +131,7 @@
         tempStr = pagramArray[0];
     }
     [dict setObject:[tempStr parseHostFromURLString] forKey:@"path"];
-    [dict setObject:[tempStr parseURLParams] forKey:@"params"];
+    [dict setObject:[[tempStr parseParamsFromURLString] parseURLParams] forKey:@"params"];
     return [dict copy];
 }
 

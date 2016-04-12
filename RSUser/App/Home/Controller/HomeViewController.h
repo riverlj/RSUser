@@ -6,8 +6,10 @@
 //  Copyright © 2016年 RedScarf. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "RSRefreshTableViewController.h"
+#import "SDCycleScrollView.h"
 
-@interface HomeViewController : BaseViewController
+@interface HomeViewController : RSRefreshTableViewController
+@property(nonatomic, strong) SDCycleScrollView *cycleScrollView;
 
 @end

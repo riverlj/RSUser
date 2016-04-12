@@ -13,6 +13,10 @@
 		B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF71CBB733600C988FE /* RSCartButtion.m */; };
 		B1422BFB1CBB9E4100C988FE /* CartNumberLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BFA1CBB9E4100C988FE /* CartNumberLabel.m */; };
 		B1422BFE1CBBAAF400C988FE /* RSLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BFD1CBBAAF400C988FE /* RSLineView.m */; };
+		B162BC911CBC91FB00E27228 /* GoodListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC901CBC91FB00E27228 /* GoodListModel.m */; };
+		B162BC941CBC951500E27228 /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC931CBC951500E27228 /* BannerModel.m */; };
+		B162BC971CBCA3ED00E27228 /* GoodListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC961CBCA3ED00E27228 /* GoodListCell.m */; };
+		B162BC9A1CBCFE4E00E27228 /* BannerwebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC991CBCFE4E00E27228 /* BannerwebViewController.m */; };
 		B1738D891CB65E71006C7207 /* RSHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738D881CB65E71006C7207 /* RSHttp.m */; };
 		B1738D8B1CB65FBF006C7207 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1738D8A1CB65FBF006C7207 /* UIKit.framework */; };
 		B1738D8E1CB6625A006C7207 /* RSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738D8D1CB6625A006C7207 /* RSWebViewController.m */; };
@@ -86,6 +90,14 @@
 		B1422BFA1CBB9E4100C988FE /* CartNumberLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartNumberLabel.m; sourceTree = "<group>"; };
 		B1422BFC1CBBAAF400C988FE /* RSLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSLineView.h; sourceTree = "<group>"; };
 		B1422BFD1CBBAAF400C988FE /* RSLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSLineView.m; sourceTree = "<group>"; };
+		B162BC8F1CBC91FB00E27228 /* GoodListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodListModel.h; sourceTree = "<group>"; };
+		B162BC901CBC91FB00E27228 /* GoodListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodListModel.m; sourceTree = "<group>"; };
+		B162BC921CBC951500E27228 /* BannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerModel.h; sourceTree = "<group>"; };
+		B162BC931CBC951500E27228 /* BannerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerModel.m; sourceTree = "<group>"; };
+		B162BC951CBCA3ED00E27228 /* GoodListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodListCell.h; sourceTree = "<group>"; };
+		B162BC961CBCA3ED00E27228 /* GoodListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodListCell.m; sourceTree = "<group>"; };
+		B162BC981CBCFE4E00E27228 /* BannerwebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerwebViewController.h; sourceTree = "<group>"; };
+		B162BC991CBCFE4E00E27228 /* BannerwebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerwebViewController.m; sourceTree = "<group>"; };
 		B1738D871CB65E71006C7207 /* RSHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSHttp.h; sourceTree = "<group>"; };
 		B1738D881CB65E71006C7207 /* RSHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSHttp.m; sourceTree = "<group>"; };
 		B1738D8A1CB65FBF006C7207 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -350,6 +362,8 @@
 			children = (
 				B1B764521CB8D286005A90BD /* HomeViewController.h */,
 				B1B764531CB8D286005A90BD /* HomeViewController.m */,
+				B162BC981CBCFE4E00E27228 /* BannerwebViewController.h */,
+				B162BC991CBCFE4E00E27228 /* BannerwebViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -357,6 +371,10 @@
 		B1B764541CB8D286005A90BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B162BC8F1CBC91FB00E27228 /* GoodListModel.h */,
+				B162BC901CBC91FB00E27228 /* GoodListModel.m */,
+				B162BC921CBC951500E27228 /* BannerModel.h */,
+				B162BC931CBC951500E27228 /* BannerModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -364,6 +382,8 @@
 		B1B764551CB8D286005A90BD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B162BC951CBCA3ED00E27228 /* GoodListCell.h */,
+				B162BC961CBCA3ED00E27228 /* GoodListCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -776,6 +796,8 @@
 			files = (
 				B19E1B9F1CB6674B009C38CD /* RSModel.m in Sources */,
 				B1FFB8CC1CB6566100255F21 /* UITabBarController+ViewController.m in Sources */,
+				B162BC9A1CBCFE4E00E27228 /* BannerwebViewController.m in Sources */,
+				B162BC911CBC91FB00E27228 /* GoodListModel.m in Sources */,
 				B1FFB8CF1CB6566100255F21 /* UIView+CustomFrame.m in Sources */,
 				B1FFB8CD1CB6566100255F21 /* UIView+ViewController.m in Sources */,
 				B1B764641CB8D286005A90BD /* ProfileViewController.m in Sources */,
@@ -795,6 +817,7 @@
 				B1738DB21CB665C3006C7207 /* RSHeadView.m in Sources */,
 				B1FFB8CE1CB6566100255F21 /* NSString+RSHttp.m in Sources */,
 				B1738D8E1CB6625A006C7207 /* RSWebViewController.m in Sources */,
+				B162BC941CBC951500E27228 /* BannerModel.m in Sources */,
 				B1FFB8D51CB6568200255F21 /* RSFileStorage.m in Sources */,
 				B1E81D4C1CB7553E00F587D1 /* NSString+Helper.m in Sources */,
 				B1422BFE1CBBAAF400C988FE /* RSLineView.m in Sources */,
@@ -813,6 +836,7 @@
 				B1FFB8CB1CB6566100255F21 /* NSDate+RSFormatter.m in Sources */,
 				B1738DBB1CB665C3006C7207 /* RSCatchline.m in Sources */,
 				B1738DC81CB665EC006C7207 /* RSTableViewController.m in Sources */,
+				B162BC971CBCA3ED00E27228 /* GoodListCell.m in Sources */,
 				B1FFB8D11CB6566100255F21 /* NSUserDefaults+Token.m in Sources */,
 				B1FFB87B1CB64DCA00255F21 /* main.m in Sources */,
 			);

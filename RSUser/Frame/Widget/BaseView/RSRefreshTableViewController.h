@@ -24,7 +24,7 @@
 // 在网络请求之前调用该方法
 -(void) beforeHttpRequest;
 // 在网络成功返回时调用该方法
--(void) afterHttpSuccess:(NSDictionary *)data;
+-(void) afterHttpSuccess:(NSArray *)data;
 // 在网络失败返回时调用该方法
 -(void) afterHttpFailure:(NSInteger)code  errmsg:(NSString *)errmsg;
 

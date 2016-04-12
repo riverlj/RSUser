@@ -143,13 +143,33 @@ static RSRoute *gsharedAccount = nil;
     return 0;
 }
 
-+(id)getViewControllerByHost:(NSString *)host {
++(id)getViewControllerByHost:(NSString *)host
+{
     NSString *vcName = [[host capitalizedString] append:@"ViewController"];
     if(NSClassFromString(vcName)) {
         UIViewController *vc = [[NSClassFromString(vcName) alloc] init];
         return vc;
     }
     return nil;
-
 }
+
++(id)getViewControllerByPath:(NSString *)url
+{
+    NSDictionary *dic = [url parseUrl];
+    NSDictionary *params = [dic valueForKey:@"params"];
+    NSString *path = [dic valueForKey:@"path"];
+//    NSString *protocal = [dic valueForKey:@"protocol"];
+    if (path.length != 0)
+    {
+        UIViewController *vc = [[NSClassFromString([[path capitalizedString] append:@"ViewController"]) alloc]init];
+        NSArray *keys = [params allKeys];
+        for (int i=0; i<keys.count; i++)
+        {
+            [vc setValue:[params valueForKey:keys[i]] forKey:keys[i]];
+        }
+        
+        return vc;
+    }
+    return nil;
+  }
 @end

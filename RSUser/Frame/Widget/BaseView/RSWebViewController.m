@@ -14,22 +14,18 @@
 @end
 
 @implementation RSWebViewController
-{
-    RSWebView *bannerView;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-//    [self comeBack:nil];
     [self initWebView];
 }
 
 -(void)initWebView
 {
     NSURL *url;
-    bannerView = [[RSWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT+TABBARHEIGHT)];
-    bannerView.delegate = self;
+    _bannerView = [[RSWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _bannerView.delegate = self;
     url = [NSURL URLWithString:self.urlString];
     if(!url) {
         [RSToastView alertView:@"URL地址错误"];
@@ -37,8 +33,8 @@
     }
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
     request.timeoutInterval = 5;
-    [bannerView loadRequest:request];
-    [self.view addSubview:bannerView];
+    [_bannerView loadRequest:request];
+    [self.view addSubview:_bannerView];
 }
 
 
@@ -49,7 +45,7 @@
     //判断是否有带上统计参数
     if([urlStr rangeOfString:@"utm_campaign="].location == NSNotFound) {
         req.URL = [NSURL URLWithString:[urlStr urlWithHost:nil]];
-        [bannerView loadRequest:req];
+        [_bannerView loadRequest:req];
         return false;
     }
     return YES;

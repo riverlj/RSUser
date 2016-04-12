@@ -29,7 +29,6 @@
     [super viewDidLoad];
     self.navigationItem.title = self.tabBarItem.title;
     self.view.backgroundColor = RS_Background_Color;
-    [self creatCountLable];
 }
 
 - (void)creatCountLable
@@ -51,6 +50,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self creatCountLable];
     
     if([self.navigationController.viewControllers count] > 1)
     {

@@ -3,6 +3,7 @@ inhibit_all_warnings!
 pod 'PureLayout', '~> 2.0.5'
 pod 'AFNetworking', '~> 2.5.1'
 pod 'SDWebImage' , '~>3.7.4'
+pod 'SDCycleScrollView', '~>1.3'
 pod 'Mantle', '~> 2.0.6'
 pod 'pop', '~> 1.0.7'
 pod 'UMengSocial', '~> 4.4' 
