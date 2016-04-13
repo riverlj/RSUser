@@ -7,6 +7,8 @@
 //
 
 #import "RSCartButtion.h"
+#import "CartNumberLabel.h"
+#import "CartViewController.h"
 
 @interface RSCartButtion()
 
@@ -72,7 +74,24 @@
 
 - (void)clickCart:(RSCartButtion *)button
 {
-    //TODO 弹出View
+    CartNumberLabel *numberLaber = [CartNumberLabel shareCartNumberLabel];
+    NSInteger goodsNum = [numberLaber.text integerValue];
+    if (goodsNum == 0)
+    {
+        //弹出提示
+        RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:@"您还没有选择商品呢" leftButtonTitle:@"我知道了" AndLeftBlock:^{
+            
+        }];
+        [alertView show];
+    }
+    else
+    {
+        //弹出购物车
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-300, SCREEN_WIDTH, 300)];
+        view.backgroundColor = [UIColor greenColor];
+        [self.window addSubview:view];
+    }
+    
 }
 
 @end

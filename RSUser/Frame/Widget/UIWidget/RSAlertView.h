@@ -29,5 +29,7 @@
 
 -(id) initWithTile:(NSString *)title msg:(NSString *)msg leftButtonTitle:(NSString *)leftBtnText rightButtonTitle:(NSString *)rightBtnText AndLeftBlock:(dispatch_block_t)leftBlock RightBlock:(dispatch_block_t)rightBlock;
 
+-(id) initWithTile:(NSString *)title msg:(NSString *)msg leftButtonTitle:(NSString *)leftBtnText AndLeftBlock:(dispatch_block_t)leftBlock;
+
 -(void)show;
 @end

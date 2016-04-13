@@ -68,6 +68,7 @@
         cell = [[NSClassFromString(model.cellClassName) alloc] init];
     }
     [cell setModel:model];
+    cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

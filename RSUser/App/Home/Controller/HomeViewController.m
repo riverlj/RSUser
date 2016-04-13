@@ -23,9 +23,15 @@
     [super viewDidLoad];
     self.hasBackBtn = NO;
 
-    self.url = @"/weixin/products";
+    
+    if (![NSUserDefaults getCommuntityName])
+    {
+        //TODO 跳转到选择学校页
+        [self.navigationController pushViewController:@"" animated:YES];
+    }
 
     self.tableView.tableHeaderView = self.cycleScrollView;
+    self.url = @"/weixin/products";
     self.useFooterRefresh = NO;
     self.useHeaderRefresh = YES;
     self.bannerImageUrls = [NSMutableArray new];
@@ -46,7 +52,8 @@
         [self.bannerActionUrls removeAllObjects];
         [self.bannerImageUrls removeAllObjects];
         [self.bannerTitles removeAllObjects];
-        for (int i=0; i<array.count; i++) {
+        for (int i=0; i<array.count; i++)
+        {
             BannerModel *model = array[i];
             [self.bannerImageUrls addObject:model.path];
             [self.bannerActionUrls addObject:model.url];
@@ -62,7 +69,7 @@
     UIButton *locationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [locationBtn setImage:[UIImage imageNamed:@"icon_location"] forState:UIControlStateNormal];
     [locationBtn setImage:[UIImage imageNamed:@"icon_location"] forState:UIControlStateHighlighted];
-    [locationBtn setTitle:@"北京理工大学" forState:UIControlStateNormal];
+    [locationBtn setTitle:[NSUserDefaults getCommuntityName] forState:UIControlStateNormal];
     locationBtn.frame = CGRectMake(0, 0, 300, 30);
     locationBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
     locationBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -5);
@@ -78,7 +85,8 @@
 
 -(SDCycleScrollView *)cycleScrollView
 {
-    if(_cycleScrollView) {
+    if(_cycleScrollView)
+    {
         return _cycleScrollView;
     }
     _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT*200/750) imageURLStringsGroup:nil];
@@ -115,9 +123,6 @@
     NSString *path = [NSString stringWithFormat:@"RSUser://bannerWeb?title=%@&urlString=%@",[_bannerTitles objectAtIndex:index],urlStr];
 
     UIViewController *vc = [RSRoute getViewControllerByPath:path];
-    [vc setValue:[_bannerTitles objectAtIndex:index] forKey:@"title"];
-    [vc setValue:[_bannerActionUrls objectAtIndex:index] forKey:@"urlString"];
-
     [self.navigationController pushViewController:vc animated:YES];
 }
 

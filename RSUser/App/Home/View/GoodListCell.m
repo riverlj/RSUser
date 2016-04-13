@@ -29,6 +29,7 @@
 {
     _iconIV = [UIImageView newAutoLayoutView];
     [self.contentView addSubview:_iconIV];
+    
     [_iconIV autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10];
     [_iconIV autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:10];
     [_iconIV autoSetDimensionsToSize:CGSizeMake(71, 71)];
@@ -71,7 +72,7 @@
     [self.contentView addSubview:_costPriceLabel];
     [_costPriceLabel autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:150];
     [_costPriceLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_menuLabel withOffset:14];
-    _costPriceLabel.font = RS_CostPriceLable;
+    _costPriceLabel.font = RS_CostPriceLable_Font;
     _costPriceLabel.textColor = RS_TabBar_Title_Color;
     
     UIView *lineView = [UIView newAutoLayoutView];
@@ -107,7 +108,7 @@
     [_countLabel autoSetDimension:ALDimensionWidth toSize:25];
     _countLabel.font = RS_CountLable_Font;
     _countLabel.textColor = RS_Sub_Text_Color;
-    _countLabel.text = @"11";
+    _countLabel.text = @"0";
     _countLabel.textAlignment = NSTextAlignmentCenter;
     _countLabel.adjustsFontSizeToFitWidth = YES;
     
@@ -136,44 +137,16 @@
     _saledLabel.text     = [NSString stringWithFormat:@"已售%ld份", model.saled];
     _priceLabel.text     = [NSString stringWithFormat:@"￥%@", model.saleprice];
     _costPriceLabel.text = [NSString stringWithFormat:@"￥%@", model.price];
-//    self.countLabel.text = [NSString stringWithFormat:@"%ld", (long)model.orderCount];
-//    if (model.orderCount) {
-//        self.subIV.hidden      = NO;
-//        self.subView.hidden    = NO;
-//        self.countLabel.hidden = NO;
-//    } else {
-//        self.subIV.hidden      = YES;
-//        self.subView.hidden    = YES;
-//        self.countLabel.hidden = YES;
-//    }
 }
 
 - (void)addCountClick
 {
-//    self.count++;
-//    if ([self.delegate  respondsToSelector:@selector(cellOrderAddPath:isAnimation:)]) {
-//        [self.delegate cellOrderAddPath:self.indexPath isAnimation:YES];
-//    }
-//
-//    if ([self.delegate  respondsToSelector:@selector(cellShowCountViewWithPath:)]) {
-//        [self.delegate cellShowCountViewWithPath:self.indexPath];
-//    }
+    
 }
 
 - (void)subCountClick
 {
-//    self.count--;
-//    if (!self.count) {
-//        self.countLabel.text = @"";
-//    }
-//    if (self.count <= 0) {
-//        if ([self.delegate  respondsToSelector:@selector(cellNotShowCountViewWithPath:)]) {
-//            [self.delegate cellNotShowCountViewWithPath:self.indexPath];
-//        }
-//    }
-//    if ([self.delegate  respondsToSelector:@selector(cellOrderSubPath:)]) {
-//        [self.delegate cellOrderSubPath:self.indexPath];
-//    }
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

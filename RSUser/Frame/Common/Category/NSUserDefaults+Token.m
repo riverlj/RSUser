@@ -33,4 +33,25 @@
     [defaults removeObjectForKey:@"token"];
     [defaults synchronize];
 }
+
++(void) setCommuntityId:(NSString *)communtityId
+{
+    [NSUserDefaults setValue:communtityId forKey:@"communtityId"];
+}
+
++(void) setCommuntityName:(NSString *)communtityName
+{
+    [NSUserDefaults setValue:communtityName forKey:@"communtityName"];
+}
+
++(NSString *)getCommuntityId
+{
+    return [NSUserDefaults getValue:@"communtityId"];
+}
+
++(NSString *)getCommuntityName
+{
+    return [NSUserDefaults getValue:@"communtityName"];
+}
+
 @end

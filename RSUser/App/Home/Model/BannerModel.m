@@ -24,10 +24,11 @@
     __block NSMutableArray *array = [NSMutableArray new];
     NSMutableDictionary *dic = [NSMutableDictionary new];
     [dic setValue:@"2" forKey:@"id"];
-    [RSHttp requestWithURL:RequestURL params:dic httpMethod:@"GET" success:^(NSArray *data) {
-        for (int i=0; i<data.count; i++) {
+    [RSHttp requestWithURL:RequestURL params:dic httpMethod:@"GET" success:^(id data) {
+        NSArray *dataArray = (NSArray *)data;
+        for (int i=0; i<dataArray.count; i++) {
             NSError *error = nil;
-            BannerModel *model = [MTLJSONAdapter modelOfClass:[BannerModel class] fromJSONDictionary:data[i] error:&error];
+            BannerModel *model = [MTLJSONAdapter modelOfClass:[BannerModel class] fromJSONDictionary:dataArray[i] error:&error];
             [array addObject:model];
         }
         successArray(array);

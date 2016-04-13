@@ -9,9 +9,8 @@
 #import "AppDelegate.h"
 #import "RSTabBarControllerConfig.h"
 #import "RSCartButtion.h"
-@interface AppDelegate ()
-{
-}
+@interface AppDelegate ()<CLLocationManagerDelegate>
+
 @end
 
 @implementation AppDelegate
@@ -20,13 +19,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    RSLocation *location = [[RSLocation alloc]init];
+    _location = location;
+    [location startLocation];
+    
     RSTabBarControllerConfig *tabBarControllerConfig = [[RSTabBarControllerConfig alloc] init];
     [self.window setRootViewController:tabBarControllerConfig.tabBarController];
-    
     [AppConfig customsizeInterface];
     [self.window makeKeyAndVisible];
+    
+    
+    
     return YES;
 }
-
 
 @end

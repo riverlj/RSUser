@@ -38,6 +38,8 @@
 /*白色*/
 #define RS_White_Color RGB(255, 255, 255)
 
+/**餐品名称*/
+#define RS_MainLable_Text_Color  [NSString colorFromHexString:@"222222"]
 /*主要字体*/
 #define RS_Main_FontSize BoldFont(24)
 #define RS_Button_Font Font(16)
@@ -47,5 +49,5 @@
 #define RS_PriceLable_Font Font(14)
 #define RS_SubLable_Font Font(12)
 #define RS_CountLable_Font Font(17)
-#define RS_CostPriceLable Font(9)
+#define RS_CostPriceLable_Font Font(9)
 #endif /* Theme_h */

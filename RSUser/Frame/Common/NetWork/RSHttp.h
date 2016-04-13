@@ -17,27 +17,27 @@
 + (void)requestWithURL:(NSString *)urlstring
                             params:(id)params
                         httpMethod:(NSString *)httpMethod
-                           success:(void (^)(NSArray *data)) success
+                           success:(void (^)(id data)) success
                            failure:(void (^)(NSInteger code, NSString *errmsg))failure;
 
 + (void)payRequestWithURL:(NSString *)urlstring
                 params:(id)params
             httpMethod:(NSString *)httpMethod
-               success:(void (^)(NSArray *data)) success
+               success:(void (^)(id data)) success
                failure:(void (^)(NSInteger code, NSString *errmsg))failure;
 
 +(void)postDataWithURL:(NSString *)urlstring
                 params:(id)params
 constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
-               success:(void (^)(NSArray *data)) success
+               success:(void (^)(id data)) success
                failure:(void (^)(NSInteger code, NSString *errmsg))failure;
 
 
-+ (void) processSuccess:(void (^)(NSArray *data)) success operation:(AFHTTPRequestOperation *)op response:(id)responseObject failure:(void (^)(NSInteger code, NSString *errmsg))failure;
++ (void) processSuccess:(void (^)(id data)) success operation:(AFHTTPRequestOperation *)op response:(id)responseObject failure:(void (^)(NSInteger code, NSString *errmsg))failure;
 + (void) processFailure:(void (^)(NSInteger code, NSString *errmsg))failure operation:(AFHTTPRequestOperation *)op error:(NSError *)error;
 +(void)mobileRequestWithURL:(NSString *)urlstring
                      params:(NSMutableDictionary *)params
                  httpMethod:(NSString *)httpMethod
-                    success:(void (^)(NSArray *))success
+                    success:(void (^)(id))success
                     failure:(void (^)(NSInteger, NSString *))failure;
 @end

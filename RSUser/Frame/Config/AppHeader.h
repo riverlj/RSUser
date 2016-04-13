@@ -25,4 +25,5 @@
 #import "RSToastView.h"
 #import <PureLayout/PureLayout.h>
 #import "UIImage+Helper.h"
+#import "RSAlertView.h"
 #endif /* AppHeader_h */

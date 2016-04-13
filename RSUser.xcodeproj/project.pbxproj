@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E57EC52FBD378DB4AFF964D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4958AA95EB4C8CED57B9D6 /* libPods.a */; };
+		B10769A41CBE43E600586304 /* RSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A31CBE43E600586304 /* RSLabel.m */; };
 		B1422BF21CBB575500C988FE /* RSTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */; };
 		B1422BF51CBB71DB00C988FE /* UIImage+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF41CBB71DB00C988FE /* UIImage+Helper.m */; };
 		B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF71CBB733600C988FE /* RSCartButtion.m */; };
@@ -17,6 +18,9 @@
 		B162BC941CBC951500E27228 /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC931CBC951500E27228 /* BannerModel.m */; };
 		B162BC971CBCA3ED00E27228 /* GoodListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC961CBCA3ED00E27228 /* GoodListCell.m */; };
 		B162BC9A1CBCFE4E00E27228 /* BannerwebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC991CBCFE4E00E27228 /* BannerwebViewController.m */; };
+		B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC9C1CBDEA2200E27228 /* CartViewController.m */; };
+		B162BC9F1CBE0B5200E27228 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B162BC9E1CBE0B5200E27228 /* CoreLocation.framework */; };
+		B162BCA31CBE115D00E27228 /* RSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BCA21CBE115D00E27228 /* RSLocation.m */; };
 		B1738D891CB65E71006C7207 /* RSHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738D881CB65E71006C7207 /* RSHttp.m */; };
 		B1738D8B1CB65FBF006C7207 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1738D8A1CB65FBF006C7207 /* UIKit.framework */; };
 		B1738D8E1CB6625A006C7207 /* RSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738D8D1CB6625A006C7207 /* RSWebViewController.m */; };
@@ -80,6 +84,8 @@
 		0635240A58BACFC3B831411C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4C4958AA95EB4C8CED57B9D6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DC3B7745B7573D432E4E8DE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B10769A21CBE43E600586304 /* RSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSLabel.h; sourceTree = "<group>"; };
+		B10769A31CBE43E600586304 /* RSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSLabel.m; sourceTree = "<group>"; };
 		B1422BF01CBB575500C988FE /* RSTabBarControllerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTabBarControllerConfig.h; sourceTree = "<group>"; };
 		B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTabBarControllerConfig.m; sourceTree = "<group>"; };
 		B1422BF31CBB71DB00C988FE /* UIImage+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helper.h"; sourceTree = "<group>"; };
@@ -98,6 +104,11 @@
 		B162BC961CBCA3ED00E27228 /* GoodListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodListCell.m; sourceTree = "<group>"; };
 		B162BC981CBCFE4E00E27228 /* BannerwebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerwebViewController.h; sourceTree = "<group>"; };
 		B162BC991CBCFE4E00E27228 /* BannerwebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerwebViewController.m; sourceTree = "<group>"; };
+		B162BC9B1CBDEA2200E27228 /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
+		B162BC9C1CBDEA2200E27228 /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
+		B162BC9E1CBE0B5200E27228 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B162BCA11CBE115D00E27228 /* RSLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSLocation.h; sourceTree = "<group>"; };
+		B162BCA21CBE115D00E27228 /* RSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSLocation.m; sourceTree = "<group>"; };
 		B1738D871CB65E71006C7207 /* RSHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSHttp.h; sourceTree = "<group>"; };
 		B1738D881CB65E71006C7207 /* RSHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSHttp.m; sourceTree = "<group>"; };
 		B1738D8A1CB65FBF006C7207 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -191,6 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B162BC9F1CBE0B5200E27228 /* CoreLocation.framework in Frameworks */,
 				B1738D8B1CB65FBF006C7207 /* UIKit.framework in Frameworks */,
 				0E57EC52FBD378DB4AFF964D /* libPods.a in Frameworks */,
 			);
@@ -225,10 +237,20 @@
 		89CD2143532C7CFFFAD5050B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B162BC9E1CBE0B5200E27228 /* CoreLocation.framework */,
 				B1738D8A1CB65FBF006C7207 /* UIKit.framework */,
 				4C4958AA95EB4C8CED57B9D6 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B162BCA01CBE10FB00E27228 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B162BCA11CBE115D00E27228 /* RSLocation.h */,
+				B162BCA21CBE115D00E27228 /* RSLocation.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		B1738D4D1CB65CCB006C7207 /* UIWidget */ = {
@@ -260,6 +282,8 @@
 				B1738DB01CB665C3006C7207 /* RSCatchline.m */,
 				B1422BFC1CBBAAF400C988FE /* RSLineView.h */,
 				B1422BFD1CBBAAF400C988FE /* RSLineView.m */,
+				B10769A21CBE43E600586304 /* RSLabel.h */,
+				B10769A31CBE43E600586304 /* RSLabel.m */,
 			);
 			path = UIWidget;
 			sourceTree = "<group>";
@@ -327,6 +351,8 @@
 		B1B7644D1CB8D286005A90BD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B162BC9B1CBDEA2200E27228 /* CartViewController.h */,
+				B162BC9C1CBDEA2200E27228 /* CartViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -457,6 +483,7 @@
 		B1C884C01CB8D10B00007BCD /* Frame */ = {
 			isa = PBXGroup;
 			children = (
+				B162BCA01CBE10FB00E27228 /* Utils */,
 				B1FFB8B01CB652AC00255F21 /* Config */,
 				B19E1B9C1CB66736009C38CD /* Model */,
 				B1738D4E1CB65D28006C7207 /* Widget */,
@@ -814,6 +841,7 @@
 				B1738DC71CB665EC006C7207 /* RSTableViewCell.m in Sources */,
 				B1738DB31CB665C3006C7207 /* RSProgressView.m in Sources */,
 				B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */,
+				B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */,
 				B1738DB21CB665C3006C7207 /* RSHeadView.m in Sources */,
 				B1FFB8CE1CB6566100255F21 /* NSString+RSHttp.m in Sources */,
 				B1738D8E1CB6625A006C7207 /* RSWebViewController.m in Sources */,
@@ -829,10 +857,12 @@
 				B1738DB41CB665C3006C7207 /* RSMenuButton.m in Sources */,
 				B1E81D6B1CB7B04100F587D1 /* RSAlertView.m in Sources */,
 				B1738DB51CB665C3006C7207 /* RSPlaceHolderTextView.m in Sources */,
+				B162BCA31CBE115D00E27228 /* RSLocation.m in Sources */,
 				B1738DB71CB665C3006C7207 /* RSRadioGroup.m in Sources */,
 				B1FFB8D81CB656DA00255F21 /* RSRoute.m in Sources */,
 				B1422BFB1CBB9E4100C988FE /* CartNumberLabel.m in Sources */,
 				B1422BF21CBB575500C988FE /* RSTabBarControllerConfig.m in Sources */,
+				B10769A41CBE43E600586304 /* RSLabel.m in Sources */,
 				B1FFB8CB1CB6566100255F21 /* NSDate+RSFormatter.m in Sources */,
 				B1738DBB1CB665C3006C7207 /* RSCatchline.m in Sources */,
 				B1738DC81CB665EC006C7207 /* RSTableViewController.m in Sources */,

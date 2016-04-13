@@ -12,7 +12,7 @@
 + (void)baseRequestWithURL:(NSString *)url
                             params:(id)params
                         httpMethod:(NSString *)httpMethod
-                          success:(void (^)(NSArray *))success
+                          success:(void (^)(id ))success
                           failure:(void (^)(NSInteger, NSString *))failure
         constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
 {
@@ -70,7 +70,7 @@
 }
 
 
-+(void) processSuccess:(void (^)(NSArray *data)) success
++(void) processSuccess:(void (^)(id data)) success
              operation:(AFHTTPRequestOperation *)op
               response:(id)responseObject
                failure:(void (^)(NSInteger code, NSString *errmsg))failure;
@@ -111,7 +111,7 @@
 
 +(void) requestWithURL:(NSString *)urlstring
                 params:(NSMutableDictionary *)params
-            httpMethod:(NSString *)httpMethod success:(void (^)(NSArray *))success
+            httpMethod:(NSString *)httpMethod success:(void (^)(id ))success
                failure:(void (^)(NSInteger, NSString *))failure
 {
     urlstring = [urlstring urlWithHost:REDSCARF_BASE_URL];
@@ -122,7 +122,7 @@
 +(void)payRequestWithURL:(NSString *)urlstring
                   params:(NSMutableDictionary *)params
               httpMethod:(NSString *)httpMethod
-                 success:(void (^)(NSArray *))success
+                 success:(void (^)(id ))success
                  failure:(void (^)(NSInteger, NSString *))failure
 {
     urlstring = [urlstring urlWithHost:REDSCARF_PAY_URL];
@@ -132,7 +132,7 @@
 +(void)mobileRequestWithURL:(NSString *)urlstring
                   params:(NSMutableDictionary *)params
               httpMethod:(NSString *)httpMethod
-                 success:(void (^)(NSArray *))success
+                 success:(void (^)(id ))success
                  failure:(void (^)(NSInteger, NSString *))failure
 {
     urlstring = [urlstring urlWithHost:REDSCARF_MOBILE_URL];
@@ -141,7 +141,7 @@
 
 
 
-+(void) postDataWithURL:(NSString *)urlstring params:(NSMutableDictionary *)params constructingBodyWithBlock:(void (^)(id<AFMultipartFormData>))block success:(void (^)(NSArray *))success failure:(void (^)(NSInteger, NSString *))failure
++(void) postDataWithURL:(NSString *)urlstring params:(NSMutableDictionary *)params constructingBodyWithBlock:(void (^)(id<AFMultipartFormData>))block success:(void (^)(id ))success failure:(void (^)(NSInteger, NSString *))failure
 {
     urlstring = [urlstring urlWithHost:REDSCARF_BASE_URL];
     [self baseRequestWithURL:urlstring params:params httpMethod:@"POST" success:success failure:failure constructingBodyWithBlock:block];

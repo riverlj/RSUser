@@ -9,14 +9,24 @@
 #import "RSAlertView.h"
 #import "RSLineView.h"
 
-#define ALERTVIEW_WIDTH 270
-#define ALERTVIEW_TITLE_HEIGHT 47
+#define ALERTVIEW_WIDTH 216
+#define ALERTVIEW_TITLE_HEIGHT 38.5
 
 @interface RSAlertView ()
 
 @end
 
 @implementation RSAlertView
+
+-(id) initWithTile:(NSString *)title msg:(NSString *)msg leftButtonTitle:(NSString *)leftBtnText AndLeftBlock:(dispatch_block_t)leftBlock
+{
+    self = [self initWithTile:title msg:msg leftButtonTitle:leftBtnText rightButtonTitle:nil];
+    if (self) {
+        self.leftBlock = leftBlock;
+    }
+    
+    return self;
+}
 
 -(id)initWithTile:(NSString *)title msg:(NSString *)msg leftButtonTitle:(NSString *)leftBtnText rightButtonTitle:(NSString *)rightBtnText
 {
@@ -48,9 +58,11 @@
         return _titleLabel;
     }
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ALERTVIEW_WIDTH, ALERTVIEW_TITLE_HEIGHT)];
-    _titleLabel.textColor = RS_SubMain_Text_Color;
-    _titleLabel.font = RS_Button_Font;
+    _titleLabel.textColor = RS_TabBar_count_Color;
+    _titleLabel.font = RS_MainLable_Font;
+    _titleLabel.backgroundColor = RS_Theme_Color;
     _titleLabel.numberOfLines = 1;
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
     return _titleLabel;
 }
 
@@ -59,10 +71,11 @@
     if(_contentLabel) {
         return _contentLabel;
     }
-    _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(19, 15, ALERTVIEW_WIDTH-30, 100)];
+    _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, ALERTVIEW_WIDTH-30, 100)];
     _contentLabel.textAlignment = NSTextAlignmentCenter;
     _contentLabel.textColor = RS_SubMain_Text_Color;
     _contentLabel.font = RS_Button_Font;
+    _contentLabel.textAlignment = NSTextAlignmentCenter;
     _contentLabel.numberOfLines = 0;
     return _contentLabel;
     
@@ -74,8 +87,11 @@
         return _leftButton;
     }
     _leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _leftButton.frame = CGRectMake(0, 0, (ALERTVIEW_WIDTH-1)/2.0, 44);
+    _leftButton.frame = CGRectMake(0, 0, (ALERTVIEW_WIDTH-1)/2.0, 34);
     [_leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [_leftButton setBackgroundColor:RS_Theme_Color];
+    [_leftButton.titleLabel setFont:RS_Button_Font];
+    [_leftButton setTitleColor:RS_TabBar_count_Color forState:UIControlStateNormal];
     return _leftButton;
 }
 
@@ -114,50 +130,55 @@
     float height = 0;
     if(self.title) {
         self.titleLabel.text = [NSString stringWithFormat:@"%@", self.title ];
-        self.titleLabel.textAlignment = NSTextAlignmentCenter;
         [self.alertView addSubview:self.titleLabel];
         height += self.titleLabel.height;
     }
-    RSLineView *hlineView = [RSLineView lineViewHorizontalWithFrame:CGRectMake(0, height, ALERTVIEW_WIDTH, 1) Color:RS_Line_Color];
-    [self.alertView addSubview:hlineView];
-    height += 1;
-    height += 15;
+//    RSLineView *hlineView = [RSLineView lineViewHorizontalWithFrame:CGRectMake(0, height, ALERTVIEW_WIDTH, 1) Color:RS_Line_Color];
+//    [self.alertView addSubview:hlineView];
+//    height += 1;
+    height += 43;
     
     if(self.msg) {
         self.contentLabel.text = self.msg;
         //动态调整content的高度
         CGSize constraint = CGSizeMake(self.contentLabel.width, 20000.0f);
         CGSize size = [self.msg sizeWithFont:self.contentLabel.font constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
-        self.contentLabel.height = MIN(200.0f, size.height);
         self.contentLabel.top = height;
+        self.contentLabel.height = size.height;
         [self.alertView addSubview:self.contentLabel];
         height += self.contentLabel.height;
     }
-    height += 30;
+    height += 43;
     
-    RSLineView *hlineView2 = [RSLineView lineViewHorizontalWithFrame:CGRectMake(0, height, ALERTVIEW_WIDTH, 1) Color:RS_Line_Color];
-    [self.alertView addSubview:hlineView2];
-    height += 1;
+//    RSLineView *hlineView2 = [RSLineView lineViewHorizontalWithFrame:CGRectMake(0, height, ALERTVIEW_WIDTH, 1) Color:RS_Line_Color];
+//    [self.alertView addSubview:hlineView2];
+//    height += 1;
 
     if(self.leftBtnText) {
         [self.leftButton setTitle:self.leftBtnText forState:UIControlStateNormal];
-        [self.leftButton.titleLabel setFont:RS_Button_Font];
-        [self.leftButton setTitleColor:RS_SubMain_Text_Color forState:UIControlStateNormal];
         [self.alertView addSubview:self.leftButton];
         self.leftButton.top = height;
         self.leftButton.left = 0;
         height += self.leftButton.height;
     }
     
-    RSLineView *vLine = [RSLineView lineViewVerticalWithFrame:CGRectMake(self.leftButton.right, self.leftButton.top, 1, self.leftButton.height) Color:RS_Line_Color];
-    [self.alertView addSubview:vLine];
+//    RSLineView *vLine = [RSLineView lineViewVerticalWithFrame:CGRectMake(self.leftButton.right, self.leftButton.top, 1, self.leftButton.height) Color:RS_Line_Color];
+//    [self.alertView addSubview:vLine];
     
-    if (self.rightBtnText) {
+    if (self.rightBtnText)
+    {
         [self.rightButton setTitle:self.rightBtnText forState:UIControlStateNormal];
         [self.rightButton.titleLabel setFont:RS_Button_Font];
         [self.rightButton setTitleColor:RS_SubMain_Text_Color forState:UIControlStateNormal];
         _rightButton.frame = CGRectMake(_leftButton.x+_leftButton.width+1, _leftButton.y, _leftButton.width, _leftButton.height);
         [self.alertView addSubview:self.rightButton];
+    }
+    else
+    {
+        self.leftButton.width = 122;
+        self.leftButton.layer.cornerRadius = 2.0;
+        self.leftButton.left = (ALERTVIEW_WIDTH - 122)/2;
+        height += 22.5;
     }
     
     self.alertView.frame = CGRectMake((self.width - ALERTVIEW_WIDTH)/2, (self.height-height)/2, ALERTVIEW_WIDTH, height);
@@ -186,7 +207,7 @@
 {
     UIViewController *topVC = [self superViewController];
     self.alertView.frame = CGRectMake(self.width/2, self.height/2, 0, 0);
-    [UIView animateWithDuration:0.35f animations:^{
+    [UIView animateWithDuration:0 animations:^{
         [self layout];
         [topVC.view addSubview:self];
     }];
@@ -208,9 +229,7 @@
  */
 - (void)removeFromSuperview
 {
-    [self.bgImgView removeFromSuperview];
-    self.bgImgView = nil;
-    [UIView animateWithDuration:0.35f animations:^{
+    [UIView animateWithDuration:0 animations:^{
         self.alertView.frame = CGRectMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 0, 0);
         self.backgroundColor = [UIColor clearColor];
     } completion:^(BOOL finished) {

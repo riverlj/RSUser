@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RSLocation.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong)RSLocation *location;
+
 @end
 

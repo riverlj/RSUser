@@ -13,4 +13,8 @@
 +(NSString *) getValue:(NSString *)key;
 +(void) setValue:(NSString *) value forKey:(NSString *)key;
 +(void) clearValueForKey:(NSString *) key;
++(void) setCommuntityId:(NSString *)communtityId;
++(void) setCommuntityName:(NSString *)communtityName;
++(NSString *)getCommuntityId;
++(NSString *)getCommuntityName;
 @end
