@@ -17,5 +17,5 @@
 @property (nonatomic, assign)Boolean hasBackBtn;
 @property (nonatomic, strong) CartNumberLabel *countLabel;
 
-
+- (void)backUp;
 @end

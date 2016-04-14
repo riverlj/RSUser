@@ -122,6 +122,19 @@
     return [NSString stringWithFormat:@"%i", days];
 }
 
++ (NSString *)firstLetterCapital:(NSString *)str
+{
+    if (str.length == 0)
+    {
+        return str;
+    }
+    NSString *tempStr = [str substringToIndex:1];
+    NSString *tempStr2 = [str substringFromIndex:1];
+    
+    tempStr = [tempStr capitalizedString];
+    return [tempStr stringByAppendingString:tempStr2];
+}
+
 - (CGSize)sizeWithFont:(UIFont *)font byWidth:(CGFloat)width
 {
     NSDictionary *dict = @{NSFontAttributeName :font};

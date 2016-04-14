@@ -35,9 +35,11 @@
 + (NSString *)stringForZeroSuppression:(NSString *)numTep; //去零
 
 + (NSString *)stringTimeIntervalFromTimestampe:(NSTimeInterval)fromTime to:(NSTimeInterval)toTime; //间隔天数
++ (NSString *)firstLetterCapital:(NSString *)str;
 
 - (CGSize)sizeWithFont:(UIFont *)font byWidth:(CGFloat)width;
 
 - (CGSize)sizeWithFont:(UIFont *)font byHeight:(CGFloat)height;
+
 
 @end

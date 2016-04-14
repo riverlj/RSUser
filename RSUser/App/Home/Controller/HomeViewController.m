@@ -17,18 +17,19 @@
 @property (nonatomic ,strong)NSMutableArray *bannerTitles;
 @end
 
+@interface HomeViewController()
+{
+    UIButton *locationBtn;
+    UIView *_naviView;
+}
+@end
 @implementation HomeViewController
+
+#pragma mark 生命周期
 -(void)viewDidLoad
 {
     [super viewDidLoad];
     self.hasBackBtn = NO;
-
-    
-    if (![NSUserDefaults getCommuntityName])
-    {
-        //TODO 跳转到选择学校页
-        [self.navigationController pushViewController:@"" animated:YES];
-    }
 
     self.tableView.tableHeaderView = self.cycleScrollView;
     self.url = @"/weixin/products";
@@ -37,16 +38,18 @@
     self.bannerImageUrls = [NSMutableArray new];
     self.bannerActionUrls = [NSMutableArray new];
     self.bannerTitles = [NSMutableArray new];
-
+    
+    [self createNaviView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self createLocationView];
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49);
-    
+    self.navigationController.navigationBar.hidden = YES;
     [self.tableView.mj_header beginRefreshing];
+    
+    [locationBtn setTitle:COMMUNITITYNAME forState:UIControlStateNormal];
     
     [BannerModel getBannerArraySuccess:^(NSArray *array) {
         [self.bannerActionUrls removeAllObjects];
@@ -64,23 +67,42 @@
     }];
 }
 
-- (void)createLocationView
-{
-    UIButton *locationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [locationBtn setImage:[UIImage imageNamed:@"icon_location"] forState:UIControlStateNormal];
-    [locationBtn setImage:[UIImage imageNamed:@"icon_location"] forState:UIControlStateHighlighted];
-    [locationBtn setTitle:[NSUserDefaults getCommuntityName] forState:UIControlStateNormal];
-    locationBtn.frame = CGRectMake(0, 0, 300, 30);
-    locationBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
-    locationBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -5);
-    [locationBtn addTarget:self action:@selector(locationBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.titleView = locationBtn;
-
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    if (!COMMUNTITYID)
+    {
+        //TODO跳转到地址选择页
+//        [self locationBtnClicked];
+    }
 }
 
-- (void)locationBtnClicked
+#pragma mark 创建View
+- (void)createNaviView
 {
+    _naviView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64)];
+    [self.view addSubview:_naviView];
+    _naviView.backgroundColor = RS_Theme_Color;
+    _naviView.alpha = 0;
+    _naviView.userInteractionEnabled = YES;
     
+    [self createLocationView];
+}
+
+- (void)createLocationView
+{
+    locationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [locationBtn setImage:[UIImage imageNamed:@"icon_location"] forState:UIControlStateNormal];
+    [locationBtn setImage:[UIImage imageNamed:@"icon_location"] forState:UIControlStateHighlighted];
+    locationBtn.frame = CGRectMake(0, 25, SCREEN_WIDTH, 30);
+    locationBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
+    locationBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -5);
+    @weakify(self)
+    [[locationBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        @strongify(self)
+        [self locationBtnClicked];
+    }];
+    [self.view addSubview:locationBtn];
 }
 
 -(SDCycleScrollView *)cycleScrollView
@@ -96,6 +118,13 @@
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     _cycleScrollView.backgroundColor = RS_Background_Color;
     return _cycleScrollView;
+}
+
+#pragma View响应方法
+- (void)locationBtnClicked
+{
+    UIViewController *vc = [RSRoute getViewControllerByPath:@"RSUser://chooseSchool"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)initBannerView
@@ -116,16 +145,7 @@
     });
 }
 
--(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
-{
-    NSString *urlStr = [_bannerActionUrls objectAtIndex:index];
-    urlStr = [NSString URLencode:urlStr stringEncoding:NSUTF8StringEncoding];
-    NSString *path = [NSString stringWithFormat:@"RSUser://bannerWeb?title=%@&urlString=%@",[_bannerTitles objectAtIndex:index],urlStr];
-
-    UIViewController *vc = [RSRoute getViewControllerByPath:path];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
+#pragma mark 网络请求处理
 -(void)beforeHttpRequest
 {
     [super beforeHttpRequest];
@@ -142,11 +162,35 @@
         NSDictionary *dic = data[i];
         GoodListModel *goodListModel =[MTLJSONAdapter modelOfClass:[GoodListModel class] fromJSONDictionary:dic error:&error];
         goodListModel.cellClassName = @"GoodListCell";
-        goodListModel.cellHeight = 94;
+        goodListModel.cellHeight = 93;
         [self.models addObject:goodListModel];
     }
     
     [self.tableView reloadData];
+}
+
+#pragma mark SDCycleScrollView广告滚动代理
+-(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
+{
+    NSString *urlStr = [_bannerActionUrls objectAtIndex:index];
+    urlStr = [NSString URLencode:urlStr stringEncoding:NSUTF8StringEncoding];
+    NSString *path = [NSString stringWithFormat:@"RSUser://bannerweb?title=%@&urlString=%@",[_bannerTitles objectAtIndex:index],urlStr];
+
+    UIViewController *vc = [RSRoute getViewControllerByPath:path];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - ScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView == self.tableView) {
+        CGFloat naviAlpha = scrollView.contentOffset.y/(SCREEN_HEIGHT*0.25-64);
+        _naviView.alpha = naviAlpha;
+        
+        CGFloat naviAlpha1 = scrollView.contentOffset.y/54+1;
+        
+        locationBtn.alpha = naviAlpha1;
+    }
 }
 
 @end

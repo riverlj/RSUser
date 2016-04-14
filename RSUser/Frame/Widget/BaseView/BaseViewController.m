@@ -28,6 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = self.tabBarItem.title;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.navigationController.navigationBar.hidden = NO;
     self.view.backgroundColor = RS_Background_Color;
 }
 

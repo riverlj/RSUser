@@ -17,13 +17,13 @@
 {
     if (self = [super init])
     {
+        _locationManager = [[CLLocationManager alloc]init];
     }
     return self;
 }
 
 - (void)startLocation
 {
-    _locationManager = [[CLLocationManager alloc]init];
     
     if (![CLLocationManager locationServicesEnabled]) {
         NSLog(@"定位服务当前可能尚未打开，请设置打开！");
@@ -32,9 +32,9 @@
     //如果没有授权则请求用户授权
     if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined){
         [_locationManager requestWhenInUseAuthorization];
-    }else if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorizedWhenInUse){
-        //设置代理
-        _locationManager.delegate=self;
+    }
+    if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorizedWhenInUse){
+        _locationManager.delegate = self;
         //设置定位精度
         _locationManager.desiredAccuracy=kCLLocationAccuracyBest;
         //定位频率,每隔多少米定位一次
@@ -45,6 +45,18 @@
     }
 }
 
+//地理坐标恢复
+- (void)locationManagerDidResumeLocationUpdates:(CLLocationManager *)manager
+{
+    [manager startUpdatingLocation];
+}
+
+//获取地理坐标失败
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    //地位失败跳转到首页
+}
+
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
     CLLocation *location=[locations firstObject];//取出第一个位置
@@ -52,7 +64,7 @@
     CLLocationDegrees longitude = coordinate.longitude; //经度
     CLLocationDegrees latitude = coordinate.latitude; //纬度
     
-    [_locationManager stopUpdatingLocation];
+    [manager stopUpdatingLocation];
     
     //TODO 39.96101234,116.45981234  中电坐标
     longitude = 39.96101234;
@@ -64,24 +76,14 @@
     
     [RSHttp requestWithURL:@"/weixin/locatecommunity" params:dic httpMethod:@"GET" success:^(id data) {
         NSDictionary *dic = (NSDictionary *)data;
-        //定位成功
-        [NSUserDefaults setCommuntityId:[dic valueForKey:@"id"]];
-        [NSUserDefaults setCommuntityId: [dic valueForKey:@"name"]];
-
+        // 将信息存到本地文件
+        if (!COMMUNTITYID)
+        {
+            [LOCATIONMODEL setLocationModel:dic];
+        }
     } failure:^(NSInteger code, NSString *errmsg) {
-        //定位失败
-        NSString *communtityId = [NSUserDefaults getCommuntityId];
-        NSString *communtityName = [NSUserDefaults getCommuntityName];
-        if (communtityName && communtityId)
-        {
-            return;
-        }
-        else
-        {
-            //TODO跳转到地址搜索页
-        }
+        //获取位置信息失败
     }];
-    
 }
 
 @end

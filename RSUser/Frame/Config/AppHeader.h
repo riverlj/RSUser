@@ -26,4 +26,5 @@
 #import <PureLayout/PureLayout.h>
 #import "UIImage+Helper.h"
 #import "RSAlertView.h"
+#import "LocationModel.h"
 #endif /* AppHeader_h */

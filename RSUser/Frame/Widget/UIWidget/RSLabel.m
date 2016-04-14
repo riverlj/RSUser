@@ -14,6 +14,7 @@
     RSLabel *label = [[RSLabel alloc]initWithFrame:frame];
     label.backgroundColor = bgColor;
     label.textColor = textColor;
+    label.textAlignment = NSTextAlignmentCenter;
     return label;
 }
 @end

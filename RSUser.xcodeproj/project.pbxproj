@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0E57EC52FBD378DB4AFF964D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4958AA95EB4C8CED57B9D6 /* libPods.a */; };
+		B1021DDD1CBF611B00050AEB /* ThrowLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B1021DDC1CBF611B00050AEB /* ThrowLineTool.m */; };
 		B10769A41CBE43E600586304 /* RSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A31CBE43E600586304 /* RSLabel.m */; };
+		B10769A71CBE490400586304 /* RSImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A61CBE490400586304 /* RSImageView.m */; };
+		B10769AA1CBF1D8700586304 /* LocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A91CBF1D8700586304 /* LocationModel.m */; };
+		B10769AD1CBF344000586304 /* ChooseSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769AC1CBF344000586304 /* ChooseSchoolViewController.m */; };
 		B1422BF21CBB575500C988FE /* RSTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */; };
 		B1422BF51CBB71DB00C988FE /* UIImage+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF41CBB71DB00C988FE /* UIImage+Helper.m */; };
 		B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF71CBB733600C988FE /* RSCartButtion.m */; };
@@ -84,8 +88,16 @@
 		0635240A58BACFC3B831411C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4C4958AA95EB4C8CED57B9D6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DC3B7745B7573D432E4E8DE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B1021DDB1CBF611B00050AEB /* ThrowLineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThrowLineTool.h; sourceTree = "<group>"; };
+		B1021DDC1CBF611B00050AEB /* ThrowLineTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThrowLineTool.m; sourceTree = "<group>"; };
 		B10769A21CBE43E600586304 /* RSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSLabel.h; sourceTree = "<group>"; };
 		B10769A31CBE43E600586304 /* RSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSLabel.m; sourceTree = "<group>"; };
+		B10769A51CBE490400586304 /* RSImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSImageView.h; sourceTree = "<group>"; };
+		B10769A61CBE490400586304 /* RSImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSImageView.m; sourceTree = "<group>"; };
+		B10769A81CBF1D8700586304 /* LocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationModel.h; sourceTree = "<group>"; };
+		B10769A91CBF1D8700586304 /* LocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationModel.m; sourceTree = "<group>"; };
+		B10769AB1CBF344000586304 /* ChooseSchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSchoolViewController.h; sourceTree = "<group>"; };
+		B10769AC1CBF344000586304 /* ChooseSchoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseSchoolViewController.m; sourceTree = "<group>"; };
 		B1422BF01CBB575500C988FE /* RSTabBarControllerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTabBarControllerConfig.h; sourceTree = "<group>"; };
 		B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTabBarControllerConfig.m; sourceTree = "<group>"; };
 		B1422BF31CBB71DB00C988FE /* UIImage+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helper.h"; sourceTree = "<group>"; };
@@ -284,6 +296,8 @@
 				B1422BFD1CBBAAF400C988FE /* RSLineView.m */,
 				B10769A21CBE43E600586304 /* RSLabel.h */,
 				B10769A31CBE43E600586304 /* RSLabel.m */,
+				B10769A51CBE490400586304 /* RSImageView.h */,
+				B10769A61CBE490400586304 /* RSImageView.m */,
 			);
 			path = UIWidget;
 			sourceTree = "<group>";
@@ -390,6 +404,8 @@
 				B1B764531CB8D286005A90BD /* HomeViewController.m */,
 				B162BC981CBCFE4E00E27228 /* BannerwebViewController.h */,
 				B162BC991CBCFE4E00E27228 /* BannerwebViewController.m */,
+				B10769AB1CBF344000586304 /* ChooseSchoolViewController.h */,
+				B10769AC1CBF344000586304 /* ChooseSchoolViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -567,8 +583,12 @@
 			children = (
 				B1FFB8851CB64DCA00255F21 /* Assets.xcassets */,
 				B1FFB88A1CB64DCA00255F21 /* Info.plist */,
+				B1021DDB1CBF611B00050AEB /* ThrowLineTool.h */,
+				B1021DDC1CBF611B00050AEB /* ThrowLineTool.m */,
 				B1FFB87C1CB64DCA00255F21 /* AppDelegate.h */,
 				B1FFB87D1CB64DCA00255F21 /* AppDelegate.m */,
+				B10769A81CBF1D8700586304 /* LocationModel.h */,
+				B10769A91CBF1D8700586304 /* LocationModel.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -833,16 +853,20 @@
 				B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */,
 				B1738D891CB65E71006C7207 /* RSHttp.m in Sources */,
 				B1B764631CB8D286005A90BD /* OrderViewController.m in Sources */,
+				B10769A71CBE490400586304 /* RSImageView.m in Sources */,
 				B1FFB8D01CB6566100255F21 /* UIDeviceAdditions.m in Sources */,
 				B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */,
 				B1738D911CB6626E006C7207 /* RSWebView.m in Sources */,
 				B1738DBE1CB665E2006C7207 /* RSRefreshTableViewController.m in Sources */,
 				B1FFB87E1CB64DCA00255F21 /* AppDelegate.m in Sources */,
 				B1738DC71CB665EC006C7207 /* RSTableViewCell.m in Sources */,
+				B10769AA1CBF1D8700586304 /* LocationModel.m in Sources */,
 				B1738DB31CB665C3006C7207 /* RSProgressView.m in Sources */,
 				B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */,
 				B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */,
 				B1738DB21CB665C3006C7207 /* RSHeadView.m in Sources */,
+				B1021DDD1CBF611B00050AEB /* ThrowLineTool.m in Sources */,
+				B10769AD1CBF344000586304 /* ChooseSchoolViewController.m in Sources */,
 				B1FFB8CE1CB6566100255F21 /* NSString+RSHttp.m in Sources */,
 				B1738D8E1CB6625A006C7207 /* RSWebViewController.m in Sources */,
 				B162BC941CBC951500E27228 /* BannerModel.m in Sources */,
@@ -990,6 +1014,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -1079,6 +1104,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;

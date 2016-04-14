@@ -161,7 +161,8 @@ static RSRoute *gsharedAccount = nil;
 //    NSString *protocal = [dic valueForKey:@"protocol"];
     if (path.length != 0)
     {
-        UIViewController *vc = [[NSClassFromString([[path capitalizedString] append:@"ViewController"]) alloc]init];
+        path = [NSString firstLetterCapital:path];
+        UIViewController *vc = (UIViewController *)[[NSClassFromString([path append:@"ViewController"]) alloc]init];
         NSArray *keys = [params allKeys];
         for (int i=0; i<keys.count; i++)
         {
