@@ -45,7 +45,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49);
+    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.height-49);
     self.navigationController.navigationBar.hidden = YES;
     [self.tableView.mj_header beginRefreshing];
     

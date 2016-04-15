@@ -12,9 +12,10 @@
 #define COMMUNTITYID LOCATIONMODEL.communtityId
 #define COMMUNITITYNAME LOCATIONMODEL.communtityName
 
-@interface LocationModel : RSModel
-@property (nonatomic ,copy)NSString *communtityId;
+@interface LocationModel : RSModel<MTLJSONSerializing>
+@property (nonatomic ,strong)NSNumber *communtityId;
 @property (nonatomic ,copy)NSString *communtityName;
 + (LocationModel *)shareLocationModel;
 - (void)setLocationModel:(NSDictionary *)dic;
++ (void)getSearchResultWithKey:(NSString *)searchKey Result:(void (^)(NSArray *))successArray;
 @end

@@ -44,6 +44,8 @@
 		B1738DC81CB665EC006C7207 /* RSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738DC21CB665EC006C7207 /* RSTableViewController.m */; };
 		B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738DC61CB665EC006C7207 /* BaseViewController.m */; };
 		B19E1B9F1CB6674B009C38CD /* RSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B19E1B9E1CB6674B009C38CD /* RSModel.m */; };
+		B1A8D4B41CC09D3C00471E93 /* RSSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A8D4B31CC09D3C00471E93 /* RSSearchView.m */; };
+		B1A8D4B71CC0CAEC00471E93 /* SchoolAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A8D4B61CC0CAEC00471E93 /* SchoolAddressCell.m */; };
 		B1B764621CB8D286005A90BD /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B764531CB8D286005A90BD /* HomeViewController.m */; };
 		B1B764631CB8D286005A90BD /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B764591CB8D286005A90BD /* OrderViewController.m */; };
 		B1B764641CB8D286005A90BD /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B7645F1CB8D286005A90BD /* ProfileViewController.m */; };
@@ -158,6 +160,10 @@
 		B1738DC61CB665EC006C7207 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		B19E1B9D1CB6674B009C38CD /* RSModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSModel.h; sourceTree = "<group>"; };
 		B19E1B9E1CB6674B009C38CD /* RSModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSModel.m; sourceTree = "<group>"; };
+		B1A8D4B21CC09D3C00471E93 /* RSSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSearchView.h; sourceTree = "<group>"; };
+		B1A8D4B31CC09D3C00471E93 /* RSSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSearchView.m; sourceTree = "<group>"; };
+		B1A8D4B51CC0CAEC00471E93 /* SchoolAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolAddressCell.h; sourceTree = "<group>"; };
+		B1A8D4B61CC0CAEC00471E93 /* SchoolAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolAddressCell.m; sourceTree = "<group>"; };
 		B1B764521CB8D286005A90BD /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		B1B764531CB8D286005A90BD /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		B1B764581CB8D286005A90BD /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
@@ -413,6 +419,8 @@
 		B1B764541CB8D286005A90BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B10769A81CBF1D8700586304 /* LocationModel.h */,
+				B10769A91CBF1D8700586304 /* LocationModel.m */,
 				B162BC8F1CBC91FB00E27228 /* GoodListModel.h */,
 				B162BC901CBC91FB00E27228 /* GoodListModel.m */,
 				B162BC921CBC951500E27228 /* BannerModel.h */,
@@ -426,6 +434,10 @@
 			children = (
 				B162BC951CBCA3ED00E27228 /* GoodListCell.h */,
 				B162BC961CBCA3ED00E27228 /* GoodListCell.m */,
+				B1A8D4B21CC09D3C00471E93 /* RSSearchView.h */,
+				B1A8D4B31CC09D3C00471E93 /* RSSearchView.m */,
+				B1A8D4B51CC0CAEC00471E93 /* SchoolAddressCell.h */,
+				B1A8D4B61CC0CAEC00471E93 /* SchoolAddressCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -587,8 +599,6 @@
 				B1021DDC1CBF611B00050AEB /* ThrowLineTool.m */,
 				B1FFB87C1CB64DCA00255F21 /* AppDelegate.h */,
 				B1FFB87D1CB64DCA00255F21 /* AppDelegate.m */,
-				B10769A81CBF1D8700586304 /* LocationModel.h */,
-				B10769A91CBF1D8700586304 /* LocationModel.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -865,6 +875,7 @@
 				B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */,
 				B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */,
 				B1738DB21CB665C3006C7207 /* RSHeadView.m in Sources */,
+				B1A8D4B41CC09D3C00471E93 /* RSSearchView.m in Sources */,
 				B1021DDD1CBF611B00050AEB /* ThrowLineTool.m in Sources */,
 				B10769AD1CBF344000586304 /* ChooseSchoolViewController.m in Sources */,
 				B1FFB8CE1CB6566100255F21 /* NSString+RSHttp.m in Sources */,
@@ -886,6 +897,7 @@
 				B1FFB8D81CB656DA00255F21 /* RSRoute.m in Sources */,
 				B1422BFB1CBB9E4100C988FE /* CartNumberLabel.m in Sources */,
 				B1422BF21CBB575500C988FE /* RSTabBarControllerConfig.m in Sources */,
+				B1A8D4B71CC0CAEC00471E93 /* SchoolAddressCell.m in Sources */,
 				B10769A41CBE43E600586304 /* RSLabel.m in Sources */,
 				B1FFB8CB1CB6566100255F21 /* NSDate+RSFormatter.m in Sources */,
 				B1738DBB1CB665C3006C7207 /* RSCatchline.m in Sources */,

@@ -17,7 +17,7 @@
     NSString *savePath = [paths objectAtIndex:0];
     savePath = [savePath stringByAppendingPathComponent:@"Preferences"];
     if(!filename) {
-        filename = @"com.RedScarf.preferences.plist";
+        filename = @"com.RSUser.preferences.plist";
     }
     savePath = [savePath stringByAppendingPathComponent:filename];
     return savePath;

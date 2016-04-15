@@ -26,5 +26,7 @@
 #import <PureLayout/PureLayout.h>
 #import "UIImage+Helper.h"
 #import "RSAlertView.h"
+#import "RSLabel.h"
 #import "LocationModel.h"
+#import "RSTableViewCell.h"
 #endif /* AppHeader_h */
