@@ -7,9 +7,6 @@
 //
 
 #import "RSHeadView.h"
-//TODO 去掉Model
-//#import "RSAccountModel.h"
-
 
 #define  HEAD_POSTIONVIEW_WIDTH 24
 #define  HEAD_POSTIONVIEW_HEIGHT 12

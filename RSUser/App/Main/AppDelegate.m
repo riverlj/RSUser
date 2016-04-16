@@ -27,9 +27,6 @@
     }
     [_location startLocation];
     
-    //TODO
-    [LOCATIONMODEL setLocationModel:@{@"id":@"2" , @"name":@"北京理工大学"}];
-
     [self setRootViewControler];
     return YES;
 }

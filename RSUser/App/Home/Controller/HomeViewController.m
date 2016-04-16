@@ -31,6 +31,7 @@
     [super viewDidLoad];
     self.hasBackBtn = NO;
 
+    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.height-49);
     self.tableView.tableHeaderView = self.cycleScrollView;
     self.url = @"/weixin/products";
     self.useFooterRefresh = NO;
@@ -45,7 +46,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.height-49);
+    
+    NSLog(@"%@",COMMUNTITYID);
+    if (!COMMUNTITYID)
+    {
+        [self locationBtnClicked];
+        return;
+    }
     self.navigationController.navigationBar.hidden = YES;
     [self.tableView.mj_header beginRefreshing];
     
@@ -67,15 +74,6 @@
     }];
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
-    if (!COMMUNTITYID)
-    {
-        //TODO跳转到地址选择页
-//        [self locationBtnClicked];
-    }
-}
 
 #pragma mark 创建View
 - (void)createNaviView
@@ -150,7 +148,7 @@
 {
     [super beforeHttpRequest];
     
-    [self.params setValue:@"2" forKey:@"communityid"];
+    [self.params setValue:COMMUNTITYID forKey:@"communityid"];
     [self.params setValue:@"" forKey:@"channelid"];
     [self.params setValue:@"" forKey:@"brandid"];
 }

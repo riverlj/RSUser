@@ -66,9 +66,6 @@
     
     [manager stopUpdatingLocation];
     
-    //TODO 39.96101234,116.45981234  中电坐标
-    longitude = 39.96101234;
-    latitude = 116.45981234;
     NSDictionary *dic = @{
                           @"lat" : [NSNumber numberWithDouble:longitude], //经度
                           @"lng" : [NSNumber numberWithDouble:latitude]    //纬度

@@ -13,6 +13,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    self.bannerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.height-64);
     self.bannerView.backgroundColor = RS_Background_Color;
 }
 @end

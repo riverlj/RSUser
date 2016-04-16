@@ -29,4 +29,5 @@
 #import "RSLabel.h"
 #import "LocationModel.h"
 #import "RSTableViewCell.h"
+#import "RSLineView.h"
 #endif /* AppHeader_h */
