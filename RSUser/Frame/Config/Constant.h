@@ -19,6 +19,7 @@
 #define REDSCARF_MOBILE_URL @""
 #endif
 
-
+//APP请求超时时间
+#define APPREQUESTTIMEOUT 5
 
 #endif /* Constant_h */

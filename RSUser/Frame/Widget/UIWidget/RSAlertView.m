@@ -75,7 +75,7 @@
     _contentLabel.textAlignment = NSTextAlignmentCenter;
     _contentLabel.textColor = RS_SubMain_Text_Color;
     _contentLabel.font = RS_Button_Font;
-    _contentLabel.textAlignment = NSTextAlignmentCenter;
+
     _contentLabel.numberOfLines = 0;
     return _contentLabel;
     

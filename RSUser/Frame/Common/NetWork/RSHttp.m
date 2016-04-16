@@ -19,7 +19,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     //设置超时时间
-    manager.requestSerializer.timeoutInterval = 5;
+    manager.requestSerializer.timeoutInterval = APPREQUESTTIMEOUT;
     if([httpMethod isEqualToString:@"GET"]) {
         [manager GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [self processSuccess:success operation:operation response:responseObject failure:failure];

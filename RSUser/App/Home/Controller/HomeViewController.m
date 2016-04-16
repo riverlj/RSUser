@@ -9,7 +9,8 @@
 #import "HomeViewController.h"
 #import "GoodListModel.h"
 #import "BannerModel.h"
-#import "RSWebViewController.h"
+#import "RSAlertView.h"
+#import "RSCartButtion.h"
 
 @interface HomeViewController ()<SDCycleScrollViewDelegate>
 @property (nonatomic ,strong)NSMutableArray *bannerImageUrls;
