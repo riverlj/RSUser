@@ -30,4 +30,6 @@
 #import "LocationModel.h"
 #import "RSTableViewCell.h"
 #import "RSLineView.h"
+#import "RSButton.h"
+#import "RSUIView.h"
 #endif /* AppHeader_h */

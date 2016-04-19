@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AppDelegate.h"
 @class CYLTabBarController;
 
 @interface AppConfig : NSObject
@@ -20,4 +21,9 @@
  *  app样式设置
  */
 + (void)customsizeInterface;
+
+/**
+ *  获取APPdelegate
+ */
++ (AppDelegate *)getAPPDelegate;
 @end

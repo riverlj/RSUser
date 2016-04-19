@@ -17,4 +17,11 @@
     label.textAlignment = NSTextAlignmentCenter;
     return label;
 }
+
++ (RSLabel *)lableViewWithFrame:(CGRect)frame bgColor:(UIColor *)bgColor textColor:(UIColor *)textColor FontSize:(CGFloat)fontsize
+{
+    RSLabel *label = [RSLabel lableViewWithFrame:frame bgColor:bgColor textColor:textColor];
+    label.font = Font(fontsize);
+    return label;
+}
 @end

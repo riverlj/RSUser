@@ -11,6 +11,7 @@
 #import "BannerModel.h"
 #import "RSAlertView.h"
 #import "RSCartButtion.h"
+#import "CartModel.h"
 
 @interface HomeViewController ()<SDCycleScrollViewDelegate>
 @property (nonatomic ,strong)NSMutableArray *bannerImageUrls;
@@ -22,6 +23,7 @@
 {
     UIButton *locationBtn;
     UIView *_naviView;
+    NSMutableArray *_cartArray;
 }
 @end
 @implementation HomeViewController
@@ -30,6 +32,8 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _cartArray = [[NSMutableArray alloc]init];
     self.hasBackBtn = NO;
 
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.height-49);
@@ -42,13 +46,38 @@
     self.bannerTitles = [NSMutableArray new];
     
     [self createNaviView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCountLabel) name:@"Notification_UpadteCountLabel" object:nil];
+}
+
+- (void)updateCountLabel
+{
+    NSMutableArray *array = [AppConfig  getAPPDelegate].localCartData;
+    
+    for (int i=0; i<self.models.count; i++) {
+        GoodListModel *model = self.models[i];
+        model.num = 0;
+        if (array.count == 0) {
+            model.num = 0;
+            continue;
+        }
+        
+        for (int j=0; j<array.count; j++) {
+            CartModel *cartModel = array[j];
+            if (model.comproductid == cartModel.comproductid)
+            {
+                model.num = cartModel.num;
+            }
+        }
+    }
+    
+    [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    NSLog(@"%@",COMMUNTITYID);
     if (!COMMUNTITYID)
     {
         [self locationBtnClicked];
@@ -74,7 +103,6 @@
         [self.tableView reloadData];
     }];
 }
-
 
 #pragma mark 创建View
 - (void)createNaviView
@@ -165,7 +193,7 @@
         [self.models addObject:goodListModel];
     }
     
-    [self.tableView reloadData];
+    [self updateCountLabel];
 }
 
 #pragma mark SDCycleScrollView广告滚动代理
@@ -190,6 +218,10 @@
         
         locationBtn.alpha = naviAlpha1;
     }
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Notification_UpadteCountLabel" object:nil];
 }
 
 @end

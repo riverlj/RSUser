@@ -64,4 +64,10 @@
     [[UITabBar appearance] setShadowImage:image];
 }
 
++ (AppDelegate *)getAPPDelegate
+{
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    return delegate;
+}
+
 @end

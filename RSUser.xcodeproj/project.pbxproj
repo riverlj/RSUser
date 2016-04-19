@@ -13,6 +13,9 @@
 		B10769A71CBE490400586304 /* RSImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A61CBE490400586304 /* RSImageView.m */; };
 		B10769AA1CBF1D8700586304 /* LocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A91CBF1D8700586304 /* LocationModel.m */; };
 		B10769AD1CBF344000586304 /* ChooseSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769AC1CBF344000586304 /* ChooseSchoolViewController.m */; };
+		B123DC371CC4A9D000F08E8D /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC361CC4A9D000F08E8D /* CartModel.m */; };
+		B123DC3A1CC4AB0600F08E8D /* SeckillModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC391CC4AB0600F08E8D /* SeckillModel.m */; };
+		B123DC401CC4D27600F08E8D /* RSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC3F1CC4D27600F08E8D /* RSButton.m */; };
 		B1422BF21CBB575500C988FE /* RSTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */; };
 		B1422BF51CBB71DB00C988FE /* UIImage+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF41CBB71DB00C988FE /* UIImage+Helper.m */; };
 		B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF71CBB733600C988FE /* RSCartButtion.m */; };
@@ -100,6 +103,12 @@
 		B10769A91CBF1D8700586304 /* LocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationModel.m; sourceTree = "<group>"; };
 		B10769AB1CBF344000586304 /* ChooseSchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSchoolViewController.h; sourceTree = "<group>"; };
 		B10769AC1CBF344000586304 /* ChooseSchoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseSchoolViewController.m; sourceTree = "<group>"; };
+		B123DC351CC4A9D000F08E8D /* CartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartModel.h; sourceTree = "<group>"; };
+		B123DC361CC4A9D000F08E8D /* CartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartModel.m; sourceTree = "<group>"; };
+		B123DC381CC4AB0600F08E8D /* SeckillModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeckillModel.h; sourceTree = "<group>"; };
+		B123DC391CC4AB0600F08E8D /* SeckillModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeckillModel.m; sourceTree = "<group>"; };
+		B123DC3E1CC4D27600F08E8D /* RSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSButton.h; sourceTree = "<group>"; };
+		B123DC3F1CC4D27600F08E8D /* RSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSButton.m; sourceTree = "<group>"; };
 		B1422BF01CBB575500C988FE /* RSTabBarControllerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTabBarControllerConfig.h; sourceTree = "<group>"; };
 		B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTabBarControllerConfig.m; sourceTree = "<group>"; };
 		B1422BF31CBB71DB00C988FE /* UIImage+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helper.h"; sourceTree = "<group>"; };
@@ -274,6 +283,8 @@
 		B1738D4D1CB65CCB006C7207 /* UIWidget */ = {
 			isa = PBXGroup;
 			children = (
+				B123DC3E1CC4D27600F08E8D /* RSButton.h */,
+				B123DC3F1CC4D27600F08E8D /* RSButton.m */,
 				B1E81D691CB7B04100F587D1 /* RSAlertView.h */,
 				B1E81D6A1CB7B04100F587D1 /* RSAlertView.m */,
 				B1E81D611CB78A7D00F587D1 /* RSToastView.h */,
@@ -425,6 +436,10 @@
 				B162BC901CBC91FB00E27228 /* GoodListModel.m */,
 				B162BC921CBC951500E27228 /* BannerModel.h */,
 				B162BC931CBC951500E27228 /* BannerModel.m */,
+				B123DC351CC4A9D000F08E8D /* CartModel.h */,
+				B123DC361CC4A9D000F08E8D /* CartModel.m */,
+				B123DC381CC4AB0600F08E8D /* SeckillModel.h */,
+				B123DC391CC4AB0600F08E8D /* SeckillModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -858,6 +873,7 @@
 				B1FFB8CF1CB6566100255F21 /* UIView+CustomFrame.m in Sources */,
 				B1FFB8CD1CB6566100255F21 /* UIView+ViewController.m in Sources */,
 				B1B764641CB8D286005A90BD /* ProfileViewController.m in Sources */,
+				B123DC371CC4A9D000F08E8D /* CartModel.m in Sources */,
 				B1E81D631CB78A7D00F587D1 /* RSToastView.m in Sources */,
 				B1738DB61CB665C3006C7207 /* RSSubTitleView.m in Sources */,
 				B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */,
@@ -891,6 +907,7 @@
 				B1738DB81CB665C3006C7207 /* RSTipsView.m in Sources */,
 				B1738DB41CB665C3006C7207 /* RSMenuButton.m in Sources */,
 				B1E81D6B1CB7B04100F587D1 /* RSAlertView.m in Sources */,
+				B123DC3A1CC4AB0600F08E8D /* SeckillModel.m in Sources */,
 				B1738DB51CB665C3006C7207 /* RSPlaceHolderTextView.m in Sources */,
 				B162BCA31CBE115D00E27228 /* RSLocation.m in Sources */,
 				B1738DB71CB665C3006C7207 /* RSRadioGroup.m in Sources */,
@@ -902,6 +919,7 @@
 				B1FFB8CB1CB6566100255F21 /* NSDate+RSFormatter.m in Sources */,
 				B1738DBB1CB665C3006C7207 /* RSCatchline.m in Sources */,
 				B1738DC81CB665EC006C7207 /* RSTableViewController.m in Sources */,
+				B123DC401CC4D27600F08E8D /* RSButton.m in Sources */,
 				B162BC971CBCA3ED00E27228 /* GoodListCell.m in Sources */,
 				B1FFB8D11CB6566100255F21 /* NSUserDefaults+Token.m in Sources */,
 				B1FFB87B1CB64DCA00255F21 /* main.m in Sources */,
@@ -1105,7 +1123,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.RSUser.RSUser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.RSUser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1195,7 +1213,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.RSUser.RSUser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.RSUser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

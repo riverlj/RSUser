@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "RSLocation.h"
+#import "CartViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong)RSLocation *location;
+
+@property (nonatomic, strong)NSMutableArray *localCartData;
+@property (nonatomic, strong)CartViewController *cartViewVc;
 
 @end
 
