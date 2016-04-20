@@ -50,6 +50,30 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCountLabel) name:@"Notification_UpadteCountLabel" object:nil];
 }
 
+- (void)pushLocatCart
+{
+    CartNumberLabel *numberLaber = [CartNumberLabel shareCartNumberLabel];
+    [[[RACObserve(numberLaber, text) filter:^BOOL(id value) {
+        //数据过滤
+        return  YES;
+    }] throttle:0.5] subscribeNext:^(id x) {
+        //TODO 上传到服务器
+        [CartModel pushLocatCart];
+    }];
+}
+
+- (void)downLoadCart
+{
+    if (NO)
+    {
+        //TODO未登录
+        return;
+    }
+    [CartModel downLoadCartsWithSuccess:^(NSArray * sucessAraay) {
+        //TODO下载了本地数据并合并完成，返回合并后的数据
+    }];
+}
+
 - (void)updateCountLabel
 {
     NSMutableArray *array = [AppConfig  getLocalCartData];

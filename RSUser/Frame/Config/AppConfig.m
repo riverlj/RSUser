@@ -8,6 +8,7 @@
 
 #import "AppConfig.h"
 #import "CYLTabBarController.h"
+#import "LoginViewController.h"
 
 @implementation AppConfig
 +(NSDictionary *)tabBarConfig
@@ -70,7 +71,7 @@
 
 + (AppDelegate *)getAPPDelegate
 {
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     return delegate;
 }
 
@@ -86,7 +87,31 @@
 
 + (void)saveLocalCartData
 {
-    return [[AppConfig getAPPDelegate].localCartManager saveData];
+    [[AppConfig getAPPDelegate].localCartManager saveData];
+}
+
++ (void)saveCartMerge
+{
+    [[AppConfig getAPPDelegate].localCartManager saveMergeFlag:1];
+}
+
++ (NSInteger)getCartMerge
+{
+    return [[AppConfig getAPPDelegate].localCartManager getMergeFlag];
+}
+
++(void)setRootViewControllerWithCode:(NSInteger)code
+{
+    UIViewController *vc;
+    switch (code) {
+        case 401:
+            vc = [[LoginViewController alloc]init];
+            break;
+        case 403:
+            //TODO 绑定手机号 vc =
+        default:
+            break;
+    }
 }
 
 @end

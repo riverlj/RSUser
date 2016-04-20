@@ -16,4 +16,6 @@
 @property (nonatomic, strong)NSMutableArray *localCartData;
 - (void)saveData;
 - (NSMutableArray *)getData;
+- (NSInteger)getMergeFlag;
+- (void)saveMergeFlag:(NSInteger)merge;
 @end

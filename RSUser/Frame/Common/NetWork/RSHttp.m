@@ -7,6 +7,7 @@
 //
 
 #import "RSHttp.h"
+
 @implementation RSHttp
 
 + (void)baseRequestWithURL:(NSString *)url
@@ -97,13 +98,8 @@
              operation:(AFHTTPRequestOperation *)op
                  error:(NSError *)error
 {
-    if(error.code == 401) {
-        //TODO
-//        [NSUserDefaults clearValueForKey:@"token"];
-//        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//        LoginViewController *loginVC = [[LoginViewController alloc] init];
-//        [app setRootViewController:loginVC];
-    }
+    [AppConfig setRootViewControllerWithCode:error.code];
+    
     NSString *errmsg = [error.userInfo valueForKey:@"NSLocalizedDescription"];
     failure(error.code, errmsg);
 }
@@ -117,7 +113,6 @@
     urlstring = [urlstring urlWithHost:REDSCARF_BASE_URL];
     [self baseRequestWithURL:urlstring params:params httpMethod:httpMethod success:success failure:failure constructingBodyWithBlock:nil];
 }
-
 
 +(void)payRequestWithURL:(NSString *)urlstring
                   params:(NSMutableDictionary *)params

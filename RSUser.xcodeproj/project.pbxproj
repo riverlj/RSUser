@@ -13,13 +13,16 @@
 		B10769A71CBE490400586304 /* RSImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A61CBE490400586304 /* RSImageView.m */; };
 		B10769AA1CBF1D8700586304 /* LocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A91CBF1D8700586304 /* LocationModel.m */; };
 		B10769AD1CBF344000586304 /* ChooseSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769AC1CBF344000586304 /* ChooseSchoolViewController.m */; };
-		B123DC371CC4A9D000F08E8D /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC361CC4A9D000F08E8D /* CartModel.m */; };
-		B123DC3A1CC4AB0600F08E8D /* SeckillModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC391CC4AB0600F08E8D /* SeckillModel.m */; };
 		B123DC401CC4D27600F08E8D /* RSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC3F1CC4D27600F08E8D /* RSButton.m */; };
-		B123DC431CC613CF00F08E8D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC421CC613CF00F08E8D /* LoginViewController.m */; };
 		B123DC461CC62DBF00F08E8D /* RSTextFiled.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC451CC62DBF00F08E8D /* RSTextFiled.m */; };
 		B123DC481CC637C400F08E8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B123DC471CC637C400F08E8D /* Assets.xcassets */; };
 		B123DC4D1CC7234300F08E8D /* LocalCartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC4C1CC7234300F08E8D /* LocalCartManager.m */; };
+		B123DC531CC74CFB00F08E8D /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC501CC74CFB00F08E8D /* CartModel.m */; };
+		B123DC541CC74CFB00F08E8D /* SeckillModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC521CC74CFB00F08E8D /* SeckillModel.m */; };
+		B123DCAD1CC7707600F08E8D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B123DCA91CC7707600F08E8D /* libWeChatSDK.a */; };
+		B123DCB71CC77D9C00F08E8D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCB61CC77D9C00F08E8D /* LoginViewController.m */; };
+		B123DCBA1CC77FAD00F08E8D /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCB91CC77FAD00F08E8D /* LoginModel.m */; };
+		B123DCBD1CC77FDA00F08E8D /* WeiXinLoginUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCBC1CC77FDA00F08E8D /* WeiXinLoginUtil.m */; };
 		B1422BF21CBB575500C988FE /* RSTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */; };
 		B1422BF51CBB71DB00C988FE /* UIImage+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF41CBB71DB00C988FE /* UIImage+Helper.m */; };
 		B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF71CBB733600C988FE /* RSCartButtion.m */; };
@@ -106,19 +109,27 @@
 		B10769A91CBF1D8700586304 /* LocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationModel.m; sourceTree = "<group>"; };
 		B10769AB1CBF344000586304 /* ChooseSchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSchoolViewController.h; sourceTree = "<group>"; };
 		B10769AC1CBF344000586304 /* ChooseSchoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseSchoolViewController.m; sourceTree = "<group>"; };
-		B123DC351CC4A9D000F08E8D /* CartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartModel.h; sourceTree = "<group>"; };
-		B123DC361CC4A9D000F08E8D /* CartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartModel.m; sourceTree = "<group>"; };
-		B123DC381CC4AB0600F08E8D /* SeckillModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeckillModel.h; sourceTree = "<group>"; };
-		B123DC391CC4AB0600F08E8D /* SeckillModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeckillModel.m; sourceTree = "<group>"; };
 		B123DC3E1CC4D27600F08E8D /* RSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSButton.h; sourceTree = "<group>"; };
 		B123DC3F1CC4D27600F08E8D /* RSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSButton.m; sourceTree = "<group>"; };
-		B123DC411CC613CF00F08E8D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		B123DC421CC613CF00F08E8D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B123DC441CC62DBF00F08E8D /* RSTextFiled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTextFiled.h; sourceTree = "<group>"; };
 		B123DC451CC62DBF00F08E8D /* RSTextFiled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTextFiled.m; sourceTree = "<group>"; };
 		B123DC471CC637C400F08E8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B123DC4C1CC7234300F08E8D /* LocalCartManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalCartManager.m; sourceTree = "<group>"; };
 		B123DC4E1CC728D200F08E8D /* LocalCartManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalCartManager.h; sourceTree = "<group>"; };
+		B123DC4F1CC74CFB00F08E8D /* CartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartModel.h; sourceTree = "<group>"; };
+		B123DC501CC74CFB00F08E8D /* CartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartModel.m; sourceTree = "<group>"; };
+		B123DC511CC74CFB00F08E8D /* SeckillModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeckillModel.h; sourceTree = "<group>"; };
+		B123DC521CC74CFB00F08E8D /* SeckillModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeckillModel.m; sourceTree = "<group>"; };
+		B123DCA91CC7707600F08E8D /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		B123DCAA1CC7707600F08E8D /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		B123DCAB1CC7707600F08E8D /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		B123DCAC1CC7707600F08E8D /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		B123DCB51CC77D9C00F08E8D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		B123DCB61CC77D9C00F08E8D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		B123DCB81CC77FAD00F08E8D /* LoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
+		B123DCB91CC77FAD00F08E8D /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
+		B123DCBB1CC77FDA00F08E8D /* WeiXinLoginUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiXinLoginUtil.h; sourceTree = "<group>"; };
+		B123DCBC1CC77FDA00F08E8D /* WeiXinLoginUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiXinLoginUtil.m; sourceTree = "<group>"; };
 		B1422BF01CBB575500C988FE /* RSTabBarControllerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTabBarControllerConfig.h; sourceTree = "<group>"; };
 		B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTabBarControllerConfig.m; sourceTree = "<group>"; };
 		B1422BF31CBB71DB00C988FE /* UIImage+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helper.h"; sourceTree = "<group>"; };
@@ -240,6 +251,7 @@
 			files = (
 				B162BC9F1CBE0B5200E27228 /* CoreLocation.framework in Frameworks */,
 				B1738D8B1CB65FBF006C7207 /* UIKit.framework in Frameworks */,
+				B123DCAD1CC7707600F08E8D /* libWeChatSDK.a in Frameworks */,
 				0E57EC52FBD378DB4AFF964D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +290,62 @@
 				4C4958AA95EB4C8CED57B9D6 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B123DCA71CC7704B00F08E8D /* ThreeLib */ = {
+			isa = PBXGroup;
+			children = (
+				B123DCA81CC7705900F08E8D /* WeiXin */,
+			);
+			name = ThreeLib;
+			sourceTree = "<group>";
+		};
+		B123DCA81CC7705900F08E8D /* WeiXin */ = {
+			isa = PBXGroup;
+			children = (
+				B123DCA91CC7707600F08E8D /* libWeChatSDK.a */,
+				B123DCAA1CC7707600F08E8D /* WechatAuthSDK.h */,
+				B123DCAB1CC7707600F08E8D /* WXApi.h */,
+				B123DCAC1CC7707600F08E8D /* WXApiObject.h */,
+			);
+			name = WeiXin;
+			sourceTree = "<group>";
+		};
+		B123DCAE1CC77C7B00F08E8D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B123DCB21CC77D8A00F08E8D /* Model */,
+				B123DCB31CC77D8A00F08E8D /* View */,
+				B123DCB41CC77D8A00F08E8D /* ViewController */,
+				B123DCBB1CC77FDA00F08E8D /* WeiXinLoginUtil.h */,
+				B123DCBC1CC77FDA00F08E8D /* WeiXinLoginUtil.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		B123DCB21CC77D8A00F08E8D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B123DCB81CC77FAD00F08E8D /* LoginModel.h */,
+				B123DCB91CC77FAD00F08E8D /* LoginModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B123DCB31CC77D8A00F08E8D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B123DCB41CC77D8A00F08E8D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B123DCB51CC77D9C00F08E8D /* LoginViewController.h */,
+				B123DCB61CC77D9C00F08E8D /* LoginViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		B162BCA01CBE10FB00E27228 /* Utils */ = {
@@ -406,6 +474,10 @@
 		B1B7644E1CB8D286005A90BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B123DC4F1CC74CFB00F08E8D /* CartModel.h */,
+				B123DC501CC74CFB00F08E8D /* CartModel.m */,
+				B123DC511CC74CFB00F08E8D /* SeckillModel.h */,
+				B123DC521CC74CFB00F08E8D /* SeckillModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -451,10 +523,6 @@
 				B162BC901CBC91FB00E27228 /* GoodListModel.m */,
 				B162BC921CBC951500E27228 /* BannerModel.h */,
 				B162BC931CBC951500E27228 /* BannerModel.m */,
-				B123DC351CC4A9D000F08E8D /* CartModel.h */,
-				B123DC361CC4A9D000F08E8D /* CartModel.m */,
-				B123DC381CC4AB0600F08E8D /* SeckillModel.h */,
-				B123DC391CC4AB0600F08E8D /* SeckillModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -541,6 +609,7 @@
 		B1C884C01CB8D10B00007BCD /* Frame */ = {
 			isa = PBXGroup;
 			children = (
+				B123DCA71CC7704B00F08E8D /* ThreeLib */,
 				B162BCA01CBE10FB00E27228 /* Utils */,
 				B1FFB8B01CB652AC00255F21 /* Config */,
 				B19E1B9C1CB66736009C38CD /* Model */,
@@ -553,13 +622,12 @@
 		B1E81D511CB7800F00F587D1 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				B123DCAE1CC77C7B00F08E8D /* Login */,
 				B1FFB8AC1CB651BD00255F21 /* Main */,
 				B1B7644C1CB8D286005A90BD /* Cart */,
 				B1B764501CB8D286005A90BD /* Home */,
 				B1B764561CB8D286005A90BD /* Order */,
 				B1B7645C1CB8D286005A90BD /* Profile */,
-				B123DC411CC613CF00F08E8D /* LoginViewController.h */,
-				B123DC421CC613CF00F08E8D /* LoginViewController.m */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -881,7 +949,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B123DC431CC613CF00F08E8D /* LoginViewController.m in Sources */,
 				B19E1B9F1CB6674B009C38CD /* RSModel.m in Sources */,
 				B1FFB8CC1CB6566100255F21 /* UITabBarController+ViewController.m in Sources */,
 				B162BC9A1CBCFE4E00E27228 /* BannerwebViewController.m in Sources */,
@@ -889,7 +956,6 @@
 				B1FFB8CF1CB6566100255F21 /* UIView+CustomFrame.m in Sources */,
 				B1FFB8CD1CB6566100255F21 /* UIView+ViewController.m in Sources */,
 				B1B764641CB8D286005A90BD /* ProfileViewController.m in Sources */,
-				B123DC371CC4A9D000F08E8D /* CartModel.m in Sources */,
 				B1E81D631CB78A7D00F587D1 /* RSToastView.m in Sources */,
 				B1738DB61CB665C3006C7207 /* RSSubTitleView.m in Sources */,
 				B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */,
@@ -899,6 +965,7 @@
 				B1FFB8D01CB6566100255F21 /* UIDeviceAdditions.m in Sources */,
 				B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */,
 				B1738D911CB6626E006C7207 /* RSWebView.m in Sources */,
+				B123DC541CC74CFB00F08E8D /* SeckillModel.m in Sources */,
 				B1738DBE1CB665E2006C7207 /* RSRefreshTableViewController.m in Sources */,
 				B1FFB87E1CB64DCA00255F21 /* AppDelegate.m in Sources */,
 				B1738DC71CB665EC006C7207 /* RSTableViewCell.m in Sources */,
@@ -910,6 +977,7 @@
 				B1738DB21CB665C3006C7207 /* RSHeadView.m in Sources */,
 				B1A8D4B41CC09D3C00471E93 /* RSSearchView.m in Sources */,
 				B1021DDD1CBF611B00050AEB /* ThrowLineTool.m in Sources */,
+				B123DC531CC74CFB00F08E8D /* CartModel.m in Sources */,
 				B10769AD1CBF344000586304 /* ChooseSchoolViewController.m in Sources */,
 				B1FFB8CE1CB6566100255F21 /* NSString+RSHttp.m in Sources */,
 				B1738D8E1CB6625A006C7207 /* RSWebViewController.m in Sources */,
@@ -924,21 +992,23 @@
 				B1738DB81CB665C3006C7207 /* RSTipsView.m in Sources */,
 				B1738DB41CB665C3006C7207 /* RSMenuButton.m in Sources */,
 				B1E81D6B1CB7B04100F587D1 /* RSAlertView.m in Sources */,
-				B123DC3A1CC4AB0600F08E8D /* SeckillModel.m in Sources */,
 				B1738DB51CB665C3006C7207 /* RSPlaceHolderTextView.m in Sources */,
 				B162BCA31CBE115D00E27228 /* RSLocation.m in Sources */,
+				B123DCB71CC77D9C00F08E8D /* LoginViewController.m in Sources */,
 				B1738DB71CB665C3006C7207 /* RSRadioGroup.m in Sources */,
 				B1FFB8D81CB656DA00255F21 /* RSRoute.m in Sources */,
 				B1422BFB1CBB9E4100C988FE /* CartNumberLabel.m in Sources */,
 				B1422BF21CBB575500C988FE /* RSTabBarControllerConfig.m in Sources */,
 				B1A8D4B71CC0CAEC00471E93 /* SchoolAddressCell.m in Sources */,
 				B10769A41CBE43E600586304 /* RSLabel.m in Sources */,
+				B123DCBA1CC77FAD00F08E8D /* LoginModel.m in Sources */,
 				B1FFB8CB1CB6566100255F21 /* NSDate+RSFormatter.m in Sources */,
 				B1738DBB1CB665C3006C7207 /* RSCatchline.m in Sources */,
 				B1738DC81CB665EC006C7207 /* RSTableViewController.m in Sources */,
 				B123DC401CC4D27600F08E8D /* RSButton.m in Sources */,
 				B162BC971CBCA3ED00E27228 /* GoodListCell.m in Sources */,
 				B1FFB8D11CB6566100255F21 /* NSUserDefaults+Token.m in Sources */,
+				B123DCBD1CC77FDA00F08E8D /* WeiXinLoginUtil.m in Sources */,
 				B1FFB87B1CB64DCA00255F21 /* main.m in Sources */,
 				B123DC461CC62DBF00F08E8D /* RSTextFiled.m in Sources */,
 			);
@@ -1070,6 +1140,11 @@
 				INFOPLIST_FILE = RSUser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RSUser/Frame",
+					"$(PROJECT_DIR)/RSUser/Frame/ThreeLib/WeiXin",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1160,6 +1235,11 @@
 				INFOPLIST_FILE = RSUser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RSUser/Frame",
+					"$(PROJECT_DIR)/RSUser/Frame/ThreeLib/WeiXin",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

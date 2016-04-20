@@ -21,5 +21,11 @@
 
 //APP请求超时时间
 #define APPREQUESTTIMEOUT 5
+//微信登陆
+#define WEIXIN_LOGIN_SCOPE @""
+#define WEIXIN_LOGIN_STATUS @""
+#define WEIXIN_LOGIN_APPID @""
+#define WEIXIN_LOGIN_SECRET @""
+#define WEIXIN_LOGIN_
 
 #endif /* Constant_h */

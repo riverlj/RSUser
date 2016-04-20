@@ -165,7 +165,7 @@
         [self.iconIV sd_setImageWithURL:[NSURL URLWithString:model.headimg]];
     self.titleLabel.text     = model.name;
     _menuLabel.text      = model.desc;
-    _saledLabel.text     = [NSString stringWithFormat:@"已售%ld份", model.saled];
+    _saledLabel.text     = [NSString stringWithFormat:@"已售%zd份", model.saled];
     self.priceLabel.text     = [NSString stringWithFormat:@"￥%@", model.saleprice];
     _costPriceLabel.text = [NSString stringWithFormat:@"￥%@", model.price];
     self.countLabel.text = [NSString stringWithFormat:@"%zd", model.num];

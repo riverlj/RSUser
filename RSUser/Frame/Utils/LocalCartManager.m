@@ -8,6 +8,7 @@
 
 #import "LocalCartManager.h"
 
+#define COMMUNTITYID_STR [NSString stringWithFormat:@"%@", COMMUNTITYID]
 static LocalCartManager *shareLocalCartManager = nil;
 @implementation LocalCartManager
 
@@ -25,20 +26,14 @@ static LocalCartManager *shareLocalCartManager = nil;
     return shareLocalCartManager;
 }
 
-//- (NSMutableArray *)localCartData
-//{
-//    self.localCartData = [_allSchoolCartData valueForKey:[NSString stringWithFormat:@"%@", COMMUNTITYID]];
-//    return self.localCartData;
-//}
-
-//- (void)setLocalCartData:(NSMutableArray *)localCartData
-//{
-//    [_allSchoolCartData setValue:localCartData forKey:[NSString stringWithFormat:@"%@", COMMUNTITYID]];
-//}
-
 - (void)saveData
 {
-    [self.allSchoolCartData setValue:self.localCartData forKey:[NSString stringWithFormat:@"%@", COMMUNTITYID]];
+    NSDictionary *dic = [self.allSchoolCartData valueForKey:COMMUNTITYID_STR];
+    if (!dic) {
+        dic = [NSMutableDictionary new];
+    }
+    [dic setValue:self.localCartData forKey:@"CARTS"];
+    [self.allSchoolCartData setValue:dic forKey:COMMUNTITYID_STR];
 }
 
 - (NSMutableArray *)getData
@@ -47,20 +42,27 @@ static LocalCartManager *shareLocalCartManager = nil;
     {
         return [NSMutableArray new];
     }
-    _localCartData = [self.allSchoolCartData objectForKey:[NSString stringWithFormat:@"%@", COMMUNTITYID]];
+    _localCartData = [[self.allSchoolCartData valueForKey:[NSString stringWithFormat:@"%@", COMMUNTITYID]] valueForKey:@"CARTS"];
     if (!_localCartData) {
         _localCartData = [NSMutableArray new];
     }
     return _localCartData;
 }
-//
-//-(NSMutableArray *)localCartData
-//{
-//    if (!COMMUNTITYID)
-//    {
-//        return nil;
-//    }
-//    return  [self.allSchoolCartData valueForKey:[NSString stringWithFormat:@"%@", COMMUNTITYID]];
-//}
+
+/**
+ * 获取merge标志
+ */
+- (NSInteger)getMergeFlag
+{
+    return [[[self.allSchoolCartData valueForKey:COMMUNTITYID_STR] valueForKey:@"isMerge"] integerValue];
+}
+
+/**
+ *  设置flag
+ */
+- (void)saveMergeFlag:(NSInteger)merge
+{
+    [[self.allSchoolCartData valueForKey:COMMUNTITYID_STR] setValue:[NSNumber numberWithInteger:merge] forKey:@"isMerge"];
+}
 
 @end
