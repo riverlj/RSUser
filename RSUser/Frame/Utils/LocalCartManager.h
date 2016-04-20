@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface LocalCartManager : NSObject
++ (LocalCartManager *)shareLocalCartManager;
 //所有学校的购物车数据
 @property (nonatomic, strong)NSMutableDictionary *allSchoolCartData;
 //当前学校的购物车数据
 @property (nonatomic, strong)NSMutableArray *localCartData;
+- (void)saveData;
+- (NSMutableArray *)getData;
 @end

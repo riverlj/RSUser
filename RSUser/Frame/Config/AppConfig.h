@@ -26,4 +26,14 @@
  *  获取APPdelegate
  */
 + (AppDelegate *)getAPPDelegate;
+
+/**
+ * 获取当前学校的购物车数据
+ */
++ (NSMutableArray *)getLocalCartData;
+
+/**
+ *  保存数据到学校
+ */
++ (void)saveLocalCartData;
 @end

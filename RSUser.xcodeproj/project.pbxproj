@@ -117,8 +117,8 @@
 		B123DC441CC62DBF00F08E8D /* RSTextFiled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTextFiled.h; sourceTree = "<group>"; };
 		B123DC451CC62DBF00F08E8D /* RSTextFiled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTextFiled.m; sourceTree = "<group>"; };
 		B123DC471CC637C400F08E8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B123DC4B1CC7234300F08E8D /* LocalCartManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalCartManager.h; sourceTree = "<group>"; };
 		B123DC4C1CC7234300F08E8D /* LocalCartManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalCartManager.m; sourceTree = "<group>"; };
+		B123DC4E1CC728D200F08E8D /* LocalCartManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalCartManager.h; sourceTree = "<group>"; };
 		B1422BF01CBB575500C988FE /* RSTabBarControllerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTabBarControllerConfig.h; sourceTree = "<group>"; };
 		B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTabBarControllerConfig.m; sourceTree = "<group>"; };
 		B1422BF31CBB71DB00C988FE /* UIImage+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helper.h"; sourceTree = "<group>"; };
@@ -283,6 +283,8 @@
 		B162BCA01CBE10FB00E27228 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B123DC4E1CC728D200F08E8D /* LocalCartManager.h */,
+				B123DC4C1CC7234300F08E8D /* LocalCartManager.m */,
 				B1021DDB1CBF611B00050AEB /* ThrowLineTool.h */,
 				B1021DDC1CBF611B00050AEB /* ThrowLineTool.m */,
 				B162BCA11CBE115D00E27228 /* RSLocation.h */,
@@ -627,8 +629,6 @@
 				B1FFB88A1CB64DCA00255F21 /* Info.plist */,
 				B1FFB87C1CB64DCA00255F21 /* AppDelegate.h */,
 				B1FFB87D1CB64DCA00255F21 /* AppDelegate.m */,
-				B123DC4B1CC7234300F08E8D /* LocalCartManager.h */,
-				B123DC4C1CC7234300F08E8D /* LocalCartManager.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";

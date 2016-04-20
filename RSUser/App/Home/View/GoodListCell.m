@@ -266,7 +266,7 @@
 
 - (void)addGoodsToCart
 {
-    NSMutableArray *cartArray = [AppConfig getAPPDelegate].localCartData;
+    NSMutableArray *cartArray = [AppConfig getLocalCartData];
     BOOL isExist = NO;
     for (int i=0; i<cartArray.count; i++)
     {
@@ -290,11 +290,13 @@
         model.price = _listModel.price;
         [cartArray addObject:model];
     }
+    
+    [AppConfig saveLocalCartData];
 }
 
 - (void)subGoodsFromCart
 {
-    NSMutableArray *cartArray = [AppConfig getAPPDelegate].localCartData;
+    NSMutableArray *cartArray = [AppConfig getLocalCartData];
     NSInteger index = -1;
     for (int i=0; i<cartArray.count; i++)
     {
@@ -314,6 +316,8 @@
     {
         [cartArray removeObjectAtIndex:index];
     }
+    
+    [AppConfig saveLocalCartData];
 }
 
 @end

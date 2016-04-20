@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RSLocation.h"
+#import "LocalCartManager.h"
 #import "CartViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -15,12 +16,10 @@
 @property (strong, nonatomic) UIWindow *window;
 //地理位置
 @property (nonatomic, strong)RSLocation *location;
-//所有学校的购物车数据
-@property (nonatomic, strong)NSMutableDictionary *allSchoolCartData;
-//当前学校的购物车数据
-@property (nonatomic, strong)NSMutableArray *localCartData;
 //购物车VC
 @property (nonatomic, strong)CartViewController *cartViewVc;
+//当前购物车与学校
+@property (nonatomic, strong)LocalCartManager *localCartManager;
 
 @end
 

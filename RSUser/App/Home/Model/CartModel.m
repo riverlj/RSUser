@@ -26,9 +26,6 @@
              };
 }
 
--(void)setSeckillModel:(SeckillModel *)seckillModel
-{
-    
-}
+
 
 @end

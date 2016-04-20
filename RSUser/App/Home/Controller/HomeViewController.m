@@ -52,7 +52,7 @@
 
 - (void)updateCountLabel
 {
-    NSMutableArray *array = [AppConfig  getAPPDelegate].localCartData;
+    NSMutableArray *array = [AppConfig  getLocalCartData];
     
     for (int i=0; i<self.models.count; i++) {
         GoodListModel *model = self.models[i];

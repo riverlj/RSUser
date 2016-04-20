@@ -76,8 +76,17 @@
 
 + (NSMutableArray *)getLocationCartDataByCommityId:(NSString *)communtityId
 {
-    
     return nil;
+}
+
++ (NSMutableArray *)getLocalCartData
+{
+    return [[AppConfig getAPPDelegate].localCartManager getData];
+}
+
++ (void)saveLocalCartData
+{
+    return [[AppConfig getAPPDelegate].localCartManager saveData];
 }
 
 @end

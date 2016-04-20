@@ -34,4 +34,6 @@
 #import "RSUIView.h"
 #import "RSImageView.h"
 #import "RSTextFiled.h"
+#import "LocalCartManager.h"
+
 #endif /* AppHeader_h */

@@ -46,7 +46,8 @@
     @weakify(self)
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify(self)
-        [[AppConfig getAPPDelegate].localCartData removeAllObjects];
+//        [[AppConfig getAPPDelegate].localCartData removeAllObjects];
+        [[AppConfig getLocalCartData] removeAllObjects];
         [self initCarData];
         CartNumberLabel *label = [CartNumberLabel shareCartNumberLabel];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCountLabel" object:nil userInfo:nil];
@@ -85,7 +86,7 @@
 
 - (void)initCarData
 {
-    self.models = [AppConfig getAPPDelegate].localCartData;
+    self.models = [AppConfig getLocalCartData];
     [self.models enumerateObjectsUsingBlock:^(CartModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.num == 0)
         {
@@ -126,8 +127,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCountLabel" object:nil userInfo:nil];
 
 }
-
-
 
 - (void)okButtonClicked
 {
