@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface RSImageView : UIImageView
-+ (RSImageView *)imageViewWithFrame:(CGRect)frame;
++ (RSImageView *)imageViewWithFrame:(CGRect)frame ImageName:(NSString *)imageName;
 @end

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "RSTabBarControllerConfig.h"
 #import "RSCartButtion.h"
+#import "LoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +21,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.localCartData = [NSMutableArray new];
+    self.allSchoolCartData = [NSMutableDictionary new];
     _cartViewVc = [[CartViewController alloc]init];
     
     _location =  [[RSLocation alloc]init];
@@ -40,4 +42,5 @@
     [AppConfig customsizeInterface];
     [self.window makeKeyAndVisible];
 }
+
 @end

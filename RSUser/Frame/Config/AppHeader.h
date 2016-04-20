@@ -32,4 +32,6 @@
 #import "RSLineView.h"
 #import "RSButton.h"
 #import "RSUIView.h"
+#import "RSImageView.h"
+#import "RSTextFiled.h"
 #endif /* AppHeader_h */

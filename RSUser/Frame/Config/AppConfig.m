@@ -62,12 +62,22 @@
     [[UITabBar appearance] setBackgroundImage:[[UIImage alloc] init]];
     [[UITabBar appearance] setBackgroundColor:[UIColor whiteColor]];
     [[UITabBar appearance] setShadowImage:image];
+    
+    //光标颜色
+    [[UITextField appearance] setTintColor:RS_Line_Color];
+
 }
 
 + (AppDelegate *)getAPPDelegate
 {
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     return delegate;
+}
+
++ (NSMutableArray *)getLocationCartDataByCommityId:(NSString *)communtityId
+{
+    
+    return nil;
 }
 
 @end

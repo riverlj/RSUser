@@ -7,6 +7,7 @@
 //
 
 #import "OrderViewController.h"
+#import "LoginViewController.h"
 
 @implementation OrderViewController
 -(void)viewDidLoad
@@ -17,6 +18,9 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    self.countLabel.text = @"13";
+    LoginViewController *loginVc = [[LoginViewController alloc]init];
+    
+    [self.navigationController pushViewController:loginVc animated:YES];
+    
 }
 @end
