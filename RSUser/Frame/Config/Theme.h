@@ -43,6 +43,8 @@
 /**餐品数量*/
 #define RS_NumbLabel_Text_Color  [NSString colorFromHexString:@"666666"]
 
+#define RS_Button_Bg_Color [NSString colorFromHexString:@"ffa628"]
+
 
 
 /*主要字体*/
@@ -55,4 +57,7 @@
 #define RS_SubLable_Font Font(12)
 #define RS_CountLable_Font Font(17)
 #define RS_CostPriceLable_Font Font(9)
+
+#define RS_Price_FontSize BoldFont(20)
+
 #endif /* Theme_h */

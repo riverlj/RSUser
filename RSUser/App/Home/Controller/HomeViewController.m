@@ -11,17 +11,21 @@
 #import "BannerModel.h"
 #import "RSAlertView.h"
 #import "RSCartButtion.h"
+#import "CartModel.h"
+#import "SchoolModel.h"
 
 @interface HomeViewController ()<SDCycleScrollViewDelegate>
 @property (nonatomic ,strong)NSMutableArray *bannerImageUrls;
 @property (nonatomic ,strong)NSMutableArray *bannerActionUrls;
 @property (nonatomic ,strong)NSMutableArray *bannerTitles;
+
 @end
 
 @interface HomeViewController()
 {
     UIButton *locationBtn;
     UIView *_naviView;
+    NSMutableArray *_cartArray;
 }
 @end
 @implementation HomeViewController
@@ -30,6 +34,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    _cartArray = [[NSMutableArray alloc]init];
     self.hasBackBtn = NO;
 
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.height-49);
@@ -42,13 +47,62 @@
     self.bannerTitles = [NSMutableArray new];
     
     [self createNaviView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCountLabel) name:@"Notification_UpadteCountLabel" object:nil];
+}
+
+- (void)pushLocatCart
+{
+    CartNumberLabel *numberLaber = [CartNumberLabel shareCartNumberLabel];
+    [[[RACObserve(numberLaber, text) filter:^BOOL(id value) {
+        //数据过滤
+        return  YES;
+    }] throttle:0.5] subscribeNext:^(id x) {
+        //TODO 上传到服务器
+        [CartModel pushLocatCart];
+    }];
+}
+
+- (void)downLoadCart
+{
+    if (NO)
+    {
+        //TODO未登录
+        return;
+    }
+    [CartModel downLoadCartsWithSuccess:^(NSArray * sucessAraay) {
+        //TODO下载了本地数据并合并完成，返回合并后的数据
+    }];
+}
+
+- (void)updateCountLabel
+{
+    NSMutableArray *array = [AppConfig  getLocalCartData];
+    
+    for (int i=0; i<self.models.count; i++) {
+        GoodListModel *model = self.models[i];
+        model.num = 0;
+        if (array.count == 0) {
+            model.num = 0;
+            continue;
+        }
+        
+        for (int j=0; j<array.count; j++) {
+            CartModel *cartModel = array[j];
+            if (model.comproductid == cartModel.comproductid)
+            {
+                model.num = cartModel.num;
+            }
+        }
+    }
+    
+    [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    NSLog(@"%@",COMMUNTITYID);
     if (!COMMUNTITYID)
     {
         [self locationBtnClicked];
@@ -73,8 +127,11 @@
         [self initBannerView];
         [self.tableView reloadData];
     }];
+    
+    [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
+        [AppConfig getAPPDelegate].schoolModel = schoolModel;
+    }];
 }
-
 
 #pragma mark 创建View
 - (void)createNaviView
@@ -165,7 +222,7 @@
         [self.models addObject:goodListModel];
     }
     
-    [self.tableView reloadData];
+    [self updateCountLabel];
 }
 
 #pragma mark SDCycleScrollView广告滚动代理
@@ -190,6 +247,10 @@
         
         locationBtn.alpha = naviAlpha1;
     }
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Notification_UpadteCountLabel" object:nil];
 }
 
 @end

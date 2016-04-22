@@ -13,6 +13,21 @@
 		B10769A71CBE490400586304 /* RSImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A61CBE490400586304 /* RSImageView.m */; };
 		B10769AA1CBF1D8700586304 /* LocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A91CBF1D8700586304 /* LocationModel.m */; };
 		B10769AD1CBF344000586304 /* ChooseSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769AC1CBF344000586304 /* ChooseSchoolViewController.m */; };
+		B123DC401CC4D27600F08E8D /* RSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC3F1CC4D27600F08E8D /* RSButton.m */; };
+		B123DC461CC62DBF00F08E8D /* RSTextFiled.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC451CC62DBF00F08E8D /* RSTextFiled.m */; };
+		B123DC481CC637C400F08E8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B123DC471CC637C400F08E8D /* Assets.xcassets */; };
+		B123DC4D1CC7234300F08E8D /* LocalCartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC4C1CC7234300F08E8D /* LocalCartManager.m */; };
+		B123DC531CC74CFB00F08E8D /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC501CC74CFB00F08E8D /* CartModel.m */; };
+		B123DC541CC74CFB00F08E8D /* SeckillModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC521CC74CFB00F08E8D /* SeckillModel.m */; };
+		B123DCAD1CC7707600F08E8D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B123DCA91CC7707600F08E8D /* libWeChatSDK.a */; };
+		B123DCB71CC77D9C00F08E8D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCB61CC77D9C00F08E8D /* LoginViewController.m */; };
+		B123DCBA1CC77FAD00F08E8D /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCB91CC77FAD00F08E8D /* LoginModel.m */; };
+		B123DCBD1CC77FDA00F08E8D /* WeiXinLoginUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCBC1CC77FDA00F08E8D /* WeiXinLoginUtil.m */; };
+		B123DCC91CC8893E00F08E8D /* ConfirmOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCC81CC8893E00F08E8D /* ConfirmOrderViewController.m */; };
+		B123DCCC1CC8895100F08E8D /* SchoolModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCCB1CC8895100F08E8D /* SchoolModel.m */; };
+		B123DCCF1CC8B9EF00F08E8D /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCCE1CC8B9EF00F08E8D /* AddressModel.m */; };
+		B123DCD21CC8CA9000F08E8D /* BandleCellPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCD11CC8CA9000F08E8D /* BandleCellPhoneViewController.m */; };
+		B123DCD51CC8E33300F08E8D /* CouponModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCD41CC8E33300F08E8D /* CouponModel.m */; };
 		B1422BF21CBB575500C988FE /* RSTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */; };
 		B1422BF51CBB71DB00C988FE /* UIImage+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF41CBB71DB00C988FE /* UIImage+Helper.m */; };
 		B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF71CBB733600C988FE /* RSCartButtion.m */; };
@@ -55,7 +70,6 @@
 		B1E81D6B1CB7B04100F587D1 /* RSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D6A1CB7B04100F587D1 /* RSAlertView.m */; };
 		B1FFB87B1CB64DCA00255F21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FFB87A1CB64DCA00255F21 /* main.m */; };
 		B1FFB87E1CB64DCA00255F21 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FFB87D1CB64DCA00255F21 /* AppDelegate.m */; };
-		B1FFB8861CB64DCA00255F21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1FFB8851CB64DCA00255F21 /* Assets.xcassets */; };
 		B1FFB8941CB64DCA00255F21 /* RSUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FFB8931CB64DCA00255F21 /* RSUserTests.m */; };
 		B1FFB89F1CB64DCA00255F21 /* RSUserUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FFB89E1CB64DCA00255F21 /* RSUserUITests.m */; };
 		B1FFB8CB1CB6566100255F21 /* NSDate+RSFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FFB8BE1CB6566100255F21 /* NSDate+RSFormatter.m */; };
@@ -100,6 +114,37 @@
 		B10769A91CBF1D8700586304 /* LocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationModel.m; sourceTree = "<group>"; };
 		B10769AB1CBF344000586304 /* ChooseSchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSchoolViewController.h; sourceTree = "<group>"; };
 		B10769AC1CBF344000586304 /* ChooseSchoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseSchoolViewController.m; sourceTree = "<group>"; };
+		B123DC3E1CC4D27600F08E8D /* RSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSButton.h; sourceTree = "<group>"; };
+		B123DC3F1CC4D27600F08E8D /* RSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSButton.m; sourceTree = "<group>"; };
+		B123DC441CC62DBF00F08E8D /* RSTextFiled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTextFiled.h; sourceTree = "<group>"; };
+		B123DC451CC62DBF00F08E8D /* RSTextFiled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTextFiled.m; sourceTree = "<group>"; };
+		B123DC471CC637C400F08E8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B123DC4C1CC7234300F08E8D /* LocalCartManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalCartManager.m; sourceTree = "<group>"; };
+		B123DC4E1CC728D200F08E8D /* LocalCartManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalCartManager.h; sourceTree = "<group>"; };
+		B123DC4F1CC74CFB00F08E8D /* CartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartModel.h; sourceTree = "<group>"; };
+		B123DC501CC74CFB00F08E8D /* CartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartModel.m; sourceTree = "<group>"; };
+		B123DC511CC74CFB00F08E8D /* SeckillModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeckillModel.h; sourceTree = "<group>"; };
+		B123DC521CC74CFB00F08E8D /* SeckillModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeckillModel.m; sourceTree = "<group>"; };
+		B123DCA91CC7707600F08E8D /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		B123DCAA1CC7707600F08E8D /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		B123DCAB1CC7707600F08E8D /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		B123DCAC1CC7707600F08E8D /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		B123DCB51CC77D9C00F08E8D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		B123DCB61CC77D9C00F08E8D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		B123DCB81CC77FAD00F08E8D /* LoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
+		B123DCB91CC77FAD00F08E8D /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
+		B123DCBB1CC77FDA00F08E8D /* WeiXinLoginUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiXinLoginUtil.h; sourceTree = "<group>"; };
+		B123DCBC1CC77FDA00F08E8D /* WeiXinLoginUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiXinLoginUtil.m; sourceTree = "<group>"; };
+		B123DCC71CC8893E00F08E8D /* ConfirmOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmOrderViewController.h; sourceTree = "<group>"; };
+		B123DCC81CC8893E00F08E8D /* ConfirmOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmOrderViewController.m; sourceTree = "<group>"; };
+		B123DCCA1CC8895100F08E8D /* SchoolModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolModel.h; sourceTree = "<group>"; };
+		B123DCCB1CC8895100F08E8D /* SchoolModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolModel.m; sourceTree = "<group>"; };
+		B123DCCD1CC8B9EF00F08E8D /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
+		B123DCCE1CC8B9EF00F08E8D /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
+		B123DCD01CC8CA9000F08E8D /* BandleCellPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandleCellPhoneViewController.h; sourceTree = "<group>"; };
+		B123DCD11CC8CA9000F08E8D /* BandleCellPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandleCellPhoneViewController.m; sourceTree = "<group>"; };
+		B123DCD31CC8E33300F08E8D /* CouponModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponModel.h; sourceTree = "<group>"; };
+		B123DCD41CC8E33300F08E8D /* CouponModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponModel.m; sourceTree = "<group>"; };
 		B1422BF01CBB575500C988FE /* RSTabBarControllerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTabBarControllerConfig.h; sourceTree = "<group>"; };
 		B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTabBarControllerConfig.m; sourceTree = "<group>"; };
 		B1422BF31CBB71DB00C988FE /* UIImage+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helper.h"; sourceTree = "<group>"; };
@@ -184,7 +229,6 @@
 		B1FFB87A1CB64DCA00255F21 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B1FFB87C1CB64DCA00255F21 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B1FFB87D1CB64DCA00255F21 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B1FFB8851CB64DCA00255F21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../Assets.xcassets; sourceTree = "<group>"; };
 		B1FFB88A1CB64DCA00255F21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../Info.plist; sourceTree = "<group>"; };
 		B1FFB88F1CB64DCA00255F21 /* RSUserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSUserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1FFB8931CB64DCA00255F21 /* RSUserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSUserTests.m; sourceTree = "<group>"; };
@@ -222,6 +266,7 @@
 			files = (
 				B162BC9F1CBE0B5200E27228 /* CoreLocation.framework in Frameworks */,
 				B1738D8B1CB65FBF006C7207 /* UIKit.framework in Frameworks */,
+				B123DCAD1CC7707600F08E8D /* libWeChatSDK.a in Frameworks */,
 				0E57EC52FBD378DB4AFF964D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,9 +307,71 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B123DCA71CC7704B00F08E8D /* ThreeLib */ = {
+			isa = PBXGroup;
+			children = (
+				B123DCA81CC7705900F08E8D /* WeiXin */,
+			);
+			name = ThreeLib;
+			sourceTree = "<group>";
+		};
+		B123DCA81CC7705900F08E8D /* WeiXin */ = {
+			isa = PBXGroup;
+			children = (
+				B123DCA91CC7707600F08E8D /* libWeChatSDK.a */,
+				B123DCAA1CC7707600F08E8D /* WechatAuthSDK.h */,
+				B123DCAB1CC7707600F08E8D /* WXApi.h */,
+				B123DCAC1CC7707600F08E8D /* WXApiObject.h */,
+			);
+			name = WeiXin;
+			sourceTree = "<group>";
+		};
+		B123DCAE1CC77C7B00F08E8D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B123DCB21CC77D8A00F08E8D /* Model */,
+				B123DCB31CC77D8A00F08E8D /* View */,
+				B123DCB41CC77D8A00F08E8D /* ViewController */,
+				B123DCBB1CC77FDA00F08E8D /* WeiXinLoginUtil.h */,
+				B123DCBC1CC77FDA00F08E8D /* WeiXinLoginUtil.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		B123DCB21CC77D8A00F08E8D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B123DCB81CC77FAD00F08E8D /* LoginModel.h */,
+				B123DCB91CC77FAD00F08E8D /* LoginModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B123DCB31CC77D8A00F08E8D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B123DCB41CC77D8A00F08E8D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B123DCB51CC77D9C00F08E8D /* LoginViewController.h */,
+				B123DCB61CC77D9C00F08E8D /* LoginViewController.m */,
+				B123DCD01CC8CA9000F08E8D /* BandleCellPhoneViewController.h */,
+				B123DCD11CC8CA9000F08E8D /* BandleCellPhoneViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		B162BCA01CBE10FB00E27228 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B123DC4E1CC728D200F08E8D /* LocalCartManager.h */,
+				B123DC4C1CC7234300F08E8D /* LocalCartManager.m */,
+				B1021DDB1CBF611B00050AEB /* ThrowLineTool.h */,
+				B1021DDC1CBF611B00050AEB /* ThrowLineTool.m */,
 				B162BCA11CBE115D00E27228 /* RSLocation.h */,
 				B162BCA21CBE115D00E27228 /* RSLocation.m */,
 			);
@@ -274,6 +381,8 @@
 		B1738D4D1CB65CCB006C7207 /* UIWidget */ = {
 			isa = PBXGroup;
 			children = (
+				B123DC3E1CC4D27600F08E8D /* RSButton.h */,
+				B123DC3F1CC4D27600F08E8D /* RSButton.m */,
 				B1E81D691CB7B04100F587D1 /* RSAlertView.h */,
 				B1E81D6A1CB7B04100F587D1 /* RSAlertView.m */,
 				B1E81D611CB78A7D00F587D1 /* RSToastView.h */,
@@ -304,6 +413,8 @@
 				B10769A31CBE43E600586304 /* RSLabel.m */,
 				B10769A51CBE490400586304 /* RSImageView.h */,
 				B10769A61CBE490400586304 /* RSImageView.m */,
+				B123DC441CC62DBF00F08E8D /* RSTextFiled.h */,
+				B123DC451CC62DBF00F08E8D /* RSTextFiled.m */,
 			);
 			path = UIWidget;
 			sourceTree = "<group>";
@@ -380,6 +491,10 @@
 		B1B7644E1CB8D286005A90BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B123DC4F1CC74CFB00F08E8D /* CartModel.h */,
+				B123DC501CC74CFB00F08E8D /* CartModel.m */,
+				B123DC511CC74CFB00F08E8D /* SeckillModel.h */,
+				B123DC521CC74CFB00F08E8D /* SeckillModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -425,6 +540,8 @@
 				B162BC901CBC91FB00E27228 /* GoodListModel.m */,
 				B162BC921CBC951500E27228 /* BannerModel.h */,
 				B162BC931CBC951500E27228 /* BannerModel.m */,
+				B123DCCA1CC8895100F08E8D /* SchoolModel.h */,
+				B123DCCB1CC8895100F08E8D /* SchoolModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -457,6 +574,8 @@
 			children = (
 				B1B764581CB8D286005A90BD /* OrderViewController.h */,
 				B1B764591CB8D286005A90BD /* OrderViewController.m */,
+				B123DCC71CC8893E00F08E8D /* ConfirmOrderViewController.h */,
+				B123DCC81CC8893E00F08E8D /* ConfirmOrderViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -464,6 +583,10 @@
 		B1B7645A1CB8D286005A90BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B123DCCD1CC8B9EF00F08E8D /* AddressModel.h */,
+				B123DCCE1CC8B9EF00F08E8D /* AddressModel.m */,
+				B123DCD31CC8E33300F08E8D /* CouponModel.h */,
+				B123DCD41CC8E33300F08E8D /* CouponModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -511,6 +634,7 @@
 		B1C884C01CB8D10B00007BCD /* Frame */ = {
 			isa = PBXGroup;
 			children = (
+				B123DCA71CC7704B00F08E8D /* ThreeLib */,
 				B162BCA01CBE10FB00E27228 /* Utils */,
 				B1FFB8B01CB652AC00255F21 /* Config */,
 				B19E1B9C1CB66736009C38CD /* Model */,
@@ -523,6 +647,7 @@
 		B1E81D511CB7800F00F587D1 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				B123DCAE1CC77C7B00F08E8D /* Login */,
 				B1FFB8AC1CB651BD00255F21 /* Main */,
 				B1B7644C1CB8D286005A90BD /* Cart */,
 				B1B764501CB8D286005A90BD /* Home */,
@@ -593,10 +718,8 @@
 		B1FFB8AC1CB651BD00255F21 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				B1FFB8851CB64DCA00255F21 /* Assets.xcassets */,
+				B123DC471CC637C400F08E8D /* Assets.xcassets */,
 				B1FFB88A1CB64DCA00255F21 /* Info.plist */,
-				B1021DDB1CBF611B00050AEB /* ThrowLineTool.h */,
-				B1021DDC1CBF611B00050AEB /* ThrowLineTool.m */,
 				B1FFB87C1CB64DCA00255F21 /* AppDelegate.h */,
 				B1FFB87D1CB64DCA00255F21 /* AppDelegate.m */,
 			);
@@ -778,7 +901,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1FFB8861CB64DCA00255F21 /* Assets.xcassets in Resources */,
+				B123DC481CC637C400F08E8D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -852,11 +975,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B19E1B9F1CB6674B009C38CD /* RSModel.m in Sources */,
+				B123DCCC1CC8895100F08E8D /* SchoolModel.m in Sources */,
 				B1FFB8CC1CB6566100255F21 /* UITabBarController+ViewController.m in Sources */,
 				B162BC9A1CBCFE4E00E27228 /* BannerwebViewController.m in Sources */,
 				B162BC911CBC91FB00E27228 /* GoodListModel.m in Sources */,
 				B1FFB8CF1CB6566100255F21 /* UIView+CustomFrame.m in Sources */,
 				B1FFB8CD1CB6566100255F21 /* UIView+ViewController.m in Sources */,
+				B123DCC91CC8893E00F08E8D /* ConfirmOrderViewController.m in Sources */,
 				B1B764641CB8D286005A90BD /* ProfileViewController.m in Sources */,
 				B1E81D631CB78A7D00F587D1 /* RSToastView.m in Sources */,
 				B1738DB61CB665C3006C7207 /* RSSubTitleView.m in Sources */,
@@ -867,16 +992,21 @@
 				B1FFB8D01CB6566100255F21 /* UIDeviceAdditions.m in Sources */,
 				B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */,
 				B1738D911CB6626E006C7207 /* RSWebView.m in Sources */,
+				B123DC541CC74CFB00F08E8D /* SeckillModel.m in Sources */,
 				B1738DBE1CB665E2006C7207 /* RSRefreshTableViewController.m in Sources */,
 				B1FFB87E1CB64DCA00255F21 /* AppDelegate.m in Sources */,
 				B1738DC71CB665EC006C7207 /* RSTableViewCell.m in Sources */,
 				B10769AA1CBF1D8700586304 /* LocationModel.m in Sources */,
+				B123DCD51CC8E33300F08E8D /* CouponModel.m in Sources */,
 				B1738DB31CB665C3006C7207 /* RSProgressView.m in Sources */,
 				B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */,
 				B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */,
+				B123DC4D1CC7234300F08E8D /* LocalCartManager.m in Sources */,
 				B1738DB21CB665C3006C7207 /* RSHeadView.m in Sources */,
 				B1A8D4B41CC09D3C00471E93 /* RSSearchView.m in Sources */,
 				B1021DDD1CBF611B00050AEB /* ThrowLineTool.m in Sources */,
+				B123DCCF1CC8B9EF00F08E8D /* AddressModel.m in Sources */,
+				B123DC531CC74CFB00F08E8D /* CartModel.m in Sources */,
 				B10769AD1CBF344000586304 /* ChooseSchoolViewController.m in Sources */,
 				B1FFB8CE1CB6566100255F21 /* NSString+RSHttp.m in Sources */,
 				B1738D8E1CB6625A006C7207 /* RSWebViewController.m in Sources */,
@@ -888,23 +1018,29 @@
 				B1422BF51CBB71DB00C988FE /* UIImage+Helper.m in Sources */,
 				B1738DB91CB665C3006C7207 /* RSInputField.m in Sources */,
 				B1738DBA1CB665C3006C7207 /* RSUIView.m in Sources */,
+				B123DCD21CC8CA9000F08E8D /* BandleCellPhoneViewController.m in Sources */,
 				B1738DB81CB665C3006C7207 /* RSTipsView.m in Sources */,
 				B1738DB41CB665C3006C7207 /* RSMenuButton.m in Sources */,
 				B1E81D6B1CB7B04100F587D1 /* RSAlertView.m in Sources */,
 				B1738DB51CB665C3006C7207 /* RSPlaceHolderTextView.m in Sources */,
 				B162BCA31CBE115D00E27228 /* RSLocation.m in Sources */,
+				B123DCB71CC77D9C00F08E8D /* LoginViewController.m in Sources */,
 				B1738DB71CB665C3006C7207 /* RSRadioGroup.m in Sources */,
 				B1FFB8D81CB656DA00255F21 /* RSRoute.m in Sources */,
 				B1422BFB1CBB9E4100C988FE /* CartNumberLabel.m in Sources */,
 				B1422BF21CBB575500C988FE /* RSTabBarControllerConfig.m in Sources */,
 				B1A8D4B71CC0CAEC00471E93 /* SchoolAddressCell.m in Sources */,
 				B10769A41CBE43E600586304 /* RSLabel.m in Sources */,
+				B123DCBA1CC77FAD00F08E8D /* LoginModel.m in Sources */,
 				B1FFB8CB1CB6566100255F21 /* NSDate+RSFormatter.m in Sources */,
 				B1738DBB1CB665C3006C7207 /* RSCatchline.m in Sources */,
 				B1738DC81CB665EC006C7207 /* RSTableViewController.m in Sources */,
+				B123DC401CC4D27600F08E8D /* RSButton.m in Sources */,
 				B162BC971CBCA3ED00E27228 /* GoodListCell.m in Sources */,
 				B1FFB8D11CB6566100255F21 /* NSUserDefaults+Token.m in Sources */,
+				B123DCBD1CC77FDA00F08E8D /* WeiXinLoginUtil.m in Sources */,
 				B1FFB87B1CB64DCA00255F21 /* main.m in Sources */,
+				B123DC461CC62DBF00F08E8D /* RSTextFiled.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1034,6 +1170,11 @@
 				INFOPLIST_FILE = RSUser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RSUser/Frame",
+					"$(PROJECT_DIR)/RSUser/Frame/ThreeLib/WeiXin",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1105,7 +1246,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.RSUser.RSUser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.RSUser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1124,6 +1265,11 @@
 				INFOPLIST_FILE = RSUser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RSUser/Frame",
+					"$(PROJECT_DIR)/RSUser/Frame/ThreeLib/WeiXin",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1195,7 +1341,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.RSUser.RSUser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.RSUser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -9,6 +9,7 @@
 #import "RSCartButtion.h"
 #import "CartNumberLabel.h"
 #import "CartViewController.h"
+#import "SchoolModel.h"
 @interface RSCartButtion()
 
 @end
@@ -85,10 +86,8 @@
     }
     else
     {
-        //弹出购物车
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-300, SCREEN_WIDTH, 300)];
-        view.backgroundColor = [UIColor greenColor];
-        [self.window addSubview:view];
+        UIView *view = [AppConfig getAPPDelegate].cartViewVc.view;
+        [self.window addSubview : view];
     }
     
 

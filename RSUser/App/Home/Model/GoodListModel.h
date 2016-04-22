@@ -28,5 +28,8 @@
 /**原价*/
 @property (nonatomic ,copy)NSString *price;
 
+/*选中数量*/
+@property (nonatomic ,assign)NSInteger num;
+
 
 @end

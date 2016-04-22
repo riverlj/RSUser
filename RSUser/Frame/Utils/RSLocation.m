@@ -73,7 +73,7 @@
     
     [RSHttp requestWithURL:@"/weixin/locatecommunity" params:dic httpMethod:@"GET" success:^(id data) {
         NSDictionary *dic = (NSDictionary *)data;
-        // 将信息存到本地文件
+        // TODO将信息存到本地文件
         if (!COMMUNTITYID)
         {
             [LOCATIONMODEL setLocationModel:dic];
