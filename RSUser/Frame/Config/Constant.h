@@ -19,6 +19,14 @@
 #define REDSCARF_MOBILE_URL @""
 #endif
 
+#define iPhone4S ([UIScreen mainScreen].bounds.size.height == 480 ? YES : NO)
+#define iPhone5S ([UIScreen mainScreen].bounds.size.height == 568 ? YES : NO)
+#define iPhone6  ([UIScreen mainScreen].bounds.size.height == 667 ? YES : NO)
+#define iPhone6Plus ([UIScreen mainScreen].bounds.size.height == 736 ? YES : NO)
+
+#define IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0f ? YES : NO)
+#define IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0f ? YES : NO)
+
 //APP请求超时时间
 #define APPREQUESTTIMEOUT 5
 //微信登陆

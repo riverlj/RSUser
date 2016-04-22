@@ -21,4 +21,15 @@
     return button;
 }
 
++ (RSButton *)themeButton:(CGRect)frame Text:(NSString *)text
+{
+    RSButton *button = [RSButton buttonWithFrame:frame ImageName:nil Text:text TextColor:RS_Theme_Color];
+    button.layer.borderColor = RS_Theme_Color.CGColor;
+    button.layer.borderWidth = 1;
+    button.layer.cornerRadius = 6;
+    button.titleLabel.font = RS_SubButton_Font;
+    
+    return button;
+}
+
 @end

@@ -9,6 +9,9 @@
 #import "BaseViewController.h"
 #import "UIView+ViewController.h"
 #import "RSCartButtion.h"
+#import "HomeViewController.h"
+#import "OrderViewController.h"
+#import "ProfileViewController.h"
 
 @interface BaseViewController ()
 
@@ -27,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     self.navigationItem.title = self.tabBarItem.title;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationController.navigationBar.hidden = NO;
@@ -61,6 +65,12 @@
     else
     {
         self.tabBarController.tabBar.hidden = NO;
+    }
+    
+    if ([self isKindOfClass:[HomeViewController class]]
+        ||[self isKindOfClass:[OrderViewController class]]
+        ||[self isKindOfClass:[ProfileViewController class]]) {
+        [AppConfig getAPPDelegate].crrentNavCtl = self.navigationController;
     }
     
     [self setBackUpBtn];

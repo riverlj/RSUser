@@ -10,4 +10,6 @@
 
 @interface RSTextFiled : UITextField
 + (RSTextFiled *)textFiledWithFrame:(CGRect)frame cornerRadius:(CGFloat)cornerRadius LeftImageName:(NSString *)imageName;
++ (RSTextFiled *)textFiledWithFrame:(CGRect)frame cornerRadius:(CGFloat)cornerRadius RightImageName:(NSString *)imageName;
++ (RSTextFiled *)textFiledWithFrame:(CGRect)frame cornerRadius:(CGFloat)cornerRadius Placeholder:(NSString *)placeholder;
 @end

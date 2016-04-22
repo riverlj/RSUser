@@ -12,11 +12,13 @@
 #import "RSAlertView.h"
 #import "RSCartButtion.h"
 #import "CartModel.h"
+#import "SchoolModel.h"
 
 @interface HomeViewController ()<SDCycleScrollViewDelegate>
 @property (nonatomic ,strong)NSMutableArray *bannerImageUrls;
 @property (nonatomic ,strong)NSMutableArray *bannerActionUrls;
 @property (nonatomic ,strong)NSMutableArray *bannerTitles;
+
 @end
 
 @interface HomeViewController()
@@ -32,7 +34,6 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    
     _cartArray = [[NSMutableArray alloc]init];
     self.hasBackBtn = NO;
 
@@ -125,6 +126,10 @@
         }
         [self initBannerView];
         [self.tableView reloadData];
+    }];
+    
+    [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
+        [AppConfig getAPPDelegate].schoolModel = schoolModel;
     }];
 }
 

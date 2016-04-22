@@ -9,6 +9,7 @@
 #import "AppConfig.h"
 #import "CYLTabBarController.h"
 #import "LoginViewController.h"
+#import "CartModel.h"
 
 @implementation AppConfig
 +(NSDictionary *)tabBarConfig
@@ -83,6 +84,20 @@
 + (NSMutableArray *)getLocalCartData
 {
     return [[AppConfig getAPPDelegate].localCartManager getData];
+}
+
++ (NSArray *)filterLocalCartData
+{
+    NSMutableArray *array = [[AppConfig getAPPDelegate].localCartManager getData];
+    NSMutableArray *filterArray = [[NSMutableArray alloc]init];
+    [array enumerateObjectsUsingBlock:^(CartModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSDictionary *dic = @{
+                              @"id" : @(obj.comproductid),
+                              @"num" : @(obj.num)
+                              };
+        [filterArray addObject:dic];
+    }];
+    return [filterArray copy];
 }
 
 + (void)saveLocalCartData

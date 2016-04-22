@@ -33,6 +33,12 @@
 + (NSMutableArray *)getLocalCartData;
 
 /**
+ *
+ *
+ *  @return  [{"id":1, @"num":2},{"id":1, @"num":2}]
+ */
++ (NSArray *)filterLocalCartData;
+/**
  *  保存数据到学校
  */
 + (void)saveLocalCartData;

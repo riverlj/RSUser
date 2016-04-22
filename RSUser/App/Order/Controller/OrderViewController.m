@@ -19,7 +19,7 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     LoginViewController *loginVc = [[LoginViewController alloc]init];
-    
+    loginVc.type  = 1;
     [self.navigationController pushViewController:loginVc animated:YES];
     
 }

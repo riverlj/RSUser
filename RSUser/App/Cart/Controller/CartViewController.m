@@ -8,13 +8,17 @@
 
 #import "CartViewController.h"
 #import "CartModel.h"
+#import "ConfirmOrderViewController.h"
+#import "SchoolModel.h"
 
 @interface CartViewController()
 {
     UIView *conView;
-    UIView *view;
+    UIView *shadowView;
     UIView *bottomView;
     RSLabel *totalPriceLabel;
+    RSImageView *cartImageView;
+    CGFloat totalPrice;
 }
 @end
 @implementation CartViewController
@@ -28,11 +32,10 @@
     conView.alpha = 1.0;
     [self.view addSubview:conView];
     
-    view = [[UIView alloc]init];
-    view.backgroundColor = [UIColor blackColor];
-    view.alpha = 0.5;
-    [view addTapAction:@selector(disappearView) target:self];
-    [self.view addSubview:view];
+    shadowView = [[UIView alloc]init];
+    shadowView.backgroundColor = RGBA(0, 0, 0, 0.5);
+    [shadowView addTapAction:@selector(disappearView) target:self];
+    [self.view addSubview:shadowView];
     
     RSLabel *textLabel = [RSLabel lableViewWithFrame:CGRectMake(18, 0, 100, 32) bgColor:[UIColor clearColor] textColor:RS_Theme_Color FontSize:12];
     textLabel.text = @"美味早餐";
@@ -46,7 +49,6 @@
     @weakify(self)
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify(self)
-//        [[AppConfig getAPPDelegate].localCartData removeAllObjects];
         [[AppConfig getLocalCartData] removeAllObjects];
         [self initCarData];
         CartNumberLabel *label = [CartNumberLabel shareCartNumberLabel];
@@ -68,6 +70,9 @@
     okbutton.layer.cornerRadius = 5;
     [bottomView addSubview:okbutton];
     [okbutton addTarget:self action:@selector(okButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    cartImageView = [RSImageView imageViewWithFrame:CGRectMake(18, 0, 44, 44) ImageName:@"tab_cart"];
+    [shadowView addSubview:cartImageView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCartCountLabel) name:@"Notification_UpadteCartCountLabel" object:nil];
 }
@@ -108,7 +113,7 @@
     self.tableView.y = conView.y + 32;
     [self.tableView reloadData];
     
-    view.frame = CGRectMake(0, 0, SCREEN_WIDTH, conView.y);
+    shadowView.frame = CGRectMake(0, 0, SCREEN_WIDTH, conView.y);
     
     __block CGFloat price = 0.00;
     __block NSInteger cartNum = 0;
@@ -119,18 +124,35 @@
     }];
     numberLabel.text = [NSString stringWithFormat:@"%zd", cartNum];
     NSString *priceStr = [NSString stringWithFormat:@"共¥%.2f", price];
+    totalPrice = price;
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:priceStr];
     [attStr addAttribute:NSFontAttributeName value:RS_SubButton_Font range:NSMakeRange(0, 2)];
     [attStr addAttribute:NSFontAttributeName value:RS_Price_FontSize range:NSMakeRange(2, priceStr.length-2)];
     totalPriceLabel.attributedText = attStr;
     
+    cartImageView.y = shadowView.bottom - 44;
+    cartImageView.alpha = 1.0;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCountLabel" object:nil userInfo:nil];
 
 }
 
 - (void)okButtonClicked
 {
+    
+    [self disappearView];
+    SchoolModel *schoolModel = [AppConfig getAPPDelegate].schoolModel;
+    if (totalPrice <= schoolModel.minprice) {
+        
+        RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:[NSString stringWithFormat:@"最低%.2f",schoolModel.minprice] leftButtonTitle:@"我知道了" AndLeftBlock:^{
+            
+        }];
+        [alertView show];
+    }
+    NSString *path = [NSString stringWithFormat:@"RSUser://confirmOrder?totalprice=%.2f",totalPrice];
+    UIViewController *vc = [RSRoute getViewControllerByPath:path];
     //去下单
+    [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:vc animated:YES];
+    
 }
 
 - (void)disappearView

@@ -9,6 +9,7 @@
 #import "RSCartButtion.h"
 #import "CartNumberLabel.h"
 #import "CartViewController.h"
+#import "SchoolModel.h"
 @interface RSCartButtion()
 
 @end

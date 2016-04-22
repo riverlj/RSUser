@@ -11,6 +11,7 @@
 #import "LocalCartManager.h"
 #import "CartViewController.h"
 #import "WXApi.h"
+#import "SchoolModel.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,WXApiDelegate>
 
@@ -22,6 +23,10 @@
 //当前购物车与学校
 @property (nonatomic, strong)LocalCartManager *localCartManager;
 
-//
+//当前导航
+@property (nonatomic, strong)UINavigationController *crrentNavCtl;
+
+@property (nonatomic, strong)SchoolModel *schoolModel;
+
 - (void)setRootViewController:(UIViewController *)rootVC;
 @end
