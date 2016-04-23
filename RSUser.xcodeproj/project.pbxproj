@@ -40,6 +40,7 @@
 		B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC9C1CBDEA2200E27228 /* CartViewController.m */; };
 		B162BC9F1CBE0B5200E27228 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B162BC9E1CBE0B5200E27228 /* CoreLocation.framework */; };
 		B162BCA31CBE115D00E27228 /* RSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BCA21CBE115D00E27228 /* RSLocation.m */; };
+		B168FF281CC9C6CF0003B3FA /* AddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B168FF271CC9C6CF0003B3FA /* AddressTableViewCell.m */; };
 		B1738D891CB65E71006C7207 /* RSHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738D881CB65E71006C7207 /* RSHttp.m */; };
 		B1738D8B1CB65FBF006C7207 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1738D8A1CB65FBF006C7207 /* UIKit.framework */; };
 		B1738D8E1CB6625A006C7207 /* RSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738D8D1CB6625A006C7207 /* RSWebViewController.m */; };
@@ -168,6 +169,8 @@
 		B162BC9E1CBE0B5200E27228 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B162BCA11CBE115D00E27228 /* RSLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSLocation.h; sourceTree = "<group>"; };
 		B162BCA21CBE115D00E27228 /* RSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSLocation.m; sourceTree = "<group>"; };
+		B168FF261CC9C6CF0003B3FA /* AddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressTableViewCell.h; sourceTree = "<group>"; };
+		B168FF271CC9C6CF0003B3FA /* AddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressTableViewCell.m; sourceTree = "<group>"; };
 		B1738D871CB65E71006C7207 /* RSHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSHttp.h; sourceTree = "<group>"; };
 		B1738D881CB65E71006C7207 /* RSHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSHttp.m; sourceTree = "<group>"; };
 		B1738D8A1CB65FBF006C7207 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -594,6 +597,8 @@
 		B1B7645B1CB8D286005A90BD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B168FF261CC9C6CF0003B3FA /* AddressTableViewCell.h */,
+				B168FF271CC9C6CF0003B3FA /* AddressTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -988,6 +993,7 @@
 				B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */,
 				B1738D891CB65E71006C7207 /* RSHttp.m in Sources */,
 				B1B764631CB8D286005A90BD /* OrderViewController.m in Sources */,
+				B168FF281CC9C6CF0003B3FA /* AddressTableViewCell.m in Sources */,
 				B10769A71CBE490400586304 /* RSImageView.m in Sources */,
 				B1FFB8D01CB6566100255F21 /* UIDeviceAdditions.m in Sources */,
 				B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */,

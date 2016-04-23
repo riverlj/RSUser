@@ -20,10 +20,12 @@
     [super viewDidLoad];
     self.title = @"确认订单";
     
+    //获取优惠券信息
     [CouponModel getCounponList:^(NSArray *couponList) {
         
     }];
     
+    //获取地址信息
     [AddressModel getAddressList:^(NSArray *addressList) {
         
     }];

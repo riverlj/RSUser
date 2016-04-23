@@ -24,10 +24,15 @@
 +(void)weixinLogin:(NSDictionary *)params
 {
     [params setValue:@"weixin" forKey:@"type"];
+
     [RSHttp requestWithURL:@"/weixin/login" params:params httpMethod:@"POST" success:^(NSDictionary* data) {
+        NSLog(@"------------------------%@", data);
         [NSUserDefaults  setValue:[data valueForKey:@"token"] forKey:@"token"];
+        [[RSToastView  shareRSAlertView]showToast:@"登陆成功"];
         // 登陆成功之后下载远程购物车
-        [CartModel downLoadCartsWithSuccess:nil];
+        [CartModel downLoadCartsWithSuccess:^(NSArray * sucessArray) {
+            
+        }];
     } failure:^(NSInteger code, NSString *errmsg) {
         [[RSToastView  shareRSAlertView]showToast:errmsg];
     }];

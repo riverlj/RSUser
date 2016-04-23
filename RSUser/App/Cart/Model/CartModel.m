@@ -38,7 +38,9 @@
     NSDictionary *param = @{
                           @"communityid" : COMMUNTITYID
                           };
+    
     [RSHttp requestWithURL:@"/weixin/downloadcart" params:param httpMethod:@"GET" success:^(id data) {
+        NSLog(@"%@",data);
         NSArray *dataArray = (NSArray *)data;
         NSMutableArray *array = [[NSMutableArray alloc]init];
         [dataArray enumerateObjectsUsingBlock:^(NSDictionary *dic, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -49,10 +51,12 @@
             }
             [array addObject:model];
         }];
-        [CartModel mergeCartWithDownLoadCart:array AndLocalArray:[AppConfig getLocalCartData]];
-        successArray([AppConfig getLocalCartData]);
+        [CartModel mergeCartWithDownLoadCart:array];
+        //TODO 报错，合并报错
+         NSMutableArray *cartArray = [AppConfig getLocalCartData];
+        successArray(cartArray);
     } failure:^(NSInteger code, NSString *errmsg) {
-        
+        [[RSToastView  shareRSAlertView]showToast:errmsg];
     }];
 }
 
@@ -76,24 +80,37 @@
     }];
 }
 
-+ (void)mergeCartWithDownLoadCart:(NSArray *)downCartArray AndLocalArray:(NSMutableArray *)localCartArray
++ (void)mergeCartWithDownLoadCart:(NSArray *)downCartArray
 {
+    NSMutableArray * localCartArray = [AppConfig getLocalCartData];
+    if (localCartArray.count == 0) {
+        [localCartArray addObjectsFromArray: downCartArray];
+    }
+    
     for (int i=0; i<downCartArray.count; i++) {
         CartModel *downCartModel = downCartArray[i];
+        BOOL isfind = false;
         for (int j=0; j<localCartArray.count; j++) {
             CartModel *localCartModel = localCartArray[j];
             if (downCartModel.comproductid == localCartModel.comproductid) {
                 localCartModel.num += downCartModel.num;
+                isfind = true;
                 break;
             }
+        }
+        if (isfind) {
+            continue;
+        }else{
+            [localCartArray addObject:downCartModel];
         }
     }
     
     [AppConfig saveLocalCartData];
     [AppConfig saveCartMerge];
-    
+
     //合并后更新购物车中的数量
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCartCountLabel" object:nil userInfo:nil];
+
 }
 
 @end

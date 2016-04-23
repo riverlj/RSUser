@@ -30,12 +30,9 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (data) {
                 NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-                NSError *error = nil;
-                LoginModel *model = [MTLJSONAdapter modelOfClass:[LoginModel class] fromJSONDictionary:dic error:&error];
-                NSDictionary *param = [model dictionaryValue];
-                
+                NSLog(@"--------------------%@",dic);
                 //微信登陆
-                [LoginModel weixinLogin:param];
+                [LoginModel weixinLogin:dic];
             }
         });
     });

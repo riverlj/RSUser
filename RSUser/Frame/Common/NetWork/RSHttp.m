@@ -18,10 +18,12 @@
         constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:[NSUserDefaults getValue:@"token"] forHTTPHeaderField:@"token"];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     //设置超时时间
     manager.requestSerializer.timeoutInterval = APPREQUESTTIMEOUT;
     if([httpMethod isEqualToString:@"GET"]) {
+        NSLog(@"url==%@, params=%@",url, params);
         [manager GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [self processSuccess:success operation:operation response:responseObject failure:failure];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -76,7 +78,7 @@
               response:(id)responseObject
                failure:(void (^)(NSInteger code, NSString *errmsg))failure;
 {
-
+    NSLog(@"------------%@",responseObject);
     NSInteger code = [[responseObject valueForKey:@"code"] integerValue];
     //如果成功
     if(code == 0) {
