@@ -49,12 +49,9 @@
     @weakify(self)
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify(self)
-        [[[Cart sharedCart] getCartGoods] removeAllObjects];
-//        [[AppConfig getLocalCartData] removeAllObjects];
+        [[Cart sharedCart] clearAllCartGoods];
         [self initCarData];
-        CartNumberLabel *label = [CartNumberLabel shareCartNumberLabel];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCountLabel" object:nil userInfo:nil];
-        label.text = @"0";
         
         [self disappearView];
     }];
@@ -100,11 +97,8 @@
         }
     }];
 
-    CartNumberLabel *numberLabel = [CartNumberLabel shareCartNumberLabel];
-
     if (self.models.count == 0)
     {
-        numberLabel.text = [NSString stringWithFormat:@"%zd", 0];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCountLabel" object:nil userInfo:nil];
         [self disappearView];
         return;
@@ -123,7 +117,7 @@
         cartNum += obj.num;
         
     }];
-    numberLabel.text = [NSString stringWithFormat:@"%zd", cartNum];
+    
     NSString *priceStr = [NSString stringWithFormat:@"共¥%.2f", price];
     totalPrice = price;
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:priceStr];

@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "BandleCellPhoneViewController.h"
+#import "LoginModel.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 {
@@ -64,7 +65,6 @@
     }
     
     userTextFiled = [RSTextFiled textFiledWithFrame:CGRectMake(18, logoImageView.bottom, SCREEN_WIDTH-36, 40) cornerRadius:4 LeftImageName:@"icon_user"];
-    [userTextFiled becomeFirstResponder];
     userTextFiled.placeholder = @"请输入手机号";
     userTextFiled.delegate = self;
     
@@ -134,11 +134,7 @@
 - (void)loginWithWeixin
 {
     if ([WXApi isWXAppInstalled]) {
-        SendAuthReq* req = [[SendAuthReq alloc] init];
-        req.scope = WEIXIN_LOGIN_SCOPE; // ns"
-        req.state = WEIXIN_LOGIN_STATUS;
-        
-        [WXApi sendReq:req];
+        [LoginModel sendAuthRequest];
     }else{
         RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:@"请先安装微信客户端" leftButtonTitle:@"我知道了" AndLeftBlock:nil];
         [alertView show];

@@ -25,4 +25,7 @@
 - (NSArray *)filterLocalCartData;
 
 -(NSMutableArray *)getCartCellGoods;
+
+- (NSInteger)getCartCountLabelText;
+- (void)clearAllCartGoods;
 @end

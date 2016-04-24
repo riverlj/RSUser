@@ -12,6 +12,5 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    self.hasBackBtn = NO;
 }
 @end

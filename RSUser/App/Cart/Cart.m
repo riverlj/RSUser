@@ -11,7 +11,7 @@
 
 static Cart *shareCart = nil;
 @interface Cart()
-@property (nonatomic, strong)NSDictionary *cartDataSource;
+@property (nonatomic, strong)NSMutableDictionary *cartDataSource;
 
 @end
 
@@ -167,6 +167,8 @@ static Cart *shareCart = nil;
         GoodListModel *model = [good copy];
         [goodsArray addObject:model];
     }
+    
+    [self updateCartCountLabelText];
 }
 
 /**
@@ -193,6 +195,14 @@ static Cart *shareCart = nil;
     if (flag) {
         [goods removeObjectAtIndex:index];
     }
+    
+    [self updateCartCountLabelText];
+}
+
+- (void)clearAllCartGoods
+{
+    [[self getCartGoods] removeAllObjects];
+    [self updateCartCountLabelText];
 }
 
 /**
@@ -266,6 +276,24 @@ static Cart *shareCart = nil;
     }
     
     return cellArray;
+}
+
+- (void)updateCartCountLabelText
+{
+    CartNumberLabel *textLabel = [CartNumberLabel shareCartNumberLabel];
+    NSMutableArray *goodArray = [self getCartGoods];
+    NSInteger num = 0;
+    for (int i=0; i<goodArray.count; i++) {
+        GoodListModel *model = goodArray[i];
+        num += model.num;
+    }
+    textLabel.text = [NSString stringWithFormat:@"%zd", num];
+}
+
+- (NSInteger)getCartCountLabelText
+{
+    CartNumberLabel *textLabel = [CartNumberLabel shareCartNumberLabel];
+    return [textLabel.text integerValue];
 }
 
 @end

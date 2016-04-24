@@ -61,10 +61,12 @@
     if([self.navigationController.viewControllers count] > 1)
     {
         self.tabBarController.tabBar.hidden = YES;
+        self.hasBackBtn = YES;
     }
     else
     {
         self.tabBarController.tabBar.hidden = NO;
+        self.hasBackBtn = NO;
     }
     
     if ([self isKindOfClass:[HomeViewController class]]

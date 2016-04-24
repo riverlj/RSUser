@@ -32,7 +32,7 @@
     self.priceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_Theme_Color FontSize:14];
     [self.contentView addSubview:self.priceLabel];
     
-    CGSize addSize = [UIImage imageNamed:@"add"].size;
+    CGSize addSize = [UIImage imageNamed:@"addActivate"].size;
     self.addIV = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-32, 16.5, addSize.width, addSize.height)];
     [self.contentView addSubview:self.addIV];
     [self.addIV setImage:[UIImage imageNamed:@"addActivate"]];
@@ -135,7 +135,7 @@
     [_costPriceLabel addSubview:_deleteLineView];
     _deleteLineView.backgroundColor = RS_SubMain_Text_Color;
     
-    CGSize addSize = [UIImage imageNamed:@"add"].size;
+    CGSize addSize = [UIImage imageNamed:@"addActivate"].size;
     self.addIV = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-32, 62, addSize.width, addSize.height)];
     [self.contentView addSubview:self.addIV];
     [self.addIV setImage:[UIImage imageNamed:@"addActivate"]];
@@ -153,15 +153,7 @@
     self.subIV.hidden = YES;
     [self.subIV addTapAction:@selector(subCountClick) target:self];
     
-//    [self addObserver];
 }
-
-//- (void)addObserver
-//{
-//    [RACObserve(self.countLabel, text) subscribeNext:^(NSString *text) {
-//        _listModel.num = [text integerValue];
-//    }];
-//}
 
 - (void)setModel:(GoodListModel *)model
 {
@@ -229,7 +221,6 @@
     [throwLineTool throwObject:throwedView from:self.addIV.center to:cartLabelPoint height:40 duration:0.5];
     
     [UIView animateWithDuration:0.25 animations:^{
-        cartNumberLabel.text = [NSString stringWithFormat:@"%zd",[cartNumberLabel.text integerValue] +1];
         self.countLabel.text = [NSString stringWithFormat:@"%zd",[self.countLabel.text integerValue] +1];
         cartNumberLabel.transform = CGAffineTransformScale(cartNumberLabel.transform, 2, 2);
     } completion:^(BOOL finished) {
@@ -255,8 +246,6 @@
 
 - (void)subCountClick
 {
-    CartNumberLabel *cartNumberLabel = [CartNumberLabel shareCartNumberLabel];
-    cartNumberLabel.text =[NSString stringWithFormat:@"%zd", ([cartNumberLabel.text integerValue] -1) ];
     self.countLabel.text = [NSString stringWithFormat:@"%zd",[self.countLabel.text integerValue] -1];
     if ([self.countLabel.text integerValue] == 0)
     {

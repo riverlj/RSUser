@@ -40,7 +40,6 @@
                           };
     
     [RSHttp requestWithURL:@"/weixin/downloadcart" params:param httpMethod:@"GET" success:^(id data) {
-        NSLog(@"%@",data);
         NSArray *dataArray = (NSArray *)data;
         NSMutableArray *array = [[NSMutableArray alloc]init];
         [dataArray enumerateObjectsUsingBlock:^(NSDictionary *dic, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -52,10 +51,8 @@
             [array addObject:model];
         }];
         [[Cart sharedCart] mergeCartGoods:array];
-//        [CartModel mergeCartWithDownLoadCart:array];
         //TODO 报错，合并报错
         NSMutableArray *cartArray = [[Cart sharedCart] getCartGoods];
-//         NSMutableArray *cartArray = [AppConfig getLocalCartData];
         successArray(cartArray);
     } failure:^(NSInteger code, NSString *errmsg) {
         [[RSToastView  shareRSAlertView]showToast:errmsg];

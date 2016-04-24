@@ -18,7 +18,7 @@
         constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager.requestSerializer setValue:[NSUserDefaults getValue:@"token"] forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[NSString URLencode:[NSUserDefaults getValue:@"withdrawToken"] stringEncoding:NSUTF8StringEncoding] forHTTPHeaderField:@"token"];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     //设置超时时间
     manager.requestSerializer.timeoutInterval = APPREQUESTTIMEOUT;

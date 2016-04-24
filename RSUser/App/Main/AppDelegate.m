@@ -10,7 +10,7 @@
 #import "RSTabBarControllerConfig.h"
 #import "RSCartButtion.h"
 #import "LoginViewController.h"
-#import "WeiXinLoginUtil.h"
+#import "LoginModel.h"
 
 @interface AppDelegate ()
 
@@ -48,7 +48,7 @@
 - (void)setappRootViewControler
 {
     RSTabBarControllerConfig *tabBarControllerConfig = [[RSTabBarControllerConfig alloc] init];
-    [self.window setRootViewController:tabBarControllerConfig.tabBarController];
+        [self.window setRootViewController:tabBarControllerConfig.tabBarController];
     [AppConfig customsizeInterface];
     [self.window makeKeyAndVisible];
 }
@@ -60,23 +60,19 @@
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
-{//wxfbb916a94b6b04b6://oauth?code=001pts8e0F2pNF15iWae0ZLs8e0pts84&state=rsuserf99054
+{
     [WXApi handleOpenURL:url delegate:self];
     return YES;
 }
 
--(void) onReq:(BaseReq*)req
-{
-
-}
-
+#pragma 微信登陆返回数据
 -(void) onResp:(BaseResp*)resp
 {
     SendAuthResp *aresp = (SendAuthResp *)resp;
     if (aresp.errCode== 0) {
         NSString *code = aresp.code;
         //请求token
-        [WeiXinLoginUtil getAccess_token:code];
+        [LoginModel getAccess_token:code];
     }
 }
 

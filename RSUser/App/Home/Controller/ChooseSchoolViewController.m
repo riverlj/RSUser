@@ -184,9 +184,8 @@
     [array enumerateObjectsUsingBlock:^(CartModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         num += obj.num;
     }];
-    CartNumberLabel *numberLabel = [CartNumberLabel shareCartNumberLabel];
-    numberLabel.text = [NSString stringWithFormat:@"%zd", num];
     
+    self.countLabel.text = [NSString stringWithFormat:@"%zd", num];
 }
 
 - (void)clearSchools

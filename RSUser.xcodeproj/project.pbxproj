@@ -21,7 +21,6 @@
 		B123DCAD1CC7707600F08E8D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B123DCA91CC7707600F08E8D /* libWeChatSDK.a */; };
 		B123DCB71CC77D9C00F08E8D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCB61CC77D9C00F08E8D /* LoginViewController.m */; };
 		B123DCBA1CC77FAD00F08E8D /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCB91CC77FAD00F08E8D /* LoginModel.m */; };
-		B123DCBD1CC77FDA00F08E8D /* WeiXinLoginUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCBC1CC77FDA00F08E8D /* WeiXinLoginUtil.m */; };
 		B123DCC91CC8893E00F08E8D /* ConfirmOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCC81CC8893E00F08E8D /* ConfirmOrderViewController.m */; };
 		B123DCCC1CC8895100F08E8D /* SchoolModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCCB1CC8895100F08E8D /* SchoolModel.m */; };
 		B123DCCF1CC8B9EF00F08E8D /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCCE1CC8B9EF00F08E8D /* AddressModel.m */; };
@@ -132,8 +131,6 @@
 		B123DCB61CC77D9C00F08E8D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B123DCB81CC77FAD00F08E8D /* LoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
 		B123DCB91CC77FAD00F08E8D /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
-		B123DCBB1CC77FDA00F08E8D /* WeiXinLoginUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiXinLoginUtil.h; sourceTree = "<group>"; };
-		B123DCBC1CC77FDA00F08E8D /* WeiXinLoginUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiXinLoginUtil.m; sourceTree = "<group>"; };
 		B123DCC71CC8893E00F08E8D /* ConfirmOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmOrderViewController.h; sourceTree = "<group>"; };
 		B123DCC81CC8893E00F08E8D /* ConfirmOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmOrderViewController.m; sourceTree = "<group>"; };
 		B123DCCA1CC8895100F08E8D /* SchoolModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolModel.h; sourceTree = "<group>"; };
@@ -335,8 +332,6 @@
 				B123DCB21CC77D8A00F08E8D /* Model */,
 				B123DCB31CC77D8A00F08E8D /* View */,
 				B123DCB41CC77D8A00F08E8D /* ViewController */,
-				B123DCBB1CC77FDA00F08E8D /* WeiXinLoginUtil.h */,
-				B123DCBC1CC77FDA00F08E8D /* WeiXinLoginUtil.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1044,7 +1039,6 @@
 				B123DC401CC4D27600F08E8D /* RSButton.m in Sources */,
 				B162BC971CBCA3ED00E27228 /* GoodListCell.m in Sources */,
 				B1FFB8D11CB6566100255F21 /* NSUserDefaults+Token.m in Sources */,
-				B123DCBD1CC77FDA00F08E8D /* WeiXinLoginUtil.m in Sources */,
 				B1FFB87B1CB64DCA00255F21 /* main.m in Sources */,
 				B123DC461CC62DBF00F08E8D /* RSTextFiled.m in Sources */,
 			);
