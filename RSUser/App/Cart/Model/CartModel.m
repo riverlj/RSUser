@@ -32,7 +32,7 @@
     if (![NSUserDefaults getValue:@"token"]) { //未登录
         return;
     }
-    if ([AppConfig getCartMerge] == 1) {    //已经合并过
+    if ([[Cart sharedCart] getCartMerge] == 1) {    //已经合并过
         return;
     }
     NSDictionary *param = @{
@@ -51,9 +51,11 @@
             }
             [array addObject:model];
         }];
-        [CartModel mergeCartWithDownLoadCart:array];
+        [[Cart sharedCart] mergeCartGoods:array];
+//        [CartModel mergeCartWithDownLoadCart:array];
         //TODO 报错，合并报错
-         NSMutableArray *cartArray = [AppConfig getLocalCartData];
+        NSMutableArray *cartArray = [[Cart sharedCart] getCartGoods];
+//         NSMutableArray *cartArray = [AppConfig getLocalCartData];
         successArray(cartArray);
     } failure:^(NSInteger code, NSString *errmsg) {
         [[RSToastView  shareRSAlertView]showToast:errmsg];
@@ -63,7 +65,7 @@
 + (void)pushLocatCart
 {
     NSMutableArray *pramaArray = [[NSMutableArray alloc]init];
-    NSMutableArray *localArray = [AppConfig getLocalCartData];
+    NSMutableArray *localArray = [[Cart sharedCart] getCartGoods];
     
     [localArray enumerateObjectsUsingBlock:^(CartModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMutableDictionary *goodsDic = [[NSMutableDictionary alloc]init];
@@ -80,37 +82,37 @@
     }];
 }
 
-+ (void)mergeCartWithDownLoadCart:(NSArray *)downCartArray
-{
-    NSMutableArray * localCartArray = [AppConfig getLocalCartData];
-    if (localCartArray.count == 0) {
-        [localCartArray addObjectsFromArray: downCartArray];
-    }
-    
-    for (int i=0; i<downCartArray.count; i++) {
-        CartModel *downCartModel = downCartArray[i];
-        BOOL isfind = false;
-        for (int j=0; j<localCartArray.count; j++) {
-            CartModel *localCartModel = localCartArray[j];
-            if (downCartModel.comproductid == localCartModel.comproductid) {
-                localCartModel.num += downCartModel.num;
-                isfind = true;
-                break;
-            }
-        }
-        if (isfind) {
-            continue;
-        }else{
-            [localCartArray addObject:downCartModel];
-        }
-    }
-    
-    [AppConfig saveLocalCartData];
-    [AppConfig saveCartMerge];
-
-    //合并后更新购物车中的数量
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCartCountLabel" object:nil userInfo:nil];
-
-}
+//+ (void)mergeCartWithDownLoadCart:(NSArray *)downCartArray
+//{
+//    NSMutableArray * localCartArray = [AppConfig getLocalCartData];
+//    if (localCartArray.count == 0) {
+//        [localCartArray addObjectsFromArray: downCartArray];
+//    }
+//    
+//    for (int i=0; i<downCartArray.count; i++) {
+//        CartModel *downCartModel = downCartArray[i];
+//        BOOL isfind = false;
+//        for (int j=0; j<localCartArray.count; j++) {
+//            CartModel *localCartModel = localCartArray[j];
+//            if (downCartModel.comproductid == localCartModel.comproductid) {
+//                localCartModel.num += downCartModel.num;
+//                isfind = true;
+//                break;
+//            }
+//        }
+//        if (isfind) {
+//            continue;
+//        }else{
+//            [localCartArray addObject:downCartModel];
+//        }
+//    }
+//    
+//    [AppConfig saveLocalCartData];
+//    [AppConfig saveCartMerge];
+//
+//    //合并后更新购物车中的数量
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCartCountLabel" object:nil userInfo:nil];
+//
+//}
 
 @end

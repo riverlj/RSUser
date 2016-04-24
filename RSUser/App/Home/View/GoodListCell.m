@@ -49,16 +49,16 @@
     [self.subIV addTapAction:@selector(subCountClick) target:self];
 }
 
--(void)setModel:(CartModel *)model
+-(void)setModel:(GoodListModel *)model
 {
     _cartmodel = model;
     self.titleLabel.text = model.name;
-    self.priceLabel.text = [NSString stringWithFormat:@"￥%@", model.price];
+    self.priceLabel.text = [NSString stringWithFormat:@"￥%@", model.saleprice];
     self.countLabel.text = [NSString stringWithFormat:@"%zd", model.num];
     [self setFramesWithModel:model];
 }
 
-- (void)setFramesWithModel:(CartModel *)model
+- (void)setFramesWithModel:(GoodListModel *)model
 {
     self.titleLabel.frame = CGRectMake(18, 0, SCREEN_WIDTH/2-20, 49);
     CGSize priceSize = [self.priceLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, self.titleLabel.height)];
@@ -67,6 +67,7 @@
 
 - (void)addCountClick
 {
+    [[Cart sharedCart] addGoods:_cartmodel];
     _cartmodel.num ++;
     self.countLabel.text = [NSString stringWithFormat:@"%zd", _cartmodel.num];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCartCountLabel" object:nil userInfo:nil];
@@ -74,8 +75,11 @@
 
 -(void)subCountClick
 {
+    [[Cart sharedCart] deleteGoods:_cartmodel];
     _cartmodel.num --;
     self.countLabel.text = [NSString stringWithFormat:@"%zd", _cartmodel.num];
+ 
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCartCountLabel" object:nil userInfo:nil];
 }
 
@@ -149,15 +153,15 @@
     self.subIV.hidden = YES;
     [self.subIV addTapAction:@selector(subCountClick) target:self];
     
-    [self addObserver];
+//    [self addObserver];
 }
 
-- (void)addObserver
-{
-    [RACObserve(self.countLabel, text) subscribeNext:^(NSString *text) {
-        _listModel.num = [text integerValue];
-    }];
-}
+//- (void)addObserver
+//{
+//    [RACObserve(self.countLabel, text) subscribeNext:^(NSString *text) {
+//        _listModel.num = [text integerValue];
+//    }];
+//}
 
 - (void)setModel:(GoodListModel *)model
 {
@@ -240,7 +244,7 @@
         self.countLabel.hidden = NO;
     }
     
-    [self addGoodsToCart];
+    [[Cart sharedCart] addGoods:_listModel];
     
 }
 
@@ -260,64 +264,8 @@
         self.countLabel.hidden = YES;
     }
     
-    [self subGoodsFromCart];
-}
+    [[Cart sharedCart] deleteGoods:_listModel];
 
-
-- (void)addGoodsToCart
-{
-    NSMutableArray *cartArray = [AppConfig getLocalCartData];
-    BOOL isExist = NO;
-    for (int i=0; i<cartArray.count; i++)
-    {
-        CartModel *model = cartArray[i];
-        if (model.comproductid == _listModel.comproductid)
-        {
-            isExist = YES;
-            model.num++;
-            break;
-        }
-    }
-    
-    if (!isExist || cartArray.count == 0)
-    {
-        CartModel *model = [[CartModel alloc]init];
-        model.cellHeight = 49;
-        model.cellClassName = @"CartCell";
-        model.comproductid = _listModel.comproductid;
-        model.name = _listModel.name;
-        model.num = 1;
-        model.price = _listModel.price;
-        [cartArray addObject:model];
-    }
-    
-    [AppConfig saveLocalCartData];
-}
-
-- (void)subGoodsFromCart
-{
-    NSMutableArray *cartArray = [AppConfig getLocalCartData];
-    NSInteger index = -1;
-    for (int i=0; i<cartArray.count; i++)
-    {
-        CartModel *model = cartArray[i];
-        if (model.comproductid == _listModel.comproductid)
-        {
-            model.num --;
-            if (model.num == 0)
-            {
-                index = i;
-            }
-            break;
-        }
-    }
-    
-    if (index != -1)
-    {
-        [cartArray removeObjectAtIndex:index];
-    }
-    
-    [AppConfig saveLocalCartData];
 }
 
 @end

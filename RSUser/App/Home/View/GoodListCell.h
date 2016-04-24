@@ -22,7 +22,7 @@
 /**选中量*/
 @property (nonatomic, strong) UILabel *countLabel;
 
-@property (nonatomic, strong)CartModel *cartmodel;
+@property (nonatomic, strong)GoodListModel *cartmodel;
 
 @end
 

@@ -41,7 +41,7 @@
     [dic setValue:@"false" forKey:@"moneypromotion"];
     [dic setValue:@"false" forKey:@"paypromotion"];
     [dic setValue:@"false" forKey:@"seckill"];
-    [dic setValue:[AppConfig filterLocalCartData] forKey:@"products"];
+    [dic setValue:[Cart sharedCart] forKey:@"products"];
 
     [RSHttp requestWithURL:@"/weixin/orderpromotion" params:dic httpMethod:@"POST" success:^(NSDictionary *data) {
         NSArray *array = [data valueForKey:@"coupons"];

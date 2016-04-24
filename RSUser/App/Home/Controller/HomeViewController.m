@@ -77,7 +77,7 @@
 
 - (void)updateCountLabel
 {
-    NSMutableArray *array = [AppConfig  getLocalCartData];
+    NSMutableArray *array = [[Cart sharedCart] getCartGoods];
     
     for (int i=0; i<self.models.count; i++) {
         GoodListModel *model = self.models[i];

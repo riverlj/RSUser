@@ -76,45 +76,6 @@
     return delegate;
 }
 
-+ (NSMutableArray *)getLocationCartDataByCommityId:(NSString *)communtityId
-{
-    return nil;
-}
-
-+ (NSMutableArray *)getLocalCartData
-{
-    return [[AppConfig getAPPDelegate].localCartManager getData];
-}
-
-+ (NSArray *)filterLocalCartData
-{
-    NSMutableArray *array = [[AppConfig getAPPDelegate].localCartManager getData];
-    NSMutableArray *filterArray = [[NSMutableArray alloc]init];
-    [array enumerateObjectsUsingBlock:^(CartModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSDictionary *dic = @{
-                              @"id" : @(obj.comproductid),
-                              @"num" : @(obj.num)
-                              };
-        [filterArray addObject:dic];
-    }];
-    return [filterArray copy];
-}
-
-+ (void)saveLocalCartData
-{
-    [[AppConfig getAPPDelegate].localCartManager saveData];
-}
-
-+ (void)saveCartMerge
-{
-    [[AppConfig getAPPDelegate].localCartManager saveMergeFlag:1];
-}
-
-+ (NSInteger)getCartMerge
-{
-    return [[AppConfig getAPPDelegate].localCartManager getMergeFlag];
-}
-
 +(void)setRootViewControllerWithCode:(NSInteger)code
 {
     UIViewController *vc;

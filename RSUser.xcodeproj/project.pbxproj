@@ -16,7 +16,6 @@
 		B123DC401CC4D27600F08E8D /* RSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC3F1CC4D27600F08E8D /* RSButton.m */; };
 		B123DC461CC62DBF00F08E8D /* RSTextFiled.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC451CC62DBF00F08E8D /* RSTextFiled.m */; };
 		B123DC481CC637C400F08E8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B123DC471CC637C400F08E8D /* Assets.xcassets */; };
-		B123DC4D1CC7234300F08E8D /* LocalCartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC4C1CC7234300F08E8D /* LocalCartManager.m */; };
 		B123DC531CC74CFB00F08E8D /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC501CC74CFB00F08E8D /* CartModel.m */; };
 		B123DC541CC74CFB00F08E8D /* SeckillModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC521CC74CFB00F08E8D /* SeckillModel.m */; };
 		B123DCAD1CC7707600F08E8D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B123DCA91CC7707600F08E8D /* libWeChatSDK.a */; };
@@ -41,6 +40,7 @@
 		B162BC9F1CBE0B5200E27228 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B162BC9E1CBE0B5200E27228 /* CoreLocation.framework */; };
 		B162BCA31CBE115D00E27228 /* RSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BCA21CBE115D00E27228 /* RSLocation.m */; };
 		B168FF281CC9C6CF0003B3FA /* AddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B168FF271CC9C6CF0003B3FA /* AddressTableViewCell.m */; };
+		B168FF2B1CCB32670003B3FA /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = B168FF2A1CCB32670003B3FA /* Cart.m */; };
 		B1738D891CB65E71006C7207 /* RSHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738D881CB65E71006C7207 /* RSHttp.m */; };
 		B1738D8B1CB65FBF006C7207 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1738D8A1CB65FBF006C7207 /* UIKit.framework */; };
 		B1738D8E1CB6625A006C7207 /* RSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738D8D1CB6625A006C7207 /* RSWebViewController.m */; };
@@ -120,8 +120,6 @@
 		B123DC441CC62DBF00F08E8D /* RSTextFiled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTextFiled.h; sourceTree = "<group>"; };
 		B123DC451CC62DBF00F08E8D /* RSTextFiled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTextFiled.m; sourceTree = "<group>"; };
 		B123DC471CC637C400F08E8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B123DC4C1CC7234300F08E8D /* LocalCartManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalCartManager.m; sourceTree = "<group>"; };
-		B123DC4E1CC728D200F08E8D /* LocalCartManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalCartManager.h; sourceTree = "<group>"; };
 		B123DC4F1CC74CFB00F08E8D /* CartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartModel.h; sourceTree = "<group>"; };
 		B123DC501CC74CFB00F08E8D /* CartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartModel.m; sourceTree = "<group>"; };
 		B123DC511CC74CFB00F08E8D /* SeckillModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeckillModel.h; sourceTree = "<group>"; };
@@ -171,6 +169,8 @@
 		B162BCA21CBE115D00E27228 /* RSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSLocation.m; sourceTree = "<group>"; };
 		B168FF261CC9C6CF0003B3FA /* AddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressTableViewCell.h; sourceTree = "<group>"; };
 		B168FF271CC9C6CF0003B3FA /* AddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressTableViewCell.m; sourceTree = "<group>"; };
+		B168FF291CCB32670003B3FA /* Cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cart.h; sourceTree = "<group>"; };
+		B168FF2A1CCB32670003B3FA /* Cart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cart.m; sourceTree = "<group>"; };
 		B1738D871CB65E71006C7207 /* RSHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSHttp.h; sourceTree = "<group>"; };
 		B1738D881CB65E71006C7207 /* RSHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSHttp.m; sourceTree = "<group>"; };
 		B1738D8A1CB65FBF006C7207 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -371,8 +371,6 @@
 		B162BCA01CBE10FB00E27228 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				B123DC4E1CC728D200F08E8D /* LocalCartManager.h */,
-				B123DC4C1CC7234300F08E8D /* LocalCartManager.m */,
 				B1021DDB1CBF611B00050AEB /* ThrowLineTool.h */,
 				B1021DDC1CBF611B00050AEB /* ThrowLineTool.m */,
 				B162BCA11CBE115D00E27228 /* RSLocation.h */,
@@ -478,6 +476,8 @@
 				B1B7644D1CB8D286005A90BD /* Controller */,
 				B1B7644E1CB8D286005A90BD /* Model */,
 				B1B7644F1CB8D286005A90BD /* View */,
+				B168FF291CCB32670003B3FA /* Cart.h */,
+				B168FF2A1CCB32670003B3FA /* Cart.m */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -1007,7 +1007,7 @@
 				B1738DB31CB665C3006C7207 /* RSProgressView.m in Sources */,
 				B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */,
 				B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */,
-				B123DC4D1CC7234300F08E8D /* LocalCartManager.m in Sources */,
+				B168FF2B1CCB32670003B3FA /* Cart.m in Sources */,
 				B1738DB21CB665C3006C7207 /* RSHeadView.m in Sources */,
 				B1A8D4B41CC09D3C00471E93 /* RSSearchView.m in Sources */,
 				B1021DDD1CBF611B00050AEB /* ThrowLineTool.m in Sources */,

@@ -49,7 +49,8 @@
     @weakify(self)
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify(self)
-        [[AppConfig getLocalCartData] removeAllObjects];
+        [[[Cart sharedCart] getCartGoods] removeAllObjects];
+//        [[AppConfig getLocalCartData] removeAllObjects];
         [self initCarData];
         CartNumberLabel *label = [CartNumberLabel shareCartNumberLabel];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCountLabel" object:nil userInfo:nil];
@@ -91,8 +92,8 @@
 
 - (void)initCarData
 {
-    self.models = [AppConfig getLocalCartData];
-    [self.models enumerateObjectsUsingBlock:^(CartModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    self.models = [[Cart sharedCart] getCartCellGoods];
+    [self.models enumerateObjectsUsingBlock:^(GoodListModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.num == 0)
         {
             [self.models removeObjectAtIndex:idx];
@@ -117,8 +118,8 @@
     
     __block CGFloat price = 0.00;
     __block NSInteger cartNum = 0;
-    [self.models enumerateObjectsUsingBlock:^(CartModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        price += ([obj.price floatValue] * obj.num);
+    [self.models enumerateObjectsUsingBlock:^(GoodListModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        price += ([obj.saleprice floatValue] * obj.num);
         cartNum += obj.num;
         
     }];
