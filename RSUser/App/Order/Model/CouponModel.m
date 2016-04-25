@@ -25,7 +25,7 @@
              @"discount" : @"discount",
              @"products" : @"products",
              @"disproducts" : @"disproducts",
-             @"description" : @"descriptionstr",
+             @"descriptionstr" : @"description",
              @"discountmax" : @"discountmax",
              @"reduce" : @"reduce"
              };
@@ -37,17 +37,27 @@
     [dic setValue:COMMUNTITYID forKey:@"communityid"];
     [dic setValue:@"1" forKey:@"business"];
     [dic setValue:@"true" forKey:@"coupon"];
-    [dic setValue:@"false" forKey:@"giftpromotion"];
-    [dic setValue:@"false" forKey:@"moneypromotion"];
-    [dic setValue:@"false" forKey:@"paypromotion"];
-    [dic setValue:@"false" forKey:@"seckill"];
-    [dic setValue:[Cart sharedCart] forKey:@"products"];
+    [dic setValue:@"true" forKey:@"giftpromotion"];
+    [dic setValue:@"true" forKey:@"moneypromotion"];
+    [dic setValue:@"1" forKey:@"platform"];
+    [dic setValue:@"true" forKey:@"paypromotion"];
+    [dic setValue:@"true" forKey:@"seckill"];
+    [dic setValue:[[Cart sharedCart]filterLocalCartData] forKey:@"products"];
 
-    [RSHttp requestWithURL:@"/weixin/orderpromotion" params:dic httpMethod:@"POST" success:^(NSDictionary *data) {
-        NSArray *array = [data valueForKey:@"coupons"];
-        success(array);
+    [RSHttp requestWithURL:@"/weixin/orderpromotion" params:dic httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
+        NSArray *array = [[data valueForKey:@"coupons"] firstObject];
+        NSMutableArray *returnArray = [[NSMutableArray alloc]init];
+        [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSError *error = nil;
+            CouponModel *model = [MTLJSONAdapter modelOfClass:[CouponModel class] fromJSONDictionary:obj error:&error];
+            [returnArray addObject:model];
+            if (error) {
+                NSLog(@"%@",error);
+            }
+        }];
+        success(returnArray);
     } failure:^(NSInteger code, NSString *errmsg) {
-        
+        [[RSToastView shareRSAlertView] showToast:errmsg];
     }];
 }
 @end

@@ -38,7 +38,7 @@
 		B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC9C1CBDEA2200E27228 /* CartViewController.m */; };
 		B162BC9F1CBE0B5200E27228 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B162BC9E1CBE0B5200E27228 /* CoreLocation.framework */; };
 		B162BCA31CBE115D00E27228 /* RSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BCA21CBE115D00E27228 /* RSLocation.m */; };
-		B168FF281CC9C6CF0003B3FA /* AddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B168FF271CC9C6CF0003B3FA /* AddressTableViewCell.m */; };
+		B168FF281CC9C6CF0003B3FA /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B168FF271CC9C6CF0003B3FA /* AddressCell.m */; };
 		B168FF2B1CCB32670003B3FA /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = B168FF2A1CCB32670003B3FA /* Cart.m */; };
 		B1738D891CB65E71006C7207 /* RSHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738D881CB65E71006C7207 /* RSHttp.m */; };
 		B1738D8B1CB65FBF006C7207 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1738D8A1CB65FBF006C7207 /* UIKit.framework */; };
@@ -64,6 +64,7 @@
 		B1B764621CB8D286005A90BD /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B764531CB8D286005A90BD /* HomeViewController.m */; };
 		B1B764631CB8D286005A90BD /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B764591CB8D286005A90BD /* OrderViewController.m */; };
 		B1B764641CB8D286005A90BD /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B7645F1CB8D286005A90BD /* ProfileViewController.m */; };
+		B1E514361CCDFF9500BAED5A /* CartListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E514351CCDFF9500BAED5A /* CartListViewController.m */; };
 		B1E81D4C1CB7553E00F587D1 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */; };
 		B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4F1CB7622E00F587D1 /* AppConfig.m */; };
 		B1E81D631CB78A7D00F587D1 /* RSToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D621CB78A7D00F587D1 /* RSToastView.m */; };
@@ -164,8 +165,8 @@
 		B162BC9E1CBE0B5200E27228 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B162BCA11CBE115D00E27228 /* RSLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSLocation.h; sourceTree = "<group>"; };
 		B162BCA21CBE115D00E27228 /* RSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSLocation.m; sourceTree = "<group>"; };
-		B168FF261CC9C6CF0003B3FA /* AddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressTableViewCell.h; sourceTree = "<group>"; };
-		B168FF271CC9C6CF0003B3FA /* AddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressTableViewCell.m; sourceTree = "<group>"; };
+		B168FF261CC9C6CF0003B3FA /* AddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressCell.h; sourceTree = "<group>"; };
+		B168FF271CC9C6CF0003B3FA /* AddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
 		B168FF291CCB32670003B3FA /* Cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cart.h; sourceTree = "<group>"; };
 		B168FF2A1CCB32670003B3FA /* Cart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cart.m; sourceTree = "<group>"; };
 		B1738D871CB65E71006C7207 /* RSHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSHttp.h; sourceTree = "<group>"; };
@@ -215,6 +216,8 @@
 		B1B764591CB8D286005A90BD /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
 		B1B7645E1CB8D286005A90BD /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		B1B7645F1CB8D286005A90BD /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		B1E514341CCDFF9500BAED5A /* CartListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartListViewController.h; sourceTree = "<group>"; };
+		B1E514351CCDFF9500BAED5A /* CartListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartListViewController.m; sourceTree = "<group>"; };
 		B1E81D4A1CB7553E00F587D1 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
 		B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
 		B1E81D4D1CB7564F00F587D1 /* UtilMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilMacro.h; sourceTree = "<group>"; };
@@ -574,6 +577,8 @@
 				B1B764591CB8D286005A90BD /* OrderViewController.m */,
 				B123DCC71CC8893E00F08E8D /* ConfirmOrderViewController.h */,
 				B123DCC81CC8893E00F08E8D /* ConfirmOrderViewController.m */,
+				B1E514341CCDFF9500BAED5A /* CartListViewController.h */,
+				B1E514351CCDFF9500BAED5A /* CartListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -592,8 +597,8 @@
 		B1B7645B1CB8D286005A90BD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B168FF261CC9C6CF0003B3FA /* AddressTableViewCell.h */,
-				B168FF271CC9C6CF0003B3FA /* AddressTableViewCell.m */,
+				B168FF261CC9C6CF0003B3FA /* AddressCell.h */,
+				B168FF271CC9C6CF0003B3FA /* AddressCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -988,7 +993,7 @@
 				B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */,
 				B1738D891CB65E71006C7207 /* RSHttp.m in Sources */,
 				B1B764631CB8D286005A90BD /* OrderViewController.m in Sources */,
-				B168FF281CC9C6CF0003B3FA /* AddressTableViewCell.m in Sources */,
+				B168FF281CC9C6CF0003B3FA /* AddressCell.m in Sources */,
 				B10769A71CBE490400586304 /* RSImageView.m in Sources */,
 				B1FFB8D01CB6566100255F21 /* UIDeviceAdditions.m in Sources */,
 				B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */,
@@ -1014,6 +1019,7 @@
 				B162BC941CBC951500E27228 /* BannerModel.m in Sources */,
 				B1FFB8D51CB6568200255F21 /* RSFileStorage.m in Sources */,
 				B1E81D4C1CB7553E00F587D1 /* NSString+Helper.m in Sources */,
+				B1E514361CCDFF9500BAED5A /* CartListViewController.m in Sources */,
 				B1422BFE1CBBAAF400C988FE /* RSLineView.m in Sources */,
 				B1B764621CB8D286005A90BD /* HomeViewController.m in Sources */,
 				B1422BF51CBB71DB00C988FE /* UIImage+Helper.m in Sources */,

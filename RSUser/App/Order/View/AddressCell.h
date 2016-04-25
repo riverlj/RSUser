@@ -12,6 +12,15 @@
 @property (nonatomic ,strong)RSLabel *mainTitleLabel;
 @end
 
-@interface AddressTableViewCell : mainTitleCell
+@interface AddressCell : mainTitleCell
 @property (nonatomic ,strong)RSLabel *subTitleLabel;
+
+@end
+
+@interface OrderDatialCell: RSTableViewCell
+@end
+
+@interface OrderDatialListCell: RSTableViewCell
+@property (nonatomic, strong)RSLabel *goodNameLbel;
+@property (nonatomic, strong)RSLabel *priceLabel;
 @end

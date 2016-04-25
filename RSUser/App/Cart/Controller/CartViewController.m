@@ -10,6 +10,7 @@
 #import "CartModel.h"
 #import "ConfirmOrderViewController.h"
 #import "SchoolModel.h"
+#import "CartListViewController.h"
 
 @interface CartViewController()
 {
@@ -145,9 +146,12 @@
     }
     NSString *path = [NSString stringWithFormat:@"RSUser://confirmOrder?totalprice=%.2f",totalPrice];
     UIViewController *vc = [RSRoute getViewControllerByPath:path];
+    
+//    CartListViewController *cartVc = [[CartListViewController alloc]init];
     //去下单
     [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:vc animated:YES];
-    
+//    [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:cartVc animated:YES];
+
 }
 
 - (void)disappearView

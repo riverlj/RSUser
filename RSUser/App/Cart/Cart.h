@@ -28,4 +28,6 @@
 
 - (NSInteger)getCartCountLabelText;
 - (void)clearAllCartGoods;
+
+- (NSMutableArray *)getCartDetail;
 @end

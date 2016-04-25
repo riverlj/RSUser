@@ -45,6 +45,7 @@
 
 #define RS_Button_Bg_Color [NSString colorFromHexString:@"ffa628"]
 
+#define RS_Clear_Clor [UIColor clearColor]
 
 
 /*主要字体*/

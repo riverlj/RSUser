@@ -296,4 +296,20 @@ static Cart *shareCart = nil;
     return [textLabel.text integerValue];
 }
 
+- (NSMutableArray *)getCartDetail
+{
+    NSMutableArray *array = [self getCartGoods];
+    NSMutableArray *returnArray = [[NSMutableArray alloc]init];
+    [array enumerateObjectsUsingBlock:^(GoodListModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        GoodListModel *model = [obj copy];
+        model.cellHeight = 30;
+        model.cellClassName = @"OrderDatialListCell";
+        
+        [returnArray addObject:model];
+    }];
+    
+    return returnArray;
+    
+}
+
 @end
