@@ -1,13 +1,14 @@
 //
 //  ProfileViewController.h
-//  RSUser
+//  RedScarf
 //
-//  Created by 李江 on 16/4/8.
-//  Copyright © 2016年 RedScarf. All rights reserved.
+//  Created by lishipeng on 2016-04-22.
+//  Copyright (c) 2015年 lishipeng. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "RSRefreshTableViewController.h"
 
-@interface ProfileViewController : BaseViewController
+@interface ProfileViewController : RSRefreshTableViewController
 
 @end
+
