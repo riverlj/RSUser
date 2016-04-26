@@ -18,8 +18,10 @@
 
 #define RGB(r, g, b) [UIColor colorWithRed:(r/255.0f) green:(g/255.0f) blue:(b/255.0f) alpha:1.0f]
 #define RGBA(r, g, b, a) [UIColor colorWithRed:(r/255.0f) green:(g/255.0f) blue:(b/255.0f) alpha:(a)]
-
-/*Theme 的基色*/
+/**
+ *
+ * Theme 基色
+ */
 #define RS_Theme_Color  [NSString colorFromHexString:@"f9443e"]
 /*view的背景颜色*/
 #define RS_Background_Color [NSString colorFromHexString:@"f8f8f8"]
@@ -45,6 +47,7 @@
 
 #define RS_Button_Bg_Color [NSString colorFromHexString:@"ffa628"]
 
+#define RS_Clear_Clor [UIColor clearColor]
 
 
 /*主要字体*/

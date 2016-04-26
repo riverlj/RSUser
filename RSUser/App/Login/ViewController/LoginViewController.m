@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "BandleCellPhoneViewController.h"
+#import "LoginModel.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 {
@@ -31,6 +32,11 @@
     
     [self initView];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 - (void)initView
@@ -64,7 +70,6 @@
     }
     
     userTextFiled = [RSTextFiled textFiledWithFrame:CGRectMake(18, logoImageView.bottom, SCREEN_WIDTH-36, 40) cornerRadius:4 LeftImageName:@"icon_user"];
-    [userTextFiled becomeFirstResponder];
     userTextFiled.placeholder = @"请输入手机号";
     userTextFiled.delegate = self;
     
@@ -133,7 +138,12 @@
 
 - (void)loginWithWeixin
 {
-    //TODO 打开微信，授权
+    if ([WXApi isWXAppInstalled]) {
+        [LoginModel sendAuthRequest];
+    }else{
+        RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:@"请先安装微信客户端" leftButtonTitle:@"我知道了" AndLeftBlock:nil];
+        [alertView show];
+    }
 }
 
 /**

@@ -9,6 +9,7 @@
 #import "AppConfig.h"
 #import "CYLTabBarController.h"
 #import "LoginViewController.h"
+#import "BandleCellPhoneViewController.h"
 #import "CartModel.h"
 
 @implementation AppConfig
@@ -76,54 +77,18 @@
     return delegate;
 }
 
-+ (NSMutableArray *)getLocationCartDataByCommityId:(NSString *)communtityId
-{
-    return nil;
-}
-
-+ (NSMutableArray *)getLocalCartData
-{
-    return [[AppConfig getAPPDelegate].localCartManager getData];
-}
-
-+ (NSArray *)filterLocalCartData
-{
-    NSMutableArray *array = [[AppConfig getAPPDelegate].localCartManager getData];
-    NSMutableArray *filterArray = [[NSMutableArray alloc]init];
-    [array enumerateObjectsUsingBlock:^(CartModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSDictionary *dic = @{
-                              @"id" : @(obj.comproductid),
-                              @"num" : @(obj.num)
-                              };
-        [filterArray addObject:dic];
-    }];
-    return [filterArray copy];
-}
-
-+ (void)saveLocalCartData
-{
-    [[AppConfig getAPPDelegate].localCartManager saveData];
-}
-
-+ (void)saveCartMerge
-{
-    [[AppConfig getAPPDelegate].localCartManager saveMergeFlag:1];
-}
-
-+ (NSInteger)getCartMerge
-{
-    return [[AppConfig getAPPDelegate].localCartManager getMergeFlag];
-}
-
 +(void)setRootViewControllerWithCode:(NSInteger)code
 {
     UIViewController *vc;
     switch (code) {
         case 401:
             vc = [[LoginViewController alloc]init];
+            
+            [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:vc animated:YES];
             break;
         case 403:
-            //TODO 绑定手机号 vc =
+            vc = [[BandleCellPhoneViewController alloc]init];
+            [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:vc animated:YES];
         default:
             break;
     }

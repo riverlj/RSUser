@@ -74,9 +74,7 @@
 
 - (void)clickCart:(RSCartButtion *)button
 {
-    CartNumberLabel *numberLaber = [CartNumberLabel shareCartNumberLabel];
-    NSInteger goodsNum = [numberLaber.text integerValue];
-    if (goodsNum == 0)
+    if ([[Cart sharedCart] getCartCountLabelText] == 0)
     {
         //弹出提示
         RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:@"您还没有选择商品呢" leftButtonTitle:@"我知道了" AndLeftBlock:^{

@@ -28,28 +28,10 @@
 + (AppDelegate *)getAPPDelegate;
 
 /**
- * 获取当前学校的购物车数据
- */
-+ (NSMutableArray *)getLocalCartData;
-
-/**
- *
- *
- *  @return  [{"id":1, @"num":2},{"id":1, @"num":2}]
- */
-+ (NSArray *)filterLocalCartData;
-/**
- *  保存数据到学校
- */
-+ (void)saveLocalCartData;
-
-/**
  *  根据Code返回切换视图
  *
  *  @param code 
  */
 +(void)setRootViewControllerWithCode:(NSInteger)code;
 
-+ (void)saveCartMerge;
-+ (NSInteger)getCartMerge;
 @end

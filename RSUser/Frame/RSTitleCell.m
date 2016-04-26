@@ -14,7 +14,6 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 100)];
         
         [_titleLabel autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(20, 20, 20, 20)];
@@ -24,8 +23,6 @@
 
 -(void) setModel:(RSModel *)model
 {
-    [super setModel:model];
-    //self.titleLabel.attributedText = model.title;
-    
+    [super setModel:model];    
 }
 @end

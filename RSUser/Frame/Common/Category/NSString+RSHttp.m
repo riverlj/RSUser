@@ -44,17 +44,17 @@
     NSString *urlPrefix = [urlstr parseHostFromURLString];
     NSMutableDictionary *urlParams = [[[urlstr parseParamsFromURLString] parseURLParams] mutableCopy];
     //添加token
-    if([urlPrefix hasPrefix:REDSCARF_PAY_URL]) {
-        NSString *token = [NSString URLencode:[NSUserDefaults getValue:@"withdrawToken"] stringEncoding:NSUTF8StringEncoding];
-        if(token) {
-            [urlParams setObject:token forKey:@"token"];
-        }
-    } else if([urlPrefix hasPrefix:REDSCARF_BASE_URL]) {
-        NSString *token = [NSString URLencode:[NSUserDefaults getValue:@"token"] stringEncoding:NSUTF8StringEncoding];
-        if(token) {
-            [urlParams setObject:token forKey:@"token"];
-        }
-    }
+//    if([urlPrefix hasPrefix:REDSCARF_PAY_URL]) {
+//        NSString *token = [NSString URLencode:[NSUserDefaults getValue:@"withdrawToken"] stringEncoding:NSUTF8StringEncoding];
+//        if(token) {
+//            [urlParams setObject:token forKey:@"token"];
+//        }
+//    } else if([urlPrefix hasPrefix:REDSCARF_BASE_URL]) {
+//        NSString *token = [NSString URLencode:[NSUserDefaults getValue:@"token"] stringEncoding:NSUTF8StringEncoding];
+//        if(token) {
+//            [urlParams setObject:token forKey:@"token"];
+//        }
+//    }
     [urlParams setObject:[NSString URLencode:[UIDevice utm_content] stringEncoding:NSUTF8StringEncoding]  forKey:@"utm_content"];
     [urlParams setObject:[NSString URLencode:[UIDevice utm_campaign] stringEncoding:NSUTF8StringEncoding] forKey:@"utm_campaign"];
     [urlParams setObject:[NSString URLencode:[UIDevice utm_source] stringEncoding:NSUTF8StringEncoding]  forKey:@"utm_source"];

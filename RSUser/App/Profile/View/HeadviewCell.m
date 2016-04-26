@@ -13,7 +13,6 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self setBackgroundColor:RS_Theme_Color];
         
         UIImageView *bgView = [[UIImageView alloc]initWithFrame:CGRectMake(18, 52, 99, 101)];

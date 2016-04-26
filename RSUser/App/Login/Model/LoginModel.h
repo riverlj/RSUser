@@ -9,10 +9,14 @@
 #import "RSModel.h"
 
 @interface LoginModel : RSModel
+
 @property (nonatomic, strong)NSString *type;
-@property (nonatomic, strong)NSString *openid;
+@property (nonatomic, assign)NSInteger openid;
 @property (nonatomic, strong)NSString *access_token;
 @property (nonatomic, strong)NSString *refresh_token;
-@property (nonatomic, strong)NSString *expires_in;
+@property (nonatomic, assign)NSInteger expires_in;
 +(void)weixinLogin:(NSDictionary *)params;
+
++(void)sendAuthRequest;
++(void)getAccess_token:(NSString *)code;
 @end

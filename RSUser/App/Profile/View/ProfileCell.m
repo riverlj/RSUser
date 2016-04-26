@@ -14,7 +14,6 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(46, 0, 200, 49)];
         _titleLabel.textColor = RS_SubMain_Text_Color;
         _titleLabel.font = RS_MainLable_Font;

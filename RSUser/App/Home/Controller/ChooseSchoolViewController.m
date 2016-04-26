@@ -178,15 +178,14 @@
 {
     [LOCATIONMODEL save];
     
-    NSMutableArray *array = [AppConfig getLocalCartData];
+    NSMutableArray *array = [[Cart sharedCart] getCartGoods];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCountLabel" object:nil userInfo:nil];
     __block NSInteger num = 0;
     [array enumerateObjectsUsingBlock:^(CartModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         num += obj.num;
     }];
-    CartNumberLabel *numberLabel = [CartNumberLabel shareCartNumberLabel];
-    numberLabel.text = [NSString stringWithFormat:@"%zd", num];
     
+    self.countLabel.text = [NSString stringWithFormat:@"%zd", num];
 }
 
 - (void)clearSchools

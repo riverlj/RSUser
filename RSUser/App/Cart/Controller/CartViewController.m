@@ -49,11 +49,9 @@
     @weakify(self)
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify(self)
-        [[AppConfig getLocalCartData] removeAllObjects];
+        [[Cart sharedCart] clearAllCartGoods];
         [self initCarData];
-        CartNumberLabel *label = [CartNumberLabel shareCartNumberLabel];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCountLabel" object:nil userInfo:nil];
-        label.text = @"0";
         
         [self disappearView];
     }];
@@ -91,19 +89,16 @@
 
 - (void)initCarData
 {
-    self.models = [AppConfig getLocalCartData];
-    [self.models enumerateObjectsUsingBlock:^(CartModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    self.models = [[Cart sharedCart] getCartCellGoods];
+    [self.models enumerateObjectsUsingBlock:^(GoodListModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.num == 0)
         {
             [self.models removeObjectAtIndex:idx];
         }
     }];
 
-    CartNumberLabel *numberLabel = [CartNumberLabel shareCartNumberLabel];
-
     if (self.models.count == 0)
     {
-        numberLabel.text = [NSString stringWithFormat:@"%zd", 0];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCountLabel" object:nil userInfo:nil];
         [self disappearView];
         return;
@@ -117,12 +112,12 @@
     
     __block CGFloat price = 0.00;
     __block NSInteger cartNum = 0;
-    [self.models enumerateObjectsUsingBlock:^(CartModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        price += ([obj.price floatValue] * obj.num);
+    [self.models enumerateObjectsUsingBlock:^(GoodListModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        price += ([obj.saleprice floatValue] * obj.num);
         cartNum += obj.num;
         
     }];
-    numberLabel.text = [NSString stringWithFormat:@"%zd", cartNum];
+    
     NSString *priceStr = [NSString stringWithFormat:@"共¥%.2f", price];
     totalPrice = price;
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:priceStr];
@@ -150,9 +145,10 @@
     }
     NSString *path = [NSString stringWithFormat:@"RSUser://confirmOrder?totalprice=%.2f",totalPrice];
     UIViewController *vc = [RSRoute getViewControllerByPath:path];
+    
     //去下单
     [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:vc animated:YES];
-    
+
 }
 
 - (void)disappearView

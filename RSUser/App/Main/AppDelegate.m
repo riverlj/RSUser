@@ -10,7 +10,7 @@
 #import "RSTabBarControllerConfig.h"
 #import "RSCartButtion.h"
 #import "LoginViewController.h"
-#import "WeiXinLoginUtil.h"
+#import "LoginModel.h"
 
 @interface AppDelegate ()
 
@@ -20,9 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    _localCartManager = [LocalCartManager shareLocalCartManager];
-    
+        
     _cartViewVc = [[CartViewController alloc]init];
     _location =  [[RSLocation alloc]init];
     //如果没有授权则请求用户授权
@@ -30,6 +28,7 @@
         [_location.locationManager requestWhenInUseAuthorization];
     }
     [_location startLocation];
+    [self configThreeLib];
     
     [self setappRootViewControler];
     return YES;
@@ -37,7 +36,7 @@
 
 -(void)configThreeLib
 {
-    [WXApi registerApp:@""];
+    [WXApi registerApp:WEIXIN_LOGIN_APPID withDescription:@"weixin"];
 }
 
 - (void)setRootViewController:(UIViewController *)rootVC
@@ -49,7 +48,7 @@
 - (void)setappRootViewControler
 {
     RSTabBarControllerConfig *tabBarControllerConfig = [[RSTabBarControllerConfig alloc] init];
-    [self.window setRootViewController:tabBarControllerConfig.tabBarController];
+        [self.window setRootViewController:tabBarControllerConfig.tabBarController];
     [AppConfig customsizeInterface];
     [self.window makeKeyAndVisible];
 }
@@ -66,20 +65,14 @@
     return YES;
 }
 
--(void) onReq:(BaseReq*)req
-{
-
-}
-
+#pragma 微信登陆返回数据
 -(void) onResp:(BaseResp*)resp
 {
     SendAuthResp *aresp = (SendAuthResp *)resp;
     if (aresp.errCode== 0) {
-        //TODO 获取CODE
         NSString *code = aresp.code;
-        //TODO 根据CODE去获取TOKEN
-        
-        [WeiXinLoginUtil getAccess_token:code];
+        //请求token
+        [LoginModel getAccess_token:code];
     }
 }
 

@@ -24,13 +24,11 @@
 		B123DC401CC4D27600F08E8D /* RSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC3F1CC4D27600F08E8D /* RSButton.m */; };
 		B123DC461CC62DBF00F08E8D /* RSTextFiled.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC451CC62DBF00F08E8D /* RSTextFiled.m */; };
 		B123DC481CC637C400F08E8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B123DC471CC637C400F08E8D /* Assets.xcassets */; };
-		B123DC4D1CC7234300F08E8D /* LocalCartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC4C1CC7234300F08E8D /* LocalCartManager.m */; };
 		B123DC531CC74CFB00F08E8D /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC501CC74CFB00F08E8D /* CartModel.m */; };
 		B123DC541CC74CFB00F08E8D /* SeckillModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC521CC74CFB00F08E8D /* SeckillModel.m */; };
 		B123DCAD1CC7707600F08E8D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B123DCA91CC7707600F08E8D /* libWeChatSDK.a */; };
 		B123DCB71CC77D9C00F08E8D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCB61CC77D9C00F08E8D /* LoginViewController.m */; };
 		B123DCBA1CC77FAD00F08E8D /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCB91CC77FAD00F08E8D /* LoginModel.m */; };
-		B123DCBD1CC77FDA00F08E8D /* WeiXinLoginUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCBC1CC77FDA00F08E8D /* WeiXinLoginUtil.m */; };
 		B123DCC91CC8893E00F08E8D /* ConfirmOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCC81CC8893E00F08E8D /* ConfirmOrderViewController.m */; };
 		B123DCCC1CC8895100F08E8D /* SchoolModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCCB1CC8895100F08E8D /* SchoolModel.m */; };
 		B123DCCF1CC8B9EF00F08E8D /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCCE1CC8B9EF00F08E8D /* AddressModel.m */; };
@@ -48,6 +46,8 @@
 		B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC9C1CBDEA2200E27228 /* CartViewController.m */; };
 		B162BC9F1CBE0B5200E27228 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B162BC9E1CBE0B5200E27228 /* CoreLocation.framework */; };
 		B162BCA31CBE115D00E27228 /* RSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BCA21CBE115D00E27228 /* RSLocation.m */; };
+		B168FF281CC9C6CF0003B3FA /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B168FF271CC9C6CF0003B3FA /* AddressCell.m */; };
+		B168FF2B1CCB32670003B3FA /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = B168FF2A1CCB32670003B3FA /* Cart.m */; };
 		B1738D891CB65E71006C7207 /* RSHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738D881CB65E71006C7207 /* RSHttp.m */; };
 		B1738D8B1CB65FBF006C7207 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1738D8A1CB65FBF006C7207 /* UIKit.framework */; };
 		B1738D8E1CB6625A006C7207 /* RSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738D8D1CB6625A006C7207 /* RSWebViewController.m */; };
@@ -142,8 +142,6 @@
 		B123DC441CC62DBF00F08E8D /* RSTextFiled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTextFiled.h; sourceTree = "<group>"; };
 		B123DC451CC62DBF00F08E8D /* RSTextFiled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTextFiled.m; sourceTree = "<group>"; };
 		B123DC471CC637C400F08E8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B123DC4C1CC7234300F08E8D /* LocalCartManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalCartManager.m; sourceTree = "<group>"; };
-		B123DC4E1CC728D200F08E8D /* LocalCartManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalCartManager.h; sourceTree = "<group>"; };
 		B123DC4F1CC74CFB00F08E8D /* CartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartModel.h; sourceTree = "<group>"; };
 		B123DC501CC74CFB00F08E8D /* CartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartModel.m; sourceTree = "<group>"; };
 		B123DC511CC74CFB00F08E8D /* SeckillModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeckillModel.h; sourceTree = "<group>"; };
@@ -156,8 +154,6 @@
 		B123DCB61CC77D9C00F08E8D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B123DCB81CC77FAD00F08E8D /* LoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
 		B123DCB91CC77FAD00F08E8D /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
-		B123DCBB1CC77FDA00F08E8D /* WeiXinLoginUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiXinLoginUtil.h; sourceTree = "<group>"; };
-		B123DCBC1CC77FDA00F08E8D /* WeiXinLoginUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiXinLoginUtil.m; sourceTree = "<group>"; };
 		B123DCC71CC8893E00F08E8D /* ConfirmOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmOrderViewController.h; sourceTree = "<group>"; };
 		B123DCC81CC8893E00F08E8D /* ConfirmOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmOrderViewController.m; sourceTree = "<group>"; };
 		B123DCCA1CC8895100F08E8D /* SchoolModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolModel.h; sourceTree = "<group>"; };
@@ -191,6 +187,10 @@
 		B162BC9E1CBE0B5200E27228 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B162BCA11CBE115D00E27228 /* RSLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSLocation.h; sourceTree = "<group>"; };
 		B162BCA21CBE115D00E27228 /* RSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSLocation.m; sourceTree = "<group>"; };
+		B168FF261CC9C6CF0003B3FA /* AddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressCell.h; sourceTree = "<group>"; };
+		B168FF271CC9C6CF0003B3FA /* AddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
+		B168FF291CCB32670003B3FA /* Cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cart.h; sourceTree = "<group>"; };
+		B168FF2A1CCB32670003B3FA /* Cart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cart.m; sourceTree = "<group>"; };
 		B1738D871CB65E71006C7207 /* RSHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSHttp.h; sourceTree = "<group>"; };
 		B1738D881CB65E71006C7207 /* RSHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSHttp.m; sourceTree = "<group>"; };
 		B1738D8A1CB65FBF006C7207 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -362,8 +362,6 @@
 				B123DCB21CC77D8A00F08E8D /* Model */,
 				B123DCB31CC77D8A00F08E8D /* View */,
 				B123DCB41CC77D8A00F08E8D /* ViewController */,
-				B123DCBB1CC77FDA00F08E8D /* WeiXinLoginUtil.h */,
-				B123DCBC1CC77FDA00F08E8D /* WeiXinLoginUtil.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -398,8 +396,6 @@
 		B162BCA01CBE10FB00E27228 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				B123DC4E1CC728D200F08E8D /* LocalCartManager.h */,
-				B123DC4C1CC7234300F08E8D /* LocalCartManager.m */,
 				B1021DDB1CBF611B00050AEB /* ThrowLineTool.h */,
 				B1021DDC1CBF611B00050AEB /* ThrowLineTool.m */,
 				B162BCA11CBE115D00E27228 /* RSLocation.h */,
@@ -507,6 +503,8 @@
 				B1B7644D1CB8D286005A90BD /* Controller */,
 				B1B7644E1CB8D286005A90BD /* Model */,
 				B1B7644F1CB8D286005A90BD /* View */,
+				B168FF291CCB32670003B3FA /* Cart.h */,
+				B168FF2A1CCB32670003B3FA /* Cart.m */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -626,6 +624,8 @@
 		B1B7645B1CB8D286005A90BD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B168FF261CC9C6CF0003B3FA /* AddressCell.h */,
+				B168FF271CC9C6CF0003B3FA /* AddressCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1031,6 +1031,7 @@
 				B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */,
 				B1738D891CB65E71006C7207 /* RSHttp.m in Sources */,
 				B1B764631CB8D286005A90BD /* OrderViewController.m in Sources */,
+				B168FF281CC9C6CF0003B3FA /* AddressCell.m in Sources */,
 				B10769A71CBE490400586304 /* RSImageView.m in Sources */,
 				B1FFB8D01CB6566100255F21 /* UIDeviceAdditions.m in Sources */,
 				B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */,
@@ -1046,7 +1047,7 @@
 				30221E501CCDC04C00126D72 /* RSTitleCell.m in Sources */,
 				B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */,
 				B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */,
-				B123DC4D1CC7234300F08E8D /* LocalCartManager.m in Sources */,
+				B168FF2B1CCB32670003B3FA /* Cart.m in Sources */,
 				30221E531CCDDD8700126D72 /* RSTitleModel.m in Sources */,
 				B1738DB21CB665C3006C7207 /* RSHeadView.m in Sources */,
 				B1A8D4B41CC09D3C00471E93 /* RSSearchView.m in Sources */,
@@ -1089,7 +1090,6 @@
 				B123DC401CC4D27600F08E8D /* RSButton.m in Sources */,
 				B162BC971CBCA3ED00E27228 /* GoodListCell.m in Sources */,
 				B1FFB8D11CB6566100255F21 /* NSUserDefaults+Token.m in Sources */,
-				B123DCBD1CC77FDA00F08E8D /* WeiXinLoginUtil.m in Sources */,
 				B1FFB87B1CB64DCA00255F21 /* main.m in Sources */,
 				B123DC461CC62DBF00F08E8D /* RSTextFiled.m in Sources */,
 			);

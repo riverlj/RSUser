@@ -40,7 +40,7 @@
         }];
         successArray(addressList);
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView] showHUD:errmsg];
+        [[RSToastView shareRSAlertView] showToast:errmsg];
     }];
 }
 
@@ -48,10 +48,10 @@
 {
     
     [RSHttp requestWithURL:@"/weixin/editaddr" params:params httpMethod:@"POST" success:^(id data) {
-        [[RSToastView shareRSAlertView]showHUD:@"修改成功"];
+        [[RSToastView shareRSAlertView]showToast:@"修改成功"];
         success();
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView]showHUD:@"修改失败"];
+        [[RSToastView shareRSAlertView]showToast:@"修改失败"];
     }];
 }
 
@@ -61,10 +61,10 @@
                              @"addressid" : addressId
                              };
     [RSHttp requestWithURL:@"/weixin/removeaddr" params:params httpMethod:@"POST" success:^(id data) {
-        [[RSToastView shareRSAlertView]showHUD:@"删除成功"];
+        [[RSToastView shareRSAlertView]showToast:@"删除成功"];
         success();
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView]showHUD:@"修改失败,请重试"];
+        [[RSToastView shareRSAlertView]showToast:@"修改失败,请重试"];
     }];
 }
 
