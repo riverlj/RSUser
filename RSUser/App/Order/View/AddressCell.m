@@ -10,7 +10,6 @@
 #import "AddressModel.h"
 #import "SchoolModel.h"
 #import "GoodListModel.h"
-#import "CartListViewController.h"
 #import "CouponModel.h"
 
 
@@ -110,7 +109,6 @@
 
 @interface OrderDatialCell()
 {
-    CartListViewController *_cartVC;
     RSButton *orderDetailBtn;
 }
 @end
@@ -118,8 +116,8 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self initUI];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        [self initUI];
     }
     return self;
 }
@@ -134,18 +132,38 @@
     orderDetailBtn.adjustsImageWhenHighlighted = NO;
     [self.contentView addSubview:orderDetailBtn];
     
+    NSArray *array = [[Cart sharedCart] getCartDetail];
+    NSInteger h = 40;
+    for (int i=0; i<array.count; i++) {
+        GoodListModel *model = array[i];
+        RSLabel *goodNameLbel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_SubMain_Text_Color];
+        goodNameLbel.textAlignment = NSTextAlignmentLeft;
+        goodNameLbel.font = RS_SubLable_Font;
+        goodNameLbel.text = model.name;
+        [self.contentView addSubview:goodNameLbel];
+        
+        RSLabel *priceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_SubMain_Text_Color];
+        priceLabel.font = RS_SubLable_Font;
+        priceLabel.textAlignment = NSTextAlignmentRight;
+        priceLabel.text =[NSString stringWithFormat:@"¥%@ × %ld",model.saleprice,model.num];
+        [self.contentView addSubview:priceLabel];
+        
+        CGSize size = [goodNameLbel sizeThatFits:CGSizeMake(1000, 1000)];
+        goodNameLbel.frame = CGRectMake(18, h, size.width, 30);
+        CGSize priceSize = [priceLabel sizeThatFits:CGSizeMake(1000, 1000)];
+        priceLabel.frame = CGRectMake(0, h, priceSize.width, 30);
+        priceLabel.x = SCREEN_WIDTH - 18 - priceSize.width;
+        h = 30 + h;
+    }
     
-    _cartVC = [[CartListViewController alloc]init];
-    _cartVC.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
-    _cartVC.tableView.scrollEnabled = NO;
-    NSArray *array = [[Cart sharedCart] getCartGoods];
-    _cartVC.tableView.frame = CGRectMake(0, orderDetailBtn.bottom, SCREEN_WIDTH, array.count * 30);
-    _cartVC.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    [self.contentView addSubview:_cartVC.tableView];
-    self.height = 30 + array.count * 30;
+//    _cartVC = [[CartListViewController alloc]init];
+//    _cartVC.view.frame = CGRectMake(0, 40, SCREEN_WIDTH, [[Cart sharedCart] getCartDetail].count *30 );
+//    [self.contentView addSubview:_cartVC.view];
+//    self.contentView.clipsToBounds = YES;
+//    self.contentView.layer.masksToBounds = YES;
     
 }
+
 
 - (void)closeDetailGoods
 {

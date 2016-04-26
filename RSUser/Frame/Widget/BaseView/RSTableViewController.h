@@ -27,4 +27,5 @@
 
 
 - (id)initWithStyle:(UITableViewStyle)tableStyle;
+-(RSModel *) getModelByIndexPath:(NSIndexPath *)indexPath;
 @end

@@ -20,6 +20,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    [NSUserDefaults setValue:@"9e7de0614805535ab970d7fe74e6fca6c92483e54ba56e60a4ddc4db48cd8f10a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22token%22%3Bi%3A1%3Bs%3A49%3A%22%5B%2218%22%2C%22hDRfl1Mofvte6Baz_jKc5w5WJ7sMcG3U%22%2C2592000%5D%22%3B%7D" forKey:@"token"];
         
     _cartViewVc = [[CartViewController alloc]init];
     _location =  [[RSLocation alloc]init];

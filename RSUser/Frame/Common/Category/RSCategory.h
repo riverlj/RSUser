@@ -17,4 +17,5 @@
 #import "UIDeviceAdditions.h"
 #import "RSFileStorage.h"
 #import "NSUserDefaults+Token.h"
+#import "UILabel+Growth.h"
 #endif /* RSCategory_h */

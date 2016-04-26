@@ -80,6 +80,7 @@
         }
     } failure:^(NSInteger code, NSString *errmsg) {
         //获取位置信息失败
+        [[RSToastView shareRSAlertView] showToast:errmsg];
     }];
 }
 

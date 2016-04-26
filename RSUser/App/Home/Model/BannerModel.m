@@ -38,7 +38,7 @@
         }
         successArray(array);
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView] showHUD:errmsg];
+        [[RSToastView shareRSAlertView] showToast:errmsg];
     }];
 }
 @end

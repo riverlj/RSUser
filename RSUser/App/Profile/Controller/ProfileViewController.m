@@ -1,16 +1,91 @@
 //
 //  ProfileViewController.m
-//  RSUser
+//  RedScarf
 //
-//  Created by 李江 on 16/4/8.
-//  Copyright © 2016年 RedScarf. All rights reserved.
+//  Created by lishipeng on 2016-04-22.
+//  Copyright (c) 2015年 lishipeng. All rights reserved.
 //
 
 #import "ProfileViewController.h"
+#import "ProfileModel.h"
+#import "ProfileModel.h"
+
+@interface ProfileViewController()
+
+@end
+
 
 @implementation ProfileViewController
--(void)viewDidLoad
 {
+    NSArray *items;
+    UIImage *oldImg1;
+    UIImage *oldImg2;
+}
+- (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"我的";
+    items = @[
+        @{
+            @"title" : @"管理收货地址",
+            @"imgUrl" : @"icon_map",
+            @"url" : @"",
+        },
+        @{
+            @"title" : @"我的优惠券",
+            @"imgUrl" : @"icon_coupon",
+            @"url" : @"",
+        },
+        @{
+            @"title" : @"联系我们",
+            @"imgUrl" : @"icon_phone2",
+            @"url" : @"",
+        },
+        @{
+            @"title" : @"关于我们",
+            @"imgUrl" : @"icon_link",
+            @"url" : @"AboutUs",
+        },
+    ];
+    ProfileModel *model = [ProfileModel new];
+    model.cellHeight = 172;
+    model.cellClassName = @"HeadviewCell";
+    model.url = @"";
+    [self.models addObject:model];
+    for(NSDictionary *dict in items) {
+        ProfileModel *model = [ProfileModel new];
+        model.title = [dict valueForKey:@"title"];
+        model.url = [dict valueForKey:@"url"];
+        model.imgUrl = [dict valueForKey:@"imgUrl"];
+        [self.models addObject:model];
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    oldImg1 = [self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault];
+    oldImg2 = [self.navigationController.navigationBar shadowImage];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:oldImg1 forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:oldImg2];
+    self.navigationController.navigationBar.backgroundColor = RS_Theme_Color;
+}
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ProfileModel *model = (ProfileModel *)[self getModelByIndexPath:indexPath];
+    UIViewController *vc = [RSRoute getViewControllerByHost:model.url];
+    if(vc) {
+        vc.title = model.title;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "RSTableViewCell.h"
+#import "CartListViewController.h"
 
 @interface mainTitleCell : RSTableViewCell
 @property (nonatomic ,strong)RSLabel *mainTitleLabel;
@@ -18,6 +19,8 @@
 @end
 
 @interface OrderDatialCell: RSTableViewCell
+@property (nonatomic, strong)CartListViewController *cartVC;
+
 @end
 
 @interface OrderDatialListCell: RSTableViewCell

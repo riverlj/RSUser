@@ -14,7 +14,6 @@
 
 @interface ConfirmOrderViewController ()
 {
-    CartListViewController *_cartVC;
     RSLabel *_priceLable;
     RSLabel *_goPayLable;
 }
@@ -70,9 +69,7 @@
             [self.models addObject:array3];
             [self.tableView reloadData];
         }
-        
     }];
-
 }
 
 - (void)initBottomView
@@ -105,8 +102,9 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==1 && indexPath.row==1) {
-        return _cartVC.tableView.contentSize.height + 40;
+        return [[Cart sharedCart] getCartGoods].count * 30 + 40;
     }
+    
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 

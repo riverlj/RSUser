@@ -44,6 +44,7 @@ static RSToastView *shareObject = nil;
 //隐藏加载
 - (void)hidHUD {
     [self.hud hide:YES];
+    [self.hud removeFromSuperview];
     self.hud = nil;
 }
 

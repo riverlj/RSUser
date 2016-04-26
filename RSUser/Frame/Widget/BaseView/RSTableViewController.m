@@ -17,7 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self tableView];
-    self.tableView.tableFooterView = [UIView new];
 }
 - (void)viewDidUnload {
     self.tableView = nil;
@@ -30,6 +29,8 @@
     [self.tableView reloadData];
 }
 
+
+
 - (UITableView *)tableView {
     if (_tableView == nil) {
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:self.tableStyle];
@@ -37,6 +38,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _tableView.tableFooterView = [UIView new];
         [self.view addSubview:_tableView];
     }
     return _tableView;
@@ -58,18 +60,17 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    RSModel *model = nil;
-    if (_sections) {
-        model = [[_models objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    }else {
-        model = [_models objectAtIndex:indexPath.row];
+    RSModel *model = [self getModelByIndexPath:indexPath];
+    if (!model) {
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCell"];
+        cell.width = 0;
+        return cell;
     }
     RSTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:model.cellClassName];
     if (cell == nil) {
         cell = [[NSClassFromString(model.cellClassName) alloc] init];
     }
     [cell setModel:model];
-    cell.selectionStyle =UITableViewCellSelectionStyleNone;
     return cell;
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -93,21 +94,35 @@
 #pragma mark -
 #pragma mark UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    RSModel *model = nil;
-    if (_sections) {
-        model = [[_models objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    }else {
-        model = [_models objectAtIndex:indexPath.row];
+    RSModel *model = [self getModelByIndexPath:indexPath];
+    if(!model) {
+        return 0;
     }
     return [model cellHeightWithWidth:tableView.width];
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
+-(RSModel *) getModelByIndexPath:(NSIndexPath *)indexPath
+{
     RSModel *model = nil;
     if (_sections) {
-        model = [[_models objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        if([_models count] > indexPath.section) {
+            if([[_models objectAtIndex:indexPath.section] count] > indexPath.row) {
+                model = [[_models objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+            }
+        }
     }else {
-        model = [_models objectAtIndex:indexPath.row];
+        if([_models count] > indexPath.row) {
+            model = [_models objectAtIndex:indexPath.row];
+        }
+    }
+    return model;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    RSModel *model = [self getModelByIndexPath:indexPath];
+    if (!model) {
+        return;
     }
     //如果设置了无点击效果,则不做任务处理
     if(!model.isSelectable) {
