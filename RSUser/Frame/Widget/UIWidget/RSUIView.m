@@ -24,7 +24,7 @@
 +(UIImageView *) lineWithFrame:(CGRect)frame
 {
     UIImageView *line = [[UIImageView alloc] initWithFrame:frame];
-//    line.backgroundColor = color_gray_e8e8e8;
+    line.backgroundColor = RS_Line_Color;
     return line;
 }
 @end

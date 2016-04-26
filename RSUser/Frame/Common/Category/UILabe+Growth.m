@@ -16,4 +16,12 @@
     CGSize size = [self sizeThatFits:CGSizeMake(self.width, 10000)];
     self.height = size.height;
 }
+
+-(void)setGrowthText:(NSString *)str
+{
+    self.numberOfLines = 0;
+    self.text = str;
+    CGSize size = [self sizeThatFits:CGSizeMake(self.width, 10000)];
+    self.height = size.height;
+}
 @end

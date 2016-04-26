@@ -16,7 +16,7 @@
 - (CYLTabBarController *)tabBarController
 {
     if (_tabBarController == nil) {
-
+        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
         CYLTabBarController *tabBarController = [[CYLTabBarController alloc] init];
         
         NSMutableArray *array = [[NSMutableArray alloc]init];

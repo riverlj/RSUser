@@ -8,6 +8,7 @@
 
 
 #import "RSTitleCell.h"
+#import "RSTitleModel.h"
 
 @implementation RSTitleCell
 -(instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -21,8 +22,9 @@
     return self;
 }
 
--(void) setModel:(RSModel *)model
+-(void) setModel:(RSTitleModel *)model
 {
-    [super setModel:model];    
+    [super setModel:model];
+    self.titleLabel.attributedText = model.attrStr;
 }
 @end
