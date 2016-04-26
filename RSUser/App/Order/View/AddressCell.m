@@ -27,6 +27,7 @@
 {
     self.mainTitleLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_MainLable_Text_Color];
     self.mainTitleLabel.textAlignment = NSTextAlignmentLeft;
+    self.mainTitleLabel.font = RS_MainLable_Font;
     [self.contentView addSubview:self.mainTitleLabel];
 }
 
@@ -40,7 +41,14 @@
         
         NSRange range = [text rangeOfString:@"("];
         [attText addAttribute:NSForegroundColorAttributeName value:RS_MainLable_Text_Color range:NSMakeRange(0, range.location)];
+        [attText addAttribute:NSFontAttributeName value:RS_MainLable_Font range:NSMakeRange(0, range.location)];
+        
         [attText addAttribute:NSForegroundColorAttributeName value:RS_Theme_Color range:NSMakeRange(range.location, text.length-range.location)];
+        
+        [attText addAttribute:NSForegroundColorAttributeName value:RS_SubMain_Text_Color range:NSMakeRange(5, range.location-5)];
+        [attText addAttribute:NSFontAttributeName value:Font(14) range:NSMakeRange(5, text.length-5)];
+
+
         
         self.mainTitleLabel.attributedText = attText;
         
@@ -56,6 +64,8 @@
         
         NSMutableAttributedString *attText = [[NSMutableAttributedString alloc] initWithString:text];
         [attText addAttribute:NSForegroundColorAttributeName value:RS_Theme_Color range:NSMakeRange(4, text.length-4)];
+        [attText addAttribute:NSFontAttributeName value:RS_MainLable_Font range:NSMakeRange(4, text.length-4)];
+
         
         self.mainTitleLabel.attributedText = attText;
         
@@ -124,17 +134,27 @@
 
 - (void)initUI
 {
-     orderDetailBtn = [RSButton buttonWithFrame:CGRectMake(18, 0, SCREEN_WIDTH-36, 40) ImageName:@"oder_up" Text:@"订单详情" TextColor:RS_MainLable_Text_Color];
+     orderDetailBtn = [RSButton buttonWithFrame:CGRectMake(18, 0, SCREEN_WIDTH-36, 40) ImageName:@"order_up" Text:@"订单详情" TextColor:RS_MainLable_Text_Color];
     orderDetailBtn.titleLabel.font = RS_MainLable_Font;
     orderDetailBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -orderDetailBtn.imageView.frame.size.width - orderDetailBtn.frame.size.width + orderDetailBtn.titleLabel.intrinsicContentSize.width, 0, 0);
     orderDetailBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -orderDetailBtn.titleLabel.frame.size.width - orderDetailBtn.frame.size.width + orderDetailBtn.imageView.frame.size.width);
     [orderDetailBtn addTapAction:@selector(closeDetailGoods) target:self];
     orderDetailBtn.adjustsImageWhenHighlighted = NO;
     [self.contentView addSubview:orderDetailBtn];
-    
-    NSArray *array = [[Cart sharedCart] getCartDetail];
+}
+
+- (void)setData:(NSDictionary *)dic
+{
+    NSArray *array = [dic valueForKey:@"goods"];
+    NSInteger isClosed = [[dic valueForKey:@"isClosed"] integerValue];
+    NSInteger count = array.count;
+    [orderDetailBtn setImage:[UIImage imageNamed:@"order_up"] forState:UIControlStateNormal];
+    if (isClosed == 1) {
+        [orderDetailBtn setImage:[UIImage imageNamed:@"order_down"] forState:UIControlStateNormal];
+        count = 1;
+    }
     NSInteger h = 40;
-    for (int i=0; i<array.count; i++) {
+    for (int i=0; i<count; i++) {
         GoodListModel *model = array[i];
         RSLabel *goodNameLbel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_SubMain_Text_Color];
         goodNameLbel.textAlignment = NSTextAlignmentLeft;
@@ -155,62 +175,13 @@
         priceLabel.x = SCREEN_WIDTH - 18 - priceSize.width;
         h = 30 + h;
     }
-    
-//    _cartVC = [[CartListViewController alloc]init];
-//    _cartVC.view.frame = CGRectMake(0, 40, SCREEN_WIDTH, [[Cart sharedCart] getCartDetail].count *30 );
-//    [self.contentView addSubview:_cartVC.view];
-//    self.contentView.clipsToBounds = YES;
-//    self.contentView.layer.masksToBounds = YES;
-    
 }
 
 
 - (void)closeDetailGoods
 {
-    NSLog(@"xxxxxx");
-}
-
-@end
-
-@implementation OrderDatialListCell
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self initUI];
+    if (self.closeGoodsDetailDelegate  && [self.closeGoodsDetailDelegate respondsToSelector:@selector(closeGoodsDetail)] ) {
+        [self.closeGoodsDetailDelegate closeGoodsDetail];
     }
-    return self;
-}
-
-- (void)initUI
-{
-    _goodNameLbel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_SubMain_Text_Color];
-    _goodNameLbel.textAlignment = NSTextAlignmentLeft;
-    _goodNameLbel.font = RS_SubLable_Font;
-    [self.contentView addSubview:_goodNameLbel];
-    
-    _priceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_SubMain_Text_Color];
-    _priceLabel.font = RS_SubLable_Font;
-    _priceLabel.textAlignment = NSTextAlignmentRight;
-    [self.contentView addSubview:_priceLabel];
-}
-
-- (void)setModel:(GoodListModel *)model
-{
-    _goodNameLbel.text = model.name;
-    
-    NSString *str = [NSString stringWithFormat:@"¥%@ × %ld",model.saleprice,model.num];
-    _priceLabel.text = str;
-    
-    [self setLayout];
-}
-
-- (void)setLayout
-{
-    CGSize size = [_goodNameLbel sizeThatFits:CGSizeMake(1000, 1000)];
-    _goodNameLbel.frame = CGRectMake(18, 0, size.width, size.height);
-    CGSize priceSize = [_priceLabel sizeThatFits:CGSizeMake(1000, 1000)];
-    _priceLabel.frame = CGRectMake(0, 0, priceSize.width, priceSize.height);
-    _priceLabel.x = SCREEN_WIDTH - 18 - priceSize.width;
-    
 }
 @end

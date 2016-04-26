@@ -71,9 +71,6 @@
 		B1A8D4B71CC0CAEC00471E93 /* SchoolAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A8D4B61CC0CAEC00471E93 /* SchoolAddressCell.m */; };
 		B1B764621CB8D286005A90BD /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B764531CB8D286005A90BD /* HomeViewController.m */; };
 		B1B764631CB8D286005A90BD /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B764591CB8D286005A90BD /* OrderViewController.m */; };
-		B1B764641CB8D286005A90BD /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B7645F1CB8D286005A90BD /* ProfileViewController.m */; };
-		B1E514361CCDFF9500BAED5A /* CartListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E514351CCDFF9500BAED5A /* CartListViewController.m */; };
-
 		B1E81D4C1CB7553E00F587D1 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */; };
 		B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4F1CB7622E00F587D1 /* AppConfig.m */; };
 		B1E81D631CB78A7D00F587D1 /* RSToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D621CB78A7D00F587D1 /* RSToastView.m */; };
@@ -239,11 +236,6 @@
 		B1B764531CB8D286005A90BD /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		B1B764581CB8D286005A90BD /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
 		B1B764591CB8D286005A90BD /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
-		B1B7645E1CB8D286005A90BD /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
-		B1B7645F1CB8D286005A90BD /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		B1E514341CCDFF9500BAED5A /* CartListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartListViewController.h; sourceTree = "<group>"; };
-		B1E514351CCDFF9500BAED5A /* CartListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartListViewController.m; sourceTree = "<group>"; };
-
 		B1E81D4A1CB7553E00F587D1 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
 		B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
 		B1E81D4D1CB7564F00F587D1 /* UtilMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilMacro.h; sourceTree = "<group>"; };
@@ -614,8 +606,6 @@
 				B1B764591CB8D286005A90BD /* OrderViewController.m */,
 				B123DCC71CC8893E00F08E8D /* ConfirmOrderViewController.h */,
 				B123DCC81CC8893E00F08E8D /* ConfirmOrderViewController.m */,
-				B1E514341CCDFF9500BAED5A /* CartListViewController.h */,
-				B1E514351CCDFF9500BAED5A /* CartListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1058,9 +1048,7 @@
 				B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */,
 				B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */,
 				B168FF2B1CCB32670003B3FA /* Cart.m in Sources */,
-				B123DC4D1CC7234300F08E8D /* LocalCartManager.m in Sources */,
 				30221E531CCDDD8700126D72 /* RSTitleModel.m in Sources */,
-
 				B1738DB21CB665C3006C7207 /* RSHeadView.m in Sources */,
 				B1A8D4B41CC09D3C00471E93 /* RSSearchView.m in Sources */,
 				B1021DDD1CBF611B00050AEB /* ThrowLineTool.m in Sources */,
@@ -1073,7 +1061,6 @@
 				B1FFB8D51CB6568200255F21 /* RSFileStorage.m in Sources */,
 				30221E591CCE1E2200126D72 /* AboutusViewController.m in Sources */,
 				B1E81D4C1CB7553E00F587D1 /* NSString+Helper.m in Sources */,
-				B1E514361CCDFF9500BAED5A /* CartListViewController.m in Sources */,
 				B1422BFE1CBBAAF400C988FE /* RSLineView.m in Sources */,
 				B1B764621CB8D286005A90BD /* HomeViewController.m in Sources */,
 				B1422BF51CBB71DB00C988FE /* UIImage+Helper.m in Sources */,

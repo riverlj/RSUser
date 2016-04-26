@@ -25,13 +25,10 @@
 {
     [params setValue:@"weixin" forKey:@"type"];
 
-    [RSHttp requestWithURL:@"/weixin/login" params:params httpMethod:@"POST" success:^(NSDictionary* data) {
+    [RSHttp requestWithURL:@"/weixin/login" params:params httpMethod:@"POSTJSON" success:^(NSDictionary* data) {
         [NSUserDefaults  setValue:[data valueForKey:@"token"] forKey:@"token"];
         [[RSToastView  shareRSAlertView]showToast:@"登陆成功"];
-        // 登陆成功之后下载远程购物车
-        [CartModel downLoadCartsWithSuccess:^(NSArray * sucessArray) {
-            
-        }];
+        [[AppConfig getAPPDelegate].crrentNavCtl popToRootViewControllerAnimated:YES];
     } failure:^(NSInteger code, NSString *errmsg) {
         [[RSToastView  shareRSAlertView]showToast:errmsg];
     }];
@@ -66,6 +63,7 @@
                 NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                 //微信登陆
                 [LoginModel weixinLogin:dic];
+                
             }
         });
     });

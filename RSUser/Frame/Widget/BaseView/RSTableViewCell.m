@@ -14,6 +14,7 @@
 {
     _model = model;
     self.isSelectable = model.isSelectable;
+    
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
@@ -36,6 +37,7 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style {
     self = [self initWithStyle:style reuseIdentifier:[[self class] description]];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     return self;
 }
 

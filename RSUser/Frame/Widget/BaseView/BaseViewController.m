@@ -78,6 +78,14 @@
     [self setBackUpBtn];
 }
 
+- (void)setHasBackBtn:(Boolean)hasBackBtn
+{
+    _hasBackBtn = hasBackBtn;
+    if (hasBackBtn == YES) {
+        [self setBackUpBtn];
+    }
+}
+
 - (void)setBackUpBtn
 {
     if (_hasBackBtn)

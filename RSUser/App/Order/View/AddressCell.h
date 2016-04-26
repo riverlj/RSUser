@@ -7,7 +7,6 @@
 //
 
 #import "RSTableViewCell.h"
-#import "CartListViewController.h"
 
 @interface mainTitleCell : RSTableViewCell
 @property (nonatomic ,strong)RSLabel *mainTitleLabel;
@@ -18,12 +17,12 @@
 
 @end
 
-@interface OrderDatialCell: RSTableViewCell
-@property (nonatomic, strong)CartListViewController *cartVC;
-
+@protocol closeGoodsDetail <NSObject>
+- (void)closeGoodsDetail;
 @end
 
-@interface OrderDatialListCell: RSTableViewCell
-@property (nonatomic, strong)RSLabel *goodNameLbel;
-@property (nonatomic, strong)RSLabel *priceLabel;
+@interface OrderDatialCell: RSTableViewCell
+@property (nonatomic ,weak) id<closeGoodsDetail> closeGoodsDetailDelegate;
+- (void)setData:(NSDictionary *)dic;
+
 @end

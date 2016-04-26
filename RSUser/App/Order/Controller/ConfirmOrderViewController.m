@@ -10,12 +10,13 @@
 #import "AddressModel.h"
 #import "CouponModel.h"
 #import "AddressCell.h"
-#import "CartListViewController.h"
+#import "GoodListModel.h"
 
-@interface ConfirmOrderViewController ()
+@interface ConfirmOrderViewController ()<closeGoodsDetail>
 {
     RSLabel *_priceLable;
     RSLabel *_goPayLable;
+    NSMutableDictionary *_goodDic;
 }
 @end
 
@@ -40,7 +41,6 @@
                 [array addObject:obj];
                 [self.models addObject:array];
                 [selfB initModelData];
-//                [self.tableView reloadData];
             }
         }];
     }];
@@ -53,8 +53,10 @@
     schoolModel.cellHeight = 48;
     schoolModel.cellClassName = @"mainTitleCell";
     [array addObject:schoolModel];
-    
-    [array addObject:@[@"detail"]];
+    _goodDic = [[NSMutableDictionary alloc]init];
+    [_goodDic setValue:@"0" forKey:@"isClosed"];
+    [_goodDic setValue:[[Cart sharedCart] getCartDetail] forKey:@"goods"];
+    [array addObject:_goodDic];
     [self.models addObject:array];
     
     //获取优惠券信息
@@ -74,7 +76,6 @@
 
 - (void)initBottomView
 {
-    
     _priceLable = [RSLabel lableViewWithFrame:CGRectMake(0, SCREEN_HEIGHT-49-64, SCREEN_WIDTH/3*2, 49) bgColor:[NSString colorFromHexString:@"6a6a6a"] textColor:RS_TabBar_count_Color];
     _priceLable.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:_priceLable];
@@ -88,7 +89,21 @@
     tipview.text = @"您订的商品送达时会挂在宿舍门上，请注意查收哟!";
     
     [self.view addSubview:tipview];
+    [self computePayNumber];
     
+}
+
+
+- (void)computePayNumber
+{
+    NSArray *cartGoods = [[Cart sharedCart]getCartDetail];
+    __block CGFloat payNumber = 0.00;
+    [cartGoods enumerateObjectsUsingBlock:^(GoodListModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CGFloat pay = obj.num * [obj.saleprice floatValue];
+        payNumber += pay;
+    }];
+    
+    _priceLable.text = [NSString stringWithFormat:@"       总计:%.2f", payNumber];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -102,7 +117,13 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==1 && indexPath.row==1) {
-        return [[Cart sharedCart] getCartGoods].count * 30 + 40;
+        NSDictionary *dic = self.models[indexPath.section][indexPath.row];
+        NSArray *array = [dic valueForKey:@"goods"];
+        if ([[dic valueForKey:@"isClosed"] integerValue ]== 0) {
+            return array.count * 30 + 40;
+        }else{
+            return 70;
+        }
     }
     
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
@@ -112,6 +133,9 @@
 {
     if (indexPath.section == 1 && indexPath.row == 1) {
         OrderDatialCell *cell = [[OrderDatialCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"OrderDatialCell"];
+        cell.closeGoodsDetailDelegate = self;
+        NSDictionary *dic = self.models[indexPath.section][indexPath.row];
+        [cell setData:dic];
         return cell;
     }
     
@@ -125,5 +149,16 @@
     }
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 
+}
+
+-(void)closeGoodsDetail
+{
+    if ([[_goodDic valueForKey:@"isClosed"] integerValue] == 0) {
+        [_goodDic setValue:@"1" forKey:@"isClosed"];
+    }else{
+        [_goodDic setValue:@"0" forKey:@"isClosed"];
+    }
+    [self.tableView reloadData];
+    
 }
 @end

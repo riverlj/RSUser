@@ -34,6 +34,11 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
 - (void)initView
 {
     [self.view removeAllSubviews];

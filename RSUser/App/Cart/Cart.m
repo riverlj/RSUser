@@ -278,6 +278,9 @@ static Cart *shareCart = nil;
     return cellArray;
 }
 
+/**
+ *  更新购物车显示的数字
+ */
 - (void)updateCartCountLabelText
 {
     CartNumberLabel *textLabel = [CartNumberLabel shareCartNumberLabel];
@@ -303,7 +306,6 @@ static Cart *shareCart = nil;
     [array enumerateObjectsUsingBlock:^(GoodListModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         GoodListModel *model = [obj copy];
         model.cellHeight = 30;
-        model.cellClassName = @"OrderDatialListCell";
         
         [returnArray addObject:model];
     }];

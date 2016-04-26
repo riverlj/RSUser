@@ -9,6 +9,7 @@
 #import "AppConfig.h"
 #import "CYLTabBarController.h"
 #import "LoginViewController.h"
+#import "BandleCellPhoneViewController.h"
 #import "CartModel.h"
 
 @implementation AppConfig
@@ -82,9 +83,12 @@
     switch (code) {
         case 401:
             vc = [[LoginViewController alloc]init];
+            
+            [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:vc animated:YES];
             break;
         case 403:
-            //TODO 绑定手机号 vc =
+            vc = [[BandleCellPhoneViewController alloc]init];
+            [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:vc animated:YES];
         default:
             break;
     }
