@@ -8,7 +8,6 @@
 
 #import "ProfileViewController.h"
 #import "ProfileModel.h"
-#import "ProfileModel.h"
 
 @interface ProfileViewController()
 
@@ -24,16 +23,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的";
+    self.hasBackBtn = NO;
     items = @[
         @{
             @"title" : @"管理收货地址",
             @"imgUrl" : @"icon_map",
-            @"url" : @"",
+            @"url" : @"addresses",
         },
         @{
             @"title" : @"我的优惠券",
             @"imgUrl" : @"icon_coupon",
-            @"url" : @"",
+            @"url" : @"coupon",
         },
         @{
             @"title" : @"联系我们",

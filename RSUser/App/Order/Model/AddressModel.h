@@ -21,6 +21,10 @@
 @property (nonatomic ,assign)BOOL checked;
 
 + (void)getAddressList: (void(^)(NSArray *))successArray;
-+ (void)deleteAddr:(NSString *)addressId successBlock:(void (^)(void))success;
-+ (void)editaddr:(NSDictionary *)params successBlock:(void (^)(void))success;
+- (void)delete:(void (^)(void))success;
+- (void)edit:(void (^)(void))success;
+- (void)select:(void (^)(void))success;
+- (void)getBuildings:(void(^)(NSArray *))success;
+- (BOOL) isNewRecord;
+- (BOOL)checkValid:(void(^)())success failure:(void (^)(NSString *key, NSString *errmsg))failure;
 @end

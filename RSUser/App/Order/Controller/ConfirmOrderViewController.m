@@ -11,12 +11,15 @@
 #import "CouponModel.h"
 #import "AddressCell.h"
 #import "GoodListModel.h"
+#import "AddressesViewController.h"
 
 @interface ConfirmOrderViewController ()<closeGoodsDetail>
 {
     RSLabel *_priceLable;
     RSLabel *_goPayLable;
     NSMutableDictionary *_goodDic;
+    AddressModel *_addressModel;
+    CouponModel *_couponModel;
 }
 @end
 
@@ -29,21 +32,35 @@
     self.tableView.backgroundColor = RS_Clear_Clor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.sections = [[NSMutableArray alloc]init];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
-    [self initBottomView];
-    //获取地址信息
+    [self.models removeAllObjects];
     __weak ConfirmOrderViewController *selfB = self;
     [AddressModel getAddressList:^(NSArray *addressList) {
         [addressList enumerateObjectsUsingBlock:^(AddressModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSMutableArray *array = [[NSMutableArray alloc]init];
             if (obj.checked == 1) {
+                _addressModel = obj;
                 obj.cellHeight = 60;
+                [obj setSelectAction:@selector(updateAddress) target:self];
                 [array addObject:obj];
-                [self.models addObject:array];
+                [selfB.models addObject:array];
                 [selfB initModelData];
+                [selfB initBottomView];
             }
         }];
     }];
+}
+
+- (void)updateAddress
+{
+    AddressesViewController *addressVc = [[AddressesViewController alloc]init];
+    addressVc.selectReturn = YES;
+    [self.navigationController pushViewController:addressVc animated:YES];
 }
 
 - (void)initModelData
@@ -61,17 +78,27 @@
     
     //获取优惠券信息
     [CouponModel getCounponList:^(NSArray *couponList) {
-        if (couponList.count == 0) {
-            NSMutableArray *array3 = [[NSMutableArray alloc]init];
-            CouponModel *model = [[CouponModel alloc]init];
-            model.cellHeight = 49;
-            model.cellClassName = @"mainTitleCell";
+        NSMutableArray *array3 = [[NSMutableArray alloc]init];
+        CouponModel *model = [[CouponModel alloc]init];
+        model.cellHeight = 49;
+        model.cellClassName = @"mainTitleCell";
+        [model setSelectAction:@selector(selectedCoupon) target:self];
+        if (couponList.count == 0)
+        {
             model.title = @"无优惠券";
-            [array3 addObject:model];
-            [self.models addObject:array3];
-            [self.tableView reloadData];
+        }else
+        {
+            model.title = [NSString stringWithFormat:@"您有%ld张优惠券可用", couponList.count];
         }
+        [array3 addObject:model];
+        [self.models addObject:array3];
+        [self.tableView reloadData];
     }];
+}
+
+- (void)selectedCoupon
+{
+    //TODO 选择可用优惠券
 }
 
 - (void)initBottomView
@@ -83,6 +110,7 @@
     _goPayLable = [RSLabel lableViewWithFrame:CGRectMake(SCREEN_WIDTH/3*2, _priceLable.y, SCREEN_WIDTH/3, _priceLable.height) bgColor:RS_Theme_Color textColor:RS_TabBar_count_Color];
     _goPayLable.font = Font(18);
     _goPayLable.text = @"去支付";
+    [_goPayLable addTapAction:@selector(createOrder) target:self];
     [self.view addSubview:_goPayLable];
     
     RSLabel *tipview = [RSLabel lableViewWithFrame:CGRectMake(0, _priceLable.top-27, SCREEN_WIDTH, 27) bgColor:[NSString colorFromHexString:@"fdfcce"] textColor:RS_TabBar_Title_Color FontSize:12];
@@ -93,6 +121,26 @@
     
 }
 
+/**
+ *  创建订单
+ */
+- (void)createOrder
+{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
+    [params setValue:_addressModel.addressId forKey:@"addressid"];
+    [params setValue:COMMUNTITYID forKey:@"communityid"];
+    [params setValue:[[Cart sharedCart] filterLocalCartData]  forKey:@"products"];
+    [params setValue:[AppConfig getAPPDelegate].schoolModel.subscribedates forKey:@"subscribetime"];
+    if (_couponModel) {
+        [params setValue:@(_couponModel.couponId) forKey:@"couponid"];
+    }
+    [RSHttp requestWithURL:@"/weixin/createorder" params:params httpMethod:@"POST" success:^(id data) {
+        //request
+        
+    } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSAlertView] showToast:errmsg];
+    }];
+}
 
 - (void)computePayNumber
 {

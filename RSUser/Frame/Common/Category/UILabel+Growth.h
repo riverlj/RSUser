@@ -10,4 +10,5 @@
 
 @interface UILabel(Growth)
 -(void)setGrowthAttributedText:(NSAttributedString *)attrStr;
+-(void)setGrowthText:(NSString *)str;
 @end

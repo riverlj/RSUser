@@ -16,6 +16,13 @@
 		30221E561CCE06C300126D72 /* HeadviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30221E551CCE06C300126D72 /* HeadviewCell.m */; };
 		30221E591CCE1E2200126D72 /* AboutusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30221E581CCE1E2200126D72 /* AboutusViewController.m */; };
 		30221E5D1CCE30AC00126D72 /* UILabe+Growth.m in Sources */ = {isa = PBXBuildFile; fileRef = 30221E5C1CCE30AC00126D72 /* UILabe+Growth.m */; };
+		30221E7B1CCE41FE00126D72 /* AddressesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30221E7A1CCE41FE00126D72 /* AddressesViewController.m */; };
+		30221E811CCE427500126D72 /* AddressDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30221E801CCE427500126D72 /* AddressDetailCell.m */; };
+		30A3C5181CCE745600F5E55E /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A3C5171CCE745600F5E55E /* AddressViewController.m */; };
+		30A3C51B1CCF02C700F5E55E /* RSInputFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A3C51A1CCF02C700F5E55E /* RSInputFieldCell.m */; };
+		30A3C51E1CCF379E00F5E55E /* BuildingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A3C51D1CCF379E00F5E55E /* BuildingModel.m */; };
+		30A3C5211CCF6CA900F5E55E /* CouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A3C5201CCF6CA900F5E55E /* CouponViewController.m */; };
+		30A3C5271CCF6CD700F5E55E /* CouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A3C5261CCF6CD700F5E55E /* CouponCell.m */; };
 		B1021DDD1CBF611B00050AEB /* ThrowLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B1021DDC1CBF611B00050AEB /* ThrowLineTool.m */; };
 		B10769A41CBE43E600586304 /* RSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A31CBE43E600586304 /* RSLabel.m */; };
 		B10769A71CBE490400586304 /* RSImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A61CBE490400586304 /* RSImageView.m */; };
@@ -125,6 +132,20 @@
 		30221E581CCE1E2200126D72 /* AboutusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutusViewController.m; sourceTree = "<group>"; };
 		30221E5B1CCE30AC00126D72 /* UILabel+Growth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Growth.h"; sourceTree = "<group>"; };
 		30221E5C1CCE30AC00126D72 /* UILabe+Growth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabe+Growth.m"; sourceTree = "<group>"; };
+		30221E791CCE41FE00126D72 /* AddressesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressesViewController.h; sourceTree = "<group>"; };
+		30221E7A1CCE41FE00126D72 /* AddressesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressesViewController.m; sourceTree = "<group>"; };
+		30221E7F1CCE427500126D72 /* AddressDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressDetailCell.h; sourceTree = "<group>"; };
+		30221E801CCE427500126D72 /* AddressDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressDetailCell.m; sourceTree = "<group>"; };
+		30A3C5161CCE745600F5E55E /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
+		30A3C5171CCE745600F5E55E /* AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
+		30A3C5191CCF02C700F5E55E /* RSInputFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSInputFieldCell.h; sourceTree = "<group>"; };
+		30A3C51A1CCF02C700F5E55E /* RSInputFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSInputFieldCell.m; sourceTree = "<group>"; };
+		30A3C51C1CCF379E00F5E55E /* BuildingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingModel.h; sourceTree = "<group>"; };
+		30A3C51D1CCF379E00F5E55E /* BuildingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildingModel.m; sourceTree = "<group>"; };
+		30A3C51F1CCF6CA900F5E55E /* CouponViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponViewController.h; sourceTree = "<group>"; };
+		30A3C5201CCF6CA900F5E55E /* CouponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponViewController.m; sourceTree = "<group>"; };
+		30A3C5251CCF6CD700F5E55E /* CouponCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponCell.h; sourceTree = "<group>"; };
+		30A3C5261CCF6CD700F5E55E /* CouponCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponCell.m; sourceTree = "<group>"; };
 		4C4958AA95EB4C8CED57B9D6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DC3B7745B7573D432E4E8DE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B1021DDB1CBF611B00050AEB /* ThrowLineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThrowLineTool.h; sourceTree = "<group>"; };
@@ -314,6 +335,8 @@
 			children = (
 				30221E4E1CCDC04C00126D72 /* RSTitleCell.h */,
 				30221E4F1CCDC04C00126D72 /* RSTitleCell.m */,
+				30A3C5191CCF02C700F5E55E /* RSInputFieldCell.h */,
+				30A3C51A1CCF02C700F5E55E /* RSInputFieldCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -645,8 +668,14 @@
 			children = (
 				30221E381CC9FAFE00126D72 /* ProfileViewController.h */,
 				30221E391CC9FAFE00126D72 /* ProfileViewController.m */,
+				30A3C51F1CCF6CA900F5E55E /* CouponViewController.h */,
+				30A3C5201CCF6CA900F5E55E /* CouponViewController.m */,
 				30221E571CCE1E2200126D72 /* AboutusViewController.h */,
 				30221E581CCE1E2200126D72 /* AboutusViewController.m */,
+				30221E791CCE41FE00126D72 /* AddressesViewController.h */,
+				30221E7A1CCE41FE00126D72 /* AddressesViewController.m */,
+				30A3C5161CCE745600F5E55E /* AddressViewController.h */,
+				30A3C5171CCE745600F5E55E /* AddressViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -654,6 +683,8 @@
 		B1B764601CB8D286005A90BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				30A3C51C1CCF379E00F5E55E /* BuildingModel.h */,
+				30A3C51D1CCF379E00F5E55E /* BuildingModel.m */,
 				30221E441CC9FC0E00126D72 /* ProfileModel.h */,
 				30221E451CC9FC0E00126D72 /* ProfileModel.m */,
 			);
@@ -663,10 +694,14 @@
 		B1B764611CB8D286005A90BD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				30A3C5251CCF6CD700F5E55E /* CouponCell.h */,
+				30A3C5261CCF6CD700F5E55E /* CouponCell.m */,
 				30221E471CC9FC1800126D72 /* ProfileCell.h */,
 				30221E481CC9FC1800126D72 /* ProfileCell.m */,
 				30221E541CCE06C300126D72 /* HeadviewCell.h */,
 				30221E551CCE06C300126D72 /* HeadviewCell.m */,
+				30221E7F1CCE427500126D72 /* AddressDetailCell.h */,
+				30221E801CCE427500126D72 /* AddressDetailCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1047,12 +1082,16 @@
 				30221E501CCDC04C00126D72 /* RSTitleCell.m in Sources */,
 				B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */,
 				B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */,
+				30221E7B1CCE41FE00126D72 /* AddressesViewController.m in Sources */,
 				B168FF2B1CCB32670003B3FA /* Cart.m in Sources */,
 				30221E531CCDDD8700126D72 /* RSTitleModel.m in Sources */,
 				B1738DB21CB665C3006C7207 /* RSHeadView.m in Sources */,
 				B1A8D4B41CC09D3C00471E93 /* RSSearchView.m in Sources */,
+				30221E811CCE427500126D72 /* AddressDetailCell.m in Sources */,
 				B1021DDD1CBF611B00050AEB /* ThrowLineTool.m in Sources */,
 				B123DCCF1CC8B9EF00F08E8D /* AddressModel.m in Sources */,
+				30A3C5211CCF6CA900F5E55E /* CouponViewController.m in Sources */,
+				30A3C5181CCE745600F5E55E /* AddressViewController.m in Sources */,
 				B123DC531CC74CFB00F08E8D /* CartModel.m in Sources */,
 				B10769AD1CBF344000586304 /* ChooseSchoolViewController.m in Sources */,
 				B1FFB8CE1CB6566100255F21 /* NSString+RSHttp.m in Sources */,
@@ -1078,6 +1117,8 @@
 				B1422BFB1CBB9E4100C988FE /* CartNumberLabel.m in Sources */,
 				30221E3A1CC9FAFE00126D72 /* ProfileViewController.m in Sources */,
 				B1422BF21CBB575500C988FE /* RSTabBarControllerConfig.m in Sources */,
+				30A3C5271CCF6CD700F5E55E /* CouponCell.m in Sources */,
+				30A3C51B1CCF02C700F5E55E /* RSInputFieldCell.m in Sources */,
 				30221E461CC9FC0E00126D72 /* ProfileModel.m in Sources */,
 				B1A8D4B71CC0CAEC00471E93 /* SchoolAddressCell.m in Sources */,
 				30221E5D1CCE30AC00126D72 /* UILabe+Growth.m in Sources */,
@@ -1089,6 +1130,7 @@
 				B1738DC81CB665EC006C7207 /* RSTableViewController.m in Sources */,
 				B123DC401CC4D27600F08E8D /* RSButton.m in Sources */,
 				B162BC971CBCA3ED00E27228 /* GoodListCell.m in Sources */,
+				30A3C51E1CCF379E00F5E55E /* BuildingModel.m in Sources */,
 				B1FFB8D11CB6566100255F21 /* NSUserDefaults+Token.m in Sources */,
 				B1FFB87B1CB64DCA00255F21 /* main.m in Sources */,
 				B123DC461CC62DBF00F08E8D /* RSTextFiled.m in Sources */,

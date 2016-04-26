@@ -9,5 +9,5 @@
 #import "RSModel.h"
 
 @interface RSTitleModel : RSModel
-
+@property(nonatomic, strong) NSAttributedString *attrStr;
 @end
