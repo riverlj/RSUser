@@ -37,7 +37,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:customButton];
 }
 
--(void) afterHttpSuccess:(NSDictionary *)data
+-(void) afterHttpSuccess:(NSArray *)data
 {
     NSArray *temp = [[MTLJSONAdapter modelsOfClass:[AddressModel class] fromJSONArray:data error:nil] mutableCopy];
     [self.models addObjectsFromArray:temp];
@@ -66,9 +66,10 @@
 -(UIView *) headView
 {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64)];
+    view.backgroundColor = [UIColor whiteColor];
     
     UIImageView *addImg = [[UIImageView alloc]initWithFrame:CGRectMake(18, 18, 18, 18)];
-    addImg.image = [UIImage imageNamed:@"add"];
+    addImg.image = [UIImage imageNamed:@"icon_add"];
     [view addSubview:addImg];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 15)];

@@ -20,7 +20,8 @@
              @"subscribedates" : @"subscribedates",
              @"deliverytime" : @"deliverytime",
              @"channels": @"channels",
-             @"minprice": @"minprice"
+             @"minprice": @"minprice",
+             @"contactMobile" : @"contactmobile",
              };
 }
 

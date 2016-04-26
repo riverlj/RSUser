@@ -8,7 +8,8 @@
 
 #import "RSRefreshTableViewController.h"
 
-@interface CouponViewController : RSRefreshTableViewController
-
+@interface CouponViewController : RSRefreshTableViewController<UITextFieldDelegate>
+@property(nonatomic, strong) UIView *headView;
+@property(nonatomic) NSInteger searchType;
 @end
 

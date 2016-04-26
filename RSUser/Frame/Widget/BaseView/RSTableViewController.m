@@ -39,6 +39,7 @@
         _tableView.dataSource = self;
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         _tableView.tableFooterView = [UIView new];
+        _tableView.backgroundColor = RS_Background_Color;
         [self.view addSubview:_tableView];
     }
     return _tableView;
@@ -98,7 +99,12 @@
     if(!model) {
         return 0;
     }
-    return [model cellHeightWithWidth:tableView.width];
+    CGFloat height = [model cellHeightWithWidth:tableView.width];
+    if(height > 0) {
+        return height;
+    }
+    RSTableViewCell *cell = (RSTableViewCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.height;
 }
 
 -(RSModel *) getModelByIndexPath:(NSIndexPath *)indexPath

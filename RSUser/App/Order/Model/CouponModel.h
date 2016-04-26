@@ -7,11 +7,15 @@
 //
 
 #import "RSModel.h"
+typedef NS_ENUM(NSUInteger, CouponModelStatus) {
+    CouponModelStatusNew = 0,
+    CouponModelStatusHistory = 1,
+};
 
 @interface CouponModel : RSModel<MTLJSONSerializing>
 @property (nonatomic ,assign)NSInteger couponId;
 @property (nonatomic ,assign)NSInteger orderid;
-@property (nonatomic ,assign)NSInteger status;
+@property (nonatomic ,assign)CouponModelStatus status;
 @property (nonatomic ,assign)NSInteger type;
 @property (nonatomic ,copy)NSString *title;
 @property (nonatomic ,copy)NSString *subtitle;
@@ -27,4 +31,7 @@
 @property (nonatomic ,assign)NSInteger reduce;
 
 + (void)getCounponList:(void(^)(NSArray *))success;
++ (void)bindCoupon:(NSString *)couponcode success:(void(^)())success failure:(void(^)())failure;
+-(NSString *) getBeginDate;
+-(NSString *) getEndDate;
 @end
