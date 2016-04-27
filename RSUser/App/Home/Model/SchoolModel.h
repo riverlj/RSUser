@@ -19,6 +19,7 @@
 @property (nonatomic ,strong)NSDictionary *deliverytime;
 @property (nonatomic ,assign)CGFloat minprice;
 @property (nonatomic ,strong)NSArray *channels;
+@property (nonatomic, strong) NSString *contactMobile;
 
 + (void)getSchoolMsg:(void (^)(SchoolModel *))successArray;
 @end

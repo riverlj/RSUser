@@ -139,6 +139,8 @@
 
 -(void) afterProcessHttpData:(NSInteger)before afterCount:(NSInteger)after
 {
+    [[RSToastView shareRSAlertView] hidHUD];
+
     [self.tableView reloadData];
     if(self.tableView.mj_header) {
         [self.tableView.mj_header endRefreshing];

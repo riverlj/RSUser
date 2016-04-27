@@ -8,6 +8,7 @@
 
 #import "ProfileViewController.h"
 #import "ProfileModel.h"
+#import "SchoolModel.h"
 
 @interface ProfileViewController()
 
@@ -38,18 +39,18 @@
         @{
             @"title" : @"联系我们",
             @"imgUrl" : @"icon_phone2",
-            @"url" : @"",
+            @"url" : @"contactUs",
         },
         @{
             @"title" : @"关于我们",
             @"imgUrl" : @"icon_link",
-            @"url" : @"AboutUs",
+            @"url" : @"RSUser://Aboutus",
         },
     ];
     ProfileModel *model = [ProfileModel new];
     model.cellHeight = 172;
     model.cellClassName = @"HeadviewCell";
-    model.url = @"";
+    model.url = @"RSUser://BandleCellPhone";
     [self.models addObject:model];
     for(NSDictionary *dict in items) {
         ProfileModel *model = [ProfileModel new];
@@ -69,6 +70,11 @@
     oldImg2 = [self.navigationController.navigationBar shadowImage];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    if(![AppConfig getAPPDelegate].schoolModel) {
+        [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
+            [AppConfig getAPPDelegate].schoolModel = schoolModel;
+        }];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -81,8 +87,14 @@
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     ProfileModel *model = (ProfileModel *)[self getModelByIndexPath:indexPath];
-    UIViewController *vc = [RSRoute getViewControllerByHost:model.url];
+    if([model.url isEqualToString:@"contactUs"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", [AppConfig getAPPDelegate].schoolModel]]];
+        return;
+    }
+
+    UIViewController *vc = [RSRoute getViewControllerByPath:model.url];
     if(vc) {
         vc.title = model.title;
         [self.navigationController pushViewController:vc animated:YES];

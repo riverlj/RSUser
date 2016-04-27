@@ -136,7 +136,7 @@
         failure(@"addition", @"寝室号不能为空");
         return NO;
     }
-    if(self.name == nil || [self.addition isEqualToString:@""]) {
+    if(self.name == nil || [self.name isEqualToString:@""]) {
         failure(@"name", @"收货人姓名不能为空");
         return NO;
     }

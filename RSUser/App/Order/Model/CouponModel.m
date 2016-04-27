@@ -8,6 +8,8 @@
 
 #import "CouponModel.h"
 
+
+
 @implementation CouponModel
 +(NSDictionary *)JSONKeyPathsByPropertyKey
 {
@@ -29,6 +31,11 @@
              @"discountmax" : @"discountmax",
              @"reduce" : @"reduce"
              };
+}
+
+-(int)cellHeightWithWidth:(int)width
+{
+    return SCREEN_WIDTH * 100 / 340 + 10;
 }
 
 + (void)getCounponList:(void(^)(NSArray *))success
@@ -60,4 +67,31 @@
         [[RSToastView shareRSAlertView] showToast:errmsg];
     }];
 }
+
++ (void)bindCoupon:(NSString *)couponcode success:(void(^)())success failure:(void(^)())failure
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:@"" forKey:@"couponcode"];
+    [[RSToastView shareRSAlertView] showHUD:@"加载中..."];
+    [RSHttp requestWithURL:@"/weixin/bindcoupon" params:params httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
+        [[RSToastView shareRSAlertView] hidHUD];
+        [[RSToastView shareRSAlertView] showToast:@"兑换成功"];
+        success();
+    } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSAlertView] hidHUD];
+        [[RSToastView shareRSAlertView] showToast:errmsg];
+        failure();
+    }];
+}
+
+-(NSString *)getBeginDate
+{
+    return [NSDate formatTimestamp:self.begintime format:@"yyyy-MM-dd"];
+}
+
+-(NSString *)getEndDate
+{
+    return [NSDate formatTimestamp:self.endtime format:@"yyyy-MM-dd"];
+}
+
 @end
