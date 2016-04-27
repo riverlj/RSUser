@@ -18,12 +18,12 @@
 @implementation UIDevice(HardWare)
 +(NSString *) utm_campaign
 {
-    return @"pttms";
+    return @"user";
 }
 
 +(NSString *) utm_source
 {
-    return @"inhouse";
+    return @"appstore";
 }
 
 +(NSString *) utm_content

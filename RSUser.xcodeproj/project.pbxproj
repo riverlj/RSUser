@@ -73,6 +73,7 @@
 		B1738DC71CB665EC006C7207 /* RSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738DC01CB665EC006C7207 /* RSTableViewCell.m */; };
 		B1738DC81CB665EC006C7207 /* RSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738DC21CB665EC006C7207 /* RSTableViewController.m */; };
 		B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738DC61CB665EC006C7207 /* BaseViewController.m */; };
+		B18322551CD07709006E7EBC /* PayWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18322541CD07709006E7EBC /* PayWebViewController.m */; };
 		B19E1B9F1CB6674B009C38CD /* RSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B19E1B9E1CB6674B009C38CD /* RSModel.m */; };
 		B1A8D4B41CC09D3C00471E93 /* RSSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A8D4B31CC09D3C00471E93 /* RSSearchView.m */; };
 		B1A8D4B71CC0CAEC00471E93 /* SchoolAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A8D4B61CC0CAEC00471E93 /* SchoolAddressCell.m */; };
@@ -247,6 +248,8 @@
 		B1738DC21CB665EC006C7207 /* RSTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTableViewController.m; sourceTree = "<group>"; };
 		B1738DC51CB665EC006C7207 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		B1738DC61CB665EC006C7207 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		B18322531CD07709006E7EBC /* PayWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayWebViewController.h; sourceTree = "<group>"; };
+		B18322541CD07709006E7EBC /* PayWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayWebViewController.m; sourceTree = "<group>"; };
 		B19E1B9D1CB6674B009C38CD /* RSModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSModel.h; sourceTree = "<group>"; };
 		B19E1B9E1CB6674B009C38CD /* RSModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSModel.m; sourceTree = "<group>"; };
 		B1A8D4B21CC09D3C00471E93 /* RSSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSearchView.h; sourceTree = "<group>"; };
@@ -580,6 +583,8 @@
 				B162BC991CBCFE4E00E27228 /* BannerwebViewController.m */,
 				B10769AB1CBF344000586304 /* ChooseSchoolViewController.h */,
 				B10769AC1CBF344000586304 /* ChooseSchoolViewController.m */,
+				B18322531CD07709006E7EBC /* PayWebViewController.h */,
+				B18322541CD07709006E7EBC /* PayWebViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1125,6 +1130,7 @@
 				B10769A41CBE43E600586304 /* RSLabel.m in Sources */,
 				B123DCBA1CC77FAD00F08E8D /* LoginModel.m in Sources */,
 				30221E561CCE06C300126D72 /* HeadviewCell.m in Sources */,
+				B18322551CD07709006E7EBC /* PayWebViewController.m in Sources */,
 				B1FFB8CB1CB6566100255F21 /* NSDate+RSFormatter.m in Sources */,
 				B1738DBB1CB665C3006C7207 /* RSCatchline.m in Sources */,
 				B1738DC81CB665EC006C7207 /* RSTableViewController.m in Sources */,

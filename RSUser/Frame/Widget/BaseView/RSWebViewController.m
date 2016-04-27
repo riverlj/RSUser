@@ -15,6 +15,15 @@
 
 @implementation RSWebViewController
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.isEncodeURL = YES;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -26,7 +35,9 @@
     NSURL *url;
     _bannerView = [[RSWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _bannerView.delegate = self;
-    self.urlString = [self.urlString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    if (self.isEncodeURL) {
+        self.urlString = [self.urlString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
     url = [NSURL URLWithString:self.urlString];
     if(!url) {
         [RSToastView alertView:@"URL地址错误"];

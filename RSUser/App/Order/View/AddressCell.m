@@ -100,10 +100,19 @@
 
 - (void)setModel:(AddressModel *)model
 {
-    self.mainTitleLabel.text = [NSString stringWithFormat:@"%@  %@", model.name, model.mobile];
-    self.subTitleLabel.text = model.address;
+    if (model.name) {
+        self.mainTitleLabel.text = [NSString stringWithFormat:@"%@  %@", model.name, model.mobile];
+        self.subTitleLabel.text = model.address;
+        
+        [self setLayout];
+    }
+    else
+    {
+        self.subTitleLabel.text = model.address;
+        self.subTitleLabel.frame = CGRectMake(18, 0, SCREEN_WIDTH-66, model.cellHeight);
+        self.subTitleLabel.font = RS_MainLable_Font;
+    }
     
-    [self setLayout];
 }
 
 - (void)setLayout

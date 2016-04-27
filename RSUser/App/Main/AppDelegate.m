@@ -31,7 +31,19 @@
     [self configThreeLib];
     
     [self setappRootViewControler];
+    
+    [self setUserAgent];
     return YES;
+}
+
+- (void)setUserAgent{
+    UIWebView* tempWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    NSString* userAgent = [tempWebView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+    NSLog(@"%@", userAgent);
+    NSString *ua = [NSString stringWithFormat:@"%@ HLJUserAPP/%@",
+                        userAgent,
+                         [UIDevice clientVersion]];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent" : ua, @"User-Agent" : ua}];
 }
 
 -(void)configThreeLib
@@ -68,6 +80,20 @@
 #pragma 微信登陆返回数据
 -(void) onResp:(BaseResp*)resp
 {
+    if ([resp isKindOfClass:[PayResp class]]){
+        PayResp*response=(PayResp*)resp;
+        switch(response.errCode){
+            case WXSuccess:
+                NSLog(@"支付成功"); //服务器端查询支付通知或查询API返回的结果再提示成功
+                //TODO 跳转到订单详情页面
+                break;
+            default:
+                NSLog(@"支付失败，retcode=%d",resp.errCode);
+                //TODO跳转到订单详情页
+                break;
+        }
+    }
+    
     SendAuthResp *aresp = (SendAuthResp *)resp;
     if (aresp.errCode== 0) {
         NSString *code = aresp.code;

@@ -12,6 +12,7 @@
 #import "AddressCell.h"
 #import "GoodListModel.h"
 #import "AddressesViewController.h"
+#import "PayWebViewController.h"
 
 @interface ConfirmOrderViewController ()<closeGoodsDetail>
 {
@@ -41,19 +42,25 @@
     [self.models removeAllObjects];
     __weak ConfirmOrderViewController *selfB = self;
     [AddressModel getAddressList:^(NSArray *addressList) {
+        
+        NSMutableArray *array = [[NSMutableArray alloc]init];
         [addressList enumerateObjectsUsingBlock:^(AddressModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSMutableArray *array = [[NSMutableArray alloc]init];
             if (obj.checked == 1) {
                 _addressModel = obj;
-                obj.cellHeight = 60;
-                [obj setSelectAction:@selector(updateAddress) target:self];
-                [array addObject:obj];
-                [selfB.models addObject:array];
-                [selfB initModelData];
-                [selfB initBottomView];
             }
         }];
+        if (!_addressModel) {
+            _addressModel = [[AddressModel alloc]init];
+            _addressModel.address = @"请选择地址";
+        }
+        _addressModel.cellHeight = 60;
+        [_addressModel setSelectAction:@selector(updateAddress) target:self];
+        [array addObject:_addressModel];
+        [selfB.models addObject:array];
+        [selfB initModelData];
+        [selfB initBottomView];
     }];
+  
 }
 
 - (void)updateAddress
@@ -129,13 +136,20 @@
     NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
     [params setValue:_addressModel.addressId forKey:@"addressid"];
     [params setValue:COMMUNTITYID forKey:@"communityid"];
+    [params setValue:@1 forKey:@"business"];
     [params setValue:[[Cart sharedCart] filterLocalCartData]  forKey:@"products"];
-    [params setValue:[AppConfig getAPPDelegate].schoolModel.subscribedates forKey:@"subscribetime"];
+    [params setValue:[AppConfig getAPPDelegate].schoolModel.subscribedates[0] forKey:@"subscribetime"];
+    [params setValue:@(0) forKey:@"couponid"];
+
     if (_couponModel) {
-        [params setValue:@(_couponModel.couponId) forKey:@"couponid"];
     }
-    [RSHttp requestWithURL:@"/weixin/createorder" params:params httpMethod:@"POST" success:^(id data) {
-        //request
+    [RSHttp requestWithURL:@"/weixin/createorder" params:params httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
+        
+        NSString *url = [data valueForKey:@"url"];
+        PayWebViewController *payWebVC = [[PayWebViewController alloc]init];
+        payWebVC.urlString = url;
+        payWebVC.isEncodeURL = NO;
+        [self.navigationController pushViewController:payWebVC animated:YES];
         
     } failure:^(NSInteger code, NSString *errmsg) {
         [[RSToastView shareRSAlertView] showToast:errmsg];
@@ -164,6 +178,10 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0 && indexPath.row==0) {
+        return 60;
+    }
+    
     if (indexPath.section==1 && indexPath.row==1) {
         NSDictionary *dic = self.models[indexPath.section][indexPath.row];
         NSArray *array = [dic valueForKey:@"goods"];
@@ -172,6 +190,9 @@
         }else{
             return 70;
         }
+    }
+    if (indexPath.section == 2 && indexPath.row==0) {
+        return 49;
     }
     
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
