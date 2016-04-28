@@ -74,11 +74,13 @@
 		B1738DC81CB665EC006C7207 /* RSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738DC21CB665EC006C7207 /* RSTableViewController.m */; };
 		B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738DC61CB665EC006C7207 /* BaseViewController.m */; };
 		B18322551CD07709006E7EBC /* PayWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18322541CD07709006E7EBC /* PayWebViewController.m */; };
+		B18322581CD0C6A2006E7EBC /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18322571CD0C6A2006E7EBC /* OrderViewController.m */; };
+		B183225B1CD0C6B7006E7EBC /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B183225A1CD0C6B7006E7EBC /* OrderModel.m */; };
+		B183225E1CD0C6C5006E7EBC /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B183225D1CD0C6C5006E7EBC /* OrderCell.m */; };
 		B19E1B9F1CB6674B009C38CD /* RSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B19E1B9E1CB6674B009C38CD /* RSModel.m */; };
 		B1A8D4B41CC09D3C00471E93 /* RSSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A8D4B31CC09D3C00471E93 /* RSSearchView.m */; };
 		B1A8D4B71CC0CAEC00471E93 /* SchoolAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A8D4B61CC0CAEC00471E93 /* SchoolAddressCell.m */; };
 		B1B764621CB8D286005A90BD /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B764531CB8D286005A90BD /* HomeViewController.m */; };
-		B1B764631CB8D286005A90BD /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B764591CB8D286005A90BD /* OrderViewController.m */; };
 		B1E81D4C1CB7553E00F587D1 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */; };
 		B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4F1CB7622E00F587D1 /* AppConfig.m */; };
 		B1E81D631CB78A7D00F587D1 /* RSToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D621CB78A7D00F587D1 /* RSToastView.m */; };
@@ -250,6 +252,12 @@
 		B1738DC61CB665EC006C7207 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		B18322531CD07709006E7EBC /* PayWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayWebViewController.h; sourceTree = "<group>"; };
 		B18322541CD07709006E7EBC /* PayWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayWebViewController.m; sourceTree = "<group>"; };
+		B18322561CD0C6A2006E7EBC /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
+		B18322571CD0C6A2006E7EBC /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
+		B18322591CD0C6B7006E7EBC /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
+		B183225A1CD0C6B7006E7EBC /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
+		B183225C1CD0C6C5006E7EBC /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
+		B183225D1CD0C6C5006E7EBC /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
 		B19E1B9D1CB6674B009C38CD /* RSModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSModel.h; sourceTree = "<group>"; };
 		B19E1B9E1CB6674B009C38CD /* RSModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSModel.m; sourceTree = "<group>"; };
 		B1A8D4B21CC09D3C00471E93 /* RSSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSearchView.h; sourceTree = "<group>"; };
@@ -258,8 +266,6 @@
 		B1A8D4B61CC0CAEC00471E93 /* SchoolAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolAddressCell.m; sourceTree = "<group>"; };
 		B1B764521CB8D286005A90BD /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		B1B764531CB8D286005A90BD /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		B1B764581CB8D286005A90BD /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
-		B1B764591CB8D286005A90BD /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
 		B1E81D4A1CB7553E00F587D1 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
 		B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
 		B1E81D4D1CB7564F00F587D1 /* UtilMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilMacro.h; sourceTree = "<group>"; };
@@ -630,8 +636,8 @@
 		B1B764571CB8D286005A90BD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B1B764581CB8D286005A90BD /* OrderViewController.h */,
-				B1B764591CB8D286005A90BD /* OrderViewController.m */,
+				B18322561CD0C6A2006E7EBC /* OrderViewController.h */,
+				B18322571CD0C6A2006E7EBC /* OrderViewController.m */,
 				B123DCC71CC8893E00F08E8D /* ConfirmOrderViewController.h */,
 				B123DCC81CC8893E00F08E8D /* ConfirmOrderViewController.m */,
 			);
@@ -641,6 +647,8 @@
 		B1B7645A1CB8D286005A90BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B18322591CD0C6B7006E7EBC /* OrderModel.h */,
+				B183225A1CD0C6B7006E7EBC /* OrderModel.m */,
 				B123DCCD1CC8B9EF00F08E8D /* AddressModel.h */,
 				B123DCCE1CC8B9EF00F08E8D /* AddressModel.m */,
 				B123DCD31CC8E33300F08E8D /* CouponModel.h */,
@@ -652,6 +660,8 @@
 		B1B7645B1CB8D286005A90BD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B183225C1CD0C6C5006E7EBC /* OrderCell.h */,
+				B183225D1CD0C6C5006E7EBC /* OrderCell.m */,
 				B168FF261CC9C6CF0003B3FA /* AddressCell.h */,
 				B168FF271CC9C6CF0003B3FA /* AddressCell.m */,
 			);
@@ -1060,17 +1070,18 @@
 			files = (
 				B19E1B9F1CB6674B009C38CD /* RSModel.m in Sources */,
 				B123DCCC1CC8895100F08E8D /* SchoolModel.m in Sources */,
+				B183225B1CD0C6B7006E7EBC /* OrderModel.m in Sources */,
 				B1FFB8CC1CB6566100255F21 /* UITabBarController+ViewController.m in Sources */,
 				B162BC9A1CBCFE4E00E27228 /* BannerwebViewController.m in Sources */,
 				B162BC911CBC91FB00E27228 /* GoodListModel.m in Sources */,
 				B1FFB8CF1CB6566100255F21 /* UIView+CustomFrame.m in Sources */,
 				B1FFB8CD1CB6566100255F21 /* UIView+ViewController.m in Sources */,
+				B18322581CD0C6A2006E7EBC /* OrderViewController.m in Sources */,
 				B123DCC91CC8893E00F08E8D /* ConfirmOrderViewController.m in Sources */,
 				B1E81D631CB78A7D00F587D1 /* RSToastView.m in Sources */,
 				B1738DB61CB665C3006C7207 /* RSSubTitleView.m in Sources */,
 				B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */,
 				B1738D891CB65E71006C7207 /* RSHttp.m in Sources */,
-				B1B764631CB8D286005A90BD /* OrderViewController.m in Sources */,
 				B168FF281CC9C6CF0003B3FA /* AddressCell.m in Sources */,
 				B10769A71CBE490400586304 /* RSImageView.m in Sources */,
 				B1FFB8D01CB6566100255F21 /* UIDeviceAdditions.m in Sources */,
@@ -1087,6 +1098,7 @@
 				30221E501CCDC04C00126D72 /* RSTitleCell.m in Sources */,
 				B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */,
 				B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */,
+				B183225E1CD0C6C5006E7EBC /* OrderCell.m in Sources */,
 				30221E7B1CCE41FE00126D72 /* AddressesViewController.m in Sources */,
 				B168FF2B1CCB32670003B3FA /* Cart.m in Sources */,
 				30221E531CCDDD8700126D72 /* RSTitleModel.m in Sources */,

@@ -26,7 +26,6 @@
     manager.requestSerializer.timeoutInterval = APPREQUESTTIMEOUT;
     if([httpMethod isEqualToString:@"GET"]) {
         [manager GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"url==%@, params=%@",url, params);
             [self processSuccess:success operation:operation response:responseObject failure:failure];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [self processFailure:failure operation:operation error:error];

@@ -1,13 +1,14 @@
 //
 //  OrderViewController.h
-//  RSUser
+//  RedScarf
 //
-//  Created by 李江 on 16/4/8.
-//  Copyright © 2016年 RedScarf. All rights reserved.
+//  Created by lishipeng on 2016-04-27.
+//  Copyright (c) 2015年 lishipeng. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "RSRefreshTableViewController.h"
 
-@interface OrderViewController : BaseViewController
+@interface OrderViewController : RSRefreshTableViewController
 
 @end
+

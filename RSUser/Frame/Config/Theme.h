@@ -63,4 +63,27 @@
 
 #define RS_Price_FontSize BoldFont(20)
 
+
+/**
+ *  颜色
+ */
+#define RS_COLOR_C1 [NSString colorFromHexString:@"222222"]
+#define RS_COLOR_C2 [NSString colorFromHexString:@"515151"]
+#define RS_COLOR_C3 [NSString colorFromHexString:@"7d7d7d"]
+#define RS_COLOR_C4 [NSString colorFromHexString:@"cccccc"]
+#define RS_COLOR_C5 [NSString colorFromHexString:@"e5e5e5"]
+#define RS_COLOR_C6 [NSString colorFromHexString:@"f8f8f8"]
+#define RS_COLOR_C7 [NSString colorFromHexString:@"ffffff"]
+#define RS_COLOR_C8 [NSString colorFromHexString:@"ffa53a"]
+
+/**
+ *   字体
+ */
+#define RS_FONT_F1 Font(18)
+#define RS_FONT_F2 Font(15)
+#define RS_FONT_F3 Font(14)
+#define RS_FONT_F4 Font(12)
+#define RS_FONT_F5 Font(10)
+
+
 #endif /* Theme_h */

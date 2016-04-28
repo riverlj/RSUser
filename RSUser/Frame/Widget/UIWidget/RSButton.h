@@ -11,4 +11,5 @@
 @interface RSButton : UIButton
 + (RSButton *)buttonWithFrame:(CGRect)frame ImageName:(NSString *)imagename Text:(NSString *)text TextColor:(UIColor *)tcolor;
 + (RSButton *)themeButton:(CGRect)frame Text:(NSString *)text;
+
 @end

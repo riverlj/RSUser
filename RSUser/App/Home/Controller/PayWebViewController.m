@@ -16,10 +16,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self setStateBarBg];
-    self.navigationController.navigationBar.hidden = YES;
-    self.bannerView.frame = CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT-20);
+    self.title = @"选择支付方式";
+//    [self setStateBarBg];
+    self.navigationController.navigationBar.hidden = NO;
+    self.bannerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64);
     
 }
 
@@ -32,8 +32,9 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    [super webViewDidFinishLoad:webView];
     self.context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    self.context[@"HLJ_APP"] = self;
+    self.context[@"RS_APP"] = self;
 }
 
 #pragma mark NavtiveJSExport

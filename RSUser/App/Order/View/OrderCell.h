@@ -7,13 +7,18 @@
 //
 
 #import "RSTableViewCell.h"
+#import "OrderModel.h"
 
 @interface OrderCell : RSTableViewCell
-@property (nonatomic, strong) UILabel *orderIdLabel;
-@property (nonatomic, strong) UILabel *oderdateLabel;
-@property (nonatomic, strong) UILabel *ordertimeLabel;
+@property (nonatomic, strong) UILabel *orderdateLabel;
 @property (nonatomic, strong) UILabel *statusidLabel;
 @property (nonatomic, strong) UILabel *statusLabel;
 @property (nonatomic, strong) UILabel *imgurlLabel;
+
+@property (nonatomic ,strong)UIImageView *orderImageView;
+@property (nonatomic ,strong)RSButton *statusButton;
+
+@property (nonatomic ,strong)OrderModel *orderModel;
+
 @end
 

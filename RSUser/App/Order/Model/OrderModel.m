@@ -13,7 +13,7 @@
 {
     return @{
         @"orderId" : @"id",
-        @"oderdate" : @"date",
+        @"orderdate" : @"date",
         @"dates" : @"dates",
         @"ordertime" : @"ordertime",
         @"statusid" : @"statusid",

@@ -10,7 +10,7 @@
 
 @interface OrderModel : RSModel<MTLJSONSerializing>
 @property (nonatomic, strong) NSString *orderId;
-@property (nonatomic, strong) NSString *oderdate;
+@property (nonatomic, strong) NSString *orderdate;
 @property (nonatomic, strong) NSArray *dates;
 @property (nonatomic, strong) NSString *ordertime;
 @property (nonatomic) NSInteger statusid;
