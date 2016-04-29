@@ -90,7 +90,7 @@
     
     ProfileModel *model = (ProfileModel *)[self getModelByIndexPath:indexPath];
     if([model.url isEqualToString:@"contactUs"]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", [AppConfig getAPPDelegate].schoolModel]]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", [AppConfig getAPPDelegate].schoolModel.contactMobile]]];
         return;
     }
 

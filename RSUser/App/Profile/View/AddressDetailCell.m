@@ -16,7 +16,7 @@
     if(self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(47, 5, SCREEN_WIDTH - 47 * 2, 15)];
+        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(47, 5, SCREEN_WIDTH - 47 * 2, 17)];
         _nameLabel.textColor = RS_MainLable_Text_Color;
         _nameLabel.bottom = 67/2 - 5;
         _nameLabel.font = RS_MainLable_Font;

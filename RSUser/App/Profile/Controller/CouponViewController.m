@@ -95,9 +95,13 @@
 -(void) afterHttpSuccess:(NSArray *)data
 {
     NSArray *temp = [[MTLJSONAdapter modelsOfClass:[CouponModel class] fromJSONArray:data error:nil] mutableCopy];
+    for(CouponModel *model in temp) {
+        model.fromtype = [[btnArr objectAtIndex:_searchType] valueForKey:@"key"];
+    }
     NSDictionary *dict = [btnArr objectAtIndex:_searchType];
     [dict setValue:temp forKey:@"models"];
     self.models = [dict objectForKey:@"models"];
+    
 }
 
 -(UIView *)headView
@@ -145,5 +149,19 @@
         [textField becomeFirstResponder];
     }];
 
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CouponModel *model = (CouponModel *)[self getModelByIndexPath:indexPath];
+    if(model) {
+        if([model.fromtype isEqualToString:@"canuse"]) {
+            [NSKeyedArchiver archiveRootObject:model toFile:[RSFileStorage perferenceSavePath:@"coupon"]];
+            CouponModel *test = [NSKeyedUnarchiver unarchiveObjectWithFile:[RSFileStorage perferenceSavePath:@"coupon"]];
+            if(self.selectReturn) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+    }
 }
 @end

@@ -12,8 +12,8 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *moneyLabel;
 @property (nonatomic, strong) UILabel *subtitleLabel;
-@property (nonatomic, strong) UILabel *begintimeLabel;
-@property (nonatomic, strong) UILabel *endtimeLabel;
+@property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UILabel *descriptionLabel;
+@property (nonatomic, strong) UILabel *remainLabel;
 @end
 
