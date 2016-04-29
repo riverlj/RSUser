@@ -94,4 +94,22 @@
     return [NSDate formatTimestamp:self.endtime format:@"yyyy-MM-dd"];
 }
 
+-(NSMutableAttributedString *)getMoneyStr
+{
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"￥%zd", self.money] attributes:[NSDictionary dictionaryWithObjectsAndKeys:Font(18), NSFontAttributeName, RS_Theme_Color, NSForegroundColorAttributeName,nil]];
+    [attrStr addAttribute:NSFontAttributeName value:Font(30) range:NSMakeRange(1, attrStr.length-1)];
+    return attrStr;
+}
+
+-(NSString *) getRemainStr
+{
+    int days = [NSDate getDayNumbertoDay:[NSDate date] beforDay:[NSDate dateWithTimeIntervalSince1970:self.endtime]];
+    if(days < 0) {
+        return @"";
+    } else if(days == 0) {
+        return @"今天将会过期";
+    }
+    NSString *str = [NSString stringWithFormat:@"还有%d天过期", days];
+    return str;
+}
 @end

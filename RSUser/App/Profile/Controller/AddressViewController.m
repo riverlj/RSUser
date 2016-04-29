@@ -54,6 +54,7 @@
     cell.textField.placeholder = @"你的寝室号";
     [cellList setObject:cell forKey:@"addition"];
     cell.textField.returnKeyType = UIReturnKeyNext;
+    cell.textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     cell.textField.delegate = self;
     cell.textField.text = self.model.addition;
     [cell.textField.rac_textSignal subscribeNext:^(NSString *text) {
@@ -69,6 +70,9 @@
     cell.textField.text = self.model.name;
     [cellList setObject:cell forKey:@"name"];
     cell.textField.returnKeyType = UIReturnKeyNext;
+    [cell.textField.rac_textSignal subscribeNext:^(NSString *text) {
+        self.model.name = text;
+    }];
     [self.view addSubview:cell];
     
     cell = [[RSInputFieldCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"RSInputField"];
@@ -79,6 +83,9 @@
     cell.textField.delegate = self;
     cell.textField.text = self.model.mobile;
     [cellList setObject:cell forKey:@"mobile"];
+    [cell.textField.rac_textSignal subscribeNext:^(NSString *text) {
+        self.model.mobile = text;
+    }];
     cell.textField.returnKeyType = UIReturnKeyDone;
     [self.view addSubview:cell];
     
@@ -243,7 +250,6 @@
 {
     [self endedit];
     BOOL result = [self.model checkValid:^{
-        
     } failure:^(NSString *key, NSString *errmsg) {
         [[RSToastView shareRSAlertView] showToast:errmsg];
     }];

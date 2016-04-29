@@ -30,8 +30,12 @@ typedef NS_ENUM(NSUInteger, CouponModelStatus) {
 @property (nonatomic ,assign)NSInteger discountmax;
 @property (nonatomic ,assign)NSInteger reduce;
 
+@property (nonatomic, strong) NSString *fromtype;
+
 + (void)getCounponList:(void(^)(NSArray *))success;
 + (void)bindCoupon:(NSString *)couponcode success:(void(^)())success failure:(void(^)())failure;
 -(NSString *) getBeginDate;
 -(NSString *) getEndDate;
+-(NSMutableAttributedString *)getMoneyStr;
+-(NSString *) getRemainStr;
 @end

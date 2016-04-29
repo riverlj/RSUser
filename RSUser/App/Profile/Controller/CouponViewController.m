@@ -5,7 +5,6 @@
 //  Created by lishipeng on 2016-04-26.
 //  Copyright (c) 2015年 lishipeng. All rights reserved.
 //
-
 #import "CouponViewController.h"
 #import "CouponModel.h"
 #import "RSRadioGroup.h"
@@ -21,17 +20,11 @@
 @end
 
 @implementation CouponViewController
--(void)viewWillAppear:(BOOL)animated
-{
-    [self beginHttpRequest];
-    [super viewWillAppear:animated];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.url = @"/weixin/coupon";
     self.useHeaderRefresh = YES;
-
     btnArr = [NSMutableArray array];
     NSMutableDictionary *item1 = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"可用优惠券", @"title", @"canuse", @"key", [NSMutableArray array], @"models", nil];
     [btnArr addObject:item1];
@@ -95,17 +88,19 @@
 
 -(void)beforeHttpRequest{
     [super beforeHttpRequest];
-    [self.params setValue:@"history" forKey:@"type"];
-
+    NSDictionary *dict = [btnArr objectAtIndex:self.searchType];
+    [self.params setValue:[dict objectForKey:@"key"] forKey:@"type"];
 }
-
-
 -(void) afterHttpSuccess:(NSArray *)data
 {
     NSArray *temp = [[MTLJSONAdapter modelsOfClass:[CouponModel class] fromJSONArray:data error:nil] mutableCopy];
+    for(CouponModel *model in temp) {
+        model.fromtype = [[btnArr objectAtIndex:_searchType] valueForKey:@"key"];
+    }
     NSDictionary *dict = [btnArr objectAtIndex:_searchType];
     [dict setValue:temp forKey:@"models"];
     self.models = [dict objectForKey:@"models"];
+    
 }
 
 -(UIView *)headView
@@ -152,6 +147,20 @@
         textField.text = @"";
         [textField becomeFirstResponder];
     }];
+    
+}
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CouponModel *model = (CouponModel *)[self getModelByIndexPath:indexPath];
+    if(model) {
+        if([model.fromtype isEqualToString:@"canuse"]) {
+            [NSKeyedArchiver archiveRootObject:model toFile:[RSFileStorage perferenceSavePath:@"coupon"]];
+            CouponModel *test = [NSKeyedUnarchiver unarchiveObjectWithFile:[RSFileStorage perferenceSavePath:@"coupon"]];
+            if(self.selectReturn) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+    }
 }
 @end
