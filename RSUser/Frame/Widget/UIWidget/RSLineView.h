@@ -11,4 +11,6 @@
 @interface RSLineView : UIView
 +(id)lineViewHorizontalWithFrame:(CGRect)frame Color:(UIColor*)lineColor;
 +(id)lineViewVerticalWithFrame:(CGRect)frame Color:(UIColor*)lineColor;
+
++(UIView *)lineViewHorizontal;
 @end

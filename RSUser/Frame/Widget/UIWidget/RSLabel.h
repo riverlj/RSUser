@@ -13,4 +13,7 @@
 + (RSLabel *)lableViewWithFrame:(CGRect)frame bgColor:(UIColor *)bgColor textColor:(UIColor *)textColor;
 
 + (RSLabel *)lableViewWithFrame:(CGRect)frame bgColor:(UIColor *)bgColor textColor:(UIColor *)textColor FontSize:(CGFloat)fontsize;
+
++ (UILabel *) labelOneLevelWithFrame:(CGRect)frame Text:(NSString *)text;
++ (UILabel *) labelTwoLevelWithFrame:(CGRect)frame Text:(NSString *)text;
 @end

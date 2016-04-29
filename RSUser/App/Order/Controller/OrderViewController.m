@@ -119,4 +119,25 @@
         [self.models addObjectsFromArray:temp];
     }
 }
+
+#pragma mark tableview
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OrderCell *cell = (OrderCell *)[super tableView:tableView cellForRowAtIndexPath:indexPath];
+    cell.cellBtnClickedDelegate = self;
+    return cell;
+}
+
+#pragma mark cellBtnClickedDelegate
+-(void)goPay
+{
+    //去支付页面
+}
+
+- (void)goOrderInfo:(NSString *)orderId
+{
+    //订单详情页面
+    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://orderInfo?orderId=%@", orderId]];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 @end

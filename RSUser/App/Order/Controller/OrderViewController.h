@@ -7,8 +7,9 @@
 //
 
 #import "RSRefreshTableViewController.h"
+#import "OrderCell.h"
 
-@interface OrderViewController : RSRefreshTableViewController
+@interface OrderViewController : RSRefreshTableViewController<cellBtnClickedDelegate>
 
 @end
 

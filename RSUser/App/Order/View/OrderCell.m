@@ -42,11 +42,15 @@
 
 - (void)btnClicked:(UIButton *)sender
 {
+    
     if (_orderModel.statusid == 0) {
-        //
-        NSLog(@"去支付");
+        if (self.cellBtnClickedDelegate && [_cellBtnClickedDelegate respondsToSelector:@selector(goPay)] ) {
+            [_cellBtnClickedDelegate goPay];
+        }
     }else{
-        NSLog(@"跳转到订单详情");
+        if (self.cellBtnClickedDelegate && [_cellBtnClickedDelegate respondsToSelector:@selector(goOrderInfo:)] ) {
+            [_cellBtnClickedDelegate goOrderInfo:self.orderModel.orderId];
+        }
     }
 }
 

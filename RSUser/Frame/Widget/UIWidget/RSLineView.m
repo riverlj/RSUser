@@ -25,4 +25,11 @@
     return lineView;
 }
 
+
++(UIView *)lineViewHorizontal
+{
+    UIView * lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+    lineView.backgroundColor = RS_Line_Color;
+    return lineView;
+}
 @end
