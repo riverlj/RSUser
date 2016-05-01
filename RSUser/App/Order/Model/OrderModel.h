@@ -17,4 +17,5 @@
 @property (nonatomic, strong) NSString *status;
 @property (nonatomic, strong) NSArray *products;
 @property (nonatomic, strong) NSString *imgurl;
+@property (nonatomic ,assign)NSInteger business;
 @end

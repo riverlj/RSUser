@@ -28,7 +28,7 @@
         _statusLabel.textColor = [NSString colorFromHexString:@"5faaff"];
         [self.contentView addSubview:_statusLabel];
         
-        _statusButton = [RSButton buttonWithFrame:CGRectMake(SCREEN_WIDTH-88, 27.5, 70, 26) ImageName:nil Text:@"" TextColor:nil];
+        _statusButton = [RSButton buttonWithFrame:CGRectMake(SCREEN_WIDTH-88, 37.5, 70, 26) ImageName:nil Text:@"" TextColor:nil];
         _statusButton.layer.cornerRadius = 4;
         _statusButton.layer.borderWidth = 1;
         _statusButton.titleLabel.font = RS_FONT_F3;
@@ -48,6 +48,15 @@
             [_cellBtnClickedDelegate goPay];
         }
     }else{
+        
+        if (_orderModel.business == 2) {
+            RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:@"请前往微信公众号查看周预定订单详情" leftButtonTitle:@"我的知道了" AndLeftBlock:^{
+                
+            }];
+            [alertView show];
+            return;
+        }
+        
         if (self.cellBtnClickedDelegate && [_cellBtnClickedDelegate respondsToSelector:@selector(goOrderInfo:)] ) {
             [_cellBtnClickedDelegate goOrderInfo:self.orderModel.orderId];
         }
@@ -87,7 +96,7 @@
         [_statusButton setTitleColor:RS_COLOR_C8 forState:UIControlStateNormal];
     }
     
-    model.cellHeight = 81;
+    model.cellHeight = 91;
 }
 
 

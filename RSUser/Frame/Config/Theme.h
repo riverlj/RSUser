@@ -22,7 +22,7 @@
  *
  * Theme 基色
  */
-#define RS_Theme_Color  [NSString colorFromHexString:@"f9443e"]
+
 /*view的背景颜色*/
 #define RS_Background_Color [NSString colorFromHexString:@"f8f8f8"]
 /*导航按钮的默认状态*/
@@ -51,7 +51,6 @@
 
 
 /*主要字体*/
-#define RS_Main_FontSize BoldFont(24)
 #define RS_Button_Font Font(16)
 #define RS_SubButton_Font Font(12)
 
@@ -60,13 +59,14 @@
 #define RS_SubLable_Font Font(12)
 #define RS_CountLable_Font Font(17)
 #define RS_CostPriceLable_Font Font(9)
-
 #define RS_Price_FontSize BoldFont(20)
 
 
 /**
  *  颜色
  */
+#define RS_Theme_Color  [NSString colorFromHexString:@"f9443e"]
+
 #define RS_COLOR_C1 [NSString colorFromHexString:@"222222"]
 #define RS_COLOR_C2 [NSString colorFromHexString:@"515151"]
 #define RS_COLOR_C3 [NSString colorFromHexString:@"7d7d7d"]

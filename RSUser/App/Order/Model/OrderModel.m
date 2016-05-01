@@ -20,6 +20,7 @@
         @"status" : @"status",
         @"products" : @"products",
         @"imgurl" : @"imgurl",
+        @"business" : @"business"
     };
 }
 

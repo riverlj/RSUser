@@ -69,4 +69,33 @@
     });
 }
 
+- (void)sendSiteCodeWithMobile:(NSNumber *)mobile
+{
+    NSDictionary *params = @{
+                             @"mobile" : mobile
+                             };
+    [RSHttp requestWithURL:@"/site/code" params:params httpMethod:@"POSTJSON" success:^(id data) {
+        [[RSToastView shareRSAlertView] showToast:@"发送成功"];
+    } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSAlertView] showToast:errmsg];
+    }];
+}
+
+/**
+ *  绑定手机号
+ */
+- (void)bandleMobile:(NSString *)mobile Code:(NSString *)code
+{
+    NSDictionary *dic = @{
+                          @"code" : code,
+                          @"mobile" : mobile,
+                          @"method" : @"4"
+                          };
+    [RSHttp requestWithURL:@"/mobileverifynew" params:@"" httpMethod:@"POSTJSON" success:^(id data) {
+        
+    } failure:^(NSInteger code, NSString *errmsg) {
+        
+    }];
+}
+
 @end

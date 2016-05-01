@@ -50,4 +50,9 @@
     [self.view addSubview:bandelButton];
 }
 
+- (void)bandleCellPhone
+{
+
+}
+
 @end

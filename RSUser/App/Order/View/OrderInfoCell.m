@@ -31,7 +31,21 @@
 
 - (void)setModel:(OrderInfoModel *)model
 {
-    _title.text = [NSString stringWithFormat:@"送达时间:  %@  (早%@-%@)", @(model.subscribetime), model.fastesttime, model.lastesttime];
+
+    NSString *time = [NSDate formatTimestamp:model.subscribetime format:@"yyyy-MM-dd"];
+    NSString *text =  [NSString stringWithFormat:@"送达时间:  %@  (早%@-%@)", time, model.fastesttime, model.lastesttime];
+    NSMutableAttributedString *attText = [[NSMutableAttributedString alloc] initWithString:text];
+    
+    NSRange range = [text rangeOfString:@"("];
+    [attText addAttribute:NSForegroundColorAttributeName value:RS_COLOR_C1 range:NSMakeRange(0, 5)];
+    [attText addAttribute:NSFontAttributeName value:RS_FONT_F2 range:NSMakeRange(0, 5)];
+    
+    [attText addAttribute:NSForegroundColorAttributeName value:RS_Theme_Color range:NSMakeRange(range.location, text.length-range.location)];
+    
+    [attText addAttribute:NSForegroundColorAttributeName value:RS_SubMain_Text_Color range:NSMakeRange(5, range.location-5)];
+    [attText addAttribute:NSFontAttributeName value:RS_FONT_F3 range:NSMakeRange(5, text.length-5)];
+    
+    _title.attributedText = attText;
     _title.frame = CGRectMake(18, 0, SCREEN_WIDTH-36, 49);
     
     self.lineView = [RSLineView lineViewHorizontal];
@@ -104,6 +118,10 @@
         [self.contentView addSubview:_leftLabel];
         _rightLabel = [RSLabel labelTwoLevelWithFrame:CGRectMake(0, 0, 0, _leftLabel.height) Text:@""];
         [self.contentView addSubview:_rightLabel];
+        
+        self.lineView = [RSLineView lineViewHorizontal];
+        [self.contentView addSubview:self.lineView];
+
     }
     
     return self;
@@ -111,6 +129,9 @@
 
 - (void)setModel:(OrderInfoModel *)model
 {
+    self.lineView.x = 18;
+    self.lineView.y = 48;
+    
     switch (model.displayFlag) {
         case 1:{
             _leftLabel.text = @"商品金额:";
@@ -129,6 +150,7 @@
             _rightLabel.text = [NSString stringWithFormat:@"¥%@", model.payed];
             _rightLabel.font = RS_FONT_F2;
             _rightLabel.textColor = RS_Theme_Color;
+            self.lineView.hidden =YES;
 
             break;
         }
@@ -145,6 +167,7 @@
         case 6:{
             _leftLabel.text = @"支付方式:";
             _rightLabel.text = model.paymethod;
+            self.lineView.hidden =YES;
             break;
         }
         default:
@@ -156,11 +179,7 @@
     _rightLabel.width = rightSize.width;
     
     model.cellHeight = 49;
-    
-    self.lineView = [RSLineView lineViewHorizontal];
-    self.lineView.x = 18;
-    self.lineView.y = 48;
-    [self.contentView addSubview:self.lineView];
+
 }
 
 @end

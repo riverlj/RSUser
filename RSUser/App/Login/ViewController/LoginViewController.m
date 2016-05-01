@@ -146,22 +146,6 @@
     }
 }
 
-/**
- *  微信登陆授权成功
- */
-- (void)loginWithWeixinSuceess
-{
-    //TODO 判断是非已经绑定了手机号
-    if (YES)
-    {
-        //TODO 调转到首页
-    }
-    else
-    {
-        //TODO 未绑定，跳转到绑定手机页, 绑定成功，跳转到APP首页
-    }
-}
-
 -(void)editing:(UITextField *)textField
 {
     [UIView animateWithDuration:0.3
