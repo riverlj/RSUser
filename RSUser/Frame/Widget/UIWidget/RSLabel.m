@@ -44,4 +44,14 @@
     
     return label;
 }
+
++ (UILabel *) labellWithFrame:(CGRect)frame Text:(NSString *)text Font:(UIFont *)font TextColor:(UIColor *)color
+{
+    UILabel *label = [[UILabel alloc]initWithFrame:frame];
+    label.font = font;
+    label.textColor = color;
+    label.text = text;
+    
+    return label;
+}
 @end

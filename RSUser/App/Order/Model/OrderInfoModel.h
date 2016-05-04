@@ -42,6 +42,7 @@
 @property (nonatomic, strong) NSDictionary *deliverytime;
 
 
+
 @property (nonatomic ,assign)NSInteger displayFlag;
 //@property (nonatomic ,strong)UserAddressModell  *userAddressModel;
 

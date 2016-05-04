@@ -8,8 +8,8 @@
 
 #import "OrderViewController.h"
 #import "OrderModel.h"
-#import "RSRadioGroup.h"
 #import "RSSubTitleView.h"
+#import "OrderInfoAndStatusViewController.h"
 
 @interface OrderViewController()
 {
@@ -129,15 +129,17 @@
 }
 
 #pragma mark cellBtnClickedDelegate
--(void)goPay
-{
-    //去支付页面
-}
+//-(void)goPay
+//{
+//    //去支付页面
+//    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderId=%@", orderId]];
+//    [self.navigationController pushViewController:vc animated:YES];
+//}
 
 - (void)goOrderInfo:(NSString *)orderId
 {
     //订单详情页面
-    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://orderInfo?orderId=%@", orderId]];
+    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderId=%@", orderId]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 @end

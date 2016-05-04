@@ -34,6 +34,8 @@
 #import "RSUIView.h"
 #import "RSImageView.h"
 #import "RSTextFiled.h"
+#import "RSRadioGroup.h"
+#import "RSSubTitleView.h"
 #import "Cart.h"
 
 #endif /* AppHeader_h */

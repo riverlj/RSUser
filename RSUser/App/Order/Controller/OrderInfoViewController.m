@@ -14,18 +14,15 @@
 @end
 
 @implementation OrderInfoViewController
--(void)viewWillAppear:(BOOL)animated
-{
-    [self beginHttpRequest];
-    [super viewWillAppear:animated];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.sections = [NSMutableArray new];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"订单详情";
     self.url = @"/weixin/orderinfo";
+    
+    self.sections = [NSMutableArray new];
+    [self beginHttpRequest];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 -(void)beforeHttpRequest{

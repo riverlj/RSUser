@@ -7,6 +7,7 @@
 //
 
 #import "OrderInfoModel.h"
+#import "OrderLogModel.h"
 
 @implementation OrderInfoModel
 +(NSDictionary *)JSONKeyPathsByPropertyKey
@@ -77,4 +78,18 @@
     return otherInfoModel;
 }
 
+
++ (NSValueTransformer *)orderlogJSONTransformer {
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(id value, BOOL *success, NSError *__autoreleasing *error) {
+        NSArray * jsonArray = value;
+        NSMutableArray * logsArray = [NSMutableArray array];
+        
+        [jsonArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+             OrderLogModel * logItem = [MTLJSONAdapter modelOfClass:[OrderLogModel class] fromJSONDictionary:obj error:nil];
+            [logsArray addObject:logItem];
+        }];
+        
+        return logsArray;
+    }];
+}
 @end

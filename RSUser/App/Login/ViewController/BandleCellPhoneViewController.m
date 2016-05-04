@@ -29,7 +29,7 @@
     codeTextFiled = [RSTextFiled textFiledWithFrame:CGRectMake(cellphoneTextFiled.x, cellphoneTextFiled.bottom+10, cellphoneTextFiled.width, cellphoneTextFiled.height) cornerRadius:5 Placeholder:@"请输入验证码"];
     [self.view addSubview:codeTextFiled];
     
-    RSButton *sendcodedBtn = [RSButton themeButton:CGRectMake(15, 0, 74, 29) Text:@"发送验证码"];
+    RSButton *sendcodedBtn = [RSButton themeBorderButton:CGRectMake(15, 0, 74, 29) Text:@"发送验证码"];
     
     codeRightView = [[UIView alloc]initWithFrame:sendcodedBtn.frame];
     codeRightView.width = sendcodedBtn.width + 30;

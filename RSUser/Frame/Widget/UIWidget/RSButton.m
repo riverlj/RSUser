@@ -21,7 +21,7 @@
     return button;
 }
 
-+ (RSButton *)themeButton:(CGRect)frame Text:(NSString *)text
++ (RSButton *)themeBorderButton:(CGRect)frame Text:(NSString *)text
 {
     RSButton *button = [RSButton buttonWithFrame:frame ImageName:nil Text:text TextColor:RS_Theme_Color];
     button.layer.borderColor = RS_Theme_Color.CGColor;
@@ -32,5 +32,17 @@
     return button;
 }
 
++ (UIButton *)themeBackGroundButton:(CGRect)frame Text:(NSString *)text
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame =frame;
+    button.backgroundColor = RS_Theme_Color;
+    [button setTitle:text forState:UIControlStateNormal];
+    [button setTitleColor:RS_COLOR_C7 forState:UIControlStateNormal];
+    button.layer.cornerRadius = 6;
+    button.titleLabel.font = RS_FONT_F1;
+    
+    return button;
+}
 
 @end

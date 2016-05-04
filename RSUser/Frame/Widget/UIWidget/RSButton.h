@@ -10,6 +10,6 @@
 
 @interface RSButton : UIButton
 + (RSButton *)buttonWithFrame:(CGRect)frame ImageName:(NSString *)imagename Text:(NSString *)text TextColor:(UIColor *)tcolor;
-+ (RSButton *)themeButton:(CGRect)frame Text:(NSString *)text;
-
++ (RSButton *)themeBorderButton:(CGRect)frame Text:(NSString *)text;
++ (UIButton *)themeBackGroundButton:(CGRect)frame Text:(NSString *)text;
 @end

@@ -16,4 +16,5 @@
 
 + (UILabel *) labelOneLevelWithFrame:(CGRect)frame Text:(NSString *)text;
 + (UILabel *) labelTwoLevelWithFrame:(CGRect)frame Text:(NSString *)text;
++ (UILabel *) labellWithFrame:(CGRect)frame Text:(NSString *)text Font:(UIFont *)font TextColor:(UIColor *)color;
 @end
