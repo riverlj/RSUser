@@ -17,7 +17,7 @@
     UIView *shadowView;
     UIView *bottomView;
     RSLabel *totalPriceLabel;
-    RSImageView *cartImageView;
+    UIImageView *cartImageView;
     CGFloat totalPrice;
 }
 @end

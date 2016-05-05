@@ -89,6 +89,10 @@
 		B1A8D4B41CC09D3C00471E93 /* RSSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A8D4B31CC09D3C00471E93 /* RSSearchView.m */; };
 		B1A8D4B71CC0CAEC00471E93 /* SchoolAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A8D4B61CC0CAEC00471E93 /* SchoolAddressCell.m */; };
 		B1B764621CB8D286005A90BD /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B764531CB8D286005A90BD /* HomeViewController.m */; };
+		B1BD007F1CD9A0B200D41676 /* TicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BD007E1CD9A0B200D41676 /* TicketCell.m */; };
+		B1BD00821CD9A0BC00D41676 /* TicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BD00811CD9A0BC00D41676 /* TicketModel.m */; };
+		B1BD00851CD9A0CB00D41676 /* TicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BD00841CD9A0CB00D41676 /* TicketViewController.m */; };
+		B1BD00861CD9F2AC00D41676 /* OrderStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18322751CD8470A006E7EBC /* OrderStatusViewController.m */; };
 		B1E81D4C1CB7553E00F587D1 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */; };
 		B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4F1CB7622E00F587D1 /* AppConfig.m */; };
 		B1E81D631CB78A7D00F587D1 /* RSToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D621CB78A7D00F587D1 /* RSToastView.m */; };
@@ -290,6 +294,12 @@
 		B1A8D4B61CC0CAEC00471E93 /* SchoolAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolAddressCell.m; sourceTree = "<group>"; };
 		B1B764521CB8D286005A90BD /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		B1B764531CB8D286005A90BD /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		B1BD007D1CD9A0B200D41676 /* TicketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketCell.h; sourceTree = "<group>"; };
+		B1BD007E1CD9A0B200D41676 /* TicketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketCell.m; sourceTree = "<group>"; };
+		B1BD00801CD9A0BC00D41676 /* TicketModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketModel.h; sourceTree = "<group>"; };
+		B1BD00811CD9A0BC00D41676 /* TicketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketModel.m; sourceTree = "<group>"; };
+		B1BD00831CD9A0CB00D41676 /* TicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketViewController.h; sourceTree = "<group>"; };
+		B1BD00841CD9A0CB00D41676 /* TicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketViewController.m; sourceTree = "<group>"; };
 		B1E81D4A1CB7553E00F587D1 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
 		B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
 		B1E81D4D1CB7564F00F587D1 /* UtilMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilMacro.h; sourceTree = "<group>"; };
@@ -660,6 +670,8 @@
 		B1B764571CB8D286005A90BD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B1BD00831CD9A0CB00D41676 /* TicketViewController.h */,
+				B1BD00841CD9A0CB00D41676 /* TicketViewController.m */,
 				B183225F1CD1F03B006E7EBC /* OrderInfoViewController.h */,
 				B18322601CD1F03B006E7EBC /* OrderInfoViewController.m */,
 				B18322561CD0C6A2006E7EBC /* OrderViewController.h */,
@@ -677,6 +689,8 @@
 		B1B7645A1CB8D286005A90BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B1BD00801CD9A0BC00D41676 /* TicketModel.h */,
+				B1BD00811CD9A0BC00D41676 /* TicketModel.m */,
 				B18322621CD1F04B006E7EBC /* OrderInfoModel.h */,
 				B18322631CD1F04B006E7EBC /* OrderInfoModel.m */,
 				B18322591CD0C6B7006E7EBC /* OrderModel.h */,
@@ -694,6 +708,8 @@
 		B1B7645B1CB8D286005A90BD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B1BD007D1CD9A0B200D41676 /* TicketCell.h */,
+				B1BD007E1CD9A0B200D41676 /* TicketCell.m */,
 				B18322651CD1F059006E7EBC /* OrderInfoCell.h */,
 				B18322661CD1F059006E7EBC /* OrderInfoCell.m */,
 				B183225C1CD0C6C5006E7EBC /* OrderCell.h */,
@@ -1131,6 +1147,7 @@
 				B123DC541CC74CFB00F08E8D /* SeckillModel.m in Sources */,
 				B1738DBE1CB665E2006C7207 /* RSRefreshTableViewController.m in Sources */,
 				30221E491CC9FC1800126D72 /* ProfileCell.m in Sources */,
+				B1BD007F1CD9A0B200D41676 /* TicketCell.m in Sources */,
 				B18322671CD1F059006E7EBC /* OrderInfoCell.m in Sources */,
 				B1FFB87E1CB64DCA00255F21 /* AppDelegate.m in Sources */,
 				B1738DC71CB665EC006C7207 /* RSTableViewCell.m in Sources */,
@@ -1153,6 +1170,7 @@
 				B123DCCF1CC8B9EF00F08E8D /* AddressModel.m in Sources */,
 				30A3C5211CCF6CA900F5E55E /* CouponViewController.m in Sources */,
 				30A3C5181CCE745600F5E55E /* AddressViewController.m in Sources */,
+				B1BD00821CD9A0BC00D41676 /* TicketModel.m in Sources */,
 				B123DC531CC74CFB00F08E8D /* CartModel.m in Sources */,
 				B10769AD1CBF344000586304 /* ChooseSchoolViewController.m in Sources */,
 				B1FFB8CE1CB6566100255F21 /* NSString+RSHttp.m in Sources */,
@@ -1189,6 +1207,7 @@
 				B123DCBA1CC77FAD00F08E8D /* LoginModel.m in Sources */,
 				30221E561CCE06C300126D72 /* HeadviewCell.m in Sources */,
 				B18322551CD07709006E7EBC /* PayWebViewController.m in Sources */,
+				B1BD00851CD9A0CB00D41676 /* TicketViewController.m in Sources */,
 				B1FFB8CB1CB6566100255F21 /* NSDate+RSFormatter.m in Sources */,
 				B1738DBB1CB665C3006C7207 /* RSCatchline.m in Sources */,
 				B183227C1CD89D27006E7EBC /* OrderInfoAndStatusViewController.m in Sources */,
@@ -1208,6 +1227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1FFB8941CB64DCA00255F21 /* RSUserTests.m in Sources */,
+				B1BD00861CD9F2AC00D41676 /* OrderStatusViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

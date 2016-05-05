@@ -10,4 +10,5 @@
 
 @interface OrderStatusViewController : RSRefreshTableViewController
 @property (nonatomic ,strong)NSString *orderId;
+
 @end

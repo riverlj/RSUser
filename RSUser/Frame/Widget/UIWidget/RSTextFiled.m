@@ -17,7 +17,7 @@
     textFild.layer.borderColor = RS_Line_Color.CGColor;
     textFild.layer.borderWidth = 1;
     textFild.layer.cornerRadius = cornerRadius;
-    RSImageView *userNameImageView = [RSImageView imageViewWithFrame:CGRectMake(0, 0, 39, 45) ImageName:imageName];
+    UIImageView *userNameImageView = [RSImageView imageViewWithFrame:CGRectMake(0, 0, 39, 45) ImageName:imageName];
     textFild.leftView = userNameImageView;
     textFild.leftViewMode = UITextFieldViewModeAlways;
     
@@ -32,7 +32,7 @@
     textFild.layer.borderColor = RS_Line_Color.CGColor;
     textFild.layer.borderWidth = 1;
     textFild.layer.cornerRadius = cornerRadius;
-    RSImageView *userNameImageView = [RSImageView imageViewWithFrame:CGRectMake(0, 0, 39, 45) ImageName:imageName];
+    UIImageView *userNameImageView = [RSImageView imageViewWithFrame:CGRectMake(0, 0, 39, 45) ImageName:imageName];
     textFild.rightView = userNameImageView;
     textFild.rightViewMode = UITextFieldViewModeAlways;
     

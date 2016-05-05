@@ -17,7 +17,7 @@
     RSTextFiled *pwdTextFiled;
     RSButton *loginBtn;
     RSButton *codeloginBtn;
-    RSImageView *weixinImageView;
+    UIImageView *weixinImageView;
     UIView *pwdRightView;
 }
 @end
@@ -54,7 +54,7 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:registerBtn];
     
-    RSImageView *logoImageView = [RSImageView imageViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 119) ImageName:@"icon_login_logo"];
+    UIImageView *logoImageView = [RSImageView imageViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 119) ImageName:@"icon_login_logo"];
     [scrolView addSubview:logoImageView];
     weixinImageView = [RSImageView imageViewWithFrame:CGRectMake((SCREEN_WIDTH-45)/2, codeloginBtn.bottom+30, 45, 45) ImageName:@"icon_weixin"];
     weixinImageView.y = SCREEN_HEIGHT - 42.5-45-64;
@@ -170,7 +170,8 @@
                      completion:^(BOOL finished) {
                      }];
     [userTextFiled resignFirstResponder];
-    [pwdTextFiled resignFirstResponder];}
+    [pwdTextFiled resignFirstResponder];
+}
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
