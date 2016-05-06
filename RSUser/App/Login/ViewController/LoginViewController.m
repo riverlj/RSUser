@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "BandleCellPhoneViewController.h"
 #import "LoginModel.h"
+#import "CodesView.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 {
@@ -19,6 +20,9 @@
     RSButton *codeloginBtn;
     UIImageView *weixinImageView;
     UIView *pwdRightView;
+    
+    LoginModel *_loginModel;
+   
 }
 @end
 
@@ -29,7 +33,7 @@
 {
     [super viewDidLoad];
     self.title = @"登录";
-    
+    self.type = 1;
     [self initView];
     
 }
@@ -42,6 +46,7 @@
 - (void)initView
 {
     [self.view removeAllSubviews];
+    _loginModel = [[LoginModel alloc] init];
     
     scrolView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
     [scrolView addTapAction:@selector(hideKeyboard) target:self];
@@ -71,13 +76,17 @@
     
     userTextFiled = [RSTextFiled textFiledWithFrame:CGRectMake(18, logoImageView.bottom, SCREEN_WIDTH-36, 40) cornerRadius:4 LeftImageName:@"icon_user"];
     userTextFiled.placeholder = @"请输入手机号";
+    userTextFiled.textColor = RS_COLOR_C3;
+    userTextFiled.font = RS_FONT_F2;
     userTextFiled.delegate = self;
+    [scrolView addSubview:userTextFiled];
     
     pwdTextFiled = [RSTextFiled textFiledWithFrame:CGRectMake(18, userTextFiled.bottom+7, SCREEN_WIDTH-36, 40)  cornerRadius:4 LeftImageName:@"icon_pwd"];
     pwdTextFiled.delegate = self;
+    pwdTextFiled.textColor = RS_COLOR_C3;
+    pwdTextFiled.font = RS_FONT_F2;
     pwdTextFiled.placeholder = @"请输入密码";
     pwdTextFiled.secureTextEntry = YES;
-    [scrolView addSubview:userTextFiled];
     [scrolView addSubview:pwdTextFiled];
     
     pwdRightView = [[UIView alloc]init];
@@ -102,12 +111,6 @@
     loginBtn =[RSButton buttonWithFrame:CGRectMake(18, pwdTextFiled.bottom+20, SCREEN_WIDTH-36, 38) ImageName:nil Text:@"登录" TextColor:RS_TabBar_count_Color];
     loginBtn.backgroundColor = RS_Theme_Color;
     loginBtn.layer.cornerRadius = 6;
-    [[loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        //TODO 登录条件判断
-        BandleCellPhoneViewController *bv = [[BandleCellPhoneViewController alloc]init];
-        [self.navigationController pushViewController:bv animated:YES];
-        
-    }];
     [scrolView addSubview:loginBtn];
     
     codeloginBtn = [RSButton buttonWithFrame:CGRectMake(SCREEN_WIDTH-120, loginBtn.bottom+15, 100, 30) ImageName:@"icon_logindir" Text:@"验证码登录" TextColor:RS_MainLable_Text_Color];
@@ -118,6 +121,8 @@
     
     if (self.type == 2)
     {
+        pwdTextFiled.placeholder = @"请输入验证码";
+        
         [codeloginBtn setTitle:@"密码登录" forState:UIControlStateNormal];
         codeloginBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
         codeloginBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -140);
@@ -133,9 +138,30 @@
             [self initView];
         }];
     }
+    
+    
+    [self addObserver];
+    [self login];
 
 }
 
+- (void)addObserver
+{
+    [[userTextFiled rac_textSignal] subscribeNext:^(NSString *userName) {
+        _loginModel.userName = userName;
+    }];
+    
+    [[pwdTextFiled rac_textSignal] subscribeNext:^(NSString *password) {
+        if (self.type == 1) {
+            _loginModel.passWord = password;
+        }
+        if (self.type == 2) {
+            _loginModel.code = password;
+        }
+    }];
+}
+
+#pragma mark 微信登陆
 - (void)loginWithWeixin
 {
     if ([WXApi isWXAppInstalled]) {
@@ -146,6 +172,34 @@
     }
 }
 
+- (void)login
+{
+    [[loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        //TODO 登录条件判断
+        if (_type == 1) {
+            //用户名密码登陆
+            [_loginModel loginbyPassword:^{
+                
+            } failure:^{
+                CodesView *codeView = [[CodesView alloc]initWithOkBlock:^{
+                    _loginModel.captcha = [NSUserDefaults getValue:@"code"];
+                    [NSUserDefaults clearValueForKey:@"code"];
+                    [_loginModel loginbyPassword:nil failure:nil];
+                }];
+                [codeView show];
+            }];
+        }
+        
+        if (_type == 2) {
+            //验证码登陆
+            [_loginModel loginByMobileCode];
+        }
+        
+        
+    }];
+}
+
+#pragma mark 键盘操作
 -(void)editing:(UITextField *)textField
 {
     [UIView animateWithDuration:0.3
@@ -173,6 +227,7 @@
     [pwdTextFiled resignFirstResponder];
 }
 
+#pragma mark textField delegate
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [self editing:textField];
@@ -188,4 +243,9 @@
     return YES;
 }
 
+#pragma mark back
+-(void)backUp{
+    [AppConfig getAPPDelegate].tabBarControllerConfig.tabBarController.selectedIndex = 0;
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "RSTabBarControllerConfig.h"
 #import "RSCartButtion.h"
 #import "LoginViewController.h"
 #import "LoginModel.h"
@@ -59,8 +58,8 @@
 
 - (void)setappRootViewControler
 {
-    RSTabBarControllerConfig *tabBarControllerConfig = [[RSTabBarControllerConfig alloc] init];
-        [self.window setRootViewController:tabBarControllerConfig.tabBarController];
+    _tabBarControllerConfig = [[RSTabBarControllerConfig alloc] init];
+        [self.window setRootViewController:_tabBarControllerConfig.tabBarController];
     [AppConfig customsizeInterface];
     [self.window makeKeyAndVisible];
 }
@@ -77,18 +76,16 @@
     return YES;
 }
 
-#pragma 微信登陆返回数据
+#pragma 微信返回数据
 -(void) onResp:(BaseResp*)resp
 {
     if ([resp isKindOfClass:[PayResp class]]){
         PayResp*response=(PayResp*)resp;
         switch(response.errCode){
             case WXSuccess:
-                NSLog(@"支付成功"); //服务器端查询支付通知或查询API返回的结果再提示成功
                 //TODO 跳转到订单详情页面
                 break;
             default:
-                NSLog(@"支付失败，retcode=%d",resp.errCode);
                 //TODO跳转到订单详情页
                 break;
         }

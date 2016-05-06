@@ -98,4 +98,51 @@
     }];
 }
 
+/**
+ *  使用密码登陆
+ *
+ *  @param userName 用户名
+ *  @param pwd      密码
+ *  @param captcha  验证码
+ */
+- (void)loginbyPassword:(void (^)(void))success failure:(void (^)(void))failure
+{
+    if (self.captcha.length == 0) {
+        self.captcha = @"";
+    }
+    NSDictionary *params = @{
+                             @"username" : self.userName,
+                             @"password" : self.passWord,
+                             @"captcha" : self.captcha
+                             };
+    [RSHttp requestWithURL:@"/user/passwordlogin" params:params httpMethod:@"POSTJSON" success:^(id data) {
+        NSLog(@"%@", data);
+        success();
+    } failure:^(NSInteger code, NSString *errmsg) {
+        if (code==801 && failure!=nil) {
+            failure();
+            return ;
+        }
+        [[RSToastView shareRSAlertView] showToast:errmsg];
+    }];
+}
+
+- (void)loginByMobileCode
+{
+    if (self.captcha.length == 0) {
+        self.captcha = @"";
+    }
+    NSDictionary *params = @{
+                             @"username" : self.userName,
+                             @"code" : self.code,
+                             @"captcha" : self.captcha
+                             };
+    [RSHttp requestWithURL:@"/user/mobilelogin" params:params httpMethod:@"POSTJSON" success:^(id data) {
+        NSLog(@"%@", data);
+    } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSAlertView] showToast:errmsg];
+    }];
+
+}
+
 @end

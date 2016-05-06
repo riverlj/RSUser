@@ -10,13 +10,26 @@
 
 @interface LoginModel : RSModel
 
+#pragma mark 微信登陆参数
 @property (nonatomic, strong)NSString *type;
 @property (nonatomic, assign)NSInteger openid;
 @property (nonatomic, strong)NSString *access_token;
 @property (nonatomic, strong)NSString *refresh_token;
 @property (nonatomic, assign)NSInteger expires_in;
-+(void)weixinLogin:(NSDictionary *)params;
 
+
+@property (nonatomic ,strong)NSString *userName;
+@property (nonatomic ,strong)NSString *passWord;
+/** 手机验证码*/
+@property (nonatomic ,strong)NSString *code;
+/** 图片验证码*/
+@property (nonatomic ,strong)NSString *captcha;
+
+
++(void)weixinLogin:(NSDictionary *)params;
 +(void)sendAuthRequest;
 +(void)getAccess_token:(NSString *)code;
+
+- (void)loginbyPassword:(void (^)(void))success failure:(void (^)(void))failure;
+- (void)loginByMobileCode;
 @end

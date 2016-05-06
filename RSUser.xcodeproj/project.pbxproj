@@ -28,6 +28,7 @@
 		B10769A71CBE490400586304 /* RSImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A61CBE490400586304 /* RSImageView.m */; };
 		B10769AA1CBF1D8700586304 /* LocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A91CBF1D8700586304 /* LocationModel.m */; };
 		B10769AD1CBF344000586304 /* ChooseSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769AC1CBF344000586304 /* ChooseSchoolViewController.m */; };
+		B118A0BC1CDB106D00598506 /* CodesView.m in Sources */ = {isa = PBXBuildFile; fileRef = B118A0BB1CDB106D00598506 /* CodesView.m */; };
 		B123DC401CC4D27600F08E8D /* RSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC3F1CC4D27600F08E8D /* RSButton.m */; };
 		B123DC461CC62DBF00F08E8D /* RSTextFiled.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC451CC62DBF00F08E8D /* RSTextFiled.m */; };
 		B123DC481CC637C400F08E8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B123DC471CC637C400F08E8D /* Assets.xcassets */; };
@@ -173,6 +174,8 @@
 		B10769A91CBF1D8700586304 /* LocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationModel.m; sourceTree = "<group>"; };
 		B10769AB1CBF344000586304 /* ChooseSchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSchoolViewController.h; sourceTree = "<group>"; };
 		B10769AC1CBF344000586304 /* ChooseSchoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseSchoolViewController.m; sourceTree = "<group>"; };
+		B118A0BA1CDB106D00598506 /* CodesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodesView.h; sourceTree = "<group>"; };
+		B118A0BB1CDB106D00598506 /* CodesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodesView.m; sourceTree = "<group>"; };
 		B123DC3E1CC4D27600F08E8D /* RSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSButton.h; sourceTree = "<group>"; };
 		B123DC3F1CC4D27600F08E8D /* RSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSButton.m; sourceTree = "<group>"; };
 		B123DC441CC62DBF00F08E8D /* RSTextFiled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTextFiled.h; sourceTree = "<group>"; };
@@ -444,6 +447,8 @@
 		B123DCB31CC77D8A00F08E8D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B118A0BA1CDB106D00598506 /* CodesView.h */,
+				B118A0BB1CDB106D00598506 /* CodesView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1203,6 +1208,7 @@
 				30221E461CC9FC0E00126D72 /* ProfileModel.m in Sources */,
 				B1A8D4B71CC0CAEC00471E93 /* SchoolAddressCell.m in Sources */,
 				30221E5D1CCE30AC00126D72 /* UILabe+Growth.m in Sources */,
+				B118A0BC1CDB106D00598506 /* CodesView.m in Sources */,
 				B10769A41CBE43E600586304 /* RSLabel.m in Sources */,
 				B123DCBA1CC77FAD00F08E8D /* LoginModel.m in Sources */,
 				30221E561CCE06C300126D72 /* HeadviewCell.m in Sources */,

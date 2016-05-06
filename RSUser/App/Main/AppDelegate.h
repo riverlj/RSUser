@@ -11,6 +11,7 @@
 #import "CartViewController.h"
 #import "WXApi.h"
 #import "SchoolModel.h"
+#import "RSTabBarControllerConfig.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,WXApiDelegate>
 
@@ -19,11 +20,13 @@
 @property (nonatomic, strong)RSLocation *location;
 //购物车VC
 @property (nonatomic, strong)CartViewController *cartViewVc;
-
 //当前导航
 @property (nonatomic, strong)UINavigationController *crrentNavCtl;
+
+@property(nonatomic, strong)RSTabBarControllerConfig *tabBarControllerConfig;
 
 @property (nonatomic, strong)SchoolModel *schoolModel;
 
 - (void)setRootViewController:(UIViewController *)rootVC;
+- (void)setappRootViewControler;
 @end
