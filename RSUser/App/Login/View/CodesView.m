@@ -8,6 +8,7 @@
 
 #import "CodesView.h"
 
+static CodesView *shareCodesView = nil;
 
 @interface CodesView()<UITextFieldDelegate>
 {
@@ -24,6 +25,19 @@
 
 
 @implementation CodesView
+
+
++ (CodesView *)shareCodesView
+{
+    @synchronized (self)
+    {
+        if (shareCodesView == nil)
+        {
+            shareCodesView = [[CodesView alloc]init];
+        }
+    }
+    return shareCodesView;
+}
 
 -(id) initWithOkBlock:(dispatch_block_t)okBlock
 {
@@ -113,8 +127,8 @@
 
 - (void)saveCode
 {
-    [NSUserDefaults setValue:codeTextField.text forKey:@"code"];
-    _okBlock();
+    [NSUserDefaults setValue:codeTextField.text forKey:@"captchaCode"];
+//    _okBlock();
     [self removeFromSuperview];
 }
 
@@ -122,8 +136,8 @@
 {
     //TODO 待优化
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *url = [NSString stringWithFormat:@"http://weixin.honglingjinclub.com/site/captcha?utm_content=%@",[UIDevice utm_content]];
-        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+        NSString *path = [@"/site/captcha" urlWithHost:REDSCARF_BASE_URL];
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:path]];
         UIImage *image = [UIImage imageWithData:data];
         dispatch_async(dispatch_get_main_queue(), ^{
             [codeImageView setImage:image];
@@ -186,5 +200,8 @@
 }
 
 - (void)contentViewClicked{}
+
+
+
 
 @end

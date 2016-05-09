@@ -8,8 +8,9 @@
 
 #import "BaseViewController.h"
 #import "RSWebView.h"
-@interface RSWebViewController : BaseViewController<UIWebViewDelegate>
+#import <JavaScriptCore/JavaScriptCore.h>
 
+@interface RSWebViewController : BaseViewController<UIWebViewDelegate>
 @property(nonatomic,strong)NSString *urlString;
 @property (nonatomic ,strong)RSWebView *bannerView;
 @property (nonatomic ,assign)BOOL isEncodeURL;

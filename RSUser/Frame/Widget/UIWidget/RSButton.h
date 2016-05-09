@@ -12,4 +12,6 @@
 + (RSButton *)buttonWithFrame:(CGRect)frame ImageName:(NSString *)imagename Text:(NSString *)text TextColor:(UIColor *)tcolor;
 + (RSButton *)themeBorderButton:(CGRect)frame Text:(NSString *)text;
 + (UIButton *)themeBackGroundButton:(CGRect)frame Text:(NSString *)text;
+
++ (void)countDown:(UIButton *)button;
 @end

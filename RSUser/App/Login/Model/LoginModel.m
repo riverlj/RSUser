@@ -8,6 +8,7 @@
 
 #import "LoginModel.h"
 #import "CartModel.h"
+#import "CodesView.h"
 
 @implementation LoginModel
 +(NSDictionary *)JSONKeyPathsByPropertyKey
@@ -91,7 +92,7 @@
                           @"mobile" : mobile,
                           @"method" : @"4"
                           };
-    [RSHttp requestWithURL:@"/mobileverifynew" params:@"" httpMethod:@"POSTJSON" success:^(id data) {
+    [RSHttp requestWithURL:@"/mobileverifynew" params:dic httpMethod:@"POSTJSON" success:^(id data) {
         
     } failure:^(NSInteger code, NSString *errmsg) {
         
@@ -105,11 +106,12 @@
  *  @param pwd      密码
  *  @param captcha  验证码
  */
-- (void)loginbyPassword:(void (^)(void))success failure:(void (^)(void))failure
+- (void)loginbyPassword:(void (^)(void))success
 {
-    if (self.captcha.length == 0) {
-        self.captcha = @"";
+    if (![self checkModel]) {
+        return;
     }
+    
     NSDictionary *params = @{
                              @"username" : self.userName,
                              @"password" : self.passWord,
@@ -119,30 +121,67 @@
         NSLog(@"%@", data);
         success();
     } failure:^(NSInteger code, NSString *errmsg) {
-        if (code==801 && failure!=nil) {
-            failure();
-            return ;
-        }
         [[RSToastView shareRSAlertView] showToast:errmsg];
     }];
 }
 
-- (void)loginByMobileCode
+- (void)loginByMobileCode:(void (^)(void))success
 {
-    if (self.captcha.length == 0) {
-        self.captcha = @"";
+    if (![self checkModel]) {
+        return;
     }
     NSDictionary *params = @{
-                             @"username" : self.userName,
+                             @"mobile" : self.userName,
                              @"code" : self.code,
                              @"captcha" : self.captcha
                              };
-    [RSHttp requestWithURL:@"/user/mobilelogin" params:params httpMethod:@"POSTJSON" success:^(id data) {
-        NSLog(@"%@", data);
+    [RSHttp requestWithURL:@"/user/mobilelogin" params:params httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
+        [NSUserDefaults setValue:[data valueForKey:@"token"] forKey:@"token"];
+        success();
     } failure:^(NSInteger code, NSString *errmsg) {
         [[RSToastView shareRSAlertView] showToast:errmsg];
     }];
 
+}
+
+- (void)sendCode:(void (^)(void))success
+{
+    if (![self checkModel]) {
+        return;
+    }
+    
+    NSDictionary *params = @{
+                             @"mobile" : self.userName,
+                             @"captcha" : self.captcha
+                             };
+    
+    [RSHttp requestWithURL:@"/site/code" params:params httpMethod:@"POSTJSON" success:^(id data) {
+        [[RSToastView shareRSAlertView] showToast:@"发送成功"];
+        success();
+    } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSAlertView] showToast:errmsg];
+    }];
+
+}
+
+- (BOOL)checkModel
+{
+    self.captcha = [NSUserDefaults getValue:@"captchaCode"];
+    
+    if (self.captcha.length == 0) {
+        self.captcha = @"";
+    }
+    
+    if (self.userName.length == 0) {
+        [[RSToastView shareRSAlertView] showToast:@"请输入手机号"];
+        return NO;
+    }
+    if (![self.userName isMobile]) {
+        [[RSToastView shareRSAlertView] showToast:@"请输入正确的手机号"];
+        return NO;
+    }
+    
+    return YES;
 }
 
 @end

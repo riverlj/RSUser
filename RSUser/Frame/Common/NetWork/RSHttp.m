@@ -7,6 +7,7 @@
 //
 
 #import "RSHttp.h"
+#import "CodesView.h"
 
 @implementation RSHttp
 
@@ -106,6 +107,12 @@
              operation:(AFHTTPRequestOperation *)op
                  error:(NSError *)error
 {
+    if (error.code == 801) {
+        CodesView *codeView = [[CodesView alloc]init];
+        [codeView show];
+        return;
+    }
+    
     [AppConfig setRootViewControllerWithCode:error.code];
 
     NSString *errmsg = [error.userInfo valueForKey:@"NSLocalizedDescription"];

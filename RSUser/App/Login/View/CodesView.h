@@ -11,4 +11,6 @@
 @interface CodesView : UIScrollView
 -(id) initWithOkBlock:(dispatch_block_t)okBlock;
 - (void)show;
+- (NSInteger)readCode;
++ (CodesView *)shareCodesView;
 @end

@@ -45,4 +45,26 @@
     return button;
 }
 
++ (void)countDown:(UIButton *)button
+{
+    __block NSInteger count = 60;
+    RACSignal *timeSignal = [[[[RACSignal interval:1.0f onScheduler:[RACScheduler mainThreadScheduler]] take:60] startWith:@(1)] map:^id(NSDate *date) {
+        if (count == 0) {
+            [button setTitle:@"重发验证码" forState:UIControlStateNormal];
+            return @YES;
+        }
+        else{
+            [button setTitle:[NSString stringWithFormat:@"%lds", count--] forState:UIControlStateNormal];
+            return @NO;
+        }
+    }] ;
+    
+    button.rac_command = [[RACCommand alloc]initWithEnabled:timeSignal signalBlock:^RACSignal *(id input) {
+        count = 60;
+        return [RACSignal empty];
+    }];
+    
+}
+
+
 @end

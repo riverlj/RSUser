@@ -14,3 +14,4 @@
 
 -(void) setTitle:(NSString *)title withImg:(NSString *)img;
 @end
+  

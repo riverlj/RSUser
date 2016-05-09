@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import "BandleCellPhoneViewController.h"
 #import "LoginModel.h"
-#import "CodesView.h"
+#import "RSJSWebViewController.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 {
@@ -18,6 +18,7 @@
     RSTextFiled *pwdTextFiled;
     RSButton *loginBtn;
     RSButton *codeloginBtn;
+    RSButton *forgetPwdBtn;
     UIImageView *weixinImageView;
     UIView *pwdRightView;
     
@@ -53,8 +54,13 @@
     [self.view addSubview:scrolView];
     
     RSButton *registerBtn = [RSButton buttonWithFrame:CGRectMake(0, 0, 60, 44) ImageName:nil Text:@"注册" TextColor:RS_TabBar_count_Color];
+    
+    @weakify(self)
     [[registerBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        
+        @strongify(self)
+        NSString* urlStr = [NSString URLencode:APP_REGISTER_URL stringEncoding:NSUTF8StringEncoding];
+        UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://RSJSWeb?urlString=%@&isEncodeURL=YES",urlStr]];
+        [self.navigationController pushViewController:vc animated:YES];
     }];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:registerBtn];
@@ -90,9 +96,15 @@
     [scrolView addSubview:pwdTextFiled];
     
     pwdRightView = [[UIView alloc]init];
-    RSButton *forgetPwdBtn = [RSButton buttonWithFrame:CGRectMake(15, 0, 74, 24) ImageName:nil Text:@"忘记密码?" TextColor:RS_Sub_Text_Color];
+    forgetPwdBtn = [RSButton buttonWithFrame:CGRectMake(15, 0, 74, 24) ImageName:nil Text:@"忘记密码?" TextColor:RS_Sub_Text_Color];
     pwdRightView.frame = forgetPwdBtn.frame;
     pwdRightView.width = forgetPwdBtn.width + 15;
+    
+    [[forgetPwdBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        @strongify(self)
+        [self findPassWord];
+    }];
+    
     if (self.type == 2) {
         [forgetPwdBtn setTitle:@"发送验证码" forState:UIControlStateNormal];
         [forgetPwdBtn setTitleColor:RS_Theme_Color forState:UIControlStateNormal];
@@ -100,6 +112,12 @@
         forgetPwdBtn.layer.borderWidth = 1;
         forgetPwdBtn.layer.cornerRadius = 6;
         pwdRightView.width = forgetPwdBtn.width + 30;
+        //发送验证码
+        @weakify(self)
+        [[forgetPwdBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            @strongify(self)
+            [self sendCode];
+        }];
     }
     pwdRightView.backgroundColor = [UIColor clearColor];
     [pwdRightView addSubview:forgetPwdBtn];
@@ -122,7 +140,7 @@
     if (self.type == 2)
     {
         pwdTextFiled.placeholder = @"请输入验证码";
-        
+        pwdTextFiled.secureTextEntry = NO;
         [codeloginBtn setTitle:@"密码登录" forState:UIControlStateNormal];
         codeloginBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
         codeloginBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -140);
@@ -179,20 +197,15 @@
         if (_type == 1) {
             //用户名密码登陆
             [_loginModel loginbyPassword:^{
-                
-            } failure:^{
-                CodesView *codeView = [[CodesView alloc]initWithOkBlock:^{
-                    _loginModel.captcha = [NSUserDefaults getValue:@"code"];
-                    [NSUserDefaults clearValueForKey:@"code"];
-                    [_loginModel loginbyPassword:nil failure:nil];
-                }];
-                [codeView show];
+                [self.navigationController popViewControllerAnimated:YES];
             }];
         }
         
         if (_type == 2) {
             //验证码登陆
-            [_loginModel loginByMobileCode];
+            [_loginModel loginByMobileCode:^{
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
         }
         
         
@@ -248,4 +261,26 @@
     [AppConfig getAPPDelegate].tabBarControllerConfig.tabBarController.selectedIndex = 0;
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
+/**
+ *  发送验证码
+ */
+- (void)sendCode
+{
+    [_loginModel sendCode:^{
+        [RSButton countDown:forgetPwdBtn];
+    }];
+    
+    
+}
+
+
+/**
+ *  找回密码
+ */
+- (void)findPassWord
+{
+
+}
+
 @end

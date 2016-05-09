@@ -30,6 +30,7 @@
 +(void)sendAuthRequest;
 +(void)getAccess_token:(NSString *)code;
 
-- (void)loginbyPassword:(void (^)(void))success failure:(void (^)(void))failure;
-- (void)loginByMobileCode;
+- (void)loginbyPassword:(void (^)(void))success;
+- (void)loginByMobileCode:(void (^)(void))success;
+- (void)sendCode:(void (^)(void))success;
 @end

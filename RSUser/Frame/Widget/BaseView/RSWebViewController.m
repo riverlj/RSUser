@@ -26,7 +26,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     [self initWebView];
 }
 
@@ -34,6 +33,8 @@
 {
     NSURL *url;
     _bannerView = [[RSWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    self.bannerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.height-64);
+    self.bannerView.backgroundColor = RS_Background_Color;
     _bannerView.delegate = self;
     if (self.isEncodeURL) {
         self.urlString = [self.urlString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -79,5 +80,8 @@
     NSString *errmsg = [error.userInfo valueForKey:@"NSLocalizedDescription"];
     [RSToastView alertView:errmsg];
 }
+
+
+
 
 @end

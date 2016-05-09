@@ -14,7 +14,7 @@
 {
     self = [super init];
     if(self) {
-//        [self setBackgroundColor:color_gray_f3f5f7];
+        [self setBackgroundColor:RS_Background_Color];
         [self addSubview:self.imgView];
         [self addSubview:self.titleLabel];
     }
@@ -25,7 +25,7 @@
 {
     self = [super initWithFrame:frame];
     if(self) {
-//        [self setBackgroundColor:color_gray_f3f5f7];
+        [self setBackgroundColor:RS_Background_Color];
         [self addSubview:self.imgView];
         [self addSubview:self.titleLabel];
     }
@@ -56,8 +56,8 @@
         return _titleLabel;
     }
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.imgView.width, 40)];
-//    _titleLabel.textColor = color155;
-//    _titleLabel.font = textFont12;
+    _titleLabel.textColor = RS_COLOR_C3;
+    _titleLabel.font = RS_FONT_F4;
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     return _titleLabel;
 }

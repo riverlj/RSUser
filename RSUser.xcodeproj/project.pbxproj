@@ -28,6 +28,7 @@
 		B10769A71CBE490400586304 /* RSImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A61CBE490400586304 /* RSImageView.m */; };
 		B10769AA1CBF1D8700586304 /* LocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A91CBF1D8700586304 /* LocationModel.m */; };
 		B10769AD1CBF344000586304 /* ChooseSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769AC1CBF344000586304 /* ChooseSchoolViewController.m */; };
+		B10F65D21CDC7C2F003C5B23 /* RSJSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B10F65D11CDC7C2F003C5B23 /* RSJSWebViewController.m */; };
 		B118A0BC1CDB106D00598506 /* CodesView.m in Sources */ = {isa = PBXBuildFile; fileRef = B118A0BB1CDB106D00598506 /* CodesView.m */; };
 		B123DC401CC4D27600F08E8D /* RSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC3F1CC4D27600F08E8D /* RSButton.m */; };
 		B123DC461CC62DBF00F08E8D /* RSTextFiled.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC451CC62DBF00F08E8D /* RSTextFiled.m */; };
@@ -174,6 +175,8 @@
 		B10769A91CBF1D8700586304 /* LocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationModel.m; sourceTree = "<group>"; };
 		B10769AB1CBF344000586304 /* ChooseSchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseSchoolViewController.h; sourceTree = "<group>"; };
 		B10769AC1CBF344000586304 /* ChooseSchoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseSchoolViewController.m; sourceTree = "<group>"; };
+		B10F65D01CDC7C2F003C5B23 /* RSJSWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSJSWebViewController.h; sourceTree = "<group>"; };
+		B10F65D11CDC7C2F003C5B23 /* RSJSWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSJSWebViewController.m; sourceTree = "<group>"; };
 		B118A0BA1CDB106D00598506 /* CodesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodesView.h; sourceTree = "<group>"; };
 		B118A0BB1CDB106D00598506 /* CodesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodesView.m; sourceTree = "<group>"; };
 		B123DC3E1CC4D27600F08E8D /* RSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSButton.h; sourceTree = "<group>"; };
@@ -543,6 +546,8 @@
 				B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */,
 				B1422BF61CBB733600C988FE /* RSCartButtion.h */,
 				B1422BF71CBB733600C988FE /* RSCartButtion.m */,
+				B10F65D01CDC7C2F003C5B23 /* RSJSWebViewController.h */,
+				B10F65D11CDC7C2F003C5B23 /* RSJSWebViewController.m */,
 			);
 			name = Controller;
 			path = Widget/BaseView;
@@ -1213,6 +1218,7 @@
 				B123DCBA1CC77FAD00F08E8D /* LoginModel.m in Sources */,
 				30221E561CCE06C300126D72 /* HeadviewCell.m in Sources */,
 				B18322551CD07709006E7EBC /* PayWebViewController.m in Sources */,
+				B10F65D21CDC7C2F003C5B23 /* RSJSWebViewController.m in Sources */,
 				B1BD00851CD9A0CB00D41676 /* TicketViewController.m in Sources */,
 				B1FFB8CB1CB6566100255F21 /* NSDate+RSFormatter.m in Sources */,
 				B1738DBB1CB665C3006C7207 /* RSCatchline.m in Sources */,

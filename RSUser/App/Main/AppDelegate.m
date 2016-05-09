@@ -19,7 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        
+    self.window.backgroundColor = [UIColor whiteColor];
+
     _cartViewVc = [[CartViewController alloc]init];
     _location =  [[RSLocation alloc]init];
     //如果没有授权则请求用户授权
@@ -39,7 +40,7 @@
     UIWebView* tempWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
     NSString* userAgent = [tempWebView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
     NSLog(@"%@", userAgent);
-    NSString *ua = [NSString stringWithFormat:@"%@ HLJUserAPP/%@",
+    NSString *ua = [NSString stringWithFormat:@"%@ RSUserAPP/%@",
                         userAgent,
                          [UIDevice clientVersion]];
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent" : ua, @"User-Agent" : ua}];
