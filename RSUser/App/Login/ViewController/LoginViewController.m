@@ -274,13 +274,14 @@
     
 }
 
-
 /**
  *  找回密码
  */
 - (void)findPassWord
 {
-
+    NSString* urlStr = [NSString URLencode:APP_RESETPWD_URL stringEncoding:NSUTF8StringEncoding];
+    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://RSJSWeb?urlString=%@&isEncodeURL=YES",urlStr]];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

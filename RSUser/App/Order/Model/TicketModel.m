@@ -37,10 +37,10 @@
 + (void)createticket:(NSDictionary *)params success:(void (^)(void))successArray
 {
     [RSHttp requestWithURL:@"/weixin/createticket" params:params httpMethod:@"POSTJSON" success:^(id data) {
-        [[RSToastView shareRSAlertView] showToast:@"提交成功"];
+        [[RSToastView shareRSToastView] showToast:@"提交成功"];
         successArray();
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView] showToast:errmsg];
+        [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 }
 @end

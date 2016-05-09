@@ -58,7 +58,7 @@
         
         NSInteger reason = [self getSelectedTicketId];
         if (reason == -1) {
-            [[RSToastView shareRSAlertView] showToast:@"请选择反馈内容"];
+            [[RSToastView shareRSToastView] showToast:@"请选择反馈内容"];
             return ;
         }
         

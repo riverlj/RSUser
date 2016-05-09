@@ -36,5 +36,6 @@
 #define WEIXIN_LOGIN_SECRET @"4886b7a96a42448424737f9da4877acf"
 
 #define APP_REGISTER_URL @"http://mxj.dev.honglingjinclub.com/register.html"
+#define APP_RESETPWD_URL @"http://mxj.dev.honglingjinclub.com/resetPwd.html"
 
 #endif /* Constant_h */

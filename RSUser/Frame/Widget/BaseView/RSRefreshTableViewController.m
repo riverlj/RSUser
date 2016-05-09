@@ -120,14 +120,14 @@
     //如果是正常请求，默认加上loading
     if(refreshMethod == 0)
     {
-        [[RSToastView shareRSAlertView] showHUD:@"加载中"];
+        [[RSToastView shareRSToastView] showHUD:@"加载中"];
         
     }
 }
 
 -(void) beforeProcessHttpData
 {
-    [[RSToastView shareRSAlertView]  hidHUD];
+    [[RSToastView shareRSToastView]  hidHUD];
     if(refreshMethod !=2 ) {
         self.models = [NSMutableArray array];
     }
@@ -139,7 +139,7 @@
 
 -(void) afterProcessHttpData:(NSInteger)before afterCount:(NSInteger)after
 {
-    [[RSToastView shareRSAlertView] hidHUD];
+    [[RSToastView shareRSToastView] hidHUD];
 
     [self.tableView reloadData];
     if(self.tableView.mj_header) {
@@ -177,8 +177,8 @@
 
 -(void) afterHttpFailure:(NSInteger)code errmsg:(NSString *)errmsg
 {
-    [[RSToastView shareRSAlertView] hidHUD];
-    [[RSToastView shareRSAlertView] showToast:errmsg];
+    [[RSToastView shareRSToastView] hidHUD];
+    [[RSToastView shareRSToastView] showToast:errmsg];
     if(refreshMethod == 1)
     {
         [self.tableView.mj_header endRefreshing];

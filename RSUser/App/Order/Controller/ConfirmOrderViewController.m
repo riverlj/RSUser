@@ -152,7 +152,7 @@
         [self.navigationController pushViewController:payWebVC animated:YES];
         
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView] showToast:errmsg];
+        [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 }
 

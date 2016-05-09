@@ -64,7 +64,7 @@
         }];
         success(returnArray);
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView] showToast:errmsg];
+        [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 }
 
@@ -72,14 +72,14 @@
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:@"" forKey:@"couponcode"];
-    [[RSToastView shareRSAlertView] showHUD:@"加载中..."];
+    [[RSToastView shareRSToastView] showHUD:@"加载中..."];
     [RSHttp requestWithURL:@"/weixin/bindcoupon" params:params httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
-        [[RSToastView shareRSAlertView] hidHUD];
-        [[RSToastView shareRSAlertView] showToast:@"兑换成功"];
+        [[RSToastView shareRSToastView] hidHUD];
+        [[RSToastView shareRSToastView] showToast:@"兑换成功"];
         success();
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView] hidHUD];
-        [[RSToastView shareRSAlertView] showToast:errmsg];
+        [[RSToastView shareRSToastView] hidHUD];
+        [[RSToastView shareRSToastView] showToast:errmsg];
         failure();
     }];
 }

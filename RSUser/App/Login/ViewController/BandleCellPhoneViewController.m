@@ -7,6 +7,7 @@
 //
 
 #import "BandleCellPhoneViewController.h"
+#import "LoginModel.h"
 
 @interface BandleCellPhoneViewController ()
 {
@@ -14,6 +15,8 @@
     RSTextFiled *codeTextFiled;
     RSButton *bandelButton;
     UIView *codeRightView;
+    RSButton *sendcodedBtn;
+    LoginModel *_loginModel;
 }
 @end
 
@@ -22,18 +25,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"绑定手机";
+    _loginModel = [[LoginModel alloc]init];
     
     cellphoneTextFiled = [RSTextFiled textFiledWithFrame:CGRectMake(18, 15, SCREEN_WIDTH-36, 45) cornerRadius:5 Placeholder:@"请输入要绑定的手机号"];
+    [[cellphoneTextFiled rac_textSignal] subscribeNext:^(NSString *userName) {
+        _loginModel.userName = userName;
+    }];
     [self.view addSubview:cellphoneTextFiled];
     
     codeTextFiled = [RSTextFiled textFiledWithFrame:CGRectMake(cellphoneTextFiled.x, cellphoneTextFiled.bottom+10, cellphoneTextFiled.width, cellphoneTextFiled.height) cornerRadius:5 Placeholder:@"请输入验证码"];
+    [[codeTextFiled rac_textSignal] subscribeNext:^(NSString *code) {
+        _loginModel.code = code;
+    }];
     [self.view addSubview:codeTextFiled];
     
-    RSButton *sendcodedBtn = [RSButton themeBorderButton:CGRectMake(15, 0, 74, 29) Text:@"发送验证码"];
-    
+    sendcodedBtn = [RSButton themeBorderButton:CGRectMake(15, 0, 74, 29) Text:@"发送验证码"];
     codeRightView = [[UIView alloc]initWithFrame:sendcodedBtn.frame];
     codeRightView.width = sendcodedBtn.width + 30;
     codeRightView.backgroundColor = [UIColor clearColor];
+    @weakify(self)
+    [[sendcodedBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        @strongify(self)
+        [self sendCode];
+    }];
     [codeRightView addSubview:sendcodedBtn];
     
     codeTextFiled.rightView = codeRightView;
@@ -44,7 +58,8 @@
     bandelButton.layer.cornerRadius = 6;
     [[bandelButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         //TODO 绑定操作
-        
+        @strongify(self)
+        [self bandleCellPhone];
     }];
     
     [self.view addSubview:bandelButton];
@@ -52,7 +67,19 @@
 
 - (void)bandleCellPhone
 {
+    @weakify(self)
+    [_loginModel bindMobile:^{
+        @strongify(self)
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+}
 
+- (void)sendCode
+{
+    [_loginModel sendCode:^{
+        [RSButton countDown:sendcodedBtn];
+    }];
+    
 }
 
 @end

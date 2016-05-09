@@ -11,7 +11,7 @@
 static RSToastView *shareObject = nil;
 @implementation RSToastView
 
-+(id)shareRSAlertView{
++(id)shareRSToastView{
     @synchronized(self)
     {
         if (shareObject == nil)

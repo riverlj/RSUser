@@ -251,7 +251,7 @@
     [self endedit];
     BOOL result = [self.model checkValid:^{
     } failure:^(NSString *key, NSString *errmsg) {
-        [[RSToastView shareRSAlertView] showToast:errmsg];
+        [[RSToastView shareRSToastView] showToast:errmsg];
     }];
     if(result) {
         [self.model edit:^{

@@ -33,4 +33,10 @@
 - (void)loginbyPassword:(void (^)(void))success;
 - (void)loginByMobileCode:(void (^)(void))success;
 - (void)sendCode:(void (^)(void))success;
+/**
+ * 绑定手机号
+ *
+ *  @param success 回调
+ */
+- (void)bindMobile:(void (^)(void))success;
 @end

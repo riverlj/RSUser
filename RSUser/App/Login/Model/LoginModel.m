@@ -28,10 +28,10 @@
 
     [RSHttp requestWithURL:@"/weixin/login" params:params httpMethod:@"POSTJSON" success:^(NSDictionary* data) {
         [NSUserDefaults  setValue:[data valueForKey:@"token"] forKey:@"token"];
-        [[RSToastView  shareRSAlertView]showToast:@"登陆成功"];
+        [[RSToastView  shareRSToastView]showToast:@"登陆成功"];
         [[AppConfig getAPPDelegate].crrentNavCtl popToRootViewControllerAnimated:YES];
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView  shareRSAlertView]showToast:errmsg];
+        [[RSToastView  shareRSToastView]showToast:errmsg];
     }];
 }
 
@@ -76,9 +76,9 @@
                              @"mobile" : mobile
                              };
     [RSHttp requestWithURL:@"/site/code" params:params httpMethod:@"POSTJSON" success:^(id data) {
-        [[RSToastView shareRSAlertView] showToast:@"发送成功"];
+        [[RSToastView shareRSToastView] showToast:@"发送成功"];
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView] showToast:errmsg];
+        [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 }
 
@@ -121,7 +121,7 @@
         NSLog(@"%@", data);
         success();
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView] showToast:errmsg];
+        [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 }
 
@@ -139,7 +139,7 @@
         [NSUserDefaults setValue:[data valueForKey:@"token"] forKey:@"token"];
         success();
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView] showToast:errmsg];
+        [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 
 }
@@ -156,12 +156,27 @@
                              };
     
     [RSHttp requestWithURL:@"/site/code" params:params httpMethod:@"POSTJSON" success:^(id data) {
-        [[RSToastView shareRSAlertView] showToast:@"发送成功"];
+        [[RSToastView shareRSToastView] showToast:@"发送成功"];
         success();
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView] showToast:errmsg];
+        [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 
+}
+
+- (void)bindMobile:(void (^)(void))success
+{
+    NSDictionary *params = @{
+                             @"mobile" : self.userName,
+                             @"code" : self.code
+                             };
+    
+    [RSHttp requestWithURL:@"/user/bindmobile" params:params httpMethod:@"POSTJSON" success:^(id data) {
+        [[RSToastView shareRSToastView] showToast:@"绑定成功"];
+        success();
+    } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSToastView] showToast:errmsg];
+    }];
 }
 
 - (BOOL)checkModel
@@ -173,11 +188,11 @@
     }
     
     if (self.userName.length == 0) {
-        [[RSToastView shareRSAlertView] showToast:@"请输入手机号"];
+        [[RSToastView shareRSToastView] showToast:@"请输入手机号"];
         return NO;
     }
     if (![self.userName isMobile]) {
-        [[RSToastView shareRSAlertView] showToast:@"请输入正确的手机号"];
+        [[RSToastView shareRSToastView] showToast:@"请输入正确的手机号"];
         return NO;
     }
     

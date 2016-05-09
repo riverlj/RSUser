@@ -66,17 +66,17 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [[RSToastView shareRSAlertView]showHUD:@"加载中"];
+    [[RSToastView shareRSToastView]showHUD:@"加载中"];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [[RSToastView shareRSAlertView]hidHUD];
+    [[RSToastView shareRSToastView]hidHUD];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error
 {
-    [[RSToastView shareRSAlertView]hidHUD];
+    [[RSToastView shareRSToastView]hidHUD];
     NSString *errmsg = [error.userInfo valueForKey:@"NSLocalizedDescription"];
     [RSToastView alertView:errmsg];
 }

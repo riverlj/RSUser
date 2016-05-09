@@ -10,7 +10,7 @@
 
 @interface RSToastView : NSObject
 @property (nonatomic, strong)MBProgressHUD *hud;
-+(id)shareRSAlertView;
++(id)shareRSToastView;
 +(void)alertView:(NSString *)msg;
 
 - (void)showHUD:(NSString *)title;

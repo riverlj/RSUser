@@ -60,7 +60,7 @@ static LocationModel *shareLocationModel = nil;
         }];
         successArray(resultArray);
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView] showToast:errmsg];
+        [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 }
 

@@ -46,7 +46,7 @@
         }];
         successArray(addressList);
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView] showToast:errmsg];
+        [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 }
 
@@ -60,14 +60,14 @@
     [params setValue:self.mobile forKey:@"mobile"];
     [params setValue:self.name forKey:@"name"];
     
-    [[RSToastView shareRSAlertView] showHUD:@"提交中"];
+    [[RSToastView shareRSToastView] showHUD:@"提交中"];
     [RSHttp requestWithURL:@"/weixin/editaddr" params:params httpMethod:@"POSTJSON" success:^(id data) {
-        [[RSToastView shareRSAlertView] hidHUD];
-        [[RSToastView shareRSAlertView]showToast:@"修改成功"];
+        [[RSToastView shareRSToastView] hidHUD];
+        [[RSToastView shareRSToastView]showToast:@"修改成功"];
         success();
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView] hidHUD];
-        [[RSToastView shareRSAlertView]showToast:errmsg];
+        [[RSToastView shareRSToastView] hidHUD];
+        [[RSToastView shareRSToastView]showToast:errmsg];
     }];
 }
 
@@ -79,7 +79,7 @@
     [RSHttp requestWithURL:@"/weixin/selectaddr" params:params httpMethod:@"POSTJSON" success:^(id data) {
         success();
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView] showToast:errmsg];
+        [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 }
 
@@ -89,10 +89,10 @@
         @"addressid" : self.addressId
     };
     [RSHttp requestWithURL:@"/weixin/removeaddr" params:params httpMethod:@"POSTJSON" success:^(id data) {
-        [[RSToastView shareRSAlertView]showToast:@"删除成功"];
+        [[RSToastView shareRSToastView]showToast:@"删除成功"];
         success();
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView]showToast:errmsg];
+        [[RSToastView shareRSToastView]showToast:errmsg];
     }];
 }
 
@@ -116,7 +116,7 @@
         NSArray *models = [MTLJSONAdapter modelsOfClass:[BuildingModel class] fromJSONArray:data error:nil];
         success(models);
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSAlertView]showToast:errmsg];
+        [[RSToastView shareRSToastView]showToast:errmsg];
     }];
 }
 
