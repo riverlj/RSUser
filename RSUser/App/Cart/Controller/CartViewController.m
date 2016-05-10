@@ -138,10 +138,11 @@
     SchoolModel *schoolModel = [AppConfig getAPPDelegate].schoolModel;
     if (totalPrice <= schoolModel.minprice) {
         
-        RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:[NSString stringWithFormat:@"最低%.2f",schoolModel.minprice] leftButtonTitle:@"我知道了" AndLeftBlock:^{
+        RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:[NSString stringWithFormat:@"最低%.2f元起送",schoolModel.minprice] leftButtonTitle:@"我知道了" AndLeftBlock:^{
             
         }];
         [alertView show];
+        return;
     }
     NSString *path = [NSString stringWithFormat:@"RSUser://confirmOrder?totalprice=%.2f",totalPrice];
     UIViewController *vc = [RSRoute getViewControllerByPath:path];

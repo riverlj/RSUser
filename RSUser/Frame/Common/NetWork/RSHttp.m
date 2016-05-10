@@ -116,6 +116,7 @@
     [AppConfig setRootViewControllerWithCode:error.code];
 
     NSString *errmsg = [error.userInfo valueForKey:@"NSLocalizedDescription"];
+    NSLog(@"---------%@", errmsg);
     failure(error.code, errmsg);
 }
 

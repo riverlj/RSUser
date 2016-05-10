@@ -49,15 +49,22 @@
 }
 
 //微信支付
--(void)payWeChat:(NSDictionary *)param
+-(void)payWeChat:(id)param
 {
+    NSLog(@"%@", param);
+    
+    NSData *data = [param dataUsingEncoding:NSUTF8StringEncoding];
+     NSDictionary *dic  = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+     
+
     PayReq *request = [[PayReq alloc] init];
-    request.partnerId = [param valueForKey:@"partnerId"];
-    request.prepayId= [param valueForKey:@"prepayId"];
-    request.package = [param valueForKey:@"package"];
-    request.nonceStr= [param valueForKey:@"nonceStr"];
-    request.timeStamp= [[param valueForKey:@"timeStamp"] toInt32];
-    request.sign= [param valueForKey:@"sign"];
+    request.partnerId = [dic valueForKey:@"partnerid"];
+    request.prepayId= [dic valueForKey:@"prepayid"];
+    request.package = [dic valueForKey:@"package"];
+    request.nonceStr= [dic valueForKey:@"noncestr"];
+    request.timeStamp= [[dic valueForKey:@"timestamp"] intValue];
+    request.sign= [dic valueForKey:@"sign"];
+    
     [WXApi sendReq:request];
 }
 
@@ -67,6 +74,13 @@
         
     }];
     [alertView show];
+}
+
+- (void)backUp
+{
+    [AppConfig getAPPDelegate].tabBarControllerConfig.tabBarController.selectedIndex = 1;
+    //订单详情页面
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

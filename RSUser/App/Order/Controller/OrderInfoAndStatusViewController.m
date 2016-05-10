@@ -102,4 +102,10 @@
     }
     return _orderStatusVc;
 }
+
+-(void)backUp
+{
+    [AppConfig getAPPDelegate].tabBarControllerConfig.tabBarController.selectedIndex = 1;
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 @end

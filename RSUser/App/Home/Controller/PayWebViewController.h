@@ -13,10 +13,12 @@
 @protocol NavtiveJSExport <JSExport>
 - (void)close;
 - (void)hideTitleBar;
-- (void)payWeChat:(NSString *)str;
+- (void)payWeChat:(id)str;
 -(void)payAli:(NSString *)str;
 @end
 
 @interface PayWebViewController : RSWebViewController<NavtiveJSExport>
+@property (nonatomic, strong)NSString *orderId;
+
 @property (strong, nonatomic) JSContext *context;
 @end

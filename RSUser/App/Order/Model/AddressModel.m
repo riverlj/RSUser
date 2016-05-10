@@ -34,7 +34,7 @@
 
 + (void)getAddressList: (void(^)(NSArray *))successArray
 {
-    [RSHttp requestWithURL:@"/weixin/addresses" params:nil httpMethod:@"GET" success:^(NSArray *data) {
+    [RSHttp requestWithURL:@"/address/list" params:nil httpMethod:@"GET" success:^(NSArray *data) {
         NSMutableArray *addressList = [[NSMutableArray alloc]init];
         [data enumerateObjectsUsingBlock:^(NSDictionary *dic, NSUInteger idx, BOOL * _Nonnull stop) {
             NSError *error;
@@ -61,7 +61,7 @@
     [params setValue:self.name forKey:@"name"];
     
     [[RSToastView shareRSToastView] showHUD:@"提交中"];
-    [RSHttp requestWithURL:@"/weixin/editaddr" params:params httpMethod:@"POSTJSON" success:^(id data) {
+    [RSHttp requestWithURL:@"/address/edit" params:params httpMethod:@"POSTJSON" success:^(id data) {
         [[RSToastView shareRSToastView] hidHUD];
         [[RSToastView shareRSToastView]showToast:@"修改成功"];
         success();
@@ -76,7 +76,7 @@
     NSDictionary *params = @{
         @"addressid" : self.addressId
     };
-    [RSHttp requestWithURL:@"/weixin/selectaddr" params:params httpMethod:@"POSTJSON" success:^(id data) {
+    [RSHttp requestWithURL:@"/address/select" params:params httpMethod:@"POSTJSON" success:^(id data) {
         success();
     } failure:^(NSInteger code, NSString *errmsg) {
         [[RSToastView shareRSToastView] showToast:errmsg];
@@ -88,7 +88,7 @@
     NSDictionary *params = @{
         @"addressid" : self.addressId
     };
-    [RSHttp requestWithURL:@"/weixin/removeaddr" params:params httpMethod:@"POSTJSON" success:^(id data) {
+    [RSHttp requestWithURL:@"/address/remove" params:params httpMethod:@"POSTJSON" success:^(id data) {
         [[RSToastView shareRSToastView]showToast:@"删除成功"];
         success();
     } failure:^(NSInteger code, NSString *errmsg) {
@@ -112,7 +112,7 @@
     NSDictionary *params = @{
         @"communityid" : [NSString stringWithFormat:@"%zd", self.communityid],
     };
-    [RSHttp requestWithURL:@"/weixin/buildings" params:params httpMethod:@"GET" success:^(id data) {
+    [RSHttp requestWithURL:@"/community/buildings" params:params httpMethod:@"GET" success:^(id data) {
         NSArray *models = [MTLJSONAdapter modelsOfClass:[BuildingModel class] fromJSONArray:data error:nil];
         success(models);
     } failure:^(NSInteger code, NSString *errmsg) {

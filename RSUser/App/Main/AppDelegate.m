@@ -48,7 +48,7 @@
 
 -(void)configThreeLib
 {
-    [WXApi registerApp:WEIXIN_LOGIN_APPID withDescription:@"weixin"];
+    [WXApi registerApp:@"wx3ba861f7b4956067"];
 }
 
 - (void)setRootViewController:(UIViewController *)rootVC
@@ -90,6 +90,7 @@
                 //TODO跳转到订单详情页
                 break;
         }
+        return;
     }
     
     SendAuthResp *aresp = (SendAuthResp *)resp;

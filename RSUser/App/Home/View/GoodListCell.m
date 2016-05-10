@@ -86,9 +86,7 @@
 @end
 
 @interface GoodListCell ()<ThrowLineToolDelegate>
-{
-    UIImageView *_throwedView;
-}
+
 @property (nonatomic,assign) NSInteger count;
 @end
 
@@ -136,7 +134,8 @@
     _deleteLineView.backgroundColor = RS_SubMain_Text_Color;
     
     CGSize addSize = [UIImage imageNamed:@"addActivate"].size;
-    self.addIV = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-32, 62, addSize.width, addSize.height)];
+    self.addIV = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-32, 93/2, 2*addSize.width, 93/2)];
+    self.addIV.contentMode = UIViewContentModeLeft;
     [self.contentView addSubview:self.addIV];
     [self.addIV setImage:[UIImage imageNamed:@"addActivate"]];
     [self.addIV addTapAction:@selector(addCountClick) target:self];
@@ -147,7 +146,8 @@
     self.countLabel.hidden = YES;
     [self.contentView addSubview:self.countLabel];
     
-    self.subIV = [[UIImageView alloc]initWithFrame:CGRectMake(self.countLabel.x-addSize.width, self.addIV.top, self.addIV.width, self.addIV.height)];
+    self.subIV = [[UIImageView alloc]initWithFrame:CGRectMake(self.countLabel.x-2*addSize.width, self.addIV.top, self.addIV.width, self.addIV.height)];
+    self.subIV.contentMode = UIViewContentModeRight;
     [self.subIV setImage:[UIImage imageNamed:@"subActivate"]];
     [self.contentView addSubview:self.subIV];
     self.subIV.hidden = YES;
@@ -206,9 +206,10 @@
 
 - (void)addCountClick
 {
+    CGSize addSize = [UIImage imageNamed:@"addActivate"].size;
     UIImageView *throwedView = [[UIImageView alloc]init];
+    throwedView.frame = CGRectMake(self.addIV.x, self.addIV.y + (self.addIV.y - addSize.height)/2, addSize.width, addSize.height);
     [throwedView setImage:[UIImage imageNamed:@"addActivate"]];
-    throwedView.frame = self.addIV.frame;
     throwedView.tag = 10;
     [self.contentView addSubview:throwedView];
     

@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.url = @"/weixin/addresses";
+    self.url = @"/address/list";
     self.title = @"我的收货地址";
     self.useHeaderRefresh = YES;
     self.tableView.tableHeaderView = [self headView];

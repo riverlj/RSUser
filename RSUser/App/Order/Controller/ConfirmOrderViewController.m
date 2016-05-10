@@ -12,7 +12,6 @@
 #import "AddressCell.h"
 #import "GoodListModel.h"
 #import "AddressesViewController.h"
-#import "PayWebViewController.h"
 
 @interface ConfirmOrderViewController ()<closeGoodsDetail>
 {
@@ -76,6 +75,7 @@
     SchoolModel *schoolModel = [AppConfig getAPPDelegate].schoolModel;
     schoolModel.cellHeight = 48;
     schoolModel.cellClassName = @"mainTitleCell";
+    //TODO bug  学校获取失败
     [array addObject:schoolModel];
     _goodDic = [[NSMutableDictionary alloc]init];
     [_goodDic setValue:@"0" forKey:@"isClosed"];
@@ -146,10 +146,12 @@
     [RSHttp requestWithURL:@"/weixin/createorder" params:params httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
         
         NSString *url = [data valueForKey:@"url"];
-        PayWebViewController *payWebVC = [[PayWebViewController alloc]init];
-        payWebVC.urlString = url;
-        payWebVC.isEncodeURL = NO;
-        [self.navigationController pushViewController:payWebVC animated:YES];
+        NSString *urlStr = [NSString URLencode:url stringEncoding:NSUTF8StringEncoding];
+        NSString *orderid = [data objectForKey:@"orderid"];
+        
+        NSString *path = [NSString stringWithFormat:@"RSUser://payWeb?urlString=%@&orderId=%@", urlStr, orderid];
+        UIViewController *vc = [RSRoute getViewControllerByPath:path];
+        [self.navigationController pushViewController:vc animated:YES];
         
     } failure:^(NSInteger code, NSString *errmsg) {
         [[RSToastView shareRSToastView] showToast:errmsg];

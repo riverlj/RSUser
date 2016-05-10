@@ -290,7 +290,11 @@ static Cart *shareCart = nil;
         GoodListModel *model = goodArray[i];
         num += model.num;
     }
-    textLabel.text = [NSString stringWithFormat:@"%zd", num];
+    if (num>99) {
+        textLabel.text = [NSString stringWithFormat:@"99+"];
+    }else{
+        textLabel.text = [NSString stringWithFormat:@"%zd", num];
+    }
 }
 
 - (NSInteger)getCartCountLabelText
