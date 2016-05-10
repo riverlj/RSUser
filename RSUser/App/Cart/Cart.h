@@ -11,6 +11,7 @@
 
 @interface Cart : NSObject
 + (id)sharedCart;
+- (void)clearDataSource;
 - (NSMutableDictionary *)getCartByCommuntityId:(NSInteger)communtityId;
 - (NSMutableArray *)getCartGoodsByCommuntityId:(NSInteger)communtityId;
 - (NSMutableDictionary *)getCart;

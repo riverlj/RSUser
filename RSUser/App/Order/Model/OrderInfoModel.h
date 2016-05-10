@@ -51,4 +51,6 @@
 - (OrderInfoModel *)sendTimeModel;
 - (OrderInfoModel *)getGoodsDetatil;
 - (OrderInfoModel *)getOtherInfoModel;
+
+- (void)orderPaySuccess:(void(^)(NSString*))success;
 @end

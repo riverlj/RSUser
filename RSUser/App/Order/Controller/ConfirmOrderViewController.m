@@ -145,6 +145,9 @@
     }
     [RSHttp requestWithURL:@"/weixin/createorder" params:params httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
         
+        //清空购物车
+        [[Cart sharedCart] clearDataSource];
+        
         NSString *url = [data valueForKey:@"url"];
         NSString *urlStr = [NSString URLencode:url stringEncoding:NSUTF8StringEncoding];
         NSString *orderid = [data objectForKey:@"orderid"];

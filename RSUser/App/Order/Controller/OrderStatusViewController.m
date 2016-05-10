@@ -64,7 +64,18 @@
         button.backgroundColor = RS_Theme_Color;
         [[button rac_signalForControlEvents:(UIControlEventTouchUpInside)] subscribeNext:^(id x) {
             // 去支付
-            NSLog(@"去支付啦。。。。");
+            [_orderInfoModel orderPaySuccess:^(NSString * url) {
+                NSString *urlStr = [NSString URLencode:url stringEncoding:NSUTF8StringEncoding];
+                NSString *orderid = _orderInfoModel.orderId;
+                NSString *path = [NSString stringWithFormat:@"RSUser://payWeb?urlString=%@&orderId=%@", urlStr, orderid];
+                UIViewController *vc = [RSRoute getViewControllerByPath:path];
+                
+                if ([self.view.superview.nextResponder isKindOfClass:[OrderInfoAndStatusViewController class]]) {
+                    OrderInfoAndStatusViewController *orderVC = (OrderInfoAndStatusViewController*)self.view.superview.nextResponder;
+                    [orderVC.navigationController pushViewController:vc animated:YES];
+                    
+                }
+            }];
         }];
         [self.view addSubview:button];
     }

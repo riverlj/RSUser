@@ -28,6 +28,14 @@ static Cart *shareCart = nil;
     return shareCart;
 }
 
+- (void)clearDataSource
+{
+    [self.cartDataSource removeAllObjects];
+    [self updateCartCountLabelText];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCountLabel" object:nil];
+
+}
+
 -(instancetype)init
 {
     self = [super init];
@@ -295,6 +303,7 @@ static Cart *shareCart = nil;
     }else{
         textLabel.text = [NSString stringWithFormat:@"%zd", num];
     }
+    
 }
 
 - (NSInteger)getCartCountLabelText

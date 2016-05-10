@@ -92,4 +92,18 @@
         return logsArray;
     }];
 }
+
+- (void)orderPaySuccess:(void(^)(NSString*))success
+{
+    NSDictionary *params = @{
+                             @"orderid" : self.orderId
+                             };
+    [RSHttp requestWithURL:@"/order/pay" params:params httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
+        NSString *url = [data objectForKey:@"url"];
+        success(url);
+    } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSToastView] showToast:errmsg];
+    }];
+
+}
 @end
