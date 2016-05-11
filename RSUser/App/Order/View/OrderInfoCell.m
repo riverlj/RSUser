@@ -140,7 +140,7 @@
         }
         case 2:{
             _leftLabel.text = @"优惠减免:";
-            _rightLabel.text = [NSString stringWithFormat:@"¥%0.2f",model.couponmoney];
+            _rightLabel.text = [NSString stringWithFormat:@"¥%0.2f", [model.couponmoney floatValue]];
             _rightLabel.font = RS_FONT_F3;
             _rightLabel.textColor = RS_Theme_Color;
             break;

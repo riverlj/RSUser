@@ -80,7 +80,7 @@
     [_goodDic setValue:[[Cart sharedCart] getCartDetail] forKey:@"goods"];
     [array addObject:_goodDic];
     [self.models addObject:array];
-    
+
     _couponModel = [NSKeyedUnarchiver unarchiveObjectWithFile:[RSFileStorage perferenceSavePath:@"coupon"]];
     [RSFileStorage removeFile:@"coupon"];
     
@@ -159,7 +159,7 @@
     if (_couponModel) {
         [params setValue:@(_couponModel.couponId) forKey:@"couponid"];
     }
-    [RSHttp requestWithURL:@"/weixin/createorder" params:params httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
+    [RSHttp requestWithURL:@"/order/create" params:params httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
         
         //清空购物车
         [[Cart sharedCart] clearDataSource];

@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"订单详情";
-    self.url = @"/weixin/orderinfo";
+    self.url = @"/order/info";
     
     self.sections = [NSMutableArray new];
     [self beginHttpRequest];

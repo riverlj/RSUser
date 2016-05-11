@@ -10,6 +10,7 @@
 #import "ProfileModel.h"
 #import "SchoolModel.h"
 #import "UserInfoModel.h"
+#import "LoginViewController.h"
 
 @interface ProfileViewController()
 
@@ -24,6 +25,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.title = @"我的";
     self.hasBackBtn = NO;
     items = @[
@@ -49,7 +51,6 @@
         },
     ];
     
-   
 
 }
 
@@ -90,6 +91,7 @@
             [AppConfig getAPPDelegate].schoolModel = schoolModel;
         }];
     }
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated

@@ -10,7 +10,6 @@
 #import "OrderModel.h"
 
 @protocol cellBtnClickedDelegate <NSObject>
-- (void)goPay;
 - (void)goOrderInfo:(NSString *)orderId;
 @end
 

@@ -27,17 +27,20 @@
 
 + (void)getSchoolMsg:(void (^)(SchoolModel *))successArray
 {
+    if (!COMMUNTITYID) {
+        return;
+    }
     NSDictionary *params = @{
-                             @"id" : COMMUNTITYID
+                             @"communityid" : COMMUNTITYID
                              };
-    [RSHttp requestWithURL:@"/weixin/communityinfo" params:params httpMethod:@"GET" success:^(NSDictionary *data) {
+    [RSHttp requestWithURL:@"/community/info" params:params httpMethod:@"GET" success:^(NSDictionary *data) {
         
         NSError *error = nil;
         SchoolModel *model = [MTLJSONAdapter modelOfClass:[SchoolModel class] fromJSONDictionary:data error:&error];
         NSLog(@"%@", error);
         successArray(model);
     } failure:^(NSInteger code, NSString *errmsg) {
-        
+        [[RSToastView shareRSToastView]showToast:errmsg];
     }];
 }
 @end

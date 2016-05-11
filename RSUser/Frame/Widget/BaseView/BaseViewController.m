@@ -35,6 +35,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationController.navigationBar.hidden = NO;
     self.view.backgroundColor = RS_Background_Color;
+    
 }
 
 - (void)creatCountLable

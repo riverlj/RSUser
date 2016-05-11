@@ -23,7 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.url = @"/weixin/coupon";
+    self.title = @"我的优惠券";
+    self.url = @"/coupon/list";
     self.useHeaderRefresh = YES;
     btnArr = [NSMutableArray array];
     NSMutableDictionary *item1 = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"可用优惠券", @"title", @"canuse", @"key", [NSMutableArray array], @"models", nil];

@@ -71,7 +71,7 @@
                           @"lng" : [NSNumber numberWithDouble:latitude]    //纬度
                           };
     
-    [RSHttp requestWithURL:@"/weixin/locatecommunity" params:dic httpMethod:@"GET" success:^(id data) {
+    [RSHttp requestWithURL:@"/community/locate" params:dic httpMethod:@"GET" success:^(id data) {
         NSDictionary *dic = (NSDictionary *)data;
         // TODO将信息存到本地文件
         if (!COMMUNTITYID)

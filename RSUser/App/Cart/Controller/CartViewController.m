@@ -133,22 +133,50 @@
 
 - (void)okButtonClicked
 {
-    
-    [self disappearView];
-    SchoolModel *schoolModel = [AppConfig getAPPDelegate].schoolModel;
-    if (totalPrice <= schoolModel.minprice) {
+    RACSignal * signalA = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        if (![AppConfig getAPPDelegate].schoolModel) {
+            [SchoolModel getSchoolMsg:^(SchoolModel *model) {
+                [AppConfig getAPPDelegate].schoolModel = model;
+                
+                [subscriber sendCompleted];
+            }];
+        }else{
+            [subscriber sendCompleted];
+        }
         
-        RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:[NSString stringWithFormat:@"最低%.2f元起送",schoolModel.minprice] leftButtonTitle:@"我知道了" AndLeftBlock:^{
-            
-        }];
-        [alertView show];
-        return;
-    }
-    NSString *path = [NSString stringWithFormat:@"RSUser://confirmOrder?totalprice=%.2f",totalPrice];
-    UIViewController *vc = [RSRoute getViewControllerByPath:path];
+        return nil;
+    }];
     
-    //去下单
-    [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:vc animated:YES];
+    @weakify(self)
+    RACSignal * signalB = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        SchoolModel *schoolModel = [AppConfig getAPPDelegate].schoolModel;
+        if (totalPrice <= schoolModel.minprice) {
+            @strongify(self)
+            [self disappearView];
+            RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:[NSString stringWithFormat:@"最低%.2f元起送",schoolModel.minprice] leftButtonTitle:@"我知道了" AndLeftBlock:^{
+                
+            }];
+            [alertView show];
+            return nil;
+        }
+        
+        [subscriber sendNext:@""];
+        [subscriber sendCompleted];
+        return nil;
+    }];
+    
+    [[RACSignal concat:@[signalA, signalB]]subscribeNext:^(id x) {
+        
+        @strongify(self)
+        [self disappearView];
+        NSString *path = [NSString stringWithFormat:@"RSUser://confirmOrder?totalprice=%.2f",totalPrice];
+        UIViewController *vc = [RSRoute getViewControllerByPath:path];
+        
+        //去下单
+        [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:vc animated:YES];
+        
+    }];
 
 }
 

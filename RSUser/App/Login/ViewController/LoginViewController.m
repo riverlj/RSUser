@@ -39,11 +39,6 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
 - (void)initView
 {
     [self.view removeAllSubviews];
@@ -54,6 +49,9 @@
     [self.view addSubview:scrolView];
     
     RSButton *registerBtn = [RSButton buttonWithFrame:CGRectMake(0, 0, 60, 44) ImageName:nil Text:@"注册" TextColor:RS_TabBar_count_Color];
+    registerBtn.titleLabel.font = RS_FONT_F2;
+    CGSize size = [registerBtn.titleLabel sizeThatFits:CGSizeMake(60, 44)];
+    registerBtn.width = size.width;
     
     @weakify(self)
     [[registerBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
@@ -64,7 +62,7 @@
     }];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:registerBtn];
-    
+  
     UIImageView *logoImageView = [RSImageView imageViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 119) ImageName:@"icon_login_logo"];
     [scrolView addSubview:logoImageView];
     weixinImageView = [RSImageView imageViewWithFrame:CGRectMake((SCREEN_WIDTH-45)/2, codeloginBtn.bottom+30, 45, 45) ImageName:@"icon_weixin"];
@@ -100,10 +98,12 @@
     pwdRightView.frame = forgetPwdBtn.frame;
     pwdRightView.width = forgetPwdBtn.width + 15;
     
-    [[forgetPwdBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        @strongify(self)
-        [self findPassWord];
-    }];
+    if (self.type == 1) {
+        [[forgetPwdBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            @strongify(self)
+            [self findPassWord];
+        }];
+    }
     
     if (self.type == 2) {
         [forgetPwdBtn setTitle:@"发送验证码" forState:UIControlStateNormal];

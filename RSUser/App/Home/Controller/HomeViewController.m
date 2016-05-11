@@ -39,7 +39,7 @@
 
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.height-49);
     self.tableView.tableHeaderView = self.cycleScrollView;
-    self.url = @"/weixin/products";
+    self.url = @"/product/list";
     self.useFooterRefresh = NO;
     self.useHeaderRefresh = YES;
     self.bannerImageUrls = [NSMutableArray new];
@@ -84,6 +84,11 @@
         [self locationBtnClicked];
         return;
     }
+    
+    [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
+        [AppConfig getAPPDelegate].schoolModel = schoolModel;
+    }];
+    
     self.navigationController.navigationBar.hidden = YES;
     [self.tableView.mj_header beginRefreshing];
     
@@ -102,11 +107,9 @@
         }
         [self initBannerView];
         [self.tableView reloadData];
+        
     }];
     
-    [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
-        [AppConfig getAPPDelegate].schoolModel = schoolModel;
-    }];
 }
 
 #pragma mark 创建View

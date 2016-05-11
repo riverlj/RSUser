@@ -8,7 +8,7 @@
 
 #import "BannerModel.h"
 
-#define RequestURL @"/weixin/banner"
+#define RequestURL @"/banner/list"
 @implementation BannerModel
 +(NSDictionary *)JSONKeyPathsByPropertyKey
 {
@@ -28,7 +28,7 @@
         successArray(nil);
         return;
     }
-    [dic setValue:COMMUNTITYID forKey:@"id"];
+    [dic setValue:COMMUNTITYID forKey:@"communityid"];
     [RSHttp requestWithURL:RequestURL params:dic httpMethod:@"GET" success:^(id data) {
         NSArray *dataArray = (NSArray *)data;
         for (int i=0; i<dataArray.count; i++) {

@@ -13,10 +13,14 @@
 #define  REDSCARF_BASE_URL @"http://test.dev.honglingjinclub.com"
 #define REDSCARF_PAY_URL @""
 #define REDSCARF_MOBILE_URL @""
+#define APP_REGISTER_URL @"http://test.dev.honglingjinclub.com/register.html"
+#define APP_RESETPWD_URL @"http://test.dev.honglingjinclub.com/resetPwd.html"
 #else
 #define  REDSCARF_BASE_URL @"http://weixin.honglingjinclub.com"
 #define REDSCARF_PAY_URL @""
 #define REDSCARF_MOBILE_URL @""
+#define APP_REGISTER_URL @"http://weixin.honglingjinclub.com/register.html"
+#define APP_RESETPWD_URL @"http://weixin.honglingjinclub.com/resetPwd.html"
 #endif
 
 #define iPhone4S ([UIScreen mainScreen].bounds.size.height == 480 ? YES : NO)
@@ -34,8 +38,5 @@
 #define WEIXIN_LOGIN_STATUS @"demochenshujuan"
 #define WEIXIN_LOGIN_APPID @"wx3ba861f7b4956067"
 #define WEIXIN_LOGIN_SECRET @"d4624c36b6795d1d99dcf0547af5443d"
-
-#define APP_REGISTER_URL @"http://mxj.dev.honglingjinclub.com/register.html"
-#define APP_RESETPWD_URL @"http://mxj.dev.honglingjinclub.com/resetPwd.html"
 
 #endif /* Constant_h */

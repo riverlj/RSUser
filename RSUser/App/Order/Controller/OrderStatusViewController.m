@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"订单状态";
-    self.url = @"/weixin/orderinfo";
+    self.url = @"/order/info";
     
     [self initBottom];
     [self beginHttpRequest];
@@ -38,8 +38,9 @@
     [super beforeHttpRequest];
     [self.params setValue:self.orderId forKey:@"orderid"];
     
-}
 
+}
+    
 -(void) afterHttpSuccess:(NSDictionary *)data
 {
     NSError *error;

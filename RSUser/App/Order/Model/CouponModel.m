@@ -74,9 +74,9 @@
 + (void)bindCoupon:(NSString *)couponcode success:(void(^)())success failure:(void(^)())failure
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setValue:@"" forKey:@"couponcode"];
+    [params setValue:couponcode forKey:@"couponcode"];
     [[RSToastView shareRSToastView] showHUD:@"加载中..."];
-    [RSHttp requestWithURL:@"/weixin/bindcoupon" params:params httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
+    [RSHttp requestWithURL:@"/coupon/bind" params:params httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
         [[RSToastView shareRSToastView] hidHUD];
         [[RSToastView shareRSToastView] showToast:@"兑换成功"];
         success();

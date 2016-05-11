@@ -49,7 +49,7 @@ static LocationModel *shareLocationModel = nil;
     NSDictionary *param = @{
                             @"q" : searchKey
                             };
-    [RSHttp requestWithURL:@"/weixin/search-community" params:param httpMethod:@"GET" success:^(id data) {
+    [RSHttp requestWithURL:@"/community/search" params:param httpMethod:@"GET" success:^(id data) {
         NSArray *array = (NSArray *)data;
         [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSDictionary *dic = obj;

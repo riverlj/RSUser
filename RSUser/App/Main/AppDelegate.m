@@ -24,12 +24,13 @@
 
     _cartViewVc = [[CartViewController alloc]init];
     _location =  [[RSLocation alloc]init];
+    
     //如果没有授权则请求用户授权
     if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined){
         [_location.locationManager requestWhenInUseAuthorization];
     }
     [_location startLocation];
-    [self monitoreNetWork];
+//    [self monitoreNetWork];
     [self configThreeLib];
     [self setUserAgent];
     
@@ -92,7 +93,6 @@
         }
         
     }];
-
 }
 
 #pragma 微信返回数据

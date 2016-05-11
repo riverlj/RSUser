@@ -26,7 +26,7 @@
 {
     [params setValue:@"weixin" forKey:@"type"];
 
-    [RSHttp requestWithURL:@"/weixin/login" params:params httpMethod:@"POSTJSON" success:^(NSDictionary* data) {
+    [RSHttp requestWithURL:@"/user/weixinlogin" params:params httpMethod:@"POSTJSON" success:^(NSDictionary* data) {
         [NSUserDefaults  setValue:[data valueForKey:@"token"] forKey:@"token"];
         [[RSToastView  shareRSToastView]showToast:@"登陆成功"];
         [[AppConfig getAPPDelegate].crrentNavCtl popToRootViewControllerAnimated:YES];

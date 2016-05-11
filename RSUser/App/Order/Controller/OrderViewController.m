@@ -23,11 +23,11 @@
 @implementation OrderViewController
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.tableView.frame = CGRectMake(0, 50, SCREEN_WIDTH, SCREEN_HEIGHT-163);
     [super viewWillAppear:animated];
+    self.tableView.frame = CGRectMake(0, 50, SCREEN_WIDTH, SCREEN_HEIGHT-163);
     
     _btnArray = [[NSMutableArray alloc]init];
-
+    
     NSDictionary *btn1 = @{
                            @"title":@"全部",
                            @"key":@"all",
@@ -73,7 +73,7 @@
     self.pageNum = 1;
     
     [self beginHttpRequest];
-    
+
 }
 
 - (void)didClickBtn:(RSSubTitleView *)sender
@@ -87,7 +87,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.url = @"/weixin/orders";
+    self.url = @"/order/list";
     self.useHeaderRefresh = YES;
     self.useFooterRefresh = YES;
 }
