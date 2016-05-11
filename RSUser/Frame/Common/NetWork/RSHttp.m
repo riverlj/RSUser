@@ -28,6 +28,7 @@
     [manager.responseSerializer setAcceptableContentTypes:set];
     
 //    [manager.requestSerializer setValue:@"pYNVLfIqjV/4ObhP3mTgxzE3OWFiNjQ3YmQ0ODI3NzBjOWEwMDdkYjE5MGI2MDM4YmI3NTdlYjg1OGQ3NjIzODY5NTBmZWFmMjY4MWE0ZDUPVolk6OE0wmXaxEsdpXpdVLf6raAQDGiqjqNaraUfEW4n76/QTn218pktkYdNeyfnHF7jY7r3SRF9qGUwve9oVISTysiuxuQColn72+katy7YTw1amxF1Bkd34N3ulcJG7jpH5PxbZuiYdIJcG2zG" forHTTPHeaderField:@"token"];
+    
     //设置超时时间
     manager.requestSerializer.timeoutInterval = APPREQUESTTIMEOUT;
     if([httpMethod isEqualToString:@"GET"]) {

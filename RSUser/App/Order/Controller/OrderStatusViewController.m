@@ -42,7 +42,11 @@
 
 -(void) afterHttpSuccess:(NSDictionary *)data
 {
-    OrderInfoModel *model = [MTLJSONAdapter modelOfClass:[OrderInfoModel class] fromJSONDictionary:data error:nil];
+    NSError *error;
+    OrderInfoModel *model = [MTLJSONAdapter modelOfClass:[OrderInfoModel class] fromJSONDictionary:data error:&error];
+    if (error) {
+        NSLog(@"%@",error);
+    }
     model.cellClassName = @"OrderStatusCell";
     _orderInfoModel = model;
     
@@ -80,8 +84,6 @@
         [self.view addSubview:button];
     }
    
-    NSInteger canticket = [[_orderInfoModel.deliverys[0] valueForKey:@"canticket"] integerValue];
-//    if (canticket == 1) {
     if (_orderInfoModel.canfeedback == 1) {
         self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-52 - 50 - 64-10);
         button = [RSButton themeBackGroundButton:CGRectMake(18, SCREEN_HEIGHT-52 - 50 - 64, SCREEN_WIDTH-36, 42) Text:@"用户反馈"];

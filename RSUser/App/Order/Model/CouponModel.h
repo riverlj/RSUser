@@ -13,9 +13,10 @@ typedef NS_ENUM(NSUInteger, CouponModelStatus) {
 };
 
 @interface CouponModel : RSModel<MTLJSONSerializing>
+
 @property (nonatomic ,assign)NSInteger couponId;
 @property (nonatomic ,assign)NSInteger orderid;
-@property (nonatomic ,assign)CouponModelStatus status;
+@property (nonatomic ,assign)NSInteger status;
 @property (nonatomic ,assign)NSInteger type;
 @property (nonatomic ,copy)NSString *title;
 @property (nonatomic ,copy)NSString *subtitle;
@@ -28,7 +29,7 @@ typedef NS_ENUM(NSUInteger, CouponModelStatus) {
 @property (nonatomic, strong)NSArray *disproducts;
 @property (nonatomic ,copy)NSString *descriptionstr;
 @property (nonatomic ,assign)NSInteger discountmax;
-@property (nonatomic ,assign)NSInteger reduce;
+@property (nonatomic ,assign)NSString *reduce;
 
 @property (nonatomic, strong) NSString *fromtype;
 

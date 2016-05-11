@@ -24,7 +24,7 @@
         bgView = [[UIImageView alloc]initWithFrame:CGRectMake(18, 10, SCREEN_WIDTH - 36, (SCREEN_WIDTH - 36) * 100/340)];
         [self.contentView addSubview:bgView];
         
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(109, 12, bgView.width-109-20, 10)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(109*(SCREEN_WIDTH/320), 12, bgView.width-109-20, 10)];
         _titleLabel.font = Font(10);
         _titleLabel.textColor = RS_SubMain_Text_Color;
         [bgView addSubview:_titleLabel];
@@ -40,7 +40,7 @@
         _timeLabel.bottom = bgView.height - 12;
         [bgView addSubview:_timeLabel];
         
-        _moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+        _moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80*(SCREEN_WIDTH/320), 30)];
         _moneyLabel.centerY = bgView.height/2;
         _moneyLabel.font = Font(45);
         _moneyLabel.textAlignment = NSTextAlignmentCenter;

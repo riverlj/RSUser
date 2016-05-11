@@ -154,9 +154,8 @@
 {
     CouponModel *model = (CouponModel *)[self getModelByIndexPath:indexPath];
     if(model) {
-        if([model.fromtype isEqualToString:@"canuse"]) {
+        if([model.fromtype isEqualToString:@"canuse"]&&self.selectReturn) {
             [NSKeyedArchiver archiveRootObject:model toFile:[RSFileStorage perferenceSavePath:@"coupon"]];
-            CouponModel *test = [NSKeyedUnarchiver unarchiveObjectWithFile:[RSFileStorage perferenceSavePath:@"coupon"]];
             if(self.selectReturn) {
                 [self.navigationController popViewControllerAnimated:YES];
             }

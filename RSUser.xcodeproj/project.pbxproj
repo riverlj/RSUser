@@ -49,6 +49,7 @@
 		B1422BFB1CBB9E4100C988FE /* CartNumberLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BFA1CBB9E4100C988FE /* CartNumberLabel.m */; };
 		B1422BFE1CBBAAF400C988FE /* RSLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BFD1CBBAAF400C988FE /* RSLineView.m */; };
 		B15395261CE17B93001763C7 /* LaunchimageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B15395251CE17B93001763C7 /* LaunchimageViewController.m */; };
+		B15395291CE1ADFB001763C7 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B15395281CE1ADFB001763C7 /* UserInfoModel.m */; };
 		B162BC911CBC91FB00E27228 /* GoodListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC901CBC91FB00E27228 /* GoodListModel.m */; };
 		B162BC941CBC951500E27228 /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC931CBC951500E27228 /* BannerModel.m */; };
 		B162BC971CBCA3ED00E27228 /* GoodListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC961CBCA3ED00E27228 /* GoodListCell.m */; };
@@ -219,6 +220,8 @@
 		B1422BFD1CBBAAF400C988FE /* RSLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSLineView.m; sourceTree = "<group>"; };
 		B15395241CE17B93001763C7 /* LaunchimageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchimageViewController.h; sourceTree = "<group>"; };
 		B15395251CE17B93001763C7 /* LaunchimageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchimageViewController.m; sourceTree = "<group>"; };
+		B15395271CE1ADFB001763C7 /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
+		B15395281CE1ADFB001763C7 /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
 		B162BC8F1CBC91FB00E27228 /* GoodListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodListModel.h; sourceTree = "<group>"; };
 		B162BC901CBC91FB00E27228 /* GoodListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodListModel.m; sourceTree = "<group>"; };
 		B162BC921CBC951500E27228 /* BannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerModel.h; sourceTree = "<group>"; };
@@ -773,6 +776,8 @@
 				30A3C51D1CCF379E00F5E55E /* BuildingModel.m */,
 				30221E441CC9FC0E00126D72 /* ProfileModel.h */,
 				30221E451CC9FC0E00126D72 /* ProfileModel.m */,
+				B15395271CE1ADFB001763C7 /* UserInfoModel.h */,
+				B15395281CE1ADFB001763C7 /* UserInfoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1222,6 +1227,7 @@
 				B118A0BC1CDB106D00598506 /* CodesView.m in Sources */,
 				B10769A41CBE43E600586304 /* RSLabel.m in Sources */,
 				B123DCBA1CC77FAD00F08E8D /* LoginModel.m in Sources */,
+				B15395291CE1ADFB001763C7 /* UserInfoModel.m in Sources */,
 				30221E561CCE06C300126D72 /* HeadviewCell.m in Sources */,
 				B18322551CD07709006E7EBC /* PayWebViewController.m in Sources */,
 				B10F65D21CDC7C2F003C5B23 /* RSJSWebViewController.m in Sources */,

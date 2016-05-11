@@ -28,7 +28,7 @@
 @property (nonatomic, strong) NSArray *deliverys;
 @property (nonatomic, strong) NSArray *orderlog;
 @property (nonatomic) NSInteger couponid;
-@property (nonatomic) CGFloat couponmoney;
+@property (nonatomic,strong) NSString* couponmoney;
 @property (nonatomic, strong) NSString *coupontitle;
 @property (nonatomic) NSInteger notify;
 @property (nonatomic, strong) NSString *notifymsg;

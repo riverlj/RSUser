@@ -30,7 +30,7 @@
 +(void) clearValueForKey:(NSString *) key
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"token"];
+    [defaults removeObjectForKey:key];
     [defaults synchronize];
 }
 

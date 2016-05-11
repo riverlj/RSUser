@@ -11,7 +11,6 @@
 #import "CouponModel.h"
 #import "AddressCell.h"
 #import "GoodListModel.h"
-#import "AddressesViewController.h"
 
 @interface ConfirmOrderViewController ()<closeGoodsDetail>
 {
@@ -32,6 +31,8 @@
     self.tableView.backgroundColor = RS_Clear_Clor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.sections = [[NSMutableArray alloc]init];
+    
+    [self initBottomView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -57,15 +58,13 @@
         [array addObject:_addressModel];
         [selfB.models addObject:array];
         [selfB initModelData];
-        [selfB initBottomView];
     }];
   
 }
 
 - (void)updateAddress
 {
-    AddressesViewController *addressVc = [[AddressesViewController alloc]init];
-    addressVc.selectReturn = YES;
+    UIViewController *addressVc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://addresses?selectReturn=YES"]];
     [self.navigationController pushViewController:addressVc animated:YES];
 }
 
@@ -75,7 +74,6 @@
     SchoolModel *schoolModel = [AppConfig getAPPDelegate].schoolModel;
     schoolModel.cellHeight = 48;
     schoolModel.cellClassName = @"mainTitleCell";
-    //TODO bug  学校获取失败
     [array addObject:schoolModel];
     _goodDic = [[NSMutableDictionary alloc]init];
     [_goodDic setValue:@"0" forKey:@"isClosed"];
@@ -83,29 +81,47 @@
     [array addObject:_goodDic];
     [self.models addObject:array];
     
-    //获取优惠券信息
-    [CouponModel getCounponList:^(NSArray *couponList) {
-        NSMutableArray *array3 = [[NSMutableArray alloc]init];
-        CouponModel *model = [[CouponModel alloc]init];
-        model.cellHeight = 49;
-        model.cellClassName = @"mainTitleCell";
-        [model setSelectAction:@selector(selectedCoupon) target:self];
-        if (couponList.count == 0)
-        {
-            model.title = @"无优惠券";
-        }else
-        {
-            model.title = [NSString stringWithFormat:@"您有%ld张优惠券可用", couponList.count];
-        }
+    _couponModel = [NSKeyedUnarchiver unarchiveObjectWithFile:[RSFileStorage perferenceSavePath:@"coupon"]];
+    [RSFileStorage removeFile:@"coupon"];
+    
+    NSMutableArray *array3 = [[NSMutableArray alloc]init];
+    __block CouponModel *model = [[CouponModel alloc]init];
+    model.cellHeight = 49;
+    model.cellClassName = @"mainTitleCell";
+    [model setSelectAction:@selector(selectedCoupon) target:self];
+    if (!_couponModel) {
+        //获取优惠券信息
+        [CouponModel getCounponList:^(NSArray *couponList) {
+            
+            if (couponList.count == 0)
+            {
+                model.title = @"    无优惠券";
+            }else
+            {
+                model.title = [NSString stringWithFormat:@"    您有%ld张优惠券可用", couponList.count];
+            }
+            [array3 addObject:model];
+            [self computePayNumber];
+            [self.models addObject:array3];
+            [self.tableView reloadData];
+        }];
+    }else{
+        model.title = [NSString stringWithFormat:@"    -%ld", _couponModel.money ];
         [array3 addObject:model];
+        [self computePayNumber];
         [self.models addObject:array3];
         [self.tableView reloadData];
-    }];
+    }
+    
+    
+    
 }
 
 - (void)selectedCoupon
 {
     //TODO 选择可用优惠券
+    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://coupon?selectReturn=YES"]];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)initBottomView
@@ -124,7 +140,6 @@
     tipview.text = @"您订的商品送达时会挂在宿舍门上，请注意查收哟!";
     
     [self.view addSubview:tipview];
-    [self computePayNumber];
     
 }
 
@@ -142,6 +157,7 @@
     [params setValue:@(0) forKey:@"couponid"];
 
     if (_couponModel) {
+        [params setValue:@(_couponModel.couponId) forKey:@"couponid"];
     }
     [RSHttp requestWithURL:@"/weixin/createorder" params:params httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
         
@@ -170,6 +186,9 @@
         payNumber += pay;
     }];
     
+    if (_couponModel) {
+        payNumber -= _couponModel.money;
+    }
     _priceLable.text = [NSString stringWithFormat:@"       总计:%.2f", payNumber];
 }
 

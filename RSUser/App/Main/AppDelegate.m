@@ -29,12 +29,11 @@
         [_location.locationManager requestWhenInUseAuthorization];
     }
     [_location startLocation];
+    [self monitoreNetWork];
     [self configThreeLib];
     [self setUserAgent];
     
     self.window.rootViewController = [[LaunchimageViewController alloc]init];
-    
-   // [self setappRootViewControler];
     
     [AppConfig customsizeInterface];
     [self.window makeKeyAndVisible];
@@ -81,6 +80,21 @@
     return YES;
 }
 
+- (void)monitoreNetWork
+{
+    __block AppDelegate *selfB = self;
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if (status == AFNetworkReachabilityStatusReachableViaWWAN || status == AFNetworkReachabilityStatusReachableViaWiFi) {
+            [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
+                selfB.schoolModel = schoolModel;
+            }];
+        }
+        
+    }];
+
+}
+
 #pragma 微信返回数据
 -(void) onResp:(BaseResp*)resp
 {
@@ -89,10 +103,13 @@
         switch(response.errCode){
             case WXSuccess:
             {
-                //TODO 跳转到订单详情页面
-                [self setappRootViewControler];
-                self.tabBarControllerConfig.tabBarController.selectedIndex = 1;
                 [[RSToastView shareRSToastView] showToast:@"支付成功"];
+                //跳转到订单详情
+                NSString *orderid = [NSUserDefaults getValue:@"currentorderid"];
+                [NSUserDefaults clearValueForKey:@"currentorderid"];
+                UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderid=%@",orderid]];
+                [self.crrentNavCtl pushViewController:vc animated:YES];
+                
                 break;
             }
             case WXErrCodeUserCancel:  //用户取消并返回
@@ -107,9 +124,11 @@
                 
             default: //其他类型的错误
             {
-                [self setappRootViewControler];
-                self.tabBarControllerConfig.tabBarController.selectedIndex = 1;
                 [[RSToastView shareRSToastView] showToast:@"支付失败，请重新支付"];
+                NSString *orderid = [NSUserDefaults getValue:@"currentorderid"];
+                [NSUserDefaults clearValueForKey:@"currentorderid"];
+                UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderid=%@",orderid]];
+                [self.crrentNavCtl pushViewController:vc animated:YES];
                 break;
             }
         }

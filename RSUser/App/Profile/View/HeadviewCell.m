@@ -7,6 +7,7 @@
 //
 
 #import "HeadviewCell.h"
+#import "UserInfoModel.h"
 
 @implementation HeadviewCell
 -(instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -19,15 +20,14 @@
         bgView.image = [UIImage imageNamed:@"bg_headView"];
         [self.contentView addSubview:bgView];
         
-        UIImageView *headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 92, 92)];
-        headView.centerX = bgView.width/2;
-        headView.centerY = bgView.height/2;
-        headView.layer.cornerRadius = headView.width/2;
-        headView.layer.borderColor = [UIColor whiteColor].CGColor;
-        headView.layer.borderWidth = 2;
-        headView.clipsToBounds = YES;
-        [headView sd_setImageWithURL:[NSURL URLWithString:@"http://i01.lw.aliimg.com/media/lADOB8Ps-s0Cfs0CgA_640_638.jpg"]];
-        [bgView addSubview:headView];
+        _headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 92, 92)];
+        _headView.centerX = bgView.width/2;
+        _headView.centerY = bgView.height/2;
+        _headView.layer.cornerRadius = _headView.width/2;
+        _headView.layer.borderColor = [UIColor whiteColor].CGColor;
+        _headView.layer.borderWidth = 2;
+        _headView.clipsToBounds = YES;
+        [bgView addSubview:_headView];
         
         _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(bgView.right+31, 0, SCREEN_WIDTH - bgView.right - 36 - 31, 20)];
         _nameLabel.bottom = bgView.centerY -6;
@@ -53,10 +53,11 @@
     return self;
 }
 
--(void) setModel:(RSModel *)model
+-(void) setModel:(UserInfoModel *)model
 {
     [super setModel:model];
-    _nameLabel.text = @"lishipeng";
-    _phoneLabel.text = @"18910257050";
+    _nameLabel.text = model.name;
+    _phoneLabel.text = model.mobile;
+    [_headView sd_setImageWithURL:[NSURL URLWithString:model.headimg]];
 }
 @end

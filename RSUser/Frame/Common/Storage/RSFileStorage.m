@@ -41,6 +41,7 @@
     NSFileManager *fm = [NSFileManager defaultManager];
     if([fm fileExistsAtPath:filepath]) {
         [fm removeItemAtPath:filepath error:nil];
+        
     }
 }
 

@@ -9,6 +9,7 @@
 #import "ProfileViewController.h"
 #import "ProfileModel.h"
 #import "SchoolModel.h"
+#import "UserInfoModel.h"
 
 @interface ProfileViewController()
 
@@ -47,24 +48,38 @@
             @"url" : @"RSUser://Aboutus",
         },
     ];
-    ProfileModel *model = [ProfileModel new];
-    model.cellHeight = 172;
-    model.cellClassName = @"HeadviewCell";
-    model.url = @"RSUser://BandleCellPhone";
-    [self.models addObject:model];
-    for(NSDictionary *dict in items) {
-        ProfileModel *model = [ProfileModel new];
-        model.title = [dict valueForKey:@"title"];
-        model.url = [dict valueForKey:@"url"];
-        model.imgUrl = [dict valueForKey:@"imgUrl"];
-        [self.models addObject:model];
-    }
+    
+   
+
+}
+
+- (void)initDataSorce
+{
+    [self.models removeAllObjects];
+    __weak ProfileViewController *selfB = self;
+    [UserInfoModel getUserInfo:^(UserInfoModel *userInfoModel) {
+        userInfoModel.cellHeight = 172;
+        userInfoModel.title = @"绑定手机";
+        userInfoModel.cellClassName = @"HeadviewCell";
+        userInfoModel.url = @"RSUser://BandleCellPhone";
+        [selfB.models addObject:userInfoModel];
+        
+        for(NSDictionary *dict in items) {
+            ProfileModel *model = [ProfileModel new];
+            model.title = [dict valueForKey:@"title"];
+            model.url = [dict valueForKey:@"url"];
+            model.imgUrl = [dict valueForKey:@"imgUrl"];
+            [selfB.models addObject:model];
+        }
+        
+        [selfB.tableView reloadData];
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.tableView reloadData];
+    [self initDataSorce];
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
     oldImg1 = [self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault];
     oldImg2 = [self.navigationController.navigationBar shadowImage];

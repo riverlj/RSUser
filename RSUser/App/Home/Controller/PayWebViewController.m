@@ -7,6 +7,7 @@
 //
 
 #import "PayWebViewController.h"
+#import "OrderInfoAndStatusViewController.h"
 
 @interface PayWebViewController ()
 
@@ -53,6 +54,8 @@
 {
     NSLog(@"%@", param);
     
+    [NSUserDefaults setValue:self.orderId forKey:@"currentorderid"];
+    
     NSData *data = [param dataUsingEncoding:NSUTF8StringEncoding];
      NSDictionary *dic  = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
      
@@ -78,9 +81,19 @@
 
 - (void)backUp
 {
-    [AppConfig getAPPDelegate].tabBarControllerConfig.tabBarController.selectedIndex = 1;
     //订单详情页面
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    OrderInfoAndStatusViewController *vc = [[OrderInfoAndStatusViewController alloc]init];
+    vc.orderId = self.orderId;
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.5;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
+    transition.type = kCATransitionMoveIn;
+    transition.subtype = kCATransitionFromLeft;
+    transition.delegate = self;
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    
+    [self.navigationController pushViewController:vc animated:NO];
+
 }
 
 @end

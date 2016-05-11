@@ -43,20 +43,23 @@
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     [dic setValue:COMMUNTITYID forKey:@"communityid"];
     [dic setValue:@"1" forKey:@"business"];
-    [dic setValue:@"true" forKey:@"coupon"];
-    [dic setValue:@"true" forKey:@"giftpromotion"];
-    [dic setValue:@"true" forKey:@"moneypromotion"];
-    [dic setValue:@"1" forKey:@"platform"];
-    [dic setValue:@"true" forKey:@"paypromotion"];
-    [dic setValue:@"true" forKey:@"seckill"];
+    [dic setValue:@(true) forKey:@"coupon"];
+    [dic setValue:false forKey:@"giftpromotion"];
+    [dic setValue:false forKey:@"moneypromotion"];
+    [dic setValue:@"2" forKey:@"platform"];
+    [dic setValue:false forKey:@"paypromotion"];
+    [dic setValue:false forKey:@"seckill"];
     [dic setValue:[[Cart sharedCart]filterLocalCartData] forKey:@"products"];
 
-    [RSHttp requestWithURL:@"/weixin/orderpromotion" params:dic httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
+    [RSHttp requestWithURL:@"/order/promotion" params:dic httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
         NSArray *array = [[data valueForKey:@"coupons"] firstObject];
         NSMutableArray *returnArray = [[NSMutableArray alloc]init];
         [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSError *error = nil;
             CouponModel *model = [MTLJSONAdapter modelOfClass:[CouponModel class] fromJSONDictionary:obj error:&error];
+            if (error) {
+                NSLog(@"%@",error);
+            }
             [returnArray addObject:model];
             if (error) {
                 NSLog(@"%@",error);
