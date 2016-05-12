@@ -16,8 +16,6 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self) {
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 100)];
-        
-        [_titleLabel autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(20, 20, 20, 20)];
     }
     return self;
 }

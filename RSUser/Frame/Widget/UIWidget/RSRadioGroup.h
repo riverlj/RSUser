@@ -12,6 +12,7 @@
 
 @property(nonatomic, strong) NSMutableArray *objArr;
 @property(nonatomic) NSInteger selectedIndex;
+@property (nonatomic ,assign)BOOL noSelectedEnable;
 
 -(void) addObj:(id) obj;
 

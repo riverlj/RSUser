@@ -26,6 +26,33 @@
     [super viewWillAppear:animated];
     self.tableView.frame = CGRectMake(0, 50, SCREEN_WIDTH, SCREEN_HEIGHT-163);
     
+    
+    lastRequest = requestType;
+    self.pageNum = 1;
+    
+    [self.tableView.mj_header beginRefreshing];
+}
+
+- (void)didClickBtn:(RSSubTitleView *)sender
+{
+    [group setSelectedIndex:sender.tag];
+    [self setalbeItems:NO];
+    
+    requestType = sender.tag;
+    self.pageNum = 1;
+    
+    [self.tableView.mj_header beginRefreshing];
+    
+}
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.url = @"/order/list";
+    self.useHeaderRefresh = YES;
+    self.useFooterRefresh = YES;
+    
+    
     _btnArray = [[NSMutableArray alloc]init];
     
     NSDictionary *btn1 = @{
@@ -69,27 +96,7 @@
     
     [group setSelectedIndex:0];
     requestType = 0;
-    lastRequest = requestType;
-    self.pageNum = 1;
     
-    [self beginHttpRequest];
-
-}
-
-- (void)didClickBtn:(RSSubTitleView *)sender
-{
-    [group setSelectedIndex:sender.tag];
-    requestType = sender.tag;
-    self.pageNum = 1;
-    [self beginHttpRequest];
-}
-
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.url = @"/order/list";
-    self.useHeaderRefresh = YES;
-    self.useFooterRefresh = YES;
 }
 
 
@@ -105,6 +112,7 @@
         [self.params setValue:@"completed" forKey:@"type"];
     }
     [self.params setValue:@(self.pageNum-1) forKey:@"offset"];
+    
 }
 
 -(void) afterHttpSuccess:(NSArray *)data
@@ -118,6 +126,18 @@
     }else{
         [self.models addObjectsFromArray:temp];
     }
+    [self.tableView reloadData];
+    
+    __weak OrderViewController *selfB = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [selfB setalbeItems:YES];
+    });
+}
+
+- (void)afterHttpFailure:(NSInteger)code errmsg:(NSString *)errmsg
+{
+    [self setalbeItems:YES];
+    [super afterHttpFailure:code errmsg:errmsg];
 }
 
 #pragma mark tableview
@@ -129,17 +149,18 @@
 }
 
 #pragma mark cellBtnClickedDelegate
-//-(void)goPay
-//{
-//    //去支付页面
-//    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderId=%@", orderId]];
-//    [self.navigationController pushViewController:vc animated:YES];
-//}
 
 - (void)goOrderInfo:(NSString *)orderId
 {
     //订单详情页面
     UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderId=%@", orderId]];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)setalbeItems:(BOOL)b
+{
+    [group.objArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj setEnabled:b];
+    }];
 }
 @end

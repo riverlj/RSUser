@@ -44,4 +44,5 @@
 - (id)init {
     return [self initWithStyle:UITableViewCellStyleDefault];
 }
+
 @end

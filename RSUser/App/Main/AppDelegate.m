@@ -20,7 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = RS_Background_Color;
 
     _cartViewVc = [[CartViewController alloc]init];
     _location =  [[RSLocation alloc]init];
@@ -30,7 +30,6 @@
         [_location.locationManager requestWhenInUseAuthorization];
     }
     [_location startLocation];
-//    [self monitoreNetWork];
     [self configThreeLib];
     [self setUserAgent];
     
@@ -52,9 +51,11 @@
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent" : ua, @"User-Agent" : ua}];
 }
 
+
 -(void)configThreeLib
 {
     [WXApi registerApp:WEIXIN_LOGIN_APPID];
+    [AppConfig baiduMobStat];
 }
 
 - (void)setRootViewController:(UIViewController *)rootVC
@@ -69,6 +70,7 @@
     [self.window setRootViewController:_tabBarControllerConfig.tabBarController];
 }
 
+#pragma mark UIApplicationDelegate 代理方法
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
     [WXApi handleOpenURL:url delegate:self];
@@ -81,21 +83,7 @@
     return YES;
 }
 
-- (void)monitoreNetWork
-{
-    __block AppDelegate *selfB = self;
-    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
-    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        if (status == AFNetworkReachabilityStatusReachableViaWWAN || status == AFNetworkReachabilityStatusReachableViaWiFi) {
-            [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
-                selfB.schoolModel = schoolModel;
-            }];
-        }
-        
-    }];
-}
-
-#pragma 微信返回数据
+#pragma mark WXApiDelegate 代理方法
 -(void) onResp:(BaseResp*)resp
 {
     if ([resp isKindOfClass:[PayResp class]]){
@@ -141,6 +129,7 @@
         //请求token
         [LoginModel getAccess_token:code];
     }
+    
 }
 
 @end

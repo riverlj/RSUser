@@ -148,6 +148,7 @@
  */
 - (void)createOrder
 {
+    [[BaiduMobStat defaultStat] logEvent:@"goPay" eventLabel:@"去支付"];
     NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
     [params setValue:_addressModel.addressId forKey:@"addressid"];
     [params setValue:COMMUNTITYID forKey:@"communityid"];

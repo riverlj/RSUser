@@ -43,6 +43,15 @@
 		B123DCCF1CC8B9EF00F08E8D /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCCE1CC8B9EF00F08E8D /* AddressModel.m */; };
 		B123DCD21CC8CA9000F08E8D /* BandleCellPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCD11CC8CA9000F08E8D /* BandleCellPhoneViewController.m */; };
 		B123DCD51CC8E33300F08E8D /* CouponModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCD41CC8E33300F08E8D /* CouponModel.m */; };
+		B1326E361CE428DC001F90CE /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E351CE428DC001F90CE /* libBaiduMobStat.a */; };
+		B1326E391CE42960001F90CE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E381CE42960001F90CE /* JavaScriptCore.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		B1326E3B1CE42995001F90CE /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E3A1CE42995001F90CE /* libstdc++.6.0.9.tbd */; };
+		B1326E3D1CE429A3001F90CE /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E3C1CE429A3001F90CE /* libz.1.2.5.tbd */; };
+		B1326E3F1CE429B2001F90CE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E3E1CE429B2001F90CE /* Security.framework */; };
+		B1326E411CE429BF001F90CE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E401CE429BF001F90CE /* SystemConfiguration.framework */; };
+		B1326E431CE429D1001F90CE /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E421CE429D1001F90CE /* CoreTelephony.framework */; };
+		B1326E451CE429F9001F90CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E441CE429F9001F90CE /* CoreGraphics.framework */; };
+		B1326E471CE42A0B001F90CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E461CE42A0B001F90CE /* Foundation.framework */; };
 		B1422BF21CBB575500C988FE /* RSTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */; };
 		B1422BF51CBB71DB00C988FE /* UIImage+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF41CBB71DB00C988FE /* UIImage+Helper.m */; };
 		B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF71CBB733600C988FE /* RSCartButtion.m */; };
@@ -208,6 +217,16 @@
 		B123DCD11CC8CA9000F08E8D /* BandleCellPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandleCellPhoneViewController.m; sourceTree = "<group>"; };
 		B123DCD31CC8E33300F08E8D /* CouponModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponModel.h; sourceTree = "<group>"; };
 		B123DCD41CC8E33300F08E8D /* CouponModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponModel.m; sourceTree = "<group>"; };
+		B1326E351CE428DC001F90CE /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
+		B1326E371CE4290F001F90CE /* BaiduMobStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobStat.h; sourceTree = "<group>"; };
+		B1326E381CE42960001F90CE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		B1326E3A1CE42995001F90CE /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		B1326E3C1CE429A3001F90CE /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		B1326E3E1CE429B2001F90CE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B1326E401CE429BF001F90CE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B1326E421CE429D1001F90CE /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		B1326E441CE429F9001F90CE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B1326E461CE42A0B001F90CE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B1422BF01CBB575500C988FE /* RSTabBarControllerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTabBarControllerConfig.h; sourceTree = "<group>"; };
 		B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTabBarControllerConfig.m; sourceTree = "<group>"; };
 		B1422BF31CBB71DB00C988FE /* UIImage+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helper.h"; sourceTree = "<group>"; };
@@ -361,8 +380,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B162BC9F1CBE0B5200E27228 /* CoreLocation.framework in Frameworks */,
+				B1326E471CE42A0B001F90CE /* Foundation.framework in Frameworks */,
 				B1738D8B1CB65FBF006C7207 /* UIKit.framework in Frameworks */,
+				B1326E451CE429F9001F90CE /* CoreGraphics.framework in Frameworks */,
+				B1326E361CE428DC001F90CE /* libBaiduMobStat.a in Frameworks */,
+				B1326E431CE429D1001F90CE /* CoreTelephony.framework in Frameworks */,
+				B1326E411CE429BF001F90CE /* SystemConfiguration.framework in Frameworks */,
+				B1326E3F1CE429B2001F90CE /* Security.framework in Frameworks */,
+				B1326E3D1CE429A3001F90CE /* libz.1.2.5.tbd in Frameworks */,
+				B1326E3B1CE42995001F90CE /* libstdc++.6.0.9.tbd in Frameworks */,
+				B1326E391CE42960001F90CE /* JavaScriptCore.framework in Frameworks */,
+				B162BC9F1CBE0B5200E27228 /* CoreLocation.framework in Frameworks */,
 				B123DCAD1CC7707600F08E8D /* libWeChatSDK.a in Frameworks */,
 				0E57EC52FBD378DB4AFF964D /* libPods.a in Frameworks */,
 			);
@@ -408,6 +436,14 @@
 		89CD2143532C7CFFFAD5050B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B1326E461CE42A0B001F90CE /* Foundation.framework */,
+				B1326E441CE429F9001F90CE /* CoreGraphics.framework */,
+				B1326E421CE429D1001F90CE /* CoreTelephony.framework */,
+				B1326E401CE429BF001F90CE /* SystemConfiguration.framework */,
+				B1326E3E1CE429B2001F90CE /* Security.framework */,
+				B1326E3C1CE429A3001F90CE /* libz.1.2.5.tbd */,
+				B1326E3A1CE42995001F90CE /* libstdc++.6.0.9.tbd */,
+				B1326E381CE42960001F90CE /* JavaScriptCore.framework */,
 				B162BC9E1CBE0B5200E27228 /* CoreLocation.framework */,
 				B1738D8A1CB65FBF006C7207 /* UIKit.framework */,
 				4C4958AA95EB4C8CED57B9D6 /* libPods.a */,
@@ -418,6 +454,7 @@
 		B123DCA71CC7704B00F08E8D /* ThreeLib */ = {
 			isa = PBXGroup;
 			children = (
+				B1326E341CE428B1001F90CE /* Baidu */,
 				B123DCA81CC7705900F08E8D /* WeiXin */,
 			);
 			name = ThreeLib;
@@ -473,6 +510,15 @@
 				B123DCD11CC8CA9000F08E8D /* BandleCellPhoneViewController.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		B1326E341CE428B1001F90CE /* Baidu */ = {
+			isa = PBXGroup;
+			children = (
+				B1326E371CE4290F001F90CE /* BaiduMobStat.h */,
+				B1326E351CE428DC001F90CE /* libBaiduMobStat.a */,
+			);
+			path = Baidu;
 			sourceTree = "<group>";
 		};
 		B162BCA01CBE10FB00E27228 /* Utils */ = {
@@ -1377,6 +1423,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/RSUser/Frame",
 					"$(PROJECT_DIR)/RSUser/Frame/ThreeLib/WeiXin",
+					"$(PROJECT_DIR)/RSUser/Frame/Baidu",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1472,6 +1519,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/RSUser/Frame",
 					"$(PROJECT_DIR)/RSUser/Frame/ThreeLib/WeiXin",
+					"$(PROJECT_DIR)/RSUser/Frame/Baidu",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

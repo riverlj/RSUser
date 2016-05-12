@@ -23,7 +23,6 @@
 #import "RSRoute.h"
 #import "MBProgressHUD.h"
 #import "RSToastView.h"
-#import <PureLayout/PureLayout.h>
 #import "UIImage+Helper.h"
 #import "RSAlertView.h"
 #import "RSLabel.h"
@@ -37,5 +36,7 @@
 #import "RSRadioGroup.h"
 #import "RSSubTitleView.h"
 #import "Cart.h"
+
+#import "BaiduMobStat.h"
 
 #endif /* AppHeader_h */

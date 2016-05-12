@@ -23,6 +23,8 @@
     self.sections = [NSMutableArray new];
     [self beginHttpRequest];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64);
+
 }
 
 -(void)beforeHttpRequest{

@@ -34,4 +34,8 @@
  */
 +(void)setRootViewControllerWithCode:(NSInteger)code;
 
+/**
+ *  百度统计
+ */
++(void)baiduMobStat;
 @end

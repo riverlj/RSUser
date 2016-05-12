@@ -19,7 +19,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
     launchImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
     NSString *launchImageStr = [self splashImageNameForOrientation:UIDeviceOrientationPortrait];
@@ -51,15 +50,6 @@
          [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 
-
-//    NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
-//    [RSHttp requestWithURL:@"/site/loading" params:params httpMethod:@"GET" success:^(NSDictionary *data) {
-//        NSString *loadingimgStr = [data valueForKey:@"loadimg"];
-//        NSString *colorStr = [data valueForKey:@"color"];
-//        [_imageView sd_setImageWithURL:[NSURL URLWithString:loadingimgStr]];
-//    } failure:^(NSInteger code, NSString *errmsg) {
-//        [[RSToastView shareRSToastView] showToast:errmsg];
-//    }];
 }
 
 - (NSString *)splashImageNameForOrientation:(UIDeviceOrientation)orientation {

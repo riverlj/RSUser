@@ -7,10 +7,10 @@
 //
 
 #import "ProfileViewController.h"
+#import "BandleCellPhoneViewController.h"
 #import "ProfileModel.h"
 #import "SchoolModel.h"
 #import "UserInfoModel.h"
-#import "LoginViewController.h"
 
 @interface ProfileViewController()
 
@@ -63,6 +63,7 @@
         userInfoModel.title = @"绑定手机";
         userInfoModel.cellClassName = @"HeadviewCell";
         userInfoModel.url = @"RSUser://BandleCellPhone";
+        [userInfoModel setSelectAction:@selector(bandleCellPhone) target:self];
         [selfB.models addObject:userInfoModel];
         
         for(NSDictionary *dict in items) {
@@ -117,4 +118,5 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
+
 @end

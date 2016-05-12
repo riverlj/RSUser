@@ -18,8 +18,6 @@
         _titleLabel.textColor = RS_SubMain_Text_Color;
         _titleLabel.font = RS_MainLable_Font;
         [self.contentView addSubview:_titleLabel];
-        [_titleLabel autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 46, 0, 46)];
-
         
         _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(18, 0, 18, 18)];
         _imgView.centerY = 49/2;

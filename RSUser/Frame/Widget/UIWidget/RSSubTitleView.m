@@ -77,4 +77,5 @@
         self.image.backgroundColor = self.highlightColor;
     }
 }
+
 @end

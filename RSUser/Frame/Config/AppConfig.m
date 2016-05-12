@@ -71,6 +71,21 @@
 
 }
 
+
++(void)baiduMobStat
+{
+    BaiduMobStat *statTracker = [BaiduMobStat defaultStat];
+    [statTracker startWithAppId:@"43a650796d"];
+    statTracker.enableExceptionLog = YES; //截获崩溃信息
+    statTracker.logStrategy = BaiduMobStatLogStrategyAppLaunch;
+    statTracker.logSendInterval = 1;
+    statTracker.channelId = [UIDevice utm_source];
+    statTracker.logSendWifiOnly = NO;
+    statTracker.sessionResumeInterval = 60;
+    statTracker.shortAppVersion = [UIDevice clientVersion];
+}
+
+
 + (AppDelegate *)getAPPDelegate
 {
     AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;

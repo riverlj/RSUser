@@ -1,6 +1,5 @@
 platform:ios,'7.0'
 inhibit_all_warnings!
-pod 'PureLayout', '~> 2.0.5'
 pod 'AFNetworking', '~> 2.5.1'
 pod 'SDWebImage' , '~>3.7.4'
 pod 'SDCycleScrollView', '~>1.3'
