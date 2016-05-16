@@ -41,5 +41,6 @@
 
 - (CGSize)sizeWithFont:(UIFont *)font byHeight:(CGFloat)height;
 
-
+- (BOOL)isPureFloat;
+- (BOOL)isPureInt;
 @end

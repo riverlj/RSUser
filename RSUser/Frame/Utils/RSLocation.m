@@ -30,19 +30,23 @@
         return;
     }
     //如果没有授权则请求用户授权
-    if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined){
+    if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined &&
+        [_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
+    {
         [_locationManager requestWhenInUseAuthorization];
     }
-    if([CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorizedWhenInUse){
-        _locationManager.delegate = self;
+    else if(IOS8&&[CLLocationManager authorizationStatus]==kCLAuthorizationStatusAuthorizedWhenInUse)
+    {
+        //设置代理
+        _locationManager.delegate=self;
         //设置定位精度
         _locationManager.desiredAccuracy=kCLLocationAccuracyBest;
         //定位频率,每隔多少米定位一次
         CLLocationDistance distance=10.0;//十米定位一次
         _locationManager.distanceFilter=distance;
         //启动跟踪定位
-        [_locationManager startUpdatingLocation];
     }
+    [_locationManager startUpdatingLocation];
 }
 
 //地理坐标恢复

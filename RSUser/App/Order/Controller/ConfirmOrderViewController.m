@@ -120,7 +120,7 @@
 - (void)selectedCoupon
 {
     //TODO 选择可用优惠券
-    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://coupon?selectReturn=YES"]];
+    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://coupon?selectReturn=1"]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

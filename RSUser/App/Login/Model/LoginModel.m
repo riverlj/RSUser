@@ -29,7 +29,7 @@
     [RSHttp requestWithURL:@"/user/weixinlogin" params:params httpMethod:@"POSTJSON" success:^(NSDictionary* data) {
         [NSUserDefaults  setValue:[data valueForKey:@"token"] forKey:@"token"];
         [[RSToastView  shareRSToastView]showToast:@"登陆成功"];
-        [[AppConfig getAPPDelegate].crrentNavCtl popToRootViewControllerAnimated:YES];
+        [[AppConfig getAPPDelegate].crrentNavCtl popViewControllerAnimated:YES];
     } failure:^(NSInteger code, NSString *errmsg) {
         [[RSToastView  shareRSToastView]showToast:errmsg];
     }];

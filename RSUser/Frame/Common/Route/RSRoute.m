@@ -166,7 +166,22 @@ static RSRoute *gsharedAccount = nil;
         NSArray *keys = [params allKeys];
         for (int i=0; i<keys.count; i++)
         {
-            [vc setValue:[params valueForKey:keys[i]] forKey:keys[i]];
+            NSString *key = keys[i];
+            NSString *value = [params valueForKey:key];
+            
+            if ([value isPureInt]) {
+                NSInteger intvalue = [value integerValue];
+                [vc setValue:@(intvalue) forKey:key];
+                continue;
+            }
+            if ([value isPureFloat]) {
+                CGFloat floatValue = [value integerValue];
+                [vc setValue:@(floatValue) forKey:key];
+                continue;
+            }
+            
+            [vc setValue:value forKey:key];
+
         }
         
         return vc;

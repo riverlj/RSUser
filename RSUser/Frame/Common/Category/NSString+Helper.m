@@ -147,4 +147,17 @@
     return [self boundingRectWithSize:CGSizeMake(999999.0f, height) options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil].size;
 }
 
+//判断字符串是否为浮点数
+- (BOOL)isPureFloat{
+    NSScanner* scan = [NSScanner scannerWithString:self];
+    float val;
+    return[scan scanFloat:&val] && [scan isAtEnd];
+}
+//判断是否为整形：
+- (BOOL)isPureInt{
+    NSScanner* scan = [NSScanner scannerWithString:self];
+    int val;
+    return [scan scanInt:&val] && [scan isAtEnd];
+}
+
 @end
