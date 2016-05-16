@@ -109,58 +109,25 @@
 
 - (void)setImageView:(UIImageView *)imageView Type:(NSInteger)type
 {
-    switch (type) {
-        case 0:{
-            //未支付
-            [imageView setImage:[UIImage imageNamed:@"order_dzf"]];
-            break;
-        }
-        case 1:{
-            //已支付
-            [imageView setImage:[UIImage imageNamed:@"order_yzf"]];
-            break;
-        }
-        
-        case 2:{//TODO
-            // 送货中
-            [imageView setImage:[UIImage imageNamed:@"order_shz"]];
-            break;
-        }
-        
-        case 3:{
-            //兼职已送达
-            [imageView setImage:[UIImage imageNamed:@"order_dpj"]];
-            break;
-        }
-        
-        case 4:{
-            //用户已收货
-            [imageView setImage:[UIImage imageNamed:@"order_ywc"]];
-            break;
-        }
-            
-        case 128:{
-            //订单已取消
-            [imageView setImage:[UIImage imageNamed:@"order_yqx"]];
-            
-            break;
-        }
-        case 129:{
-            //订单退款中
-            [imageView setImage:[UIImage imageNamed:@"order_tkz"]];
-
-            break;
-        }
-        case 130:{
-            //已退款
-            [imageView setImage:[UIImage imageNamed:@"order_ytk"]];
-            break;
-        }
-        
-        default:
-            break;
-    }
+    NSDictionary *dic = @{
+                          @"0" : @"order_dzf",
+                          @"1" : @"order_yzf",
+                          @"2" : @"order_shz",
+                          @"3" : @"order_dpj",
+                          @"4" : @"order_ywc",
+                          @"5" : @"order_ywc",
+                          @"10" : @"order_tkz",
+                          @"11" : @"order_ytk",
+                          @"12" : @"order_tkz",
+                          @"13" : @"order_ytk",
+                          @"127" : @"order_yqx",
+                          @"128" : @"order_yqx",
+                          @"129" : @"order_tkz",
+                          @"130" : @"order_ytk"
+                          };
+    
+    NSString *imageName = [dic valueForKey:[NSString stringWithFormat:@"%zd",type]];
+    [imageView setImage:[UIImage imageNamed:imageName]];
 }
-
 
 @end

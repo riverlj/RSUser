@@ -51,30 +51,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCountLabel) name:@"Notification_UpadteCountLabel" object:nil];
 }
 
-- (void)updateCountLabel
-{
-    NSMutableArray *array = [[Cart sharedCart] getCartGoods];
-    
-    for (int i=0; i<self.models.count; i++) {
-        GoodListModel *model = self.models[i];
-        model.num = 0;
-        if (array.count == 0) {
-            model.num = 0;
-            continue;
-        }
-        
-        for (int j=0; j<array.count; j++) {
-            CartModel *cartModel = array[j];
-            if (model.comproductid == cartModel.comproductid)
-            {
-                model.num = cartModel.num;
-            }
-        }
-    }
-    
-    [self.tableView reloadData];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -110,6 +86,31 @@
         
     }];
     
+}
+
+
+- (void)updateCountLabel
+{
+    NSMutableArray *array = [[Cart sharedCart] getCartGoods];
+    
+    for (int i=0; i<self.models.count; i++) {
+        GoodListModel *model = self.models[i];
+        model.num = 0;
+        if (array.count == 0) {
+            model.num = 0;
+            continue;
+        }
+        
+        for (int j=0; j<array.count; j++) {
+            CartModel *cartModel = array[j];
+            if (model.comproductid == cartModel.comproductid)
+            {
+                model.num = cartModel.num;
+            }
+        }
+    }
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark 创建View
