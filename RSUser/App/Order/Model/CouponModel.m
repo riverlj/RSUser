@@ -99,7 +99,7 @@
 
 -(NSMutableAttributedString *)getMoneyStr
 {
-    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"￥%zd", self.money] attributes:[NSDictionary dictionaryWithObjectsAndKeys:Font(18), NSFontAttributeName, RS_Theme_Color, NSForegroundColorAttributeName,nil]];
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"￥%.2f", self.money] attributes:[NSDictionary dictionaryWithObjectsAndKeys:Font(18), NSFontAttributeName, RS_Theme_Color, NSForegroundColorAttributeName,nil]];
     [attrStr addAttribute:NSFontAttributeName value:Font(30) range:NSMakeRange(1, attrStr.length-1)];
     return attrStr;
 }

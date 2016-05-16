@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, CouponModelStatus) {
 @property (nonatomic ,assign)NSInteger begintime;
 @property (nonatomic ,assign)NSInteger endtime;
 @property (nonatomic ,assign)NSInteger minfee;
-@property (nonatomic ,assign)NSInteger money;
+@property (nonatomic ,assign)CGFloat money;
 @property (nonatomic ,assign)NSInteger discount;
 @property (nonatomic, strong)NSArray *products;
 @property (nonatomic, strong)NSArray *disproducts;
@@ -32,6 +32,8 @@ typedef NS_ENUM(NSUInteger, CouponModelStatus) {
 @property (nonatomic ,assign)NSString *reduce;
 
 @property (nonatomic, strong) NSString *fromtype;
+@property (nonatomic, assign)BOOL selected;
+
 
 + (void)getCounponList:(void(^)(NSArray *))success;
 + (void)bindCoupon:(NSString *)couponcode success:(void(^)())success failure:(void(^)())failure;

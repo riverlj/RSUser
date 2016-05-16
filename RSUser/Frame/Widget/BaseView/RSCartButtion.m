@@ -76,11 +76,7 @@
 {
     if ([[Cart sharedCart] getCartCountLabelText] == 0)
     {
-        //弹出提示
-        RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:@"您还没有选择商品呢" leftButtonTitle:@"我知道了" AndLeftBlock:^{
-            
-        }];
-        [alertView show];
+        [[RSToastView shareRSToastView] showToast:@"您还没有选择商品呢"];
     }
     else
     {

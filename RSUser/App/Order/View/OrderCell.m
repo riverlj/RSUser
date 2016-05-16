@@ -43,10 +43,8 @@
 - (void)btnClicked:(UIButton *)sender
 {
     if (_orderModel.business == 2) {
-        RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:@"请前往微信公众号查看周预定订单详情" leftButtonTitle:@"我的知道了" AndLeftBlock:^{
-            
-        }];
-        [alertView show];
+        
+        [[RSToastView shareRSToastView] showToast:@"请前往微信公众号查看周预定订单详情"];
         return;
     }
     

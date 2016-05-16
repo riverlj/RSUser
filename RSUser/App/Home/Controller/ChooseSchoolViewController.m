@@ -203,9 +203,7 @@
     NSLog(@"%@",COMMUNTITYID);
     if (!COMMUNTITYID)
     {
-        RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:@"请选择所在学校" leftButtonTitle:@"我知道了" AndLeftBlock:^{
-        }];
-        [alertView show];
+        [[RSToastView shareRSToastView] showToast:@"请选择所在学校"];
         return;
     }
     [LOCATIONMODEL save];

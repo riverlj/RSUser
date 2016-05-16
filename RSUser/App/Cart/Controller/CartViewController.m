@@ -154,10 +154,8 @@
         if (totalPrice <= schoolModel.minprice) {
             @strongify(self)
             [self disappearView];
-            RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:[NSString stringWithFormat:@"最低%.2f元起送",schoolModel.minprice] leftButtonTitle:@"我知道了" AndLeftBlock:^{
-                
-            }];
-            [alertView show];
+
+            [[RSToastView shareRSToastView] showToast:[NSString stringWithFormat:@"最低%.2f元起送",schoolModel.minprice]];
             return nil;
         }
         

@@ -32,7 +32,7 @@
     _searchTextField.layer.borderColor = RS_Line_Color.CGColor;
     _searchTextField.layer.cornerRadius = 6;
     _searchTextField.font = Font(14);
-    _searchTextField.placeholder = @"请输入学校名称如：西安交通大学";
+    _searchTextField.placeholder = @"请输入学校名称如：对外经济贸易大学";
     [self addSubview:_searchTextField];
 }
 

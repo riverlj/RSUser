@@ -11,6 +11,5 @@
 @interface CouponViewController : RSRefreshTableViewController<UITextFieldDelegate>
 @property(nonatomic, strong) UIView *headView;
 @property(nonatomic) NSInteger searchType;
-@property(nonatomic) BOOL selectReturn; //选中后是否返回
 @end
 

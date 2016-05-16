@@ -11,6 +11,7 @@
 #import "CouponModel.h"
 #import "AddressCell.h"
 #import "GoodListModel.h"
+#import "ChooseCouponViewController.h"
 
 @interface ConfirmOrderViewController ()<closeGoodsDetail>
 {
@@ -19,6 +20,7 @@
     NSMutableDictionary *_goodDic;
     AddressModel *_addressModel;
     CouponModel *_couponModel;
+    NSArray *_couponsArray;
 }
 @end
 
@@ -89,9 +91,18 @@
     model.cellHeight = 49;
     model.cellClassName = @"mainTitleCell";
     [model setSelectAction:@selector(selectedCoupon) target:self];
+    
     if (!_couponModel) {
+        
+        if (_couponModel.minfee > self.totalprice) {
+            [[RSToastView shareRSToastView] showToast:[NSString stringWithFormat:@"该优惠券最小使用金额是:%ld元",_couponModel.minfee]];
+            _couponModel = nil;
+        }
+        
         //获取优惠券信息
         [CouponModel getCounponList:^(NSArray *couponList) {
+            
+            _couponsArray = [[NSArray alloc]initWithArray:couponList];
             
             if (couponList.count == 0)
             {
@@ -106,22 +117,22 @@
             [self.tableView reloadData];
         }];
     }else{
-        model.title = [NSString stringWithFormat:@"    -%ld", _couponModel.money ];
+        model.title = [NSString stringWithFormat:@"    -%0.2f", _couponModel.money ];
         [array3 addObject:model];
         [self computePayNumber];
         [self.models addObject:array3];
         [self.tableView reloadData];
+        
     }
-    
-    
     
 }
 
 - (void)selectedCoupon
 {
     //TODO 选择可用优惠券
-    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://coupon?selectReturn=1"]];
-    [self.navigationController pushViewController:vc animated:YES];
+    ChooseCouponViewController *couponVc = [[ChooseCouponViewController alloc]init];
+    couponVc.couponArray = [_couponsArray copy];
+    [self.navigationController pushViewController:couponVc animated:YES];
 }
 
 - (void)initBottomView

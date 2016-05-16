@@ -97,8 +97,16 @@
     btn.tintColor = [UIColor whiteColor];
     [btn addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
-
+    
     [self.view addTapAction:@selector(endedit) target:self];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame) name:UIKeyboardDidHideNotification object:nil];//在这里注册通知
+
+}
+
+- (void)keyboardWillChangeFrame
+{
+    [self endedit];
 }
 
 
@@ -258,5 +266,10 @@
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self endedit];
 }
 @end

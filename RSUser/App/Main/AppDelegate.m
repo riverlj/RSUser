@@ -98,11 +98,8 @@
             }
             case WXErrCodeUserCancel:  //用户取消并返回
             {
-                RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:@"支付未完成,请重新支付" leftButtonTitle:@"我知道了" AndLeftBlock:^{
-                    
-                }];
-                [alertView show];
                 
+                [[RSToastView shareRSToastView] showToast:@"支付未完成,请重新支付"];
                 break;
             }
                 

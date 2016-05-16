@@ -63,7 +63,6 @@
         userInfoModel.title = @"绑定手机";
         userInfoModel.cellClassName = @"HeadviewCell";
         userInfoModel.url = @"RSUser://BandleCellPhone";
-        [userInfoModel setSelectAction:@selector(bandleCellPhone) target:self];
         [selfB.models addObject:userInfoModel];
         
         for(NSDictionary *dict in items) {
@@ -113,6 +112,10 @@
     }
 
     UIViewController *vc = [RSRoute getViewControllerByPath:model.url];
+    if ([vc isKindOfClass:[BandleCellPhoneViewController class]])
+    {
+        return;
+    }
     if(vc) {
         vc.title = model.title;
         [self.navigationController pushViewController:vc animated:YES];

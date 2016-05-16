@@ -125,13 +125,13 @@
     self.priceLabel.font = RS_PriceLable_Font;
     [self.contentView addSubview:self.priceLabel];
     
-    _costPriceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_SubMain_Text_Color];
-    _costPriceLabel.font = RS_CostPriceLable_Font;
-    [self.contentView addSubview:_costPriceLabel];
+//    _costPriceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_SubMain_Text_Color];
+//    _costPriceLabel.font = RS_CostPriceLable_Font;
+//    [self.contentView addSubview:_costPriceLabel];
     
-    _deleteLineView = [[UIView alloc]init];
-    [_costPriceLabel addSubview:_deleteLineView];
-    _deleteLineView.backgroundColor = RS_SubMain_Text_Color;
+//    _deleteLineView = [[UIView alloc]init];
+//    [_costPriceLabel addSubview:_deleteLineView];
+//    _deleteLineView.backgroundColor = RS_SubMain_Text_Color;
     
     CGSize addSize = [UIImage imageNamed:@"addActivate"].size;
     self.addIV = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-32, 93/2, 2*addSize.width, 93/2)];
@@ -163,7 +163,7 @@
     _menuLabel.text      = model.desc;
     _saledLabel.text     = [NSString stringWithFormat:@"已售%zd份", model.saled];
     self.priceLabel.text     = [NSString stringWithFormat:@"￥%@", model.saleprice];
-    _costPriceLabel.text = [NSString stringWithFormat:@"￥%@", model.price];
+//    _costPriceLabel.text = [NSString stringWithFormat:@"￥%@", model.price];
     self.countLabel.text = [NSString stringWithFormat:@"%zd", model.num];
     if (_listModel.num == 0)
     {
@@ -193,14 +193,14 @@
     CGSize priceSize = [self.priceLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, 40)];
     self.priceLabel.size = priceSize;
     
-    _costPriceLabel.x = self.priceLabel.right + 5;
-    CGSize costtSize = [_costPriceLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, 40)];
-    _costPriceLabel.size = costtSize;
-    _costPriceLabel.y = self.priceLabel.bottom - costtSize.height-1;
+//    _costPriceLabel.x = self.priceLabel.right + 5;
+//    CGSize costtSize = [_costPriceLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, 40)];
+//    _costPriceLabel.size = costtSize;
+//    _costPriceLabel.y = self.priceLabel.bottom - costtSize.height-1;
     
-    _deleteLineView.y = costtSize.height/2;
-    _deleteLineView.width = costtSize.width;
-    _deleteLineView.height = 1;
+//    _deleteLineView.y = costtSize.height/2;
+//    _deleteLineView.width = costtSize.width;
+//    _deleteLineView.height = 1;
 
 }
 

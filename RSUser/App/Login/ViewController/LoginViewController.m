@@ -185,8 +185,7 @@
     if ([WXApi isWXAppInstalled]) {
         [LoginModel sendAuthRequest];
     }else{
-        RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:@"请先安装微信客户端" leftButtonTitle:@"我知道了" AndLeftBlock:nil];
-        [alertView show];
+        [[RSToastView shareRSToastView] showToast:@"请先安装微信客户端"];
     }
 }
 

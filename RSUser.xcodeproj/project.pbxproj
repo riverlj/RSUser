@@ -52,6 +52,7 @@
 		B1326E431CE429D1001F90CE /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E421CE429D1001F90CE /* CoreTelephony.framework */; };
 		B1326E451CE429F9001F90CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E441CE429F9001F90CE /* CoreGraphics.framework */; };
 		B1326E471CE42A0B001F90CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E461CE42A0B001F90CE /* Foundation.framework */; };
+		B1326E501CE9CB0C001F90CE /* ChooseCouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1326E4F1CE9CB0C001F90CE /* ChooseCouponViewController.m */; };
 		B1422BF21CBB575500C988FE /* RSTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */; };
 		B1422BF51CBB71DB00C988FE /* UIImage+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF41CBB71DB00C988FE /* UIImage+Helper.m */; };
 		B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF71CBB733600C988FE /* RSCartButtion.m */; };
@@ -227,6 +228,8 @@
 		B1326E421CE429D1001F90CE /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		B1326E441CE429F9001F90CE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B1326E461CE42A0B001F90CE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B1326E4E1CE9CB0C001F90CE /* ChooseCouponViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseCouponViewController.h; sourceTree = "<group>"; };
+		B1326E4F1CE9CB0C001F90CE /* ChooseCouponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseCouponViewController.m; sourceTree = "<group>"; };
 		B1422BF01CBB575500C988FE /* RSTabBarControllerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTabBarControllerConfig.h; sourceTree = "<group>"; };
 		B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTabBarControllerConfig.m; sourceTree = "<group>"; };
 		B1422BF31CBB71DB00C988FE /* UIImage+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helper.h"; sourceTree = "<group>"; };
@@ -742,6 +745,8 @@
 				B18322571CD0C6A2006E7EBC /* OrderViewController.m */,
 				B123DCC71CC8893E00F08E8D /* ConfirmOrderViewController.h */,
 				B123DCC81CC8893E00F08E8D /* ConfirmOrderViewController.m */,
+				B1326E4E1CE9CB0C001F90CE /* ChooseCouponViewController.h */,
+				B1326E4F1CE9CB0C001F90CE /* ChooseCouponViewController.m */,
 				B18322741CD8470A006E7EBC /* OrderStatusViewController.h */,
 				B18322751CD8470A006E7EBC /* OrderStatusViewController.m */,
 				B183227A1CD89D27006E7EBC /* OrderInfoAndStatusViewController.h */,
@@ -1261,6 +1266,7 @@
 				B123DCB71CC77D9C00F08E8D /* LoginViewController.m in Sources */,
 				B1738DB71CB665C3006C7207 /* RSRadioGroup.m in Sources */,
 				B1FFB8D81CB656DA00255F21 /* RSRoute.m in Sources */,
+				B1326E501CE9CB0C001F90CE /* ChooseCouponViewController.m in Sources */,
 				B18322761CD8470A006E7EBC /* OrderStatusViewController.m in Sources */,
 				B1422BFB1CBB9E4100C988FE /* CartNumberLabel.m in Sources */,
 				30221E3A1CC9FAFE00126D72 /* ProfileViewController.m in Sources */,

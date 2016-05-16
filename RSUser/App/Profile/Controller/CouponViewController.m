@@ -33,6 +33,7 @@
     [btnArr addObject:item2];
     
     [self initButton];
+
 }
 
 -(void)initButton
@@ -151,16 +152,5 @@
     
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    CouponModel *model = (CouponModel *)[self getModelByIndexPath:indexPath];
-    if(model) {
-        if([model.fromtype isEqualToString:@"canuse"]&&self.selectReturn) {
-            [NSKeyedArchiver archiveRootObject:model toFile:[RSFileStorage perferenceSavePath:@"coupon"]];
-            if(self.selectReturn) {
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-        }
-    }
-}
+
 @end

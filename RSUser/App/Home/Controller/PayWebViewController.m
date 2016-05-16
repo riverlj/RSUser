@@ -73,10 +73,7 @@
 
 -(void)payAli:(NSString *)str
 {
-    RSAlertView *alertView = [[RSAlertView alloc]initWithTile:@"提示" msg:@"暂未提供该服务" leftButtonTitle:@"我知道啦" AndLeftBlock:^{
-        
-    }];
-    [alertView show];
+    [[RSToastView shareRSToastView] showToast:@"暂未提供该服务"];
 }
 
 - (void)backUp
