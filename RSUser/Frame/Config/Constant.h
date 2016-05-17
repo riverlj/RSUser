@@ -12,15 +12,15 @@
 #ifdef DEBUG
 #define  REDSCARF_BASE_URL @"http://test.dev.honglingjinclub.com"
 #define REDSCARF_PAY_URL @""
-#define REDSCARF_MOBILE_URL @""
-#define APP_REGISTER_URL @"http://test.dev.honglingjinclub.com/register.html"
-#define APP_RESETPWD_URL @"http://test.dev.honglingjinclub.com/resetPwd.html"
+#define REDSCARF_MOBILE_URL @"http://test.dev.honglingjinclub.com/"
+#define APP_REGISTER_URL @"http://test.dev.honglingjinclub.com/web/register.html"
+#define APP_RESETPWD_URL @"http://test.dev.honglingjinclub.com/web/resetPwd.html"
 #else
-#define  REDSCARF_BASE_URL @"http://weixin.honglingjinclub.com"
+#define  REDSCARF_BASE_URL @"http://waimian.honglingjinclub.com"
 #define REDSCARF_PAY_URL @""
-#define REDSCARF_MOBILE_URL @""
-#define APP_REGISTER_URL @"http://weixin.honglingjinclub.com/register.html"
-#define APP_RESETPWD_URL @"http://weixin.honglingjinclub.com/resetPwd.html"
+#define REDSCARF_MOBILE_URL @"http://waimai.honglingjinclub.com"
+#define APP_REGISTER_URL @"http://waimai.honglingjinclub.com/web/register.html"
+#define APP_RESETPWD_URL @"http://waimai.honglingjinclub.com/web/resetPwd.html"
 #endif
 
 #define iPhone4S ([UIScreen mainScreen].bounds.size.height == 480 ? YES : NO)

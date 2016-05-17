@@ -46,6 +46,7 @@
     }
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
     request.timeoutInterval = 5;
+    request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
     [_bannerView loadRequest:request];
     [self.view addSubview:_bannerView];
 }

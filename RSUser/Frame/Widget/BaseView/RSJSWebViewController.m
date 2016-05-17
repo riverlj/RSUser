@@ -26,7 +26,6 @@
     self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     self.context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     self.context[@"RS_APP"] = self;
-    
 }
 
 - (void)backUp
@@ -42,4 +41,5 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 @end

@@ -23,8 +23,8 @@ typedef NS_ENUM(NSUInteger, CouponModelStatus) {
 @property (nonatomic ,assign)NSInteger begintime;
 @property (nonatomic ,assign)NSInteger endtime;
 @property (nonatomic ,assign)NSInteger minfee;
-@property (nonatomic ,assign)CGFloat money;
-@property (nonatomic ,assign)NSInteger discount;
+@property (nonatomic ,strong)NSNumber *money;
+@property (nonatomic ,strong)NSNumber *discount;
 @property (nonatomic, strong)NSArray *products;
 @property (nonatomic, strong)NSArray *disproducts;
 @property (nonatomic ,copy)NSString *descriptionstr;

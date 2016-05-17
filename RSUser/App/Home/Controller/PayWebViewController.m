@@ -20,7 +20,7 @@
     self.title = @"选择支付方式";
 //    [self setStateBarBg];
     self.navigationController.navigationBar.hidden = NO;
-    self.bannerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64);
+    self.bannerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-20);
     
 }
 

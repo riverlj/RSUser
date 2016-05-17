@@ -44,11 +44,11 @@
         _phoneLabel.font = Font(14);
         [self.contentView addSubview:_phoneLabel];
         
-        UIImageView *arrow = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
-        arrow.right = SCREEN_WIDTH - 18;
-        arrow.centerY = 102;
-        arrow.image = [UIImage imageNamed:@"arrow_right"];
-        [self.contentView addSubview:arrow];
+//        UIImageView *arrow = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
+//        arrow.right = SCREEN_WIDTH - 18;
+//        arrow.centerY = 102;
+//        arrow.image = [UIImage imageNamed:@"arrow_right"];
+//        [self.contentView addSubview:arrow];
     }
     return self;
 }

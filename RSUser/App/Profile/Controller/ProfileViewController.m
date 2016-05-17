@@ -11,6 +11,7 @@
 #import "ProfileModel.h"
 #import "SchoolModel.h"
 #import "UserInfoModel.h"
+#import "ProfileCell.h"
 
 @interface ProfileViewController()
 
@@ -26,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"我的";
+    self.title = @"个人中心";
     self.hasBackBtn = NO;
     items = @[
         @{
@@ -44,14 +45,20 @@
             @"imgUrl" : @"icon_phone2",
             @"url" : @"contactUs",
         },
-        @{
-            @"title" : @"关于我们",
-            @"imgUrl" : @"icon_link",
-            @"url" : @"RSUser://Aboutus",
-        },
     ];
     
-
+    RSButton *settingBtn = [RSButton buttonWithFrame:CGRectMake(0, 0, 30, 44) ImageName:@"icon_setting" Text:nil TextColor:RS_Clear_Clor];
+    
+    @weakify(self)
+    [[settingBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        @strongify(self)
+        UIViewController *vc = [RSRoute getViewControllerByPath:@"RSUser://setting"];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:settingBtn];
+    
 }
 
 - (void)initDataSorce
@@ -63,6 +70,7 @@
         userInfoModel.title = @"绑定手机";
         userInfoModel.cellClassName = @"HeadviewCell";
         userInfoModel.url = @"RSUser://BandleCellPhone";
+        
         [selfB.models addObject:userInfoModel];
         
         for(NSDictionary *dict in items) {
@@ -75,6 +83,7 @@
         
         [selfB.tableView reloadData];
     }];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated

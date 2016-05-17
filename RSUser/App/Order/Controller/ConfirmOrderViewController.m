@@ -43,23 +43,48 @@
     
     [self.models removeAllObjects];
     __weak ConfirmOrderViewController *selfB = self;
+    _addressModel = [[AddressModel alloc]init];
+    
+    __block NSMutableArray *array1 = [[NSMutableArray alloc]init];
+    [array1 addObject:_addressModel];
+    [selfB.models addObject:array1];
+    
+    NSMutableArray *array2 = [[NSMutableArray alloc]init];
+    SchoolModel *schoolModel = [AppConfig getAPPDelegate].schoolModel;
+    schoolModel.cellHeight = 48;
+    schoolModel.cellClassName = @"mainTitleCell";
+    [array2 addObject:schoolModel];
+    _goodDic = [[NSMutableDictionary alloc]init];
+    [_goodDic setValue:@"0" forKey:@"isClosed"];
+    [_goodDic setValue:[[Cart sharedCart] getCartDetail] forKey:@"goods"];
+    [array2 addObject:_goodDic];
+    [self.models addObject:array2];
+    
+    __block NSMutableArray *array3 = [[NSMutableArray alloc]init];
+    __block CouponModel *model = [[CouponModel alloc]init];
+    model.cellHeight = 49;
+    model.cellClassName = @"mainTitleCell";
+    [model setSelectAction:@selector(selectedCoupon) target:self];
+    
+    
     [AddressModel getAddressList:^(NSArray *addressList) {
         
-        NSMutableArray *array = [[NSMutableArray alloc]init];
         [addressList enumerateObjectsUsingBlock:^(AddressModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if (obj.checked == 1) {
                 _addressModel = obj;
             }
         }];
+        
         if (!_addressModel) {
             _addressModel = [[AddressModel alloc]init];
             _addressModel.address = @"请选择地址";
         }
         _addressModel.cellHeight = 60;
         [_addressModel setSelectAction:@selector(updateAddress) target:self];
-        [array addObject:_addressModel];
-        [selfB.models addObject:array];
-        [selfB initModelData];
+        [array1 removeAllObjects];
+        [array1 addObject:_addressModel];
+        [selfB initModelData:model Array:array3];
+        [selfB.tableView reloadData];
     }];
   
 }
@@ -70,27 +95,11 @@
     [self.navigationController pushViewController:addressVc animated:YES];
 }
 
-- (void)initModelData
+- (void)initModelData:(CouponModel*) model Array:(NSMutableArray *)array
 {
-    NSMutableArray *array = [[NSMutableArray alloc]init];
-    SchoolModel *schoolModel = [AppConfig getAPPDelegate].schoolModel;
-    schoolModel.cellHeight = 48;
-    schoolModel.cellClassName = @"mainTitleCell";
-    [array addObject:schoolModel];
-    _goodDic = [[NSMutableDictionary alloc]init];
-    [_goodDic setValue:@"0" forKey:@"isClosed"];
-    [_goodDic setValue:[[Cart sharedCart] getCartDetail] forKey:@"goods"];
-    [array addObject:_goodDic];
-    [self.models addObject:array];
-
+    
     _couponModel = [NSKeyedUnarchiver unarchiveObjectWithFile:[RSFileStorage perferenceSavePath:@"coupon"]];
     [RSFileStorage removeFile:@"coupon"];
-    
-    NSMutableArray *array3 = [[NSMutableArray alloc]init];
-    __block CouponModel *model = [[CouponModel alloc]init];
-    model.cellHeight = 49;
-    model.cellClassName = @"mainTitleCell";
-    [model setSelectAction:@selector(selectedCoupon) target:self];
     
     if (!_couponModel) {
         
@@ -111,16 +120,16 @@
             {
                 model.title = [NSString stringWithFormat:@"    您有%ld张优惠券可用", couponList.count];
             }
-            [array3 addObject:model];
+            [array addObject:model];
             [self computePayNumber];
-            [self.models addObject:array3];
+            [self.models addObject:array];
             [self.tableView reloadData];
         }];
     }else{
-        model.title = [NSString stringWithFormat:@"    -%0.2f", _couponModel.money ];
-        [array3 addObject:model];
+        model.title = [NSString stringWithFormat:@"    -%@", _couponModel.reduce ];
+        [array addObject:model];
         [self computePayNumber];
-        [self.models addObject:array3];
+        [self.models addObject:array];
         [self.tableView reloadData];
         
     }
@@ -199,7 +208,7 @@
     }];
     
     if (_couponModel) {
-        payNumber -= _couponModel.money;
+        payNumber -= [_couponModel.reduce floatValue];
     }
     _priceLable.text = [NSString stringWithFormat:@"       总计:%.2f", payNumber];
 }

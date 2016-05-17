@@ -99,8 +99,26 @@
 
 -(NSMutableAttributedString *)getMoneyStr
 {
-    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"￥%.2f", self.money] attributes:[NSDictionary dictionaryWithObjectsAndKeys:Font(18), NSFontAttributeName, RS_Theme_Color, NSForegroundColorAttributeName,nil]];
-    [attrStr addAttribute:NSFontAttributeName value:Font(30) range:NSMakeRange(1, attrStr.length-1)];
+    NSString *str  = @"";
+    if (self.type == 1)
+    {
+        str = [NSString stringWithFormat:@"%@折", [NSNumber numberWithFloat:(1 - [self.discount floatValue])*10]];
+    }
+    else
+    {
+        str = [NSString stringWithFormat:@"¥%@", self.money];
+    }
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:str attributes:[NSDictionary dictionaryWithObjectsAndKeys:Font(18), NSFontAttributeName, RS_Theme_Color, NSForegroundColorAttributeName,nil]];
+    
+    if (self.type == 1)
+    {
+        [attrStr addAttribute:NSFontAttributeName value:Font(30) range:NSMakeRange(0,attrStr.length-1)];
+    }
+    else
+    {
+        [attrStr addAttribute:NSFontAttributeName value:Font(30) range:NSMakeRange(1, attrStr.length-1)];
+    }
+    
     return attrStr;
 }
 

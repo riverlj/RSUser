@@ -62,6 +62,9 @@
 
     _titleLabel.text = [NSString stringWithFormat:@"• %@", model.title];
     _timeLabel.text = [NSString stringWithFormat:@"可用日期:%@~%@", [model getBeginDate], [model getEndDate]];
+    if (model.type == 1) { //折扣
+        
+    }
     _moneyLabel.attributedText =  [model getMoneyStr];
     _descriptionLabel.text = [NSString stringWithFormat:@"• %@", model.descriptionstr];
     [_descriptionLabel setGrowthText:[NSString stringWithFormat:@"• %@", model.descriptionstr]];

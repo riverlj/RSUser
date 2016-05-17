@@ -36,18 +36,19 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self performSelector:@selector(switchRootViewController) withObject:nil afterDelay:1.5f];
+    [self performSelector:@selector(switchRootViewController) withObject:nil afterDelay:2.5f];
 }
 
 - (void)loadLaunchImage{
     
     NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
     [RSHttp mobileRequestWithURL:@"/mobile/index/loadingimg" params:params httpMethod:@"GET" success:^(NSDictionary *data) {
-        NSDictionary *dic = [data objectForKey:@"body"];
-        NSString *loadingimgStr = [dic objectForKey:@"loadingimg"];
-        [_imageView sd_setImageWithURL:[NSURL URLWithString:loadingimgStr]];
+        NSString *loadingimgStr = [data objectForKey:@"loadingimg"];
+        [UIView transitionWithView:_imageView duration:0.5 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+            [_imageView sd_setImageWithURL:[NSURL URLWithString:loadingimgStr]];
+        } completion:nil];
     } failure:^(NSInteger code, NSString *errmsg) {
-         [[RSToastView shareRSToastView] showToast:errmsg];
+//         [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 
 }

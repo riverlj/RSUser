@@ -111,6 +111,7 @@
 		B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4F1CB7622E00F587D1 /* AppConfig.m */; };
 		B1E81D631CB78A7D00F587D1 /* RSToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D621CB78A7D00F587D1 /* RSToastView.m */; };
 		B1E81D6B1CB7B04100F587D1 /* RSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D6A1CB7B04100F587D1 /* RSAlertView.m */; };
+		B1FD1C771CEABC7C004E21DB /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FD1C761CEABC7C004E21DB /* SettingViewController.m */; };
 		B1FFB87B1CB64DCA00255F21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FFB87A1CB64DCA00255F21 /* main.m */; };
 		B1FFB87E1CB64DCA00255F21 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FFB87D1CB64DCA00255F21 /* AppDelegate.m */; };
 		B1FFB8941CB64DCA00255F21 /* RSUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FFB8931CB64DCA00255F21 /* RSUserTests.m */; };
@@ -344,6 +345,8 @@
 		B1E81D681CB7A6EE00F587D1 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		B1E81D691CB7B04100F587D1 /* RSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAlertView.h; sourceTree = "<group>"; };
 		B1E81D6A1CB7B04100F587D1 /* RSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAlertView.m; sourceTree = "<group>"; };
+		B1FD1C751CEABC7C004E21DB /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		B1FD1C761CEABC7C004E21DB /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		B1FFB8761CB64DCA00255F21 /* RSUser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSUser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1FFB87A1CB64DCA00255F21 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B1FFB87C1CB64DCA00255F21 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -816,6 +819,8 @@
 				30221E7A1CCE41FE00126D72 /* AddressesViewController.m */,
 				30A3C5161CCE745600F5E55E /* AddressViewController.h */,
 				30A3C5171CCE745600F5E55E /* AddressViewController.m */,
+				B1FD1C751CEABC7C004E21DB /* SettingViewController.h */,
+				B1FD1C761CEABC7C004E21DB /* SettingViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1223,6 +1228,7 @@
 				B1FFB87E1CB64DCA00255F21 /* AppDelegate.m in Sources */,
 				B1738DC71CB665EC006C7207 /* RSTableViewCell.m in Sources */,
 				B10769AA1CBF1D8700586304 /* LocationModel.m in Sources */,
+				B1FD1C771CEABC7C004E21DB /* SettingViewController.m in Sources */,
 				B183226D1CD2FE4C006E7EBC /* OrderInfoAddressCell.m in Sources */,
 				B18322641CD1F04B006E7EBC /* OrderInfoModel.m in Sources */,
 				B123DCD51CC8E33300F08E8D /* CouponModel.m in Sources */,
