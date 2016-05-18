@@ -96,14 +96,18 @@
 {
     UIViewController *vc;
     switch (code) {
-        case 401:
+        case 401:{
+            [NSUserDefaults clearValueForKey:@"token"];
             vc = [[LoginViewController alloc]init];
-            
             [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:vc animated:YES];
             break;
-        case 403:
+        }
+        case 403:{
+            
             vc = [[BandleCellPhoneViewController alloc]init];
             [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:vc animated:YES];
+            break;
+        }
         default:
             break;
     }

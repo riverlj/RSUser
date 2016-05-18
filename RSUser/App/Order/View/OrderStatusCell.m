@@ -96,6 +96,8 @@
         
     }
     model.cellHeight = cellh;
+    self.height = cellh;
+
     
     UIView *VlineView = [RSLineView lineViewVerticalWithFrame:CGRectMake(0, 0, 1, 0) Color:[NSString colorFromHexString:@"5faaff"]];
     VlineView.x = spoint.x;
@@ -104,8 +106,6 @@
     VlineView.width = 1;
     [self.contentView addSubview:VlineView];
     [self.contentView sendSubviewToBack:VlineView];
-    self.contentView.height = cellh+1;
-    
 }
 
 
