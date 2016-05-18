@@ -7,6 +7,12 @@
 //
 
 #import "RSTableViewCell.h"
+@class TicketModel;
+
+@protocol CheckItemDelagete <NSObject>
+
+- (void)checkeTicketModel:(NSInteger)ticketid;
+@end
 
 @interface TicketTextFiled : UITextField
 @end
@@ -20,6 +26,8 @@
 @property (nonatomic ,strong)RSRadioGroup *radios;
 
 @property (nonatomic ,weak)id target;
+@property (nonatomic, strong)TicketModel *ticketModel;
+@property (nonatomic, weak)id<CheckItemDelagete> checkItemDelagete;
 
 
 @end

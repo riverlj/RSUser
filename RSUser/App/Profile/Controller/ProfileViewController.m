@@ -14,7 +14,9 @@
 #import "ProfileCell.h"
 
 @interface ProfileViewController()
-
+{
+    UserInfoModel *userInfoModel;
+}
 @end
 
 
@@ -47,6 +49,23 @@
         },
     ];
     
+    self.models = [[NSMutableArray alloc]init];
+    userInfoModel = [[UserInfoModel alloc]init];
+    userInfoModel.cellHeight = 172;
+    userInfoModel.title = @"绑定手机";
+    userInfoModel.cellClassName = @"HeadviewCell";
+    userInfoModel.url = @"RSUser://BandleCellPhone";
+    [self.models addObject:userInfoModel];
+    
+    for(NSDictionary *dict in items) {
+        ProfileModel *model = [ProfileModel new];
+        model.title = [dict valueForKey:@"title"];
+        model.url = [dict valueForKey:@"url"];
+        model.imgUrl = [dict valueForKey:@"imgUrl"];
+        [self.models addObject:model];
+    }
+    
+    [self.tableView reloadData];
     RSButton *settingBtn = [RSButton buttonWithFrame:CGRectMake(0, 0, 30, 44) ImageName:@"icon_setting" Text:nil TextColor:RS_Clear_Clor];
     
     @weakify(self)
@@ -63,24 +82,16 @@
 
 - (void)initDataSorce
 {
-    [self.models removeAllObjects];
     __weak ProfileViewController *selfB = self;
-    [UserInfoModel getUserInfo:^(UserInfoModel *userInfoModel) {
+    [UserInfoModel getUserInfo:^(UserInfoModel *userInfoModelparam) {
+        userInfoModel=userInfoModelparam;
         userInfoModel.cellHeight = 172;
         userInfoModel.title = @"绑定手机";
         userInfoModel.cellClassName = @"HeadviewCell";
         userInfoModel.url = @"RSUser://BandleCellPhone";
         
-        [selfB.models addObject:userInfoModel];
-        
-        for(NSDictionary *dict in items) {
-            ProfileModel *model = [ProfileModel new];
-            model.title = [dict valueForKey:@"title"];
-            model.url = [dict valueForKey:@"url"];
-            model.imgUrl = [dict valueForKey:@"imgUrl"];
-            [selfB.models addObject:model];
-        }
-        
+        [selfB.models removeObjectAtIndex:0];
+        [selfB.models insertObject:userInfoModel atIndex:0];
         [selfB.tableView reloadData];
     }];
 

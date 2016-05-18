@@ -100,7 +100,7 @@
     
     [self.view addTapAction:@selector(endedit) target:self];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame) name:UIKeyboardDidHideNotification object:nil];//在这里注册通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame) name:UIKeyboardWillHideNotification object:nil];//在这里注册通知
 
 }
 

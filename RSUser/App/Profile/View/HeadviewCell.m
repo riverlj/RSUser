@@ -25,6 +25,7 @@
         _headView.centerY = bgView.height/2;
         _headView.layer.cornerRadius = _headView.width/2;
         _headView.layer.borderColor = [UIColor whiteColor].CGColor;
+        _headView.image = [UIImage imageNamed:@"icon_header"];
         _headView.layer.borderWidth = 2;
         _headView.clipsToBounds = YES;
         [bgView addSubview:_headView];
@@ -58,6 +59,6 @@
     [super setModel:model];
     _nameLabel.text = model.name;
     _phoneLabel.text = model.mobile;
-    [_headView sd_setImageWithURL:[NSURL URLWithString:model.headimg]];
+    [_headView sd_setImageWithURL:[NSURL URLWithString:model.headimg] placeholderImage:[UIImage imageNamed:@"icon_header"] ];
 }
 @end

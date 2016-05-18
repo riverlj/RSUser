@@ -10,7 +10,7 @@
 #import "TicketModel.h"
 #import "TicketCell.h"
 
-@interface TicketViewController()<UITextFieldDelegate>
+@interface TicketViewController()<UITextFieldDelegate, CheckItemDelagete>
 {
     NSString *reasontext;
 }
@@ -33,7 +33,12 @@
     self.tableView.height = self.tableView.height - 57;
     
     [self initBottomView];
-    }
+    
+    [self.view addTapAction:@selector(hideKeyboard) target:self];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(
+     hideKeyboard) name:UIKeyboardWillHideNotification object:nil];//在这里注册通知
+}
 
 
 -(void) afterHttpSuccess:(NSArray *)data
@@ -46,6 +51,7 @@
         [array addObject:ticketModel];
         [self.models addObject:array];
     }
+    [self.tableView reloadData];
     
 }
 
@@ -82,25 +88,18 @@
     return 10;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TicketModel *model = self.models[indexPath.section][indexPath.row];
-    
-    if (model.isSelected == 1) {
-        [self hideKeyboard];
-        return;
-    }
-    
-    [self clearTicketModelSelected];
-    model.isSelected = 1;
-    reasontext = @"";
-    [self.tableView reloadData];
+    TicketCell *cell = (TicketCell*)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.height;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TicketCell *cell = (TicketCell*)[super tableView:tableView cellForRowAtIndexPath:indexPath];
     cell.target = self;
+    cell.checkItemDelagete = self;
+    [super tableView:tableView cellForRowAtIndexPath:indexPath];
     return cell;
 }
 
@@ -110,7 +109,7 @@
         NSArray *array = self.models[i];
         for (int j=0; j<array.count; j++) {
             TicketModel *model = array[j];
-            model.isSelected = 0;
+            model.ismodelSelected = 0;
         }
     }
 }
@@ -122,7 +121,7 @@
         NSArray *array = self.models[i];
         for (int j=0; j<array.count; j++) {
             TicketModel *model = array[j];
-            if (model.isSelected == 1) {
+            if (model.ismodelSelected == 1) {
                 ticketId = model.ticketId;
             }
         }
@@ -143,11 +142,13 @@
 
 -(void)editing:(UITextField *)textField
 {
+    CGRect rect = [textField.superview convertRect:textField.frame toView:self.tableView];
+    
     [UIView animateWithDuration:0.3
                           delay:0
                         options:UIViewAnimationOptionCurveLinear
                      animations:^ {
-                         self.tableView.contentInset = UIEdgeInsetsMake(-(textField.bottom-20), 0.0f, 0.0f, 0.0f);
+                         self.tableView.contentInset = UIEdgeInsetsMake(-(rect.size.height+rect.origin.y-50), 0.0f, 0.0f, 0.0f);
                      }
                      completion:^(BOOL finished) {
                      }];
@@ -173,12 +174,33 @@
     }];
     sender.selected = YES;
     reasontext = sender.titleLabel.text;
+    
+}
+
+- (void)checkeTicketModel:(NSInteger)ticketid
+{
+    for (int i=0; i<self.models.count; i++) {
+        NSArray *array = self.models[i];
+        TicketModel *model = array[0];
+        if (ticketid == model.ticketId) {
+            [self clearTicketModelSelected];
+            model.ismodelSelected = 1;
+            reasontext = @"";
+        }
+    }
+    
+    [self.tableView reloadData];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self hideKeyboard];
 }
 
 @end

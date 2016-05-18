@@ -24,6 +24,12 @@
 }
 @end
 
+@interface TicketCell()
+{
+    TicketTextFiled *textField;
+}
+
+@end
 @implementation TicketCell
 -(instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -40,7 +46,9 @@
     _nameLabel = [RSLabel labelOneLevelWithFrame:CGRectZero Text:@""];
     [self.contentView addSubview:_nameLabel];
     
-    _checkedImageView = [RSImageView imageViewWithFrame:CGRectMake(SCREEN_WIDTH-36, 14.5, 20, 20) ImageName:@"ticket_one_no_cheked"];
+    _checkedImageView = [RSImageView imageViewWithFrame:CGRectMake(SCREEN_WIDTH-36, 14.5, 100, 20) ImageName:@"ticket_one_no_cheked"];
+    [_checkedImageView addTapAction:@selector(checkedImageViewAction) target:self];
+    _checkedImageView.contentMode = UIViewContentModeRight;
     [self.contentView addSubview:_checkedImageView];
     
     _lineView = [RSLineView lineViewHorizontal];
@@ -60,6 +68,8 @@
 {
     [super setModel:model];
     
+    _ticketModel = model;
+    
     [self.contentView removeAllSubviews];
     [self initView];
     
@@ -69,7 +79,7 @@
     
     _lineView.y = 49;
     
-    if (model.isSelected == 1) {
+    if (model.ismodelSelected == 1) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         _checkedImageView.image = [UIImage imageNamed:@"ticket_one_cheked"];
         
@@ -79,7 +89,6 @@
         {
             _lineView.hidden = YES;
             model.cellHeight = 49;
-            return;
         }
         
         //双层，文本框
@@ -88,7 +97,6 @@
             [self creatTextfield:model];
             
             model.cellHeight = 99;
-            return;
         }
         
         //双层，单选框
@@ -96,7 +104,6 @@
         {
             [self creatRadios:model.children];
             model.cellHeight = 99;
-            return;
         }
 
     }else{
@@ -105,13 +112,16 @@
         model.cellHeight = 49;
     }
     
+    self.height = model.cellHeight;
+    self.contentView.height = self.height;
     
+    _checkedImageView.frame = CGRectMake(0, 0, SCREEN_WIDTH-18, 49);
 }
 
 - (void)creatRadios:(NSArray*)models
 {
     CGSize lastSize = CGSizeMake(0, 0);
-    CGFloat startx = 79;
+    CGFloat startx = 18;
     for (int i=0; i<models.count; i++) {
         TicketModel *model = models[i];
         RSButton *button = [RSButton buttonWithFrame:CGRectMake(startx+lastSize.width, 0, 100, 49) ImageName:@"ticket_two_no_checked" Text:model.name TextColor:RS_COLOR_C3];
@@ -132,15 +142,27 @@
     
 }
 
+- (void)checkedImageViewAction
+{
+    self.ticketModel.isSelectable = YES;
+    if (self.checkItemDelagete && [self.checkItemDelagete respondsToSelector:@selector(checkeTicketModel:)]) {
+        [self.checkItemDelagete checkeTicketModel:self.ticketModel.ticketId];
+    }
+}
+
 - (void)creatTextfield:(TicketModel *)model
 {
-    TicketTextFiled *textField = [[TicketTextFiled alloc]initWithFrame:CGRectMake(79, 50, SCREEN_WIDTH-158, 49)];
+    textField = [[TicketTextFiled alloc]initWithFrame:CGRectMake(79, 50, SCREEN_WIDTH-158, 49)];
     textField.placeholder = model.placeholder;
     textField.textColor = RS_COLOR_C3;
     textField.font = RS_FONT_F4;
-    textField.delegate = self.target;
-    
     [self.contentView addSubview:textField];
 }
 
+- (void)setTarget:(id)target
+{
+    _target = target;
+    textField.delegate = _target;
+    
+}
 @end
