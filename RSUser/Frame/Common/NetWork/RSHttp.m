@@ -54,6 +54,7 @@
     } else if([httpMethod isEqualToString:@"POSTJSON"]){
         manager.requestSerializer=[AFJSONRequestSerializer serializer];
         [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [manager.requestSerializer setValue:[NSUserDefaults getValue:@"token"] forHTTPHeaderField:@"token"];
         [manager POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [self processSuccess:success operation:operation response:responseObject failure:failure];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -62,6 +63,7 @@
     } else if([httpMethod isEqualToString:@"PUTJSON"]){
         manager.requestSerializer=[AFJSONRequestSerializer serializer];
         [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [manager.requestSerializer setValue:[NSUserDefaults getValue:@"token"] forHTTPHeaderField:@"token"];
         [manager PUT:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [self processSuccess:success operation:operation response:responseObject failure:failure];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

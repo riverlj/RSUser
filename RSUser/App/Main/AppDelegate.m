@@ -91,7 +91,7 @@
                 //跳转到订单详情
                 NSString *orderid = [NSUserDefaults getValue:@"currentorderid"];
                 [NSUserDefaults clearValueForKey:@"currentorderid"];
-                UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderid=%@",orderid]];
+                UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderId=%@",orderid]];
                 [self.crrentNavCtl pushViewController:vc animated:YES];
                 
                 break;
@@ -108,7 +108,7 @@
                 [[RSToastView shareRSToastView] showToast:@"支付失败，请重新支付"];
                 NSString *orderid = [NSUserDefaults getValue:@"currentorderid"];
                 [NSUserDefaults clearValueForKey:@"currentorderid"];
-                UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderid=%@",orderid]];
+                UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderId=%@",orderid]];
                 [self.crrentNavCtl pushViewController:vc animated:YES];
                 break;
             }

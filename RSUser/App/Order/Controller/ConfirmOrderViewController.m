@@ -44,7 +44,8 @@
     [self.models removeAllObjects];
     __weak ConfirmOrderViewController *selfB = self;
     _addressModel = [[AddressModel alloc]init];
-    
+    _addressModel.address = @"请选择地址";
+
     __block NSMutableArray *array1 = [[NSMutableArray alloc]init];
     [array1 addObject:_addressModel];
     [selfB.models addObject:array1];
@@ -75,10 +76,6 @@
             }
         }];
         
-        if (!_addressModel) {
-            _addressModel = [[AddressModel alloc]init];
-            _addressModel.address = @"请选择地址";
-        }
         _addressModel.cellHeight = 60;
         [_addressModel setSelectAction:@selector(updateAddress) target:self];
         [array1 removeAllObjects];
