@@ -16,7 +16,8 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
+        self.backgroundColor = RS_COLOR_C7;
+        self.contentView.backgroundColor = RS_COLOR_C7;
     }
     return self;
 }
@@ -103,6 +104,7 @@
     VlineView.width = 1;
     [self.contentView addSubview:VlineView];
     [self.contentView sendSubviewToBack:VlineView];
+    self.contentView.height = cellh+1;
     
 }
 

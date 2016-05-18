@@ -57,7 +57,7 @@
     [[registerBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify(self)
         NSString* urlStr = [NSString URLencode:APP_REGISTER_URL stringEncoding:NSUTF8StringEncoding];
-        UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://RSJSWeb?urlString=%@&isEncodeURL=YES",urlStr]];
+        UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://RSJSWeb?urlString=%@&isEncodeURL=1",urlStr]];
         [self.navigationController pushViewController:vc animated:YES];
     }];
     
@@ -279,7 +279,7 @@
 - (void)findPassWord
 {
     NSString* urlStr = [NSString URLencode:APP_RESETPWD_URL stringEncoding:NSUTF8StringEncoding];
-    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://RSJSWeb?urlString=%@&isEncodeURL=YES",urlStr]];
+    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://RSJSWeb?urlString=%@&isEncodeURL=1",urlStr]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

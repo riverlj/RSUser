@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, CouponModelStatus) {
 @property (nonatomic, strong)NSArray *disproducts;
 @property (nonatomic ,copy)NSString *descriptionstr;
 @property (nonatomic ,assign)NSInteger discountmax;
-@property (nonatomic ,assign)NSString *reduce;
+@property (nonatomic ,strong)NSString *reduce;
 
 @property (nonatomic, strong) NSString *fromtype;
 @property (nonatomic, assign)BOOL selected;
