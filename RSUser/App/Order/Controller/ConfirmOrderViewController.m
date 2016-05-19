@@ -135,8 +135,10 @@
     if (_couponModel) {
         [params setValue:@(_couponModel.couponId) forKey:@"couponid"];
     }
+    
+    [[RSToastView shareRSToastView]showHUD:@""];
     [RSHttp requestWithURL:@"/order/create" params:params httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
-        
+        [[RSToastView shareRSToastView]hidHUD];
         //清空购物车
         [[Cart sharedCart] clearDataSource];
         
@@ -149,6 +151,7 @@
         [self.navigationController pushViewController:vc animated:YES];
         
     } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSToastView]hidHUD];
         [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 }

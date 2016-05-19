@@ -24,7 +24,7 @@
 - (void)delete:(void (^)(void))success;
 - (void)edit:(void (^)(void))success;
 - (void)select:(void (^)(void))success;
-- (void)getBuildings:(void(^)(NSArray *))success;
+- (void)getBuildings:(void(^)(NSArray *))success failure:(void(^)(void))failure;
 - (BOOL) isNewRecord;
 - (BOOL)checkValid:(void(^)())success failure:(void (^)(NSString *key, NSString *errmsg))failure;
 @end

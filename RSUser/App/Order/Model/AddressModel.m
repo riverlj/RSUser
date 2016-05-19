@@ -34,7 +34,9 @@
 
 + (void)getAddressList: (void(^)(NSArray *))successArray
 {
+    [[RSToastView shareRSToastView] showHUD:@""];
     [RSHttp requestWithURL:@"/address/list" params:nil httpMethod:@"GET" success:^(NSArray *data) {
+        [[RSToastView shareRSToastView] hidHUD];
         NSMutableArray *addressList = [[NSMutableArray alloc]init];
         [data enumerateObjectsUsingBlock:^(NSDictionary *dic, NSUInteger idx, BOOL * _Nonnull stop) {
             NSError *error;
@@ -46,6 +48,7 @@
         }];
         successArray(addressList);
     } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSToastView] hidHUD];
         [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 }
@@ -63,7 +66,6 @@
     [[RSToastView shareRSToastView] showHUD:@"提交中"];
     [RSHttp requestWithURL:@"/address/edit" params:params httpMethod:@"POSTJSON" success:^(id data) {
         [[RSToastView shareRSToastView] hidHUD];
-        [[RSToastView shareRSToastView]showToast:@"修改成功"];
         success();
     } failure:^(NSInteger code, NSString *errmsg) {
         [[RSToastView shareRSToastView] hidHUD];
@@ -107,7 +109,7 @@
     return NO;
 }
 
-- (void)getBuildings:(void(^)(NSArray *))success
+- (void)getBuildings:(void(^)(NSArray *))success failure:(void(^)(void))failure
 {
     NSDictionary *params = @{
         @"communityid" : [NSString stringWithFormat:@"%zd", self.communityid],
@@ -117,6 +119,7 @@
         success(models);
     } failure:^(NSInteger code, NSString *errmsg) {
         [[RSToastView shareRSToastView]showToast:errmsg];
+        failure();
     }];
 }
 

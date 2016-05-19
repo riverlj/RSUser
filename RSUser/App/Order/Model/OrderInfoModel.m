@@ -98,10 +98,13 @@
     NSDictionary *params = @{
                              @"orderid" : self.orderId
                              };
+    [[RSToastView shareRSToastView]showHUD:@""];
     [RSHttp requestWithURL:@"/order/pay" params:params httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
+        [[RSToastView shareRSToastView] hidHUD];
         NSString *url = [data objectForKey:@"url"];
         success(url);
     } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSToastView] hidHUD];
         [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 

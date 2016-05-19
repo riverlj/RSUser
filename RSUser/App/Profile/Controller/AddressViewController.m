@@ -41,6 +41,7 @@
     cell.frame = CGRectMake(0, 49, SCREEN_WIDTH, 49);
     cell.titleLabel.text = @"楼栋";
     cell.textField.placeholder = @"请选择楼栋";
+    cell.userInteractionEnabled = NO;
     cell.textField.inputView = self.pickerView;
     cell.textField.inputAccessoryView = self.doneToolbar;
     cell.textField.text = self.model.buildingname;
@@ -100,7 +101,7 @@
     
     [self.view addTapAction:@selector(endedit) target:self];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame) name:UIKeyboardWillHideNotification object:nil];//在这里注册通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame) name:UIKeyboardWillHideNotification object:nil];
 
 }
 
@@ -158,8 +159,13 @@
     cell.textField.text = self.model.communityname;
     //获取楼栋list
     [self.model getBuildings:^(NSArray *data) {
+        RSInputFieldCell *cell =  [cellList valueForKey:@"building"];
+        cell.userInteractionEnabled = YES;
         self.buildings = [data mutableCopy];
+    } failure:^{
     }];
+    
+
     
 }
 
@@ -172,6 +178,7 @@
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
 }
+
 -(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     return [self.buildings count];
 }
@@ -263,7 +270,9 @@
     }];
     if(result) {
         [self.model edit:^{
-            [self.navigationController popViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:^{
+                
+            }];
         }];
     }
 }
