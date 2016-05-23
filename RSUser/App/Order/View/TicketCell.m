@@ -88,32 +88,23 @@
         if ([model.type isEqualToString: @"radio"] && model.children.count == 0)
         {
             _lineView.hidden = YES;
-            model.cellHeight = 49;
         }
         
         //双层，文本框
         if ([model.type isEqualToString: @"text"])
         {
             [self creatTextfield:model];
-            
-            model.cellHeight = 99;
         }
         
         //双层，单选框
         if ([model.type isEqualToString: @"radio"] && model.children.count > 0)
         {
             [self creatRadios:model.children];
-            model.cellHeight = 99;
         }
 
     }else{
         _checkedImageView.image = [UIImage imageNamed:@"ticket_one_no_cheked"];
-        
-        model.cellHeight = 49;
     }
-    
-    self.height = model.cellHeight;
-    self.contentView.height = self.height;
     
     _checkedImageView.frame = CGRectMake(0, 0, SCREEN_WIDTH-18, 49);
 }

@@ -108,8 +108,21 @@
  */
 - (void)loginbyPassword:(void (^)(void))success
 {
-    if (![self checkModel]) {
+//    if (![self checkModel]) {
+//        return;
+//    }
+    if (self.userName.length==0 ) {
+        [[RSToastView shareRSToastView] showToast:@"用户名不能为空"];
         return;
+    }
+    
+    if (self.passWord.length ==0) {
+        [[RSToastView shareRSToastView] showToast:@"密码不能为空"];
+        return;
+    }
+    
+    if (self.captcha.length == 0) {
+        self.captcha = @"";
     }
     
     NSDictionary *params = @{

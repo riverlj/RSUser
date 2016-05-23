@@ -44,9 +44,7 @@
         [RSToastView alertView:@"URL地址错误"];
         return;
     }
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
-    request.timeoutInterval = 5;
-    request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:5];
     [_bannerView loadRequest:request];
     [self.view addSubview:_bannerView];
 }

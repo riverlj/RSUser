@@ -37,7 +37,7 @@
     [self.view addTapAction:@selector(hideKeyboard) target:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(
-     hideKeyboard) name:UIKeyboardWillHideNotification object:nil];//在这里注册通知
+     hideKeyboard) name:UIKeyboardWillHideNotification object:nil];
 }
 
 
@@ -48,6 +48,7 @@
     {
         TicketModel *ticketModel = temp[i];
         NSMutableArray *array = [[NSMutableArray alloc]init];
+        ticketModel.cellHeight = 49;
         [array addObject:ticketModel];
         [self.models addObject:array];
     }
@@ -88,12 +89,6 @@
     return 10;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    TicketCell *cell = (TicketCell*)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return cell.height;
-}
-
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TicketCell *cell = (TicketCell*)[super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -109,6 +104,7 @@
         NSArray *array = self.models[i];
         for (int j=0; j<array.count; j++) {
             TicketModel *model = array[j];
+            model.cellHeight = 49;
             model.ismodelSelected = 0;
         }
     }
@@ -185,6 +181,10 @@
         if (ticketid == model.ticketId) {
             [self clearTicketModelSelected];
             model.ismodelSelected = 1;
+            model.cellHeight = 99;
+            if([model.type isEqualToString: @"radio"] && model.children.count == 0){
+                model.cellHeight = 49;
+            }
             reasontext = @"";
         }
     }

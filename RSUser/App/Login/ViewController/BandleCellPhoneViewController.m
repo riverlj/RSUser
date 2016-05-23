@@ -82,4 +82,11 @@
     
 }
 
+#pragma mark back
+-(void)backUp{
+    [AppConfig getAPPDelegate].tabBarControllerConfig.tabBarController.selectedIndex = 0;
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+
 @end

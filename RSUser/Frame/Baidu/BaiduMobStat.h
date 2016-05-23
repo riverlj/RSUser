@@ -34,7 +34,7 @@ typedef enum _BaiduMobStatMonitorStrategy {
 
 /**
  *  百度移动应用统计接口
- *  当前版本 V3.8.2.0
+ *  当前版本 V3.9.2.0
  */
 @interface BaiduMobStat : NSObject
 
@@ -188,7 +188,6 @@ typedef enum _BaiduMobStatMonitorStrategy {
  *  @return 设备Cuid
  */
 - (NSString *)getDeviceCuid;
-
 @end
 
 /**
