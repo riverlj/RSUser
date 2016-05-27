@@ -127,7 +127,12 @@
     
     ProfileModel *model = (ProfileModel *)[self getModelByIndexPath:indexPath];
     if([model.url isEqualToString:@"contactUs"]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", [AppConfig getAPPDelegate].schoolModel.contactMobile]]];
+        NSString *phone = [AppConfig getAPPDelegate].schoolModel.contactMobile;
+        if (phone.length == 0) {
+            [[RSToastView shareRSToastView] showToast:@"号码获取失败,请稍后尝试"];
+            return;
+        }
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", phone]]];
         return;
     }
 

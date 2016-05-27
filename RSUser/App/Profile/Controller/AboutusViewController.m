@@ -32,7 +32,7 @@
     wxLogo.centerX = versionLabel.left;
     [self.view addSubview:wxLogo];
     
-    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(wxLogo.right + 5, 0, 80, 13)];
+    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(wxLogo.right + 5, 0, 80, 15)];
     nameLabel.centerY = wxLogo.centerY;
     nameLabel.font = Font(13);
     nameLabel.textColor = RS_TabBar_Title_Color;

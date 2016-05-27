@@ -12,7 +12,7 @@
 #ifdef DEBUG
 #define  REDSCARF_BASE_URL @"http://test.dev.honglingjinclub.com"
 #define REDSCARF_PAY_URL @""
-#define REDSCARF_MOBILE_URL @"http://test.dev.honglingjinclub.com/"
+#define REDSCARF_MOBILE_URL @"http://test.dev.honglingjinclub.com"
 #define APP_REGISTER_URL @"http://test.dev.honglingjinclub.com/web/register.html"
 #define APP_RESETPWD_URL @"http://test.dev.honglingjinclub.com/web/resetPwd.html"
 #else

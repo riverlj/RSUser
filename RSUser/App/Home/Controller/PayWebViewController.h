@@ -11,7 +11,7 @@
 
 
 @protocol NavtiveJSExport <JSExport>
-- (void)close;
+- (void)closeWebView;
 - (void)hideTitleBar;
 - (void)payWeChat:(id)str;
 -(void)payAli:(NSString *)str;

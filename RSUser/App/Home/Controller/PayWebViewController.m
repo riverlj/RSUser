@@ -18,17 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"选择支付方式";
-//    [self setStateBarBg];
     self.navigationController.navigationBar.hidden = NO;
     self.bannerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-20);
     
-}
-
-- (void)setStateBarBg
-{
-    UIView *stateBarbg = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
-    stateBarbg.backgroundColor = RS_Theme_Color;
-    [self.view addSubview:stateBarbg];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -44,15 +36,14 @@
     self.navigationController.navigationBar.hidden = YES;
 }
 
-- (void)close
+- (void)closeWebView
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self backUp];
 }
 
 //微信支付
 -(void)payWeChat:(id)param
 {
-    NSLog(@"%@", param);
     
     [NSUserDefaults setValue:self.orderId forKey:@"currentorderid"];
     
