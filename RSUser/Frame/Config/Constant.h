@@ -24,6 +24,12 @@
 #define APP_RESETPWD_URL @"http://waimai.honglingjinclub.com/web/resetPwd.html"
 #endif
 
+#ifdef DEBUG
+#   define NSLog(...) NSLog(__VA_ARGS__)
+#else
+#   define NSLog(...)
+#endif
+
 #define iPhone4S ([UIScreen mainScreen].bounds.size.height == 480 ? YES : NO)
 #define iPhone5S ([UIScreen mainScreen].bounds.size.height == 568 ? YES : NO)
 #define iPhone6  ([UIScreen mainScreen].bounds.size.height == 667 ? YES : NO)

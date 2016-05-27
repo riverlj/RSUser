@@ -23,7 +23,7 @@
     [manager.requestSerializer setValue:[NSUserDefaults getValue:@"token"] forHTTPHeaderField:@"token"];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
-    NSLog(@"请求地址url=%@,\n请求头header=%@, \n请求参数params=%@, \n请求方法httpMethod=%@", url, manager.requestSerializer.HTTPRequestHeaders, params,httpMethod);
+    NSLog(@"\n请求地址url=%@,\n请求头header=%@, \n请求参数params=%@, \n请求方法httpMethod=%@\n", url, manager.requestSerializer.HTTPRequestHeaders, params,httpMethod);
 
     //设置超时时间
     manager.requestSerializer.timeoutInterval = APPREQUESTTIMEOUT;

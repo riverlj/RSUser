@@ -58,7 +58,7 @@
     if([urlStr rangeOfString:@"utm_campaign="].location == NSNotFound) {
         req.URL = [NSURL URLWithString:[urlStr urlWithHost:nil]];
         [_bannerView loadRequest:req];
-        return false;
+        return NO;
     }
     return YES;
 }
@@ -76,6 +76,12 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error
 {
     [[RSToastView shareRSToastView]hidHUD];
+    
+    // Ignore NSURLErrorDomain error -999.
+    if (error.code == NSURLErrorCancelled) return;
+    // Ignore "Fame Load Interrupted" errors. Seen after app store links.
+    if (error.code == 102 && [error.domain isEqual:@"WebKitErrorDomain"]) return;
+
     NSString *errmsg = [error.userInfo valueForKey:@"NSLocalizedDescription"];
     [RSToastView alertView:errmsg];
 }

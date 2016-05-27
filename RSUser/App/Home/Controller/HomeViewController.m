@@ -209,6 +209,7 @@
 -(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
     NSString *urlStr = [_bannerActionUrls objectAtIndex:index];
+    urlStr = [urlStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     urlStr = [NSString URLencode:urlStr stringEncoding:NSUTF8StringEncoding];
     NSString *path = [NSString stringWithFormat:@"RSUser://bannerweb?title=%@&urlString=%@",[_bannerTitles objectAtIndex:index],urlStr];
 
