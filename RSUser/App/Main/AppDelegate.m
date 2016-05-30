@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 #import "LoginModel.h"
 #import "LaunchimageViewController.h"
+#import <JSPatch/JPEngine.h>
 
 @interface AppDelegate ()
 
@@ -19,14 +20,15 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self configThreeLib];
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = RS_Background_Color;
 
     _cartViewVc = [[CartViewController alloc]init];
     _location =  [[RSLocation alloc]init];
-    
     [_location startLocation];
-    [self configThreeLib];
+    
     [self setUserAgent];
     
     self.window.rootViewController = [[LaunchimageViewController alloc]init];
@@ -52,6 +54,14 @@
 {
     [WXApi registerApp:WEIXIN_LOGIN_APPID];
     [AppConfig baiduMobStat];
+    [AppConfig configJSPatch];
+    
+//    [JPEngine startEngine];
+//    NSError *error = nil;
+//    NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"main" ofType:@"js"];
+//    NSString *script = [NSString stringWithContentsOfFile:sourcePath encoding:NSUTF8StringEncoding error:&error];
+//    [JPEngine evaluateScript:script];
+    
 }
 
 - (void)setRootViewController:(UIViewController *)rootVC

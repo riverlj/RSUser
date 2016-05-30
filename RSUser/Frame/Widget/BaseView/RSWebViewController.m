@@ -83,7 +83,7 @@
     if (error.code == 102 && [error.domain isEqual:@"WebKitErrorDomain"]) return;
 
     NSString *errmsg = [error.userInfo valueForKey:@"NSLocalizedDescription"];
-    [RSToastView alertView:errmsg];
+    [[RSToastView shareRSToastView]showToast:errmsg];
 }
 
 

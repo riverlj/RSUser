@@ -38,4 +38,9 @@
  *  百度统计
  */
 +(void)baiduMobStat;
+
+/**
+ *  JSPatch 热更新
+ */
++ (void)configJSPatch;
 @end

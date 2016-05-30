@@ -46,4 +46,9 @@
 #define WEIXIN_LOGIN_APPID @"wx3ba861f7b4956067"
 #define WEIXIN_LOGIN_SECRET @"d4624c36b6795d1d99dcf0547af5443d"
 
+//JSPatch 热更新
+#define RSUSER_JSPATCH_KEY @"ec064665c804cea3"
+//百度统计key
+#define RSUSER_BAIDU_KEY @"43a650796d"
+
 #endif /* Constant_h */

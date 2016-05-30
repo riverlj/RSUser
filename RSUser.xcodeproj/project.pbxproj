@@ -24,6 +24,7 @@
 		30A3C5211CCF6CA900F5E55E /* CouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A3C5201CCF6CA900F5E55E /* CouponViewController.m */; };
 		30A3C5271CCF6CD700F5E55E /* CouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A3C5261CCF6CD700F5E55E /* CouponCell.m */; };
 		B1021DDD1CBF611B00050AEB /* ThrowLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B1021DDC1CBF611B00050AEB /* ThrowLineTool.m */; };
+		B10470881CFC1A2F008DAA7D /* JSPatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10470871CFC1A2F008DAA7D /* JSPatch.framework */; };
 		B10769A41CBE43E600586304 /* RSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A31CBE43E600586304 /* RSLabel.m */; };
 		B10769A71CBE490400586304 /* RSImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A61CBE490400586304 /* RSImageView.m */; };
 		B10769AA1CBF1D8700586304 /* LocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A91CBF1D8700586304 /* LocationModel.m */; };
@@ -107,6 +108,7 @@
 		B1BD00821CD9A0BC00D41676 /* TicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BD00811CD9A0BC00D41676 /* TicketModel.m */; };
 		B1BD00851CD9A0CB00D41676 /* TicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BD00841CD9A0CB00D41676 /* TicketViewController.m */; };
 		B1BD00861CD9F2AC00D41676 /* OrderStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18322751CD8470A006E7EBC /* OrderStatusViewController.m */; };
+		B1C57AB61CFC2DAC00F52366 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = B1C57AB51CFC2DAC00F52366 /* main.js */; };
 		B1E81D4C1CB7553E00F587D1 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */; };
 		B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4F1CB7622E00F587D1 /* AppConfig.m */; };
 		B1E81D631CB78A7D00F587D1 /* RSToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D621CB78A7D00F587D1 /* RSToastView.m */; };
@@ -180,6 +182,7 @@
 		7DC3B7745B7573D432E4E8DE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B1021DDB1CBF611B00050AEB /* ThrowLineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThrowLineTool.h; sourceTree = "<group>"; };
 		B1021DDC1CBF611B00050AEB /* ThrowLineTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThrowLineTool.m; sourceTree = "<group>"; };
+		B10470871CFC1A2F008DAA7D /* JSPatch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSPatch.framework; sourceTree = "<group>"; };
 		B10769A21CBE43E600586304 /* RSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSLabel.h; sourceTree = "<group>"; };
 		B10769A31CBE43E600586304 /* RSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSLabel.m; sourceTree = "<group>"; };
 		B10769A51CBE490400586304 /* RSImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSImageView.h; sourceTree = "<group>"; };
@@ -335,6 +338,7 @@
 		B1BD00811CD9A0BC00D41676 /* TicketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketModel.m; sourceTree = "<group>"; };
 		B1BD00831CD9A0CB00D41676 /* TicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketViewController.h; sourceTree = "<group>"; };
 		B1BD00841CD9A0CB00D41676 /* TicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketViewController.m; sourceTree = "<group>"; };
+		B1C57AB51CFC2DAC00F52366 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
 		B1E81D4A1CB7553E00F587D1 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
 		B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
 		B1E81D4D1CB7564F00F587D1 /* UtilMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilMacro.h; sourceTree = "<group>"; };
@@ -386,6 +390,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B10470881CFC1A2F008DAA7D /* JSPatch.framework in Frameworks */,
 				B1326E471CE42A0B001F90CE /* Foundation.framework in Frameworks */,
 				B1738D8B1CB65FBF006C7207 /* UIKit.framework in Frameworks */,
 				B1326E451CE429F9001F90CE /* CoreGraphics.framework in Frameworks */,
@@ -457,9 +462,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B10470861CFC1A14008DAA7D /* JSPatch */ = {
+			isa = PBXGroup;
+			children = (
+				B10470871CFC1A2F008DAA7D /* JSPatch.framework */,
+			);
+			name = JSPatch;
+			sourceTree = "<group>";
+		};
 		B123DCA71CC7704B00F08E8D /* ThreeLib */ = {
 			isa = PBXGroup;
 			children = (
+				B10470861CFC1A14008DAA7D /* JSPatch */,
 				B1326E341CE428B1001F90CE /* Baidu */,
 				B123DCA81CC7705900F08E8D /* WeiXin */,
 			);
@@ -942,6 +956,7 @@
 		B1FFB8AC1CB651BD00255F21 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				B1C57AB51CFC2DAC00F52366 /* main.js */,
 				B123DC471CC637C400F08E8D /* Assets.xcassets */,
 				B1FFB88A1CB64DCA00255F21 /* Info.plist */,
 				B1FFB87C1CB64DCA00255F21 /* AppDelegate.h */,
@@ -1128,6 +1143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B123DC481CC637C400F08E8D /* Assets.xcassets in Resources */,
+				B1C57AB61CFC2DAC00F52366 /* main.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1426,6 +1442,10 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RSUser/Frame",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = RSUser/Frame/Config/AppHeader.h;
 				INFOPLIST_FILE = RSUser/Info.plist;
@@ -1522,6 +1542,10 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RSUser/Frame",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = RSUser/Frame/Config/AppHeader.h;
 				INFOPLIST_FILE = RSUser/Info.plist;

@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 #import "BandleCellPhoneViewController.h"
 #import "CartModel.h"
+#import <JSPatch/JSPatch.h>
 
 @implementation AppConfig
 +(NSDictionary *)tabBarConfig
@@ -75,7 +76,7 @@
 +(void)baiduMobStat
 {
     BaiduMobStat *statTracker = [BaiduMobStat defaultStat];
-    [statTracker startWithAppId:@"43a650796d"];
+    [statTracker startWithAppId:RSUSER_BAIDU_KEY];
     statTracker.enableExceptionLog = YES; //截获崩溃信息
     statTracker.logStrategy = BaiduMobStatLogStrategyAppLaunch;
     statTracker.logSendInterval = 1;
@@ -83,6 +84,12 @@
     statTracker.logSendWifiOnly = NO;
     statTracker.sessionResumeInterval = 60;
     statTracker.shortAppVersion = [UIDevice clientVersion];
+}
+
++ (void)configJSPatch
+{
+    [JSPatch startWithAppKey:RSUSER_JSPATCH_KEY];
+    [JSPatch sync];
 }
 
 
