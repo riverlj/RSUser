@@ -24,7 +24,6 @@
 @interface HomeViewController()
 {
     UIButton *locationBtn;
-    UIView *_naviView;
     NSMutableArray *_cartArray;
 }
 @end
@@ -35,9 +34,8 @@
 {
     [super viewDidLoad];
     _cartArray = [[NSMutableArray alloc]init];
-    self.hasBackBtn = NO;
 
-    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.view.height-49);
+    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49);
     self.tableView.tableHeaderView = self.cycleScrollView;
     self.url = @"/product/list";
     self.useFooterRefresh = NO;
@@ -46,13 +44,13 @@
     self.bannerActionUrls = [NSMutableArray new];
     self.bannerTitles = [NSMutableArray new];
     
-    [self createNaviView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCountLabel) name:@"Notification_UpadteCountLabel" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+
     [super viewWillAppear:animated];
     
     if (!COMMUNTITYID)
@@ -60,14 +58,15 @@
         [self locationBtnClicked];
         return;
     }
+
     
     [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
         [AppConfig getAPPDelegate].schoolModel = schoolModel;
     }];
     
-    self.navigationController.navigationBar.hidden = YES;
     [self.tableView.mj_header beginRefreshing];
     
+    [self createLocationView];
     [locationBtn setTitle:COMMUNITITYNAME forState:UIControlStateNormal];
     
     [BannerModel getBannerArraySuccess:^(NSArray *array) {
@@ -114,16 +113,7 @@
 }
 
 #pragma mark 创建View
-- (void)createNaviView
-{
-    _naviView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64)];
-    [self.view addSubview:_naviView];
-    _naviView.backgroundColor = RS_Theme_Color;
-    _naviView.alpha = 0;
-    _naviView.userInteractionEnabled = YES;
-    
-    [self createLocationView];
-}
+
 
 - (void)createLocationView
 {
@@ -138,7 +128,7 @@
         @strongify(self)
         [self locationBtnClicked];
     }];
-    [self.view addSubview:locationBtn];
+    self.navigationItem.titleView = locationBtn;
 }
 
 -(SDCycleScrollView *)cycleScrollView
@@ -147,7 +137,7 @@
     {
         return _cycleScrollView;
     }
-    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT*200/750) imageURLStringsGroup:nil];
+    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 100) imageURLStringsGroup:nil];
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
     _cycleScrollView.delegate = self;
     _cycleScrollView.pageDotColor = RS_Theme_Color;
@@ -218,17 +208,6 @@
 }
 
 #pragma mark - ScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (scrollView == self.tableView) {
-        CGFloat naviAlpha = scrollView.contentOffset.y/(SCREEN_HEIGHT*0.25-64);
-        _naviView.alpha = naviAlpha;
-        
-        CGFloat naviAlpha1 = scrollView.contentOffset.y/54+1;
-        
-        locationBtn.alpha = naviAlpha1;
-    }
-}
 
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Notification_UpadteCountLabel" object:nil];
