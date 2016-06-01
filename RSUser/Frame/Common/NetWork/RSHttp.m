@@ -106,17 +106,15 @@
              operation:(AFHTTPRequestOperation *)op
                  error:(NSError *)error
 {
-    
+    NSLog(@"错误：/n%@", error);
     [AppConfig setRootViewControllerWithCode:error.code];
     switch (error.code) {
         case 801:{
             CodesView *codeView = [[CodesView alloc]init];
             [codeView show];
-            break;
         }
         case 500:{
             [[RSToastView shareRSToastView] showToast:@"服务器吃撑了"];
-            break;
         }
             
         default:

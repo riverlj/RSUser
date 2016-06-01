@@ -83,23 +83,6 @@
 }
 
 /**
- *  绑定手机号
- */
-- (void)bandleMobile:(NSString *)mobile Code:(NSString *)code
-{
-    NSDictionary *dic = @{
-                          @"code" : code,
-                          @"mobile" : mobile,
-                          @"method" : @"4"
-                          };
-    [RSHttp requestWithURL:@"/mobileverifynew" params:dic httpMethod:@"POSTJSON" success:^(id data) {
-        
-    } failure:^(NSInteger code, NSString *errmsg) {
-        
-    }];
-}
-
-/**
  *  使用密码登陆
  *
  *  @param userName 用户名
@@ -108,9 +91,8 @@
  */
 - (void)loginbyPassword:(void (^)(void))success
 {
-//    if (![self checkModel]) {
-//        return;
-//    }
+    self.captcha = [NSUserDefaults getValue:@"captchaCode"];
+
     if (self.userName.length==0 ) {
         [[RSToastView shareRSToastView] showToast:@"用户名不能为空"];
         return;
@@ -130,10 +112,13 @@
                              @"password" : self.passWord,
                              @"captcha" : self.captcha
                              };
+    [[RSToastView shareRSToastView] showHUD:@""];
     [RSHttp requestWithURL:@"/user/passwordlogin" params:params httpMethod:@"POSTJSON" success:^(id data) {
-        NSLog(@"%@", data);
+        [[RSToastView shareRSToastView] hidHUD];
+        [NSUserDefaults setValue:[data valueForKey:@"token"] forKey:@"token"];
         success();
     } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSToastView] hidHUD];
         [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 }
@@ -148,10 +133,13 @@
                              @"code" : self.code,
                              @"captcha" : self.captcha
                              };
+    [[RSToastView shareRSToastView] showHUD:@""];
     [RSHttp requestWithURL:@"/user/mobilelogin" params:params httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
+        [[RSToastView shareRSToastView] hidHUD];
         [NSUserDefaults setValue:[data valueForKey:@"token"] forKey:@"token"];
         success();
     } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSToastView] hidHUD];
         [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 
@@ -167,11 +155,13 @@
                              @"mobile" : self.userName,
                              @"captcha" : self.captcha
                              };
-    
+    [[RSToastView shareRSToastView] showHUD:@""];
     [RSHttp requestWithURL:@"/site/code" params:params httpMethod:@"POSTJSON" success:^(id data) {
+        [[RSToastView shareRSToastView] hidHUD];
         [[RSToastView shareRSToastView] showToast:@"发送成功"];
         success();
     } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSToastView] hidHUD];
         [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 
@@ -183,11 +173,13 @@
                              @"mobile" : self.userName,
                              @"code" : self.code
                              };
-    
+    [[RSToastView shareRSToastView] showHUD:@""];
     [RSHttp requestWithURL:@"/user/bindmobile" params:params httpMethod:@"POSTJSON" success:^(id data) {
+        [[RSToastView shareRSToastView] hidHUD];
         [[RSToastView shareRSToastView] showToast:@"绑定成功"];
         success();
     } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSToastView] hidHUD];
         [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 }

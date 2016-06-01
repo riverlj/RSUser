@@ -71,6 +71,7 @@
             if (couponList.count == 0)
             {
                 model.title = @"    无优惠券";
+                [model setSelectAction:@selector(noCouponAction) target:self];
             }else
             {
                 model.title = [NSString stringWithFormat:@"    您有%ld张优惠券可用", couponList.count];
@@ -89,6 +90,10 @@
         
     }
     
+}
+
+- (void)noCouponAction{
+    [[RSToastView shareRSToastView] showToast:@"无可用优惠券"];
 }
 
 - (void)selectedCoupon
