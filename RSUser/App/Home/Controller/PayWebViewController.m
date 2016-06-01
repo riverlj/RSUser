@@ -64,7 +64,9 @@
 
 -(void)payAli:(NSString *)str
 {
-    [[RSToastView shareRSToastView] showToast:@"暂未提供该服务"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[RSToastView shareRSToastView] showToast:@"暂未提供该服务"];
+    });
 }
 
 - (void)backUp
