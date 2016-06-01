@@ -53,7 +53,7 @@
     codeTextFiled.rightView = codeRightView;
     codeTextFiled.rightViewMode = UITextFieldViewModeAlways;
     
-    bandelButton =[RSButton buttonWithFrame:CGRectMake(18, codeTextFiled.bottom+15, SCREEN_WIDTH-36, 42) ImageName:nil Text:@"绑定" TextColor:RS_TabBar_count_Color];
+    bandelButton =[RSButton buttonWithFrame:CGRectMake(18, codeTextFiled.bottom+15, SCREEN_WIDTH-36, 42) ImageName:nil Text:@"绑定" TextColor:RS_COLOR_C7];
     bandelButton.backgroundColor = RS_Theme_Color;
     bandelButton.layer.cornerRadius = 6;
     [[bandelButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {

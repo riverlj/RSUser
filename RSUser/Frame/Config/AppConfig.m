@@ -54,11 +54,11 @@
                                                           [UIColor whiteColor], NSForegroundColorAttributeName,
                                                           [UIFont boldSystemFontOfSize:17.0], NSFontAttributeName, nil]];
     [[UINavigationBar appearance] setBackgroundColor:RS_Theme_Color];
-    [[UIBarButtonItem appearance] setTintColor:RS_TabBar_count_Color];
+    [[UIBarButtonItem appearance] setTintColor:RS_COLOR_C7];
 
     //tabBar样式
     UITabBarItem *tabBar = [UITabBarItem appearance];
-    [tabBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RS_TabBar_Title_Color,NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+    [tabBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RS_COLOR_C3,NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     [tabBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RS_Theme_Color, NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
     
     [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];

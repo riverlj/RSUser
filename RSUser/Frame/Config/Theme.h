@@ -18,54 +18,10 @@
 
 #define RGB(r, g, b) [UIColor colorWithRed:(r/255.0f) green:(g/255.0f) blue:(b/255.0f) alpha:1.0f]
 #define RGBA(r, g, b, a) [UIColor colorWithRed:(r/255.0f) green:(g/255.0f) blue:(b/255.0f) alpha:(a)]
-/**
- *
- * Theme 基色
- */
-
-/*view的背景颜色*/
-#define RS_Background_Color [NSString colorFromHexString:@"f8f8f8"]
-/*导航按钮的默认状态*/
-#define RS_TabBar_Title_Color [NSString colorFromHexString:@"7d7d7d"]
-/*按钮上的文字*/
-#define RS_TabBar_count_Color [NSString colorFromHexString:@"ffffff"]
-/*用于分割线，标签描边*/
-#define RS_Line_Color  [NSString colorFromHexString:@"e5e5e5"]
-/*主要文字颜色*/
-#define RS_Main_Text_Color  [NSString colorFromHexString:@"000000"]
-/*二级重要文字颜色*/
-#define RS_SubMain_Text_Color  [NSString colorFromHexString:@"515151"]
-/*次要文字*/
-#define RS_Sub_Text_Color  [NSString colorFromHexString:@"cccccc"]
-/*白色*/
-#define RS_White_Color RGB(255, 255, 255)
-
-/**餐品名称*/
-#define RS_MainLable_Text_Color  [NSString colorFromHexString:@"222222"]
-/**餐品数量*/
-#define RS_NumbLabel_Text_Color  [NSString colorFromHexString:@"666666"]
-
-#define RS_Button_Bg_Color [NSString colorFromHexString:@"ffa628"]
-
-#define RS_Clear_Clor [UIColor clearColor]
-
-
-/*主要字体*/
-#define RS_Button_Font Font(16)
-#define RS_SubButton_Font Font(12)
-
-#define RS_MainLable_Font Font(15)
-#define RS_PriceLable_Font Font(12)
-#define RS_SubLable_Font Font(12)
-#define RS_CountLable_Font Font(17)
-#define RS_CostPriceLable_Font Font(9)
-#define RS_Price_FontSize BoldFont(20)
-
 
 /**
  *  颜色
  */
-#define RS_Theme_Color  [NSString colorFromHexString:@"f9443e"]
 
 #define RS_COLOR_C1 [NSString colorFromHexString:@"222222"]
 #define RS_COLOR_C2 [NSString colorFromHexString:@"515151"]
@@ -75,6 +31,13 @@
 #define RS_COLOR_C6 [NSString colorFromHexString:@"f8f8f8"]
 #define RS_COLOR_C7 [NSString colorFromHexString:@"ffffff"]
 #define RS_COLOR_C8 [NSString colorFromHexString:@"ffa53a"]
+
+#define RS_Theme_Color  [NSString colorFromHexString:@"f9443e"]
+#define RS_Background_Color RS_COLOR_C6
+#define RS_Line_Color  RS_COLOR_C5
+#define RS_Clear_Clor [UIColor clearColor]
+#define RS_COLOR_WHITE RGB(255, 255, 255)
+#define RS_COLOR_NUMLABEL  [NSString colorFromHexString:@"666666"]
 
 /**
  *   字体

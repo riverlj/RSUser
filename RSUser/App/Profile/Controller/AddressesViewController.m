@@ -73,8 +73,8 @@
     [view addSubview:addImg];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 15)];
-    label.textColor = RS_TabBar_Title_Color;
-    label.font = RS_MainLable_Font;
+    label.textColor = RS_COLOR_C3;
+    label.font = RS_FONT_F2;
     label.left = addImg.right + 10;
     label.centerY = addImg.centerY;
     label.text = @"新增收货地址";

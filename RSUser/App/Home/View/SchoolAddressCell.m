@@ -21,8 +21,8 @@
 
 - (void)createUI
 {
-    _schoolName = [RSLabel lableViewWithFrame:CGRectMake(18, 0, SCREEN_WIDTH-36, 44) bgColor:[UIColor clearColor] textColor:RS_MainLable_Text_Color];
-    _schoolName.font = RS_MainLable_Font;
+    _schoolName = [RSLabel lableViewWithFrame:CGRectMake(18, 0, SCREEN_WIDTH-36, 44) bgColor:[UIColor clearColor] textColor:RS_COLOR_C1];
+    _schoolName.font = RS_FONT_F2;
     _schoolName.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:_schoolName];
 }

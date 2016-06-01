@@ -15,8 +15,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self) {
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(46, 0, 200, 49)];
-        _titleLabel.textColor = RS_SubMain_Text_Color;
-        _titleLabel.font = RS_MainLable_Font;
+        _titleLabel.textColor = RS_COLOR_C2;
+        _titleLabel.font = RS_FONT_F2;
         [self.contentView addSubview:_titleLabel];
         
         _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(18, 0, 18, 18)];

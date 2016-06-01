@@ -27,7 +27,7 @@
     button.layer.borderColor = RS_Theme_Color.CGColor;
     button.layer.borderWidth = 1;
     button.layer.cornerRadius = 6;
-    button.titleLabel.font = RS_SubButton_Font;
+    button.titleLabel.font = RS_FONT_F4;
     
     return button;
 }

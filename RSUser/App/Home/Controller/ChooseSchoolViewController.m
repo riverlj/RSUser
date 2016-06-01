@@ -110,7 +110,7 @@
     _clearHistoryLabel = [RSLabel lableViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 46) bgColor:[UIColor whiteColor] textColor:RS_Theme_Color];
     _clearHistoryLabel.textAlignment = NSTextAlignmentLeft;
     _clearHistoryLabel.text = @"     清空历史记录";
-    _clearHistoryLabel.font = RS_MainLable_Font;
+    _clearHistoryLabel.font = RS_FONT_F2;
     [_clearHistoryLabel addTapAction:@selector(clearSchools) target:self];
     return _clearHistoryLabel;
 }

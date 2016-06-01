@@ -25,9 +25,9 @@
 
 - (void)initUI
 {
-    self.mainTitleLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_MainLable_Text_Color];
+    self.mainTitleLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_COLOR_C1];
     self.mainTitleLabel.textAlignment = NSTextAlignmentLeft;
-    self.mainTitleLabel.font = RS_MainLable_Font;
+    self.mainTitleLabel.font = RS_FONT_F2;
     [self.contentView addSubview:self.mainTitleLabel];
 }
 
@@ -40,12 +40,12 @@
         NSMutableAttributedString *attText = [[NSMutableAttributedString alloc] initWithString:text];
         
         NSRange range = [text rangeOfString:@"("];
-        [attText addAttribute:NSForegroundColorAttributeName value:RS_MainLable_Text_Color range:NSMakeRange(0, range.location)];
-        [attText addAttribute:NSFontAttributeName value:RS_MainLable_Font range:NSMakeRange(0, range.location)];
+        [attText addAttribute:NSForegroundColorAttributeName value:RS_COLOR_C1 range:NSMakeRange(0, range.location)];
+        [attText addAttribute:NSFontAttributeName value:RS_FONT_F2 range:NSMakeRange(0, range.location)];
         
         [attText addAttribute:NSForegroundColorAttributeName value:RS_Theme_Color range:NSMakeRange(range.location, text.length-range.location)];
         
-        [attText addAttribute:NSForegroundColorAttributeName value:RS_SubMain_Text_Color range:NSMakeRange(5, range.location-5)];
+        [attText addAttribute:NSForegroundColorAttributeName value:RS_COLOR_C2 range:NSMakeRange(5, range.location-5)];
         [attText addAttribute:NSFontAttributeName value:Font(14) range:NSMakeRange(5, text.length-5)];
 
 
@@ -64,7 +64,7 @@
         
         NSMutableAttributedString *attText = [[NSMutableAttributedString alloc] initWithString:text];
         [attText addAttribute:NSForegroundColorAttributeName value:RS_Theme_Color range:NSMakeRange(4, text.length-4)];
-        [attText addAttribute:NSFontAttributeName value:RS_MainLable_Font range:NSMakeRange(4, text.length-4)];
+        [attText addAttribute:NSFontAttributeName value:RS_FONT_F2 range:NSMakeRange(4, text.length-4)];
 
         
         self.mainTitleLabel.attributedText = attText;
@@ -91,9 +91,9 @@
 - (void)initUI
 {
     [super initUI];
-    self.subTitleLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_TabBar_Title_Color];
+    self.subTitleLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_COLOR_C3];
     self.subTitleLabel.textAlignment = NSTextAlignmentLeft;
-    self.subTitleLabel.font = RS_SubLable_Font;
+    self.subTitleLabel.font = RS_FONT_F4;
     [self.contentView addSubview:self.subTitleLabel];
     
 }
@@ -110,7 +110,7 @@
     {
         self.subTitleLabel.text = model.address;
         self.subTitleLabel.frame = CGRectMake(18, 0, SCREEN_WIDTH-66, model.cellHeight);
-        self.subTitleLabel.font = RS_MainLable_Font;
+        self.subTitleLabel.font = RS_FONT_F2;
     }
     
 }
@@ -143,8 +143,8 @@
 
 - (void)initUI
 {
-     orderDetailBtn = [RSButton buttonWithFrame:CGRectMake(18, 0, SCREEN_WIDTH-36, 40) ImageName:@"order_up" Text:@"订单详情" TextColor:RS_MainLable_Text_Color];
-    orderDetailBtn.titleLabel.font = RS_MainLable_Font;
+     orderDetailBtn = [RSButton buttonWithFrame:CGRectMake(18, 0, SCREEN_WIDTH-36, 40) ImageName:@"order_up" Text:@"订单详情" TextColor:RS_COLOR_C1];
+    orderDetailBtn.titleLabel.font = RS_FONT_F2;
     orderDetailBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -orderDetailBtn.imageView.frame.size.width - orderDetailBtn.frame.size.width + orderDetailBtn.titleLabel.intrinsicContentSize.width, 0, 0);
     orderDetailBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -orderDetailBtn.titleLabel.frame.size.width - orderDetailBtn.frame.size.width + orderDetailBtn.imageView.frame.size.width);
     [orderDetailBtn addTapAction:@selector(closeDetailGoods) target:self];
@@ -165,23 +165,22 @@
     NSInteger h = 40;
     for (int i=0; i<count; i++) {
         GoodListModel *model = array[i];
-        RSLabel *goodNameLbel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_SubMain_Text_Color];
+        RSLabel *goodNameLbel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_COLOR_C2];
         goodNameLbel.textAlignment = NSTextAlignmentLeft;
-        goodNameLbel.font = RS_SubLable_Font;
+        goodNameLbel.font = RS_FONT_F4;
         goodNameLbel.text = model.name;
         [self.contentView addSubview:goodNameLbel];
         
-        RSLabel *priceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_SubMain_Text_Color];
-        priceLabel.font = RS_SubLable_Font;
+        RSLabel *priceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_COLOR_C2];
+        priceLabel.font = RS_FONT_F4;
         priceLabel.textAlignment = NSTextAlignmentRight;
         priceLabel.text =[NSString stringWithFormat:@"¥%@ × %ld",model.saleprice,model.num];
         [self.contentView addSubview:priceLabel];
         
-        CGSize size = [goodNameLbel sizeThatFits:CGSizeMake(1000, 1000)];
-        goodNameLbel.frame = CGRectMake(18, h, size.width, 30);
         CGSize priceSize = [priceLabel sizeThatFits:CGSizeMake(1000, 1000)];
         priceLabel.frame = CGRectMake(0, h, priceSize.width, 30);
         priceLabel.x = SCREEN_WIDTH - 18 - priceSize.width;
+        goodNameLbel.frame = CGRectMake(18, h, priceLabel.x - 30, 30);
         h = 30 + h;
     }
 }

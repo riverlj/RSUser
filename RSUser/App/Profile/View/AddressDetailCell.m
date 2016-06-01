@@ -17,13 +17,13 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(47, 5, SCREEN_WIDTH - 47 * 2, 17)];
-        _nameLabel.textColor = RS_MainLable_Text_Color;
+        _nameLabel.textColor = RS_COLOR_C1;
         _nameLabel.bottom = 67/2 - 5;
-        _nameLabel.font = RS_MainLable_Font;
+        _nameLabel.font = RS_FONT_F2;
         [self.contentView addSubview:_nameLabel];
         _addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(_nameLabel.left, _nameLabel.bottom+10, _nameLabel.width, 15)];
-        _addressLabel.font = RS_MainLable_Font;
-        _addressLabel.textColor = RS_TabBar_Title_Color;
+        _addressLabel.font = RS_FONT_F2;
+        _addressLabel.textColor = RS_COLOR_C3;
         [self.contentView addSubview:_addressLabel];
         _checkImg = [[UIImageView alloc] initWithFrame:CGRectMake(18, 18, 15, 15)];
         _checkImg.centerY = 67/2;

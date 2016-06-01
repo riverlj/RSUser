@@ -23,7 +23,7 @@
     versionLabel.text = @"";
     versionLabel.centerX = SCREEN_WIDTH/2;
     versionLabel.textAlignment = NSTextAlignmentCenter;
-    versionLabel.textColor = RS_MainLable_Text_Color;
+    versionLabel.textColor = RS_COLOR_C1;
     versionLabel.text = [NSString stringWithFormat:@"版本%@", [UIDevice clientVersion]];
     [self.view addSubview:versionLabel];
     
@@ -35,7 +35,7 @@
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(wxLogo.right + 5, 0, 80, 15)];
     nameLabel.centerY = wxLogo.centerY;
     nameLabel.font = Font(13);
-    nameLabel.textColor = RS_TabBar_Title_Color;
+    nameLabel.textColor = RS_COLOR_C3;
     nameLabel.text = @"aihonglingjin";
     [self.view addSubview:nameLabel];
  
@@ -47,7 +47,7 @@
     [paragraphStyle setLineSpacing:4];
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                           Font(10), NSFontAttributeName,
-                          RS_TabBar_Title_Color, NSForegroundColorAttributeName,
+                          RS_COLOR_C3, NSForegroundColorAttributeName,
                           paragraphStyle, NSParagraphStyleAttributeName,
                           nil];
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:@"宜兴大师兄科技有限公司\nBig brother Technology Co., Ltd\n苏ICP备15033358号-1" attributes:dict];

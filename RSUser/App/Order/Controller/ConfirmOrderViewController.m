@@ -40,9 +40,56 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
+    [self.models removeAllObjects];
+    _addressModel = [[AddressModel alloc]init];
+    _addressModel.address = @"请选择地址";
+    
+    __block NSMutableArray *array1 = [[NSMutableArray alloc]init];
+    [array1 addObject:_addressModel];
+    [self.models addObject:array1];
+    
+    NSMutableArray *array2 = [[NSMutableArray alloc]init];
+    SchoolModel *schoolModel = [AppConfig getAPPDelegate].schoolModel;
+    schoolModel.cellHeight = 48;
+    schoolModel.cellClassName = @"mainTitleCell";
+    [array2 addObject:schoolModel];
+    _goodDic = [[NSMutableDictionary alloc]init];
+    [_goodDic setValue:@"0" forKey:@"isClosed"];
+    [_goodDic setValue:[[Cart sharedCart] getCartDetail] forKey:@"goods"];
+    [array2 addObject:_goodDic];
+    [self.models addObject:array2];
+    
+    __block NSMutableArray *array3 = [[NSMutableArray alloc]init];
+    __block CouponModel *model = [[CouponModel alloc]init];
+    model.cellHeight = 49;
+    model.cellClassName = @"mainTitleCell";
+    [model setSelectAction:@selector(selectedCoupon) target:self];
+    
+    __weak ConfirmOrderViewController *selfB = self;
+    [AddressModel getAddressList:^(NSArray *addressList) {
+        
+        [addressList enumerateObjectsUsingBlock:^(AddressModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.checked == 1) {
+                _addressModel = obj;
+            }
+        }];
+        
+        _addressModel.cellHeight = 60;
+        [_addressModel setSelectAction:@selector(updateAddress) target:self];
+        [array1 removeAllObjects];
+        [array1 addObject:_addressModel];
+        [selfB initModelData:model Array:array3];
+        [selfB.tableView reloadData];
+    }];
     
 }
+
 
 - (void)updateAddress
 {
@@ -106,17 +153,17 @@
 
 - (void)initBottomView
 {
-    _priceLable = [RSLabel lableViewWithFrame:CGRectMake(0, SCREEN_HEIGHT-49-64, SCREEN_WIDTH/3*2, 49) bgColor:[NSString colorFromHexString:@"6a6a6a"] textColor:RS_TabBar_count_Color];
+    _priceLable = [RSLabel lableViewWithFrame:CGRectMake(0, SCREEN_HEIGHT-49-64, SCREEN_WIDTH/3*2, 49) bgColor:[NSString colorFromHexString:@"6a6a6a"] textColor:RS_COLOR_C7];
     _priceLable.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:_priceLable];
     
-    _goPayLable = [RSLabel lableViewWithFrame:CGRectMake(SCREEN_WIDTH/3*2, _priceLable.y, SCREEN_WIDTH/3, _priceLable.height) bgColor:RS_Theme_Color textColor:RS_TabBar_count_Color];
+    _goPayLable = [RSLabel lableViewWithFrame:CGRectMake(SCREEN_WIDTH/3*2, _priceLable.y, SCREEN_WIDTH/3, _priceLable.height) bgColor:RS_Theme_Color textColor:RS_COLOR_C7];
     _goPayLable.font = Font(18);
     _goPayLable.text = @"去支付";
     [_goPayLable addTapAction:@selector(createOrder) target:self];
     [self.view addSubview:_goPayLable];
     
-    RSLabel *tipview = [RSLabel lableViewWithFrame:CGRectMake(0, _priceLable.top-27, SCREEN_WIDTH, 27) bgColor:[NSString colorFromHexString:@"fdfcce"] textColor:RS_TabBar_Title_Color FontSize:12];
+    RSLabel *tipview = [RSLabel lableViewWithFrame:CGRectMake(0, _priceLable.top-27, SCREEN_WIDTH, 27) bgColor:[NSString colorFromHexString:@"fdfcce"] textColor:RS_COLOR_C3 FontSize:12];
     tipview.text = @"您订的商品送达时会挂在宿舍门上，请注意查收哟!";
     
     [self.view addSubview:tipview];
@@ -238,53 +285,4 @@
     [self.tableView reloadData];
     
 }
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    [self.models removeAllObjects];
-    _addressModel = [[AddressModel alloc]init];
-    _addressModel.address = @"请选择地址";
-    
-    __block NSMutableArray *array1 = [[NSMutableArray alloc]init];
-    [array1 addObject:_addressModel];
-    [self.models addObject:array1];
-    
-    NSMutableArray *array2 = [[NSMutableArray alloc]init];
-    SchoolModel *schoolModel = [AppConfig getAPPDelegate].schoolModel;
-    schoolModel.cellHeight = 48;
-    schoolModel.cellClassName = @"mainTitleCell";
-    [array2 addObject:schoolModel];
-    _goodDic = [[NSMutableDictionary alloc]init];
-    [_goodDic setValue:@"0" forKey:@"isClosed"];
-    [_goodDic setValue:[[Cart sharedCart] getCartDetail] forKey:@"goods"];
-    [array2 addObject:_goodDic];
-    [self.models addObject:array2];
-    
-    __block NSMutableArray *array3 = [[NSMutableArray alloc]init];
-    __block CouponModel *model = [[CouponModel alloc]init];
-    model.cellHeight = 49;
-    model.cellClassName = @"mainTitleCell";
-    [model setSelectAction:@selector(selectedCoupon) target:self];
-    
-    __weak ConfirmOrderViewController *selfB = self;
-    [AddressModel getAddressList:^(NSArray *addressList) {
-        
-        [addressList enumerateObjectsUsingBlock:^(AddressModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (obj.checked == 1) {
-                _addressModel = obj;
-            }
-        }];
-        
-        _addressModel.cellHeight = 60;
-        [_addressModel setSelectAction:@selector(updateAddress) target:self];
-        [array1 removeAllObjects];
-        [array1 addObject:_addressModel];
-        [selfB initModelData:model Array:array3];
-        [selfB.tableView reloadData];
-    }];
-
-}
-
 @end

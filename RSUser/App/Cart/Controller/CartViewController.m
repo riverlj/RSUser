@@ -42,9 +42,9 @@
     textLabel.textAlignment = NSTextAlignmentLeft;
     [conView addSubview:textLabel];
     
-    RSButton *button = [RSButton buttonWithFrame:CGRectMake(SCREEN_WIDTH -110, 0, 110, 32) ImageName:@"icon_clearcar" Text:@"全部清空" TextColor:RS_SubMain_Text_Color];
+    RSButton *button = [RSButton buttonWithFrame:CGRectMake(SCREEN_WIDTH -110, 0, 110, 32) ImageName:@"icon_clearcar" Text:@"全部清空" TextColor:RS_COLOR_C2];
     button.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
-    button.titleLabel.font = RS_SubLable_Font;
+    button.titleLabel.font = RS_FONT_F4;
     [conView addSubview:button];
     @weakify(self)
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
@@ -57,14 +57,14 @@
     }];
     
     bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-49, SCREEN_WIDTH, 49)];
-    bottomView.backgroundColor = RS_TabBar_count_Color;
+    bottomView.backgroundColor = RS_COLOR_C7;
     [self.view addSubview:bottomView];
     totalPriceLabel = [RSLabel lableViewWithFrame:CGRectMake(20, 0, 100, 49) bgColor:[UIColor clearColor] textColor:RS_Theme_Color];
     [bottomView addSubview:totalPriceLabel];
     
-    RSButton *okbutton = [RSButton buttonWithFrame:CGRectMake(SCREEN_WIDTH-85, 10, 67, 30) ImageName:nil Text:@"选好了" TextColor:RS_TabBar_count_Color];
-    [okbutton setBackgroundColor:RS_Button_Bg_Color];
-    okbutton.titleLabel.font = RS_SubButton_Font;
+    RSButton *okbutton = [RSButton buttonWithFrame:CGRectMake(SCREEN_WIDTH-85, 10, 67, 30) ImageName:nil Text:@"选好了" TextColor:RS_COLOR_C7];
+    [okbutton setBackgroundColor:[NSString colorFromHexString:@"ffa628"]];
+    okbutton.titleLabel.font = RS_FONT_F4;
     okbutton.layer.cornerRadius = 5;
     [bottomView addSubview:okbutton];
     [okbutton addTarget:self action:@selector(okButtonClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -121,8 +121,8 @@
     NSString *priceStr = [NSString stringWithFormat:@"共¥%.2f", price];
     totalPrice = price;
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc]initWithString:priceStr];
-    [attStr addAttribute:NSFontAttributeName value:RS_SubButton_Font range:NSMakeRange(0, 2)];
-    [attStr addAttribute:NSFontAttributeName value:RS_Price_FontSize range:NSMakeRange(2, priceStr.length-2)];
+    [attStr addAttribute:NSFontAttributeName value:RS_FONT_F4 range:NSMakeRange(0, 2)];
+    [attStr addAttribute:NSFontAttributeName value:BoldFont(20) range:NSMakeRange(2, priceStr.length-2)];
     totalPriceLabel.attributedText = attStr;
     
     cartImageView.y = shadowView.bottom - 44;

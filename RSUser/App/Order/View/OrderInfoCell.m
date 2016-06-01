@@ -42,7 +42,7 @@
     
     [attText addAttribute:NSForegroundColorAttributeName value:RS_Theme_Color range:NSMakeRange(range.location, text.length-range.location)];
     
-    [attText addAttribute:NSForegroundColorAttributeName value:RS_SubMain_Text_Color range:NSMakeRange(5, range.location-5)];
+    [attText addAttribute:NSForegroundColorAttributeName value:RS_COLOR_C2 range:NSMakeRange(5, range.location-5)];
     [attText addAttribute:NSFontAttributeName value:RS_FONT_F3 range:NSMakeRange(5, text.length-5)];
     
     _title.attributedText = attText;

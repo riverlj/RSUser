@@ -58,8 +58,8 @@
         return _titleLabel;
     }
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ALERTVIEW_WIDTH, ALERTVIEW_TITLE_HEIGHT)];
-    _titleLabel.textColor = RS_TabBar_count_Color;
-    _titleLabel.font = RS_MainLable_Font;
+    _titleLabel.textColor = RS_COLOR_C7;
+    _titleLabel.font = RS_FONT_F2;
     _titleLabel.backgroundColor = RS_Theme_Color;
     _titleLabel.numberOfLines = 1;
     _titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -73,8 +73,8 @@
     }
     _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, ALERTVIEW_WIDTH-30, 100)];
     _contentLabel.textAlignment = NSTextAlignmentCenter;
-    _contentLabel.textColor = RS_SubMain_Text_Color;
-    _contentLabel.font = RS_Button_Font;
+    _contentLabel.textColor = RS_COLOR_C2;
+    _contentLabel.font = Font(16);
 
     _contentLabel.numberOfLines = 0;
     return _contentLabel;
@@ -90,8 +90,8 @@
     _leftButton.frame = CGRectMake(0, 0, (ALERTVIEW_WIDTH-1)/2.0, 34);
     [_leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [_leftButton setBackgroundColor:RS_Theme_Color];
-    [_leftButton.titleLabel setFont:RS_Button_Font];
-    [_leftButton setTitleColor:RS_TabBar_count_Color forState:UIControlStateNormal];
+    [_leftButton.titleLabel setFont:Font(16)];
+    [_leftButton setTitleColor:RS_COLOR_C7 forState:UIControlStateNormal];
     return _leftButton;
 }
 
@@ -114,7 +114,7 @@
         return _alertView;
     }
     _alertView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ALERTVIEW_WIDTH, 300)];
-    [_alertView setBackgroundColor:RS_White_Color];
+    [_alertView setBackgroundColor:RS_COLOR_WHITE];
     CALayer *layer=[_alertView layer];
     //是否设置边框以及是否可见
     [layer setMasksToBounds:YES];
@@ -133,9 +133,7 @@
         [self.alertView addSubview:self.titleLabel];
         height += self.titleLabel.height;
     }
-//    RSLineView *hlineView = [RSLineView lineViewHorizontalWithFrame:CGRectMake(0, height, ALERTVIEW_WIDTH, 1) Color:RS_Line_Color];
-//    [self.alertView addSubview:hlineView];
-//    height += 1;
+
     height += 43;
     
     if(self.msg) {
@@ -150,9 +148,7 @@
     }
     height += 43;
     
-//    RSLineView *hlineView2 = [RSLineView lineViewHorizontalWithFrame:CGRectMake(0, height, ALERTVIEW_WIDTH, 1) Color:RS_Line_Color];
-//    [self.alertView addSubview:hlineView2];
-//    height += 1;
+
 
     if(self.leftBtnText) {
         [self.leftButton setTitle:self.leftBtnText forState:UIControlStateNormal];
@@ -162,14 +158,11 @@
         height += self.leftButton.height;
     }
     
-//    RSLineView *vLine = [RSLineView lineViewVerticalWithFrame:CGRectMake(self.leftButton.right, self.leftButton.top, 1, self.leftButton.height) Color:RS_Line_Color];
-//    [self.alertView addSubview:vLine];
-    
     if (self.rightBtnText)
     {
         [self.rightButton setTitle:self.rightBtnText forState:UIControlStateNormal];
-        [self.rightButton.titleLabel setFont:RS_Button_Font];
-        [self.rightButton setTitleColor:RS_SubMain_Text_Color forState:UIControlStateNormal];
+        [self.rightButton.titleLabel setFont:Font(16)];
+        [self.rightButton setTitleColor:RS_COLOR_C2 forState:UIControlStateNormal];
         _rightButton.frame = CGRectMake(_leftButton.x+_leftButton.width+1, _leftButton.y, _leftButton.width, _leftButton.height);
         [self.alertView addSubview:self.rightButton];
     }

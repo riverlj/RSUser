@@ -37,6 +37,7 @@
 
 #define IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0f ? YES : NO)
 #define IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0f ? YES : NO)
+#define IOS9 ([[[UIDevice currentDevice] systemVersion] floatValue]>=9.0f ? YES : NO)
 
 //APP请求超时时间
 #define APPREQUESTTIMEOUT 5
@@ -48,6 +49,7 @@
 
 //JSPatch 热更新
 #define RSUSER_JSPATCH_KEY @"ec064665c804cea3"
+
 //百度统计key
 #define RSUSER_BAIDU_KEY @"43a650796d"
 

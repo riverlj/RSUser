@@ -24,7 +24,7 @@
 - (void)createUI
 {
     // 商品名称
-    self.titleLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_MainLable_Text_Color];
+    self.titleLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_COLOR_C1];
     self.titleLabel.textAlignment = NSTextAlignmentLeft;
     self.titleLabel.font = Font(14);
     [self.contentView addSubview:self.titleLabel];
@@ -38,8 +38,8 @@
     [self.addIV setImage:[UIImage imageNamed:@"addActivate"]];
     [self.addIV addTapAction:@selector(addCountClick) target:self];
     
-    self.countLabel = [RSLabel lableViewWithFrame:CGRectMake(self.addIV.x- 38, self.addIV.top, 38, self.addIV.height) bgColor:[UIColor clearColor] textColor:RS_NumbLabel_Text_Color];
-    self.countLabel.font = RS_MainLable_Font;
+    self.countLabel = [RSLabel lableViewWithFrame:CGRectMake(self.addIV.x- 38, self.addIV.top, 38, self.addIV.height) bgColor:[UIColor clearColor] textColor:RS_COLOR_NUMLABEL];
+    self.countLabel.font = RS_FONT_F2;
     self.countLabel.adjustsFontSizeToFitWidth = YES;
     [self.contentView addSubview:self.countLabel];
     
@@ -107,31 +107,31 @@
     _iconIV.layer.borderColor = RS_Line_Color.CGColor;
     [self.contentView addSubview:_iconIV];
     
-    _saledLabel = [RSLabel lableViewWithFrame:CGRectMake(0, _iconIV.height-15, _iconIV.width, 15) bgColor:RS_Sub_Text_Color textColor:RS_TabBar_count_Color];
-    _saledLabel.font = RS_SubLable_Font;
+    _saledLabel = [RSLabel lableViewWithFrame:CGRectMake(0, _iconIV.height-15, _iconIV.width, 15) bgColor:RS_COLOR_C4 textColor:RS_COLOR_C7];
+    _saledLabel.font = RS_FONT_F4;
     [_iconIV addSubview:_saledLabel];
 
-    self.titleLabel = [RSLabel lableViewWithFrame:CGRectMake(_iconIV.right + 12, 15, SCREEN_WIDTH-_iconIV.right - 30, 0) bgColor:[UIColor clearColor] textColor:RS_MainLable_Text_Color];
+    self.titleLabel = [RSLabel lableViewWithFrame:CGRectMake(_iconIV.right + 12, 15, SCREEN_WIDTH-_iconIV.right - 30, 0) bgColor:[UIColor clearColor] textColor:RS_COLOR_C1];
     self.titleLabel.textAlignment = NSTextAlignmentLeft;
-    self.self.titleLabel.font = RS_MainLable_Font;
+    self.self.titleLabel.font = RS_FONT_F2;
     [self.contentView addSubview:self.self.titleLabel];
     
-    _menuLabel = [RSLabel lableViewWithFrame:CGRectMake(self.titleLabel.x, 0, self.titleLabel.width, 0) bgColor:[UIColor clearColor] textColor:RS_Sub_Text_Color];
+    _menuLabel = [RSLabel lableViewWithFrame:CGRectMake(self.titleLabel.x, 0, self.titleLabel.width, 0) bgColor:[UIColor clearColor] textColor:RS_COLOR_C4];
     _menuLabel.textAlignment = NSTextAlignmentLeft;
-    _menuLabel.font = RS_SubLable_Font;
+    _menuLabel.font = RS_FONT_F4;
     [self.contentView addSubview:_menuLabel];
     
     self.priceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_Theme_Color];
-    self.priceLabel.font = RS_PriceLable_Font;
+    self.priceLabel.font = RS_FONT_F4;
     [self.contentView addSubview:self.priceLabel];
     
-//    _costPriceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_SubMain_Text_Color];
+//    _costPriceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_COLOR_C2];
 //    _costPriceLabel.font = RS_CostPriceLable_Font;
 //    [self.contentView addSubview:_costPriceLabel];
     
 //    _deleteLineView = [[UIView alloc]init];
 //    [_costPriceLabel addSubview:_deleteLineView];
-//    _deleteLineView.backgroundColor = RS_SubMain_Text_Color;
+//    _deleteLineView.backgroundColor = RS_COLOR_C2;
     
     CGSize addSize = [UIImage imageNamed:@"addActivate"].size;
     self.addIV = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-32, 93/2, 2*addSize.width, 93/2)];
@@ -140,8 +140,8 @@
     [self.addIV setImage:[UIImage imageNamed:@"addActivate"]];
     [self.addIV addTapAction:@selector(addCountClick) target:self];
     
-    self.countLabel = [RSLabel lableViewWithFrame:CGRectMake(self.addIV.x- 38, self.addIV.top, 38, self.addIV.height) bgColor:[UIColor clearColor] textColor:RS_NumbLabel_Text_Color];
-    self.countLabel.font = RS_MainLable_Font;
+    self.countLabel = [RSLabel lableViewWithFrame:CGRectMake(self.addIV.x- 38, self.addIV.top, 38, self.addIV.height) bgColor:[UIColor clearColor] textColor:RS_COLOR_NUMLABEL];
+    self.countLabel.font = RS_FONT_F2;
     self.countLabel.adjustsFontSizeToFitWidth = YES;
     self.countLabel.hidden = YES;
     [self.contentView addSubview:self.countLabel];

@@ -37,7 +37,7 @@
     [button setImage:buttonImage forState:UIControlStateNormal];
     [button setImage:buttonImage forState:UIControlStateHighlighted];
     [button setTitle:@"购物车" forState:UIControlStateNormal];
-    [button setTitleColor:RS_TabBar_Title_Color forState:UIControlStateNormal];
+    [button setTitleColor:RS_COLOR_C3 forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:10];
     [button sizeToFit]; // or set frame in this way `button.frame = CGRectMake(0.0, 0.0, 250, 100);`
     [button addTarget:button action:@selector(clickCart:) forControlEvents:UIControlEventTouchUpInside];

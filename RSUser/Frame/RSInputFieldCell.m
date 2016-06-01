@@ -15,8 +15,8 @@
     if(self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(18, 17, 75, 15)];
-        _titleLabel.textColor = RS_MainLable_Text_Color;
-        _titleLabel.font = RS_MainLable_Font;
+        _titleLabel.textColor = RS_COLOR_C1;
+        _titleLabel.font = RS_FONT_F2;
         [self.contentView addSubview:_titleLabel];
         
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(_titleLabel.right + 20, 0, SCREEN_WIDTH - _titleLabel.right - 38, 49)];

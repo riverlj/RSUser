@@ -48,7 +48,7 @@
     [scrolView addTapAction:@selector(hideKeyboard) target:self];
     [self.view addSubview:scrolView];
     
-    RSButton *registerBtn = [RSButton buttonWithFrame:CGRectMake(0, 0, 60, 44) ImageName:nil Text:@"注册" TextColor:RS_TabBar_count_Color];
+    RSButton *registerBtn = [RSButton buttonWithFrame:CGRectMake(0, 0, 60, 44) ImageName:nil Text:@"注册" TextColor:RS_COLOR_C7];
     registerBtn.titleLabel.font = RS_FONT_F2;
     CGSize size = [registerBtn.titleLabel sizeThatFits:CGSizeMake(60, 44)];
     registerBtn.width = size.width;
@@ -94,7 +94,7 @@
     [scrolView addSubview:pwdTextFiled];
     
     pwdRightView = [[UIView alloc]init];
-    forgetPwdBtn = [RSButton buttonWithFrame:CGRectMake(15, 0, 74, 24) ImageName:nil Text:@"忘记密码?" TextColor:RS_Sub_Text_Color];
+    forgetPwdBtn = [RSButton buttonWithFrame:CGRectMake(15, 0, 74, 24) ImageName:nil Text:@"忘记密码?" TextColor:RS_COLOR_C4];
     pwdRightView.frame = forgetPwdBtn.frame;
     pwdRightView.width = forgetPwdBtn.width + 15;
     
@@ -121,18 +121,18 @@
     }
     pwdRightView.backgroundColor = [UIColor clearColor];
     [pwdRightView addSubview:forgetPwdBtn];
-    forgetPwdBtn.titleLabel.font = RS_SubButton_Font;
+    forgetPwdBtn.titleLabel.font = RS_FONT_F4;
     pwdTextFiled.rightView = pwdRightView;
     pwdTextFiled.rightViewMode = UITextFieldViewModeAlways;
     
     
-    loginBtn =[RSButton buttonWithFrame:CGRectMake(18, pwdTextFiled.bottom+20, SCREEN_WIDTH-36, 38) ImageName:nil Text:@"登录" TextColor:RS_TabBar_count_Color];
+    loginBtn =[RSButton buttonWithFrame:CGRectMake(18, pwdTextFiled.bottom+20, SCREEN_WIDTH-36, 38) ImageName:nil Text:@"登录" TextColor:RS_COLOR_C7];
     loginBtn.backgroundColor = RS_Theme_Color;
     loginBtn.layer.cornerRadius = 6;
     [scrolView addSubview:loginBtn];
     
-    codeloginBtn = [RSButton buttonWithFrame:CGRectMake(SCREEN_WIDTH-120, loginBtn.bottom+15, 100, 30) ImageName:@"icon_logindir" Text:@"验证码登录" TextColor:RS_MainLable_Text_Color];
-    codeloginBtn.titleLabel.font = RS_MainLable_Font;
+    codeloginBtn = [RSButton buttonWithFrame:CGRectMake(SCREEN_WIDTH-120, loginBtn.bottom+15, 100, 30) ImageName:@"icon_logindir" Text:@"验证码登录" TextColor:RS_COLOR_C1];
+    codeloginBtn.titleLabel.font = RS_FONT_F2;
     codeloginBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
     codeloginBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -152);
     [scrolView addSubview:codeloginBtn];
