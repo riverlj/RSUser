@@ -190,21 +190,27 @@
     
     if (self.loginType == 1) {
         self.userNameTextField.placeholder = @"请输入用户名/手机号";
+        
         self.pwdTextField.placeholder = @"请输入密码";
         self.pwdTextField.rightView = self.forgetPwdButton;
+        self.pwdTextField.secureTextEntry = YES;
+
         [self.loginByCodeButton setTitle:@"验证码登录" forState:UIControlStateNormal];
         _loginByCodeButton.titleEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
         _loginByCodeButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -152);
     }else{
         self.userNameTextField.placeholder = @"请输入手机号";
-        self.pwdTextField.placeholder = @"请输入验证码";
         [self.loginByCodeButton setTitle:@"密码登录" forState:UIControlStateNormal];
         self.loginByCodeButton.titleEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
         self.loginByCodeButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -140);
+        
         contentView = [[UIView alloc]initWithFrame:self.sendCodeButton.frame];
         contentView.width = self.sendCodeButton.width + 15;
         [contentView addSubview:self.sendCodeButton];
+        
+        self.pwdTextField.placeholder = @"请输入验证码";
         self.pwdTextField.rightView = contentView;
+        self.pwdTextField.secureTextEntry = NO;
         
     }
 }
