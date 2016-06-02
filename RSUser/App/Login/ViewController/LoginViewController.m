@@ -86,7 +86,6 @@
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         }
-        
     }];
     
     [[self.loginView.loginByWeChatButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
@@ -117,7 +116,6 @@
         [self.loginView setNeedsLayout];
         [self.loginView layoutIfNeeded];
     }];
-    
 }
 
 
@@ -182,14 +180,11 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-
 - (void)sendCode
 {
     [self.loginModel sendCode:^{
         [RSButton countDown:self.loginView.sendCodeButton];
     }];
-    
-    
 }
 
 - (void)findPassWord

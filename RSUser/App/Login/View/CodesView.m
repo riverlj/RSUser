@@ -153,7 +153,8 @@ static CodesView *shareCodesView = nil;
     UIViewController *topVC = [self superViewController];
     contentView.center = topVC.view.center;
     [topVC.view addSubview:self];
-    }
+    [codeTextField becomeFirstResponder];
+}
 
 //获取superview
 -(UIViewController *) superViewController
