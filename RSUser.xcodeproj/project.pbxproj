@@ -70,6 +70,7 @@
 		B162BCA31CBE115D00E27228 /* RSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BCA21CBE115D00E27228 /* RSLocation.m */; };
 		B168FF281CC9C6CF0003B3FA /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B168FF271CC9C6CF0003B3FA /* AddressCell.m */; };
 		B168FF2B1CCB32670003B3FA /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = B168FF2A1CCB32670003B3FA /* Cart.m */; };
+		B16D5F9D1CFFD4C100BC587C /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16D5F9C1CFFD4C100BC587C /* LoginView.m */; };
 		B1738D891CB65E71006C7207 /* RSHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738D881CB65E71006C7207 /* RSHttp.m */; };
 		B1738D8B1CB65FBF006C7207 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1738D8A1CB65FBF006C7207 /* UIKit.framework */; };
 		B1738D8E1CB6625A006C7207 /* RSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738D8D1CB6625A006C7207 /* RSWebViewController.m */; };
@@ -109,6 +110,7 @@
 		B1BD00851CD9A0CB00D41676 /* TicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BD00841CD9A0CB00D41676 /* TicketViewController.m */; };
 		B1BD00861CD9F2AC00D41676 /* OrderStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18322751CD8470A006E7EBC /* OrderStatusViewController.m */; };
 		B1C57AB61CFC2DAC00F52366 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = B1C57AB51CFC2DAC00F52366 /* main.js */; };
+		B1CA723B1CFFDF7500C13231 /* UITextField+RSAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA723A1CFFDF7500C13231 /* UITextField+RSAdd.m */; };
 		B1E81D4C1CB7553E00F587D1 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */; };
 		B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4F1CB7622E00F587D1 /* AppConfig.m */; };
 		B1E81D631CB78A7D00F587D1 /* RSToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D621CB78A7D00F587D1 /* RSToastView.m */; };
@@ -265,6 +267,8 @@
 		B168FF271CC9C6CF0003B3FA /* AddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
 		B168FF291CCB32670003B3FA /* Cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cart.h; sourceTree = "<group>"; };
 		B168FF2A1CCB32670003B3FA /* Cart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cart.m; sourceTree = "<group>"; };
+		B16D5F9B1CFFD4C100BC587C /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
+		B16D5F9C1CFFD4C100BC587C /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		B1738D871CB65E71006C7207 /* RSHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSHttp.h; sourceTree = "<group>"; };
 		B1738D881CB65E71006C7207 /* RSHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSHttp.m; sourceTree = "<group>"; };
 		B1738D8A1CB65FBF006C7207 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -339,6 +343,8 @@
 		B1BD00831CD9A0CB00D41676 /* TicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketViewController.h; sourceTree = "<group>"; };
 		B1BD00841CD9A0CB00D41676 /* TicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketViewController.m; sourceTree = "<group>"; };
 		B1C57AB51CFC2DAC00F52366 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
+		B1CA72391CFFDF7500C13231 /* UITextField+RSAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+RSAdd.h"; sourceTree = "<group>"; };
+		B1CA723A1CFFDF7500C13231 /* UITextField+RSAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+RSAdd.m"; sourceTree = "<group>"; };
 		B1E81D4A1CB7553E00F587D1 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
 		B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
 		B1E81D4D1CB7564F00F587D1 /* UtilMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilMacro.h; sourceTree = "<group>"; };
@@ -515,6 +521,10 @@
 			children = (
 				B118A0BA1CDB106D00598506 /* CodesView.h */,
 				B118A0BB1CDB106D00598506 /* CodesView.m */,
+				B16D5F9B1CFFD4C100BC587C /* LoginView.h */,
+				B16D5F9C1CFFD4C100BC587C /* LoginView.m */,
+				B1CA72391CFFDF7500C13231 /* UITextField+RSAdd.h */,
+				B1CA723A1CFFDF7500C13231 /* UITextField+RSAdd.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1239,7 +1249,9 @@
 				B123DC541CC74CFB00F08E8D /* SeckillModel.m in Sources */,
 				B1738DBE1CB665E2006C7207 /* RSRefreshTableViewController.m in Sources */,
 				30221E491CC9FC1800126D72 /* ProfileCell.m in Sources */,
+				B1CA723B1CFFDF7500C13231 /* UITextField+RSAdd.m in Sources */,
 				B1BD007F1CD9A0B200D41676 /* TicketCell.m in Sources */,
+				B16D5F9D1CFFD4C100BC587C /* LoginView.m in Sources */,
 				B18322671CD1F059006E7EBC /* OrderInfoCell.m in Sources */,
 				B1FFB87E1CB64DCA00255F21 /* AppDelegate.m in Sources */,
 				B1738DC71CB665EC006C7207 /* RSTableViewCell.m in Sources */,
