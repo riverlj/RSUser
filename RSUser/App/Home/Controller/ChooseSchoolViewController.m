@@ -207,7 +207,7 @@
         return;
     }
     [LOCATIONMODEL save];
-    [super backUp];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

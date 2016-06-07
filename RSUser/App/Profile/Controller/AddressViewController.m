@@ -20,7 +20,6 @@
 -(void) viewDidLoad
 {
     [super viewDidLoad];
-    self.hasBackBtn = NO;
     self.title = @"编辑收货地址";
     if([self.model isNewRecord]) {
         self.title = @"新增收货地址";

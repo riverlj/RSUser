@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - Aspects (1.4.1)
   - CYLTabBarController (1.4.4)
   - FCUUID (1.2.0):
     - UICKeyChainStore (~> 2.1.0)
@@ -36,19 +37,20 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
-  - SDCycleScrollView (1.64):
+  - SDCycleScrollView (1.65):
     - SDWebImage (~> 3.7)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
   - UICKeyChainStore (2.1.0)
   - UMengSocial (4.4)
-  - YJCocoa/CoreServicesLayer/Foundation/Log (2.0.1)
+  - YJCocoa/CoreServicesLayer/Foundation/Log (2.1.0)
   - YJLogFactory (1.1.0):
     - YJCocoa/CoreServicesLayer/Foundation/Log
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.1)
+  - Aspects
   - CYLTabBarController
   - FCUUID
   - Mantle (~> 2.0.6)
@@ -63,6 +65,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
   CYLTabBarController: 71d00c3287359fa6fe06dbc04d2a2d103141c763
   FCUUID: 9bfe031d35b7c221a7c66156a0af45d4eb49c3b6
   Mantle: bc40bb061d8c2c6fb48d5083e04d928c3b7f73d9
@@ -70,11 +73,11 @@ SPEC CHECKSUMS:
   MJRefresh: fafde8f18f4afd66b434331a9beb67a6c0264056
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
-  SDCycleScrollView: 806fedb9342ab03b58b84442f985517b42c7cbb7
+  SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   UICKeyChainStore: f1cbd42216a113f0165de1e733e62905b8823432
   UMengSocial: aba7296602310385114d82c255539a7bef3b7ab0
-  YJCocoa: 2c0579be37422e726de6f0df354530065ecf5daf
+  YJCocoa: bfec010c8bdb7fc912bf37da5ea9cd00ef6306f8
   YJLogFactory: 520d17d20aece342db58207b5830ee01eb1ee0b2
 
 COCOAPODS: 0.39.0

@@ -14,8 +14,6 @@
 
 @interface BaseViewController : UIViewController
 @property (nonatomic, strong) RSTipsView *tips;
-@property (nonatomic, assign)Boolean hasBackBtn;
 @property (nonatomic, strong) CartNumberLabel *countLabel;
 
-- (void)backUp;
 @end

@@ -33,7 +33,7 @@
     if (self.bannerView.canGoBack) {
         [self.bannerView goBack];
     }else{
-        [super backUp];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

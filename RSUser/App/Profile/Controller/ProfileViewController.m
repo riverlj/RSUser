@@ -30,7 +30,6 @@
     [super viewDidLoad];
     
     self.title = @"个人中心";
-    self.hasBackBtn = NO;
     items = @[
         @{
             @"title" : @"管理收货地址",

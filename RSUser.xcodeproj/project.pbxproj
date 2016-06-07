@@ -104,6 +104,7 @@
 		B19E1B9F1CB6674B009C38CD /* RSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B19E1B9E1CB6674B009C38CD /* RSModel.m */; };
 		B1A8D4B41CC09D3C00471E93 /* RSSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A8D4B31CC09D3C00471E93 /* RSSearchView.m */; };
 		B1A8D4B71CC0CAEC00471E93 /* SchoolAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A8D4B61CC0CAEC00471E93 /* SchoolAddressCell.m */; };
+		B1B1EE451D069DE400F1A5F3 /* UIViewController+Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B1EE441D069DE400F1A5F3 /* UIViewController+Aspects.m */; };
 		B1B764621CB8D286005A90BD /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B764531CB8D286005A90BD /* HomeViewController.m */; };
 		B1BD007F1CD9A0B200D41676 /* TicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BD007E1CD9A0B200D41676 /* TicketCell.m */; };
 		B1BD00821CD9A0BC00D41676 /* TicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BD00811CD9A0BC00D41676 /* TicketModel.m */; };
@@ -334,6 +335,8 @@
 		B1A8D4B31CC09D3C00471E93 /* RSSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSearchView.m; sourceTree = "<group>"; };
 		B1A8D4B51CC0CAEC00471E93 /* SchoolAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolAddressCell.h; sourceTree = "<group>"; };
 		B1A8D4B61CC0CAEC00471E93 /* SchoolAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolAddressCell.m; sourceTree = "<group>"; };
+		B1B1EE431D069DE400F1A5F3 /* UIViewController+Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Aspects.h"; path = "../../../App/Login/ViewController/UIViewController+Aspects.h"; sourceTree = "<group>"; };
+		B1B1EE441D069DE400F1A5F3 /* UIViewController+Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Aspects.m"; path = "../../../App/Login/ViewController/UIViewController+Aspects.m"; sourceTree = "<group>"; };
 		B1B764521CB8D286005A90BD /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		B1B764531CB8D286005A90BD /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		B1BD007D1CD9A0B200D41676 /* TicketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketCell.h; sourceTree = "<group>"; };
@@ -1011,6 +1014,8 @@
 		B1FFB8BB1CB6562E00255F21 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				B1B1EE431D069DE400F1A5F3 /* UIViewController+Aspects.h */,
+				B1B1EE441D069DE400F1A5F3 /* UIViewController+Aspects.m */,
 				B1E81D4A1CB7553E00F587D1 /* NSString+Helper.h */,
 				B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */,
 				B1FFB8BC1CB6566100255F21 /* RSCategory.h */,
@@ -1274,6 +1279,7 @@
 				B1021DDD1CBF611B00050AEB /* ThrowLineTool.m in Sources */,
 				B123DCCF1CC8B9EF00F08E8D /* AddressModel.m in Sources */,
 				30A3C5211CCF6CA900F5E55E /* CouponViewController.m in Sources */,
+				B1B1EE451D069DE400F1A5F3 /* UIViewController+Aspects.m in Sources */,
 				30A3C5181CCE745600F5E55E /* AddressViewController.m in Sources */,
 				B1BD00821CD9A0BC00D41676 /* TicketModel.m in Sources */,
 				B123DC531CC74CFB00F08E8D /* CartModel.m in Sources */,

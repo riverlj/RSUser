@@ -23,7 +23,6 @@
 {
     self = [super init];
     if (self) {
-        _hasBackBtn = YES;
     }
     return self;
 }
@@ -59,51 +58,12 @@
     [super viewWillAppear:animated];
     [self creatCountLable];
     
-    if([self.navigationController.viewControllers count] > 1)
-    {
-        self.tabBarController.tabBar.hidden = YES;
-        self.hasBackBtn = YES;
-    }
-    else
-    {
-        self.tabBarController.tabBar.hidden = NO;
-        self.hasBackBtn = NO;
-    }
-    
     if ([self isKindOfClass:[HomeViewController class]]
         ||[self isKindOfClass:[OrderViewController class]]
         ||[self isKindOfClass:[ProfileViewController class]]) {
         [AppConfig getAPPDelegate].crrentNavCtl = self.navigationController;
     }
     
-    [self setBackUpBtn];
-}
-
-- (void)setHasBackBtn:(Boolean)hasBackBtn
-{
-    _hasBackBtn = hasBackBtn;
-    if (hasBackBtn == YES) {
-        [self setBackUpBtn];
-    }
-}
-
-- (void)setBackUpBtn
-{
-    if (_hasBackBtn)
-    {
-        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-        iv.image = [UIImage imageNamed:@"nav-goback"];
-        [iv addTapAction:@selector(backUp) target:self];
-        
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:iv];
-        self.navigationItem.leftBarButtonItem = item;
-        
-    }
-}
-
-- (void)backUp
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(RSTipsView *) tips
