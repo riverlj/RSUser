@@ -107,7 +107,7 @@
                  error:(NSError *)error
 {
     NSLog(@"错误：/n%@", error);
-    [AppConfig setRootViewControllerWithCode:error.code];
+    [AppConfig switchViewControllerWithCode:error.code];
     switch (error.code) {
         case 801:{
             CodesView *codeView = [[CodesView alloc]init];

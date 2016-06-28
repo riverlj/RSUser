@@ -23,6 +23,11 @@
 + (void)customsizeInterface;
 
 /**
+ *  设置webViewUserAgent
+ */
++ (void)setUserAgent;
+
+/**
  *  获取APPdelegate
  */
 + (AppDelegate *)getAPPDelegate;
@@ -32,7 +37,7 @@
  *
  *  @param code 
  */
-+(void)setRootViewControllerWithCode:(NSInteger)code;
++(void)switchViewControllerWithCode:(NSInteger)code;
 
 /**
  *  百度统计

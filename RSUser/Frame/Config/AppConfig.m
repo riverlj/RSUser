@@ -72,6 +72,18 @@
 
 }
 
++ (void)setUserAgent
+{
+    UIWebView* tempWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    NSString* userAgent = [tempWebView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+    NSLog(@"%@", userAgent);
+    NSString *ua = [NSString stringWithFormat:@"%@ RSUserAPP/%@",
+                    userAgent,
+                    [UIDevice clientVersion]];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent" : ua, @"User-Agent" : ua}];
+}
+
+
 
 +(void)baiduMobStat
 {
@@ -99,7 +111,7 @@
     return delegate;
 }
 
-+(void)setRootViewControllerWithCode:(NSInteger)code
++(void)switchViewControllerWithCode:(NSInteger)code
 {
     UIViewController *vc;
     switch (code) {

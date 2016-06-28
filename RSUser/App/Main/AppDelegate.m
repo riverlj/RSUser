@@ -29,45 +29,21 @@
     _location =  [[RSLocation alloc]init];
     [_location startLocation];
     
-    [self setUserAgent];
     
     self.window.rootViewController = [[LaunchimageViewController alloc]init];
     
+    [AppConfig setUserAgent];
     [AppConfig customsizeInterface];
-    [self.window makeKeyAndVisible];
     
+    [self.window makeKeyAndVisible];
     return YES;
 }
-
-- (void)setUserAgent{
-    UIWebView* tempWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    NSString* userAgent = [tempWebView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
-    NSLog(@"%@", userAgent);
-    NSString *ua = [NSString stringWithFormat:@"%@ RSUserAPP/%@",
-                        userAgent,
-                         [UIDevice clientVersion]];
-    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent" : ua, @"User-Agent" : ua}];
-}
-
 
 -(void)configThreeLib
 {
     [WXApi registerApp:WEIXIN_LOGIN_APPID];
     [AppConfig baiduMobStat];
     [AppConfig configJSPatch];
-    
-//    [JPEngine startEngine];
-//    NSError *error = nil;
-//    NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"main" ofType:@"js"];
-//    NSString *script = [NSString stringWithContentsOfFile:sourcePath encoding:NSUTF8StringEncoding error:&error];
-//    [JPEngine evaluateScript:script];
-    
-}
-
-- (void)setRootViewController:(UIViewController *)rootVC
-{
-    
-    self.window.rootViewController = rootVC;
 }
 
 - (void)setappRootViewControler

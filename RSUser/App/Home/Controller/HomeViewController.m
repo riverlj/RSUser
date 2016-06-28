@@ -59,7 +59,6 @@
         return;
     }
 
-    
     [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
         [AppConfig getAPPDelegate].schoolModel = schoolModel;
     }];

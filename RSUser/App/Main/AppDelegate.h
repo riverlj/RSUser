@@ -27,6 +27,5 @@
 
 @property (nonatomic, strong)SchoolModel *schoolModel;
 
-- (void)setRootViewController:(UIViewController *)rootVC;
 - (void)setappRootViewControler;
 @end
