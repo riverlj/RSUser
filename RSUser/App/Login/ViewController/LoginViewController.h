@@ -10,7 +10,7 @@
 #import "LoginView.h"
 #import "LoginModel.h"
 
-@interface LoginViewController : BaseViewController
+@interface LoginViewController : BaseViewController<UIScrollViewDelegate>
 
 @property (nonatomic ,strong)LoginView *loginView;
 @property (nonatomic ,strong)LoginModel *loginModel;

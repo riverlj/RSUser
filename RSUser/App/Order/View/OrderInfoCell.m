@@ -162,6 +162,9 @@
         case 5:{
             _leftLabel.text = @"下单时间:";
             _rightLabel.text = model.ordertime;
+            if (model.paymethod.length == 0) {
+                self.lineView.hidden =YES;
+            }
             break;
         }
         case 6:{

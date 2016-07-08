@@ -29,7 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"个人中心";
+    self.navigationItem.title = @"个人中心";
+    
     items = @[
         @{
             @"title" : @"管理收货地址",

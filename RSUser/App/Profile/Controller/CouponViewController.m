@@ -129,7 +129,7 @@
     btn.backgroundColor = RS_Theme_Color;
     btn.tintColor = [UIColor whiteColor];
     [btn setTitle:@"兑换" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(bindCoupon) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(bindCoupon:) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:btn];
     return _headView;
 }
@@ -140,10 +140,11 @@
     return YES;
 }
 
--(void) bindCoupon
+-(void) bindCoupon:(UIButton *)sender
 {
     [textField resignFirstResponder];
     [CouponModel bindCoupon:textField.text success:^{
+        textField.text = @"";
         [self beginHttpRequest];
     } failure:^{
         textField.text = @"";

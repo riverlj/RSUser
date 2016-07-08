@@ -71,7 +71,9 @@
     otherInfoModel43.displayFlag = 6;
     [tempArr4 addObject:otherInfoModel41];
     [tempArr4 addObject:otherInfoModel42];
-    [tempArr4 addObject:otherInfoModel43];
+    if (otherInfoModel43.paymethod.length != 0) {
+        [tempArr4 addObject:otherInfoModel43];
+    }
     [self.models addObject:tempArr4];
     
 }
