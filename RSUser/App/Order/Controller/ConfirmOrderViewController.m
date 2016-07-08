@@ -20,7 +20,10 @@
     NSMutableDictionary *_goodDic;
     AddressModel *_addressModel;
     CouponModel *_couponModel;
+    CouponModel * couponModel1;
+    CouponModel *couponModel3;
     NSArray *_couponsArray;
+    NSMutableArray *array1;
 }
 @end
 
@@ -34,23 +37,11 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.sections = [[NSMutableArray alloc]init];
     
-    [self initBottomView];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
     [self.models removeAllObjects];
     _addressModel = [[AddressModel alloc]init];
     _addressModel.address = @"请选择地址";
     
-    __block NSMutableArray *array1 = [[NSMutableArray alloc]init];
+    array1 = [[NSMutableArray alloc]init];
     [array1 addObject:_addressModel];
     [self.models addObject:array1];
     
@@ -65,11 +56,47 @@
     [array2 addObject:_goodDic];
     [self.models addObject:array2];
     
-    __block NSMutableArray *array3 = [[NSMutableArray alloc]init];
-    __block CouponModel *model = [[CouponModel alloc]init];
-    model.cellHeight = 49;
-    model.cellClassName = @"mainTitleCell";
-    [model setSelectAction:@selector(selectedCoupon) target:self];
+    NSMutableArray *array3 = [[NSMutableArray alloc]init];
+    couponModel1 = [[CouponModel alloc]init];
+    couponModel1.cellHeight = 49;
+    couponModel1.cellClassName = @"mainTitleCell";
+    [couponModel1 setSelectAction:@selector(selectedCoupon) target:self];
+    [array3 addObject:couponModel1];
+    
+    
+    CouponModel *couponModel2 = [[CouponModel alloc]init];
+    couponModel2.cellHeight = 49;
+    couponModel2.cellClassName = @"mainTitleCell";
+    [array3 addObject:couponModel2];
+    
+    couponModel3 = [[CouponModel alloc]init];
+    couponModel3.cellHeight = 49;
+    couponModel3.cellClassName = @"mainTitleCell";
+    [array3 addObject:couponModel3];
+    
+    couponModel1.title = @"优惠券";
+    couponModel2.title = @"商品金额";
+    couponModel3.title = @"优惠减免";
+    
+    couponModel1.subTitle = @"";
+    couponModel2.subTitle = [NSString stringWithFormat:@"%.2f",self.totalprice];
+    couponModel3.subTitle = @"";
+    
+    couponModel1.hiddenLine = NO;
+    couponModel2.hiddenLine = NO;
+    couponModel3.hiddenLine = YES;
+    [self.models addObject:array3];
+    
+    [self.tableView reloadData];
+    
+    [self getCoupon];
+    
+    [self initBottomView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
     __weak ConfirmOrderViewController *selfB = self;
     [AddressModel getAddressList:^(NSArray *addressList) {
@@ -84,10 +111,25 @@
         [_addressModel setSelectAction:@selector(updateAddress) target:self];
         [array1 removeAllObjects];
         [array1 addObject:_addressModel];
-        [selfB initModelData:model Array:array3];
+        
         [selfB.tableView reloadData];
     }];
-    
+
+}
+
+- (void)getCoupon
+{
+    __weak ConfirmOrderViewController *selfB = self;
+    [CouponModel getCounponList:^(NSArray *couponList) {
+        _couponsArray = [[NSArray alloc]initWithArray:couponList];
+        
+        couponModel1.subTitle = [NSString stringWithFormat:@"您有%ld张优惠券可用", couponList.count];
+        if (couponList.count == 0) {
+            [couponModel1 setSelectAction:@selector(noCouponAction) target:self];
+        }
+        [selfB computePayNumber];
+        [selfB.tableView reloadData];
+    }];
 }
 
 
@@ -95,48 +137,6 @@
 {
     UIViewController *addressVc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://addresses?selectReturn=1"]];
     [self.navigationController pushViewController:addressVc animated:YES];
-}
-
-- (void)initModelData:(CouponModel*) model Array:(NSMutableArray *)array
-{
-    
-    _couponModel = [NSKeyedUnarchiver unarchiveObjectWithFile:[RSFileStorage perferenceSavePath:@"coupon"]];
-    [RSFileStorage removeFile:@"coupon"];
-    
-    if (!_couponModel) {
-        
-        if (_couponModel.minfee > self.totalprice) {
-            [[RSToastView shareRSToastView] showToast:[NSString stringWithFormat:@"该优惠券最小使用金额是:%ld元",_couponModel.minfee]];
-            _couponModel = nil;
-        }
-        
-        //获取优惠券信息
-        [CouponModel getCounponList:^(NSArray *couponList) {
-            
-            _couponsArray = [[NSArray alloc]initWithArray:couponList];
-            
-            if (couponList.count == 0)
-            {
-                model.title = @"    无优惠券";
-                [model setSelectAction:@selector(noCouponAction) target:self];
-            }else
-            {
-                model.title = [NSString stringWithFormat:@"    您有%ld张优惠券可用", couponList.count];
-            }
-            [array addObject:model];
-            [self computePayNumber];
-            [self.models addObject:array];
-            [self.tableView reloadData];
-        }];
-    }else{
-        model.title = [NSString stringWithFormat:@"    -%@", _couponModel.reduce ];
-        [array addObject:model];
-        [self computePayNumber];
-        [self.models addObject:array];
-        [self.tableView reloadData];
-        
-    }
-    
 }
 
 - (void)noCouponAction{
@@ -148,6 +148,22 @@
     //TODO 选择可用优惠券
     ChooseCouponViewController *couponVc = [[ChooseCouponViewController alloc]init];
     couponVc.couponArray = [_couponsArray copy];
+    
+    __weak ConfirmOrderViewController *selfB = self;
+    couponVc.selectedCouponBlock = ^(void){
+        _couponModel = [NSKeyedUnarchiver unarchiveObjectWithFile:[RSFileStorage perferenceSavePath:@"coupon"]];
+        [RSFileStorage removeFile:@"coupon"];
+        
+        if (_couponModel) {
+            couponModel3.subTitle = [NSString stringWithFormat:@"-%@", _couponModel.reduce];
+        }else{
+            couponModel3.subTitle = @"";
+        }
+        
+        [selfB computePayNumber];
+        [selfB.tableView reloadData];
+    };
+    
     [self.navigationController pushViewController:couponVc animated:YES];
 }
 
@@ -223,6 +239,8 @@
     _priceLable.text = [NSString stringWithFormat:@"       总计:%.2f", payNumber];
 }
 
+
+#pragma mark tableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
@@ -246,7 +264,7 @@
             return 70;
         }
     }
-    if (indexPath.section == 2 && indexPath.row==0) {
+    if (indexPath.section == 2) {
         return 49;
     }
     

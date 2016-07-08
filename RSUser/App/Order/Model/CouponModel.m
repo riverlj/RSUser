@@ -51,9 +51,9 @@
     [dic setValue:false forKey:@"seckill"];
     [dic setValue:[[Cart sharedCart]filterLocalCartData] forKey:@"products"];
 
-    [[RSToastView shareRSToastView] showHUD:@""];
+//    [[RSToastView shareRSToastView] showHUD:@""];
     [RSHttp requestWithURL:@"/order/promotion" params:dic httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
-        [[RSToastView shareRSToastView] hidHUD];
+//        [[RSToastView shareRSToastView] hidHUD];
         NSArray *array = [[data valueForKey:@"coupons"] firstObject];
         NSMutableArray *returnArray = [[NSMutableArray alloc]init];
         [array enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -69,7 +69,7 @@
         }];
         success(returnArray);
     } failure:^(NSInteger code, NSString *errmsg) {
-        [[RSToastView shareRSToastView] hidHUD];
+//        [[RSToastView shareRSToastView] hidHUD];
         [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 }

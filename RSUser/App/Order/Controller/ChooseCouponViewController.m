@@ -35,7 +35,7 @@
 {
     CouponModel *model = (CouponModel *)[self getModelByIndexPath:indexPath];
     [NSKeyedArchiver archiveRootObject:model toFile:[RSFileStorage perferenceSavePath:@"coupon"]];
-    
+    self.selectedCouponBlock();
     [self.navigationController popViewControllerAnimated:YES];
 }
 

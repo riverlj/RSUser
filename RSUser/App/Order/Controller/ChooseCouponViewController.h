@@ -8,7 +8,10 @@
 
 #import "RSTableViewController.h"
 
+typedef void (^SelectedCouponBlock) (void);
 @interface ChooseCouponViewController : RSTableViewController
 @property (nonatomic ,strong)NSArray *couponArray;
+@property (nonatomic ,copy)SelectedCouponBlock selectedCouponBlock;
+
 
 @end

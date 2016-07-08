@@ -60,11 +60,11 @@
     
     if ([model isKindOfClass:[CouponModel class]]) {
         CouponModel *couponModel = (CouponModel *)model;
-        NSString *text = [NSString stringWithFormat:@"优惠券:%@", couponModel.title];
-        
+        NSString *text = [NSString stringWithFormat:@"%@:        %@", couponModel.title, couponModel.subTitle];
+        NSRange range = [text rangeOfString:@":"];
         NSMutableAttributedString *attText = [[NSMutableAttributedString alloc] initWithString:text];
-        [attText addAttribute:NSForegroundColorAttributeName value:RS_Theme_Color range:NSMakeRange(4, text.length-4)];
-        [attText addAttribute:NSFontAttributeName value:RS_FONT_F2 range:NSMakeRange(4, text.length-4)];
+        [attText addAttribute:NSForegroundColorAttributeName value:RS_Theme_Color range:NSMakeRange(range.location+1, text.length-range.location-1)];
+        [attText addAttribute:NSFontAttributeName value:RS_FONT_F2 range:NSMakeRange(range.location+1, text.length-range.location-1)];
 
         
         self.mainTitleLabel.attributedText = attText;
@@ -72,6 +72,10 @@
         CGSize size = [self.mainTitleLabel sizeThatFits:CGSizeMake(1000, 1000)];
         self.mainTitleLabel.frame = CGRectMake(18, 0, size.width, 49);
         
+        if (!couponModel.hiddenLine) {
+            RSLineView *line = [RSLineView lineViewHorizontalWithFrame:CGRectMake(0, 47, SCREEN_WIDTH, 1) Color:RS_Line_Color];
+            [self.contentView addSubview:line];
+        }
     }
 }
 
