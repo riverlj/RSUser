@@ -89,8 +89,6 @@
     
     [self.tableView reloadData];
     
-    [self getCoupon];
-    
     [self initBottomView];
 }
 
@@ -113,8 +111,14 @@
         [array1 addObject:_addressModel];
         
         [selfB.tableView reloadData];
+        
+        [self getCoupon];
     }];
 
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
 }
 
 - (void)getCoupon

@@ -175,7 +175,7 @@ static RSRoute *gsharedAccount = nil;
                 continue;
             }
             if ([value isPureFloat]) {
-                CGFloat floatValue = [value integerValue];
+                CGFloat floatValue = [value floatValue];
                 [vc setValue:@(floatValue) forKey:key];
                 continue;
             }

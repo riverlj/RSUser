@@ -59,7 +59,14 @@
     request.timeStamp= [[dic valueForKey:@"timestamp"] intValue];
     request.sign= [dic valueForKey:@"sign"];
     
-    [WXApi sendReq:request];
+    if ([WXApi isWXAppInstalled]) {
+        [WXApi sendReq:request];
+    }else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[RSToastView shareRSToastView] showToast:@"请先安装微信客户端"];
+        });
+    }
+    
 }
 
 -(void)payAli:(NSString *)str
