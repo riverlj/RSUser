@@ -26,6 +26,8 @@
     UIImage *oldImg1;
     UIImage *oldImg2;
 }
+
+#pragma mark 生命周期
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -80,6 +82,32 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self initDataSorce];
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    oldImg1 = [self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault];
+    oldImg2 = [self.navigationController.navigationBar shadowImage];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    if(![AppConfig getAPPDelegate].schoolModel) {
+        [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
+            [AppConfig getAPPDelegate].schoolModel = schoolModel;
+        }];
+    }
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:oldImg1 forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:oldImg2];
+    self.navigationController.navigationBar.backgroundColor = RS_Theme_Color;
+}
+
+#pragma mark 初始化数据
 - (void)initDataSorce
 {
     __weak ProfileViewController *selfB = self;
@@ -97,31 +125,7 @@
 
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self initDataSorce];
-    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-    oldImg1 = [self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault];
-    oldImg2 = [self.navigationController.navigationBar shadowImage];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    if(![AppConfig getAPPDelegate].schoolModel) {
-        [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
-            [AppConfig getAPPDelegate].schoolModel = schoolModel;
-        }];
-    }
-
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setBackgroundImage:oldImg1 forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:oldImg2];
-    self.navigationController.navigationBar.backgroundColor = RS_Theme_Color;
-}
-
+#pragma mark tableView delegate
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
