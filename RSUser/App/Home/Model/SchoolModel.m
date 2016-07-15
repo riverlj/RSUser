@@ -8,6 +8,29 @@
 
 #import "SchoolModel.h"
 
+@implementation ChannelViewModel
+@end
+
+
+@implementation ChannelModel
++(NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    return @{
+             @"channelId" : @"id",
+             @"title" : @"title",
+             @"path" : @"path",
+             @"appurl" : @"appurl",
+             @"h5url" : @"h5url"
+             };
+}
+
+-(NSComparisonResult) sortChannels: (ChannelModel *)another
+{
+    return self.channelId > another.channelId;
+}
+
+@end
+
 @implementation SchoolModel
 +(NSDictionary *)JSONKeyPathsByPropertyKey
 {
@@ -42,5 +65,9 @@
     } failure:^(NSInteger code, NSString *errmsg) {
         [[RSToastView shareRSToastView]showToast:errmsg];
     }];
+}
+
++ (NSValueTransformer *)channelsJSONTransformer {
+    return [MTLJSONAdapter arrayTransformerWithModelClass:ChannelModel.class];
 }
 @end

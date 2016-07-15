@@ -10,6 +10,9 @@
 
 @protocol RS_APP <JSExport>
 -(void) closeWebView;
+-(NSString *)getTokenFromNative;
+-(void)setNativeTokenInWeb:(NSString *)token;
+
 @end
 
 @interface RSJSWebViewController : RSWebViewController<RS_APP>

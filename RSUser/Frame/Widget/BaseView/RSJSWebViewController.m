@@ -37,9 +37,19 @@
     }
 }
 
+
+#pragma mark RS_APP
 -(void) closeWebView
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(NSString *)getTokenFromNative{
+    return [NSUserDefaults getValue:@"token"];
+}
+
+-(void)setNativeTokenInWeb:(NSString *)token{
+    [NSUserDefaults setValue:token forKey:@"token"];
 }
 
 @end

@@ -14,13 +14,13 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self) {
-        [self setBackgroundColor:RS_Theme_Color];
+//        [self setBackgroundColor:RS_Theme_Color];
         
-        UIImageView *bgView = [[UIImageView alloc]initWithFrame:CGRectMake(18, 52, 99, 101)];
+        UIImageView *bgView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-79)/2.0, 17, 79, 80)];
         bgView.image = [UIImage imageNamed:@"bg_headView"];
         [self.contentView addSubview:bgView];
         
-        _headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 92, 92)];
+        _headView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 70, 70)];
         _headView.centerX = bgView.width/2;
         _headView.centerY = bgView.height/2;
         _headView.layer.cornerRadius = _headView.width/2;
@@ -30,26 +30,22 @@
         _headView.clipsToBounds = YES;
         [bgView addSubview:_headView];
         
-        _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(bgView.right+31, 0, SCREEN_WIDTH - bgView.right - 36 - 31, 20)];
-        _nameLabel.bottom = bgView.centerY -6;
+        _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, bgView.bottom+5, 0,0)];
         _nameLabel.textColor = [UIColor whiteColor];
         _nameLabel.font = Font(17);
         [self.contentView addSubview:_nameLabel];
         
-        UIImageView *icon = [[UIImageView alloc]initWithFrame:CGRectMake(_nameLabel.left, _nameLabel.bottom + 13, 15, 15)];
-        icon.image = [UIImage imageNamed:@"icon_phone1"];
-        [self.contentView addSubview:icon];
+        UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH,145)];
+        bgImgView.image = [UIImage imageNamed:@"bg_headcell"];
+        [self.contentView addSubview:bgImgView];
+        [self.contentView sendSubviewToBack:bgImgView];
         
-        _phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(icon.right + 5, icon.top, _nameLabel.width - 5 - icon.width, 14)];
-        _phoneLabel.textColor = [UIColor whiteColor];
-        _phoneLabel.font = Font(14);
-        [self.contentView addSubview:_phoneLabel];
+        UIImageView *arrow = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
+        arrow.right = SCREEN_WIDTH - 18;
+        arrow.centerY = 145/2;
+        arrow.image = [UIImage imageNamed:@"arrow_right"];
+        [self.contentView addSubview:arrow];
         
-//        UIImageView *arrow = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
-//        arrow.right = SCREEN_WIDTH - 18;
-//        arrow.centerY = 102;
-//        arrow.image = [UIImage imageNamed:@"arrow_right"];
-//        [self.contentView addSubview:arrow];
     }
     return self;
 }
@@ -58,7 +54,14 @@
 {
     [super setModel:model];
     _nameLabel.text = model.name;
+    CGSize size = [_nameLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _nameLabel.x = (SCREEN_WIDTH-size.width)/2.0;
+    _nameLabel.width = size.width;
+    _nameLabel.height = size.height;
+    
     _phoneLabel.text = model.mobile;
     [_headView sd_setImageWithURL:[NSURL URLWithString:model.headimg] placeholderImage:[UIImage imageNamed:@"icon_header"] ];
 }
+
+
 @end

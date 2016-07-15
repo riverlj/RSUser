@@ -117,6 +117,7 @@
 		B1E81D631CB78A7D00F587D1 /* RSToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D621CB78A7D00F587D1 /* RSToastView.m */; };
 		B1E81D6B1CB7B04100F587D1 /* RSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D6A1CB7B04100F587D1 /* RSAlertView.m */; };
 		B1FD1C771CEABC7C004E21DB /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FD1C761CEABC7C004E21DB /* SettingViewController.m */; };
+		B1FF2AC61D3881B1005736AB /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FF2AC51D3881B1005736AB /* ChannelCell.m */; };
 		B1FFB87B1CB64DCA00255F21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FFB87A1CB64DCA00255F21 /* main.m */; };
 		B1FFB87E1CB64DCA00255F21 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FFB87D1CB64DCA00255F21 /* AppDelegate.m */; };
 		B1FFB8941CB64DCA00255F21 /* RSUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FFB8931CB64DCA00255F21 /* RSUserTests.m */; };
@@ -360,6 +361,8 @@
 		B1E81D6A1CB7B04100F587D1 /* RSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAlertView.m; sourceTree = "<group>"; };
 		B1FD1C751CEABC7C004E21DB /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		B1FD1C761CEABC7C004E21DB /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		B1FF2AC41D3881B1005736AB /* ChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChannelCell.h; path = ../../Order/View/ChannelCell.h; sourceTree = "<group>"; };
+		B1FF2AC51D3881B1005736AB /* ChannelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChannelCell.m; path = ../../Order/View/ChannelCell.m; sourceTree = "<group>"; };
 		B1FFB8761CB64DCA00255F21 /* RSUser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSUser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1FFB87A1CB64DCA00255F21 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B1FFB87C1CB64DCA00255F21 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -750,6 +753,8 @@
 				B1A8D4B31CC09D3C00471E93 /* RSSearchView.m */,
 				B1A8D4B51CC0CAEC00471E93 /* SchoolAddressCell.h */,
 				B1A8D4B61CC0CAEC00471E93 /* SchoolAddressCell.m */,
+				B1FF2AC41D3881B1005736AB /* ChannelCell.h */,
+				B1FF2AC51D3881B1005736AB /* ChannelCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1265,6 +1270,7 @@
 				B183226D1CD2FE4C006E7EBC /* OrderInfoAddressCell.m in Sources */,
 				B18322641CD1F04B006E7EBC /* OrderInfoModel.m in Sources */,
 				B123DCD51CC8E33300F08E8D /* CouponModel.m in Sources */,
+				B1FF2AC61D3881B1005736AB /* ChannelCell.m in Sources */,
 				B1738DB31CB665C3006C7207 /* RSProgressView.m in Sources */,
 				30221E501CCDC04C00126D72 /* RSTitleCell.m in Sources */,
 				B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */,
@@ -1546,7 +1552,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.Breakfast;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.RSUser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1647,7 +1653,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.Breakfast;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.RSUser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

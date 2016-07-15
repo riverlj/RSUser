@@ -50,6 +50,7 @@
 {
     _tabBarControllerConfig = [[RSTabBarControllerConfig alloc] init];
     [self.window setRootViewController:_tabBarControllerConfig.tabBarController];
+    
 }
 
 #pragma mark UIApplicationDelegate 代理方法

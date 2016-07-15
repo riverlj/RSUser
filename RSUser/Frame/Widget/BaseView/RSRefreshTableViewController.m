@@ -141,7 +141,6 @@
 {
     [[RSToastView shareRSToastView] hidHUD];
 
-    [self.tableView reloadData];
     if(self.tableView.mj_header) {
         [self.tableView.mj_header endRefreshing];
     }

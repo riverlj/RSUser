@@ -18,13 +18,15 @@
 @property (nonatomic ,strong)NSMutableArray *bannerImageUrls;
 @property (nonatomic ,strong)NSMutableArray *bannerActionUrls;
 @property (nonatomic ,strong)NSMutableArray *bannerTitles;
-
 @end
 
 @interface HomeViewController()
 {
     UIButton *locationBtn;
     NSMutableArray *_cartArray;
+    NSMutableArray *_channelArray;
+    NSMutableArray *_goodListArray;
+    Boolean canRefrash;
 }
 @end
 @implementation HomeViewController
@@ -33,7 +35,17 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.sections = [NSMutableArray new];
+    self.models = [[NSMutableArray alloc]init];
+    _channelArray = [[NSMutableArray alloc]init];
+    [self.models addObject:_channelArray];
+    _goodListArray = [[NSMutableArray alloc]init];
+    [self.models addObject:_goodListArray];
+    
     _cartArray = [[NSMutableArray alloc]init];
+    
+    canRefrash = YES;
 
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49);
     self.tableView.tableHeaderView = self.cycleScrollView;
@@ -46,6 +58,10 @@
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCountLabel) name:@"Notification_UpadteCountLabel" object:nil];
+    
+    [self createLocationView];
+
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -58,14 +74,11 @@
         [self locationBtnClicked];
         return;
     }
+    
+    if (canRefrash) {
+        [self.tableView.mj_header beginRefreshing];
+    }
 
-    [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
-        [AppConfig getAPPDelegate].schoolModel = schoolModel;
-    }];
-    
-    [self.tableView.mj_header beginRefreshing];
-    
-    [self createLocationView];
     [locationBtn setTitle:COMMUNITITYNAME forState:UIControlStateNormal];
     
     [BannerModel getBannerArraySuccess:^(NSArray *array) {
@@ -80,9 +93,27 @@
             [self.bannerTitles addObject:model.title];
         }
         [self initBannerView];
-        [self.tableView reloadData];
         
     }];
+    
+}
+
+#pragma mark 逻辑处理
+- (void)initChannelData {
+    canRefrash = NO;
+    
+    SchoolModel *schoolModel = [AppConfig getAPPDelegate].schoolModel;
+    NSMutableArray *array = [[NSMutableArray alloc]init];
+    array = [schoolModel.channels mutableCopy];
+    
+    NSSortDescriptor *sortDesc = [[NSSortDescriptor alloc]initWithKey:@"channelId" ascending:YES];
+    [array sortUsingDescriptors:@[sortDesc]];
+    
+    ChannelViewModel *channelViewModel = [[ChannelViewModel alloc]init];
+    channelViewModel.cellClassName = @"ChannelCell";
+    channelViewModel.channelsArray = array;
+    [_channelArray addObject:channelViewModel];
+    [self.tableView reloadData];
     
 }
 
@@ -91,8 +122,8 @@
 {
     NSMutableArray *array = [[Cart sharedCart] getCartGoods];
     
-    for (int i=0; i<self.models.count; i++) {
-        GoodListModel *model = self.models[i];
+    for (int i=0; i<_goodListArray.count; i++) {
+        GoodListModel *model = _goodListArray[i];
         model.num = 0;
         if (array.count == 0) {
             model.num = 0;
@@ -108,7 +139,6 @@
         }
     }
     
-    [self.tableView reloadData];
 }
 
 #pragma mark 创建View
@@ -175,10 +205,19 @@
 {
     [super beforeHttpRequest];
     
+    [_channelArray removeAllObjects];
+    [_goodListArray removeAllObjects];
+    
     [self.params setValue:COMMUNTITYID forKey:@"communityid"];
     [self.params setValue:@"" forKey:@"channelid"];
     [self.params setValue:@"" forKey:@"brandid"];
 }
+
+-(void) beforeProcessHttpData
+{
+    [[RSToastView shareRSToastView]  hidHUD];
+}
+
 
 - (void)afterHttpSuccess:(NSArray *)data
 {
@@ -188,10 +227,17 @@
         GoodListModel *goodListModel =[MTLJSONAdapter modelOfClass:[GoodListModel class] fromJSONDictionary:dic error:&error];
         goodListModel.cellClassName = @"GoodListCell";
         goodListModel.cellHeight = 93;
-        [self.models addObject:goodListModel];
+        [_goodListArray addObject:goodListModel];
     }
     
     [self updateCountLabel];
+    
+    [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
+        [AppConfig getAPPDelegate].schoolModel = schoolModel;
+        [self initChannelData];
+    }];
+
+
 }
 
 #pragma mark SDCycleScrollView广告滚动代理
@@ -205,6 +251,15 @@
     UIViewController *vc = [RSRoute getViewControllerByPath:path];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 0;
+    }
+    return 10;
+}
+
 
 #pragma mark - ScrollViewDelegate
 
