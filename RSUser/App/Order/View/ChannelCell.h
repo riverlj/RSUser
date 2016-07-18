@@ -9,4 +9,5 @@
 #import "RSTableViewCell.h"
 
 @interface ChannelCell : RSTableViewCell
+
 @end

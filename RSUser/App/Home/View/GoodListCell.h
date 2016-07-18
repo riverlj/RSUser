@@ -29,21 +29,10 @@
 @interface GoodListCell : CartCell
 /**餐品图片*/
 @property (nonatomic, strong) UIImageView *iconIV;
-/**加按钮*/
-//@property (nonatomic, strong) UIImageView *addIV;
-/**减按钮*/
-//@property (nonatomic, strong) UIImageView *subIV;
-
-/**标题*/
-//@property (nonatomic, strong) UILabel *titleLabel;
 /**子标题*/
 @property (nonatomic, strong) UILabel *menuLabel;
-/**价格*/
-//@property (nonatomic, strong) UILabel *priceLabel;
 /**花费价格*/
 @property (nonatomic, strong) UILabel *costPriceLabel;
-/**选中量*/
-//@property (nonatomic, strong) UILabel *countLabel;
 /**已售*/
 @property (nonatomic, strong) UILabel *saledLabel;
 
@@ -56,7 +45,13 @@
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
 
+/*已售罄*/
+@property (nonatomic ,strong)UILabel *selloutLabel;
+
+
 @property (nonatomic, strong) GoodListModel *listModel;
+
+- (void)addCountClick;
 
 
 @end

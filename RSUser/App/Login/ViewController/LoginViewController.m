@@ -29,7 +29,7 @@
     self.loginView.loginType = 1;
     self.loginView.delegate = self;
     self.loginView.scrollEnabled = YES;
-    [self.loginView addTapAction:@selector(hideKeyboard) target:self];
+//    [self.loginView addTapAction:@selector(hideKeyboard) target:self];
     [self.view addSubview:self.loginView];
     
     self.loginModel = [[LoginModel alloc]init];
@@ -50,9 +50,9 @@
     }];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:_registerBtn];
     
-    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
-    [recognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];
-    [self.loginView addGestureRecognizer:recognizer];
+//    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
+//    [recognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];
+//    [self.loginView addGestureRecognizer:recognizer];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame) name:UIKeyboardWillHideNotification object:nil];
     
@@ -60,7 +60,7 @@
 
 - (void)keyboardWillChangeFrame
 {
-    [self hideKeyboard];
+//    [self hideKeyboard];
 }
 
 - (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer{

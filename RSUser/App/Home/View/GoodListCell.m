@@ -47,6 +47,8 @@
     [self.subIV setImage:[UIImage imageNamed:@"subActivate"]];
     [self.contentView addSubview:self.subIV];
     [self.subIV addTapAction:@selector(subCountClick) target:self];
+    
+
 }
 
 -(void)setModel:(GoodListModel *)model
@@ -125,18 +127,11 @@
     self.priceLabel.font = RS_FONT_F4;
     [self.contentView addSubview:self.priceLabel];
     
-//    _costPriceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_COLOR_C2];
-//    _costPriceLabel.font = RS_CostPriceLable_Font;
-//    [self.contentView addSubview:_costPriceLabel];
-    
-//    _deleteLineView = [[UIView alloc]init];
-//    [_costPriceLabel addSubview:_deleteLineView];
-//    _deleteLineView.backgroundColor = RS_COLOR_C2;
-    
     CGSize addSize = [UIImage imageNamed:@"addActivate"].size;
     self.addIV = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-32, 93/2, 2*addSize.width, 93/2)];
     self.addIV.contentMode = UIViewContentModeLeft;
     [self.contentView addSubview:self.addIV];
+    self.addIV.hidden = YES;
     [self.addIV setImage:[UIImage imageNamed:@"addActivate"]];
     [self.addIV addTapAction:@selector(addCountClick) target:self];
     
@@ -152,28 +147,43 @@
     [self.contentView addSubview:self.subIV];
     self.subIV.hidden = YES;
     [self.subIV addTapAction:@selector(subCountClick) target:self];
-    
+        
+    self.selloutLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-18-54, 93/2+10, 54, 20)];
+    self.selloutLabel.text = @"已售罄";
+    self.selloutLabel.textColor = RS_COLOR_C7;
+    self.selloutLabel.backgroundColor = RS_COLOR_C4;
+    self.selloutLabel.font = RS_FONT_F4;
+    self.selloutLabel.hidden = YES;
+    self.selloutLabel.layer.cornerRadius = 5;
+    self.selloutLabel.layer.masksToBounds = YES;
+    self.selloutLabel.textAlignment = NSTextAlignmentCenter;
+    [self.contentView addSubview:self.selloutLabel];
 }
 
 - (void)setModel:(GoodListModel *)model
 {
     _listModel = model;
-        [self.iconIV sd_setImageWithURL:[NSURL URLWithString:model.headimg]];
-    self.titleLabel.text     = model.name;
-    _menuLabel.text      = model.desc;
-    _saledLabel.text     = [NSString stringWithFormat:@"已售%zd份", model.saled];
-    self.priceLabel.text     = [NSString stringWithFormat:@"￥%@", model.saleprice];
-//    _costPriceLabel.text = [NSString stringWithFormat:@"￥%@", model.price];
+    [self.iconIV sd_setImageWithURL:[NSURL URLWithString:model.headimg]];
+    self.titleLabel.text = model.name;
+    _menuLabel.text = model.desc;
+    _saledLabel.text = [NSString stringWithFormat:@"已售%zd份", model.saled];
+    self.priceLabel.text = [NSString stringWithFormat:@"￥%@", model.saleprice];
     self.countLabel.text = [NSString stringWithFormat:@"%zd", model.num];
-    if (_listModel.num == 0)
-    {
+
+    if (_listModel.num == 0) {
+        self.addIV.hidden = NO;
         self.countLabel.hidden = YES;
         self.subIV.hidden =YES;
-    }
-    else
-    {
+    } else {
+        self.addIV.hidden = NO;
         self.countLabel.hidden = NO;
         self.subIV.hidden =NO;
+    }
+    
+    if (_listModel.canbuymax == 0) {
+        self.addIV.hidden = YES;
+        self.subIV.hidden = YES;
+        self.selloutLabel.hidden = NO;
     }
     
     [self setFramesWithModel:model];
@@ -192,34 +202,45 @@
     self.priceLabel.y = _menuLabel.bottom + 10;
     CGSize priceSize = [self.priceLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, 40)];
     self.priceLabel.size = priceSize;
-    
-//    _costPriceLabel.x = self.priceLabel.right + 5;
-//    CGSize costtSize = [_costPriceLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, 40)];
-//    _costPriceLabel.size = costtSize;
-//    _costPriceLabel.y = self.priceLabel.bottom - costtSize.height-1;
-    
-//    _deleteLineView.y = costtSize.height/2;
-//    _deleteLineView.width = costtSize.width;
-//    _deleteLineView.height = 1;
 
 }
 
 - (void)addCountClick
 {
+    if (self.countLabel.text.integerValue >= self.listModel.canbuymax && self.listModel.canbuymax!=-1) {
+        
+        [[RSToastView shareRSToastView] showToast:@"库存不足啦，先买这么多吧～"];
+        return;
+    }
+    
     CGSize addSize = [UIImage imageNamed:@"addActivate"].size;
     UIImageView *throwedView = [[UIImageView alloc]init];
-    throwedView.frame = CGRectMake(self.addIV.x, self.addIV.y + (self.addIV.y - addSize.height)/2, addSize.width, addSize.height);
+//    throwedView.frame = CGRectMake(self.addIV.x, self.addIV.y + (self.addIV.y - addSize.height)/2, addSize.width, addSize.height);
     [throwedView setImage:[UIImage imageNamed:@"addActivate"]];
+    throwedView.contentMode = UIViewContentModeLeft;
+
     throwedView.tag = 10;
-    [self.contentView addSubview:throwedView];
+//    [self.contentView addSubview:throwedView];
+    
     
     ThrowLineTool *throwLineTool = [ThrowLineTool sharedTool];
     throwLineTool.delegate = self;
     CartNumberLabel *cartNumberLabel = [CartNumberLabel shareCartNumberLabel];
     CGPoint cartLabelPoint = cartNumberLabel.center;
-    cartLabelPoint = [cartNumberLabel.superview convertPoint:cartLabelPoint toView:self.contentView];
     
-    [throwLineTool throwObject:throwedView from:self.addIV.center to:cartLabelPoint height:40 duration:0.5];
+    cartLabelPoint = [cartNumberLabel.superview convertPoint:cartLabelPoint toView:self.contentView];
+    CGRect beginRect = [self.addIV.superview convertRect:self.addIV.frame toView:nil];
+    CGRect endRect = [cartNumberLabel.superview convertRect:cartNumberLabel.frame toView:nil];
+//    cartLabelPoint = [cartNumberLabel.superview convertPoint:cartLabelPoint toView:nil];
+    
+    CGPoint benginPoint = CGPointMake(beginRect.origin.x+self.addIV.width/2, beginRect.origin.y+self.addIV.height/2);
+    CGPoint endpoint = CGPointMake(endRect.origin.x+cartNumberLabel.width/2, endRect.origin.y+cartNumberLabel.height/2);
+    
+    UIWindow *window = [AppConfig getAPPDelegate].window;
+    throwedView.frame = beginRect;
+    [window addSubview:throwedView];
+    
+    [throwLineTool throwObject:throwedView from:benginPoint to:endpoint height:40 duration:0.5];
     
     [UIView animateWithDuration:0.25 animations:^{
         self.countLabel.text = [NSString stringWithFormat:@"%zd",[self.countLabel.text integerValue] +1];

@@ -7,13 +7,14 @@
 //
 
 #import "RSModel.h"
+@class ChannelModel;
 
 @interface ChannelViewModel : RSModel
 @property (nonatomic, strong)NSMutableArray *channelsArray;
 @end
 
+typedef void(^ClickChennelBlock)(ChannelModel *channelModel);
 @interface ChannelModel : RSModel<MTLJSONSerializing>
-
 /**频道ID*/
 @property (nonatomic ,assign)NSInteger channelId;
 /**频道文案*/
@@ -23,6 +24,8 @@
 /**App使用的跳转链接*/
 @property (nonatomic, strong)NSString *appurl;
 @property (nonatomic, strong)NSString *h5url;
+
+@property (nonatomic ,copy)ClickChennelBlock clickChennelBlock;
 
 -(NSComparisonResult) sortChannels: (ChannelModel *)another;
 @end

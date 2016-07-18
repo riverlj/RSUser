@@ -61,8 +61,12 @@
 
 - (void)itemClicked:(UITapGestureRecognizer *)sender
 {
-    NSLog(@"%zd",sender.view.tag);
-    NSLog(@"%@",_channelViewModel.channelsArray[sender.view.tag]);
+    if (sender.view.tag == 0) {
+        ChannelModel *channelModel = _channelViewModel.channelsArray[sender.view.tag];
+        channelModel.clickChennelBlock(channelModel);
+        
+    }
+    
 }
 
 @end

@@ -13,20 +13,27 @@
 #import "RSCartButtion.h"
 #import "CartModel.h"
 #import "SchoolModel.h"
+#import "ChannelbrandsViewController.h"
 
 @interface HomeViewController ()<SDCycleScrollViewDelegate>
 @property (nonatomic ,strong)NSMutableArray *bannerImageUrls;
 @property (nonatomic ,strong)NSMutableArray *bannerActionUrls;
 @property (nonatomic ,strong)NSMutableArray *bannerTitles;
+
+@property (nonatomic, strong)UIButton *locationBtn;
+
 @end
 
 @interface HomeViewController()
 {
-    UIButton *locationBtn;
+    UIView *_naviView;
+    
     NSMutableArray *_cartArray;
     NSMutableArray *_channelArray;
     NSMutableArray *_goodListArray;
     Boolean canRefrash;
+    
+    NSNumber *preCommutityId;
 }
 @end
 @implementation HomeViewController
@@ -46,8 +53,10 @@
     _cartArray = [[NSMutableArray alloc]init];
     
     canRefrash = YES;
-
+    
+    
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49);
+    
     self.tableView.tableHeaderView = self.cycleScrollView;
     self.url = @"/product/list";
     self.useFooterRefresh = NO;
@@ -56,11 +65,9 @@
     self.bannerActionUrls = [NSMutableArray new];
     self.bannerTitles = [NSMutableArray new];
     
+    [self createNaviView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCountLabel) name:@"Notification_UpadteCountLabel" object:nil];
-    
-    [self createLocationView];
-
     
 }
 
@@ -75,11 +82,22 @@
         return;
     }
     
+    [self.locationBtn removeFromSuperview];
+    [self.view addSubview:self.locationBtn];
+    
+    if (![preCommutityId isEqual:COMMUNTITYID]) {
+        canRefrash = YES;
+    }
+    preCommutityId = COMMUNTITYID;
+    
+    
     if (canRefrash) {
         [self.tableView.mj_header beginRefreshing];
     }
 
-    [locationBtn setTitle:COMMUNITITYNAME forState:UIControlStateNormal];
+    [self.locationBtn setTitle:COMMUNITITYNAME forState:UIControlStateNormal];
+    CGSize size = [COMMUNITITYNAME sizeWithFont:RS_FONT_F1 byHeight:30.0];
+    self.locationBtn.frame = CGRectMake((SCREEN_WIDTH-(size.width+50))/2, 25, size.width+50, 30);
     
     [BannerModel getBannerArraySuccess:^(NSArray *array) {
         [self.bannerActionUrls removeAllObjects];
@@ -95,7 +113,17 @@
         [self initBannerView];
         
     }];
-    
+    self.navigationController.navigationBar.hidden = YES;
+
+}
+
+- (void)createNaviView
+{
+    _naviView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64)];
+    [self.view addSubview:_naviView];
+    _naviView.backgroundColor = RS_Theme_Color;
+    _naviView.alpha = 0;
+    _naviView.userInteractionEnabled = YES;
 }
 
 #pragma mark 逻辑处理
@@ -105,6 +133,13 @@
     SchoolModel *schoolModel = [AppConfig getAPPDelegate].schoolModel;
     NSMutableArray *array = [[NSMutableArray alloc]init];
     array = [schoolModel.channels mutableCopy];
+    __weak HomeViewController *selfB = self;
+    [array enumerateObjectsUsingBlock:^(ChannelModel *channelModel, NSUInteger idx, BOOL * _Nonnull stop) {
+        channelModel.clickChennelBlock = ^void(ChannelModel *cmodel){
+            ChannelbrandsViewController *vc = [[ChannelbrandsViewController alloc] init];
+            [selfB.navigationController pushViewController:vc animated:YES];
+        };
+    }];
     
     NSSortDescriptor *sortDesc = [[NSSortDescriptor alloc]initWithKey:@"channelId" ascending:YES];
     [array sortUsingDescriptors:@[sortDesc]];
@@ -112,6 +147,7 @@
     ChannelViewModel *channelViewModel = [[ChannelViewModel alloc]init];
     channelViewModel.cellClassName = @"ChannelCell";
     channelViewModel.channelsArray = array;
+    
     [_channelArray addObject:channelViewModel];
     [self.tableView reloadData];
     
@@ -139,26 +175,11 @@
         }
     }
     
+    [self.tableView reloadData];
+    
 }
 
 #pragma mark 创建View
-
-
-- (void)createLocationView
-{
-    locationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [locationBtn setImage:[UIImage imageNamed:@"icon_location"] forState:UIControlStateNormal];
-    [locationBtn setImage:[UIImage imageNamed:@"icon_location"] forState:UIControlStateHighlighted];
-    locationBtn.frame = CGRectMake(0, 25, SCREEN_WIDTH, 30);
-    locationBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
-    locationBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -5);
-    @weakify(self)
-    [[locationBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        @strongify(self)
-        [self locationBtnClicked];
-    }];
-    self.navigationItem.titleView = locationBtn;
-}
 
 -(SDCycleScrollView *)cycleScrollView
 {
@@ -166,7 +187,7 @@
     {
         return _cycleScrollView;
     }
-    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 100) imageURLStringsGroup:nil];
+    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 150) imageURLStringsGroup:nil];
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
     _cycleScrollView.delegate = self;
     _cycleScrollView.pageDotColor = RS_Theme_Color;
@@ -262,6 +283,43 @@
 
 
 #pragma mark - ScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView == self.tableView) {
+        CGFloat naviAlpha = scrollView.contentOffset.y/(SCREEN_HEIGHT*0.25-64);
+        _naviView.alpha = naviAlpha;
+        
+        self.locationBtn.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4-naviAlpha/0.4];
+        
+        CGFloat naviAlpha1 = scrollView.contentOffset.y/64+1;
+        self.locationBtn.alpha = naviAlpha1;
+        
+
+    }
+}
+
+#pragma mark getter setter
+-(UIButton *)locationBtn
+{
+    if (!_locationBtn) {
+        _locationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_locationBtn setImage:[UIImage imageNamed:@"icon_location"] forState:UIControlStateNormal];
+        [_locationBtn setImage:[UIImage imageNamed:@"icon_location"] forState:UIControlStateHighlighted];
+        _locationBtn.frame = CGRectMake(0, 25, SCREEN_WIDTH, 30);
+        _locationBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
+        _locationBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -5);
+        _locationBtn.backgroundColor = [UIColor clearColor];
+        _locationBtn.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
+        _locationBtn.layer.cornerRadius = 15;
+        
+        @weakify(self)
+        [[_locationBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            @strongify(self)
+            [self locationBtnClicked];
+        }];
+    }
+    return _locationBtn;
+}
 
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Notification_UpadteCountLabel" object:nil];

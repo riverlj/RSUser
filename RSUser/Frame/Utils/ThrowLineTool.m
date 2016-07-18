@@ -31,13 +31,15 @@ static ThrowLineTool *s_sharedInstance = nil;
              height:(CGFloat)height duration:(CGFloat)duration
 {
     self.showingView = obj;
+
     //初始化抛物线path
     CGMutablePathRef path = CGPathCreateMutable();
-    CGFloat cpx = (start.x + end.x) / 2;
-    CGFloat cpy = -height;
+//    CGFloat cpx = (start.x + end.x) / 5;
+//    CGFloat cpy = -height;
+    
     CGPathMoveToPoint(path, NULL, start.x, start.y);
     //添加二次被塞尔曲线
-    CGPathAddQuadCurveToPoint(path, NULL, cpx, cpy, end.x, end.y);
+    CGPathAddQuadCurveToPoint(path, NULL, start.x-300, -20, end.x, end.y);
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     animation.path = path;
     CFRelease(path);
@@ -50,7 +52,7 @@ static ThrowLineTool *s_sharedInstance = nil;
     groupAnimation.repeatCount = 1;
     groupAnimation.duration = duration;
     groupAnimation.removedOnCompletion = YES;
-    groupAnimation.animations = @[scaleAnimation, animation];
+    groupAnimation.animations = @[animation];
     [obj.layer addAnimation:groupAnimation forKey:@"position scale"];
 }
 
@@ -59,6 +61,7 @@ static ThrowLineTool *s_sharedInstance = nil;
     if (self.delegate && [self.delegate respondsToSelector:@selector(animationDidFinish)]) {
         [self.delegate performSelector:@selector(animationDidFinish) withObject:nil];
     }
+    [self.showingView removeFromSuperview];
     self.showingView = nil;
 }
 
