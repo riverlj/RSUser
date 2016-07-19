@@ -87,6 +87,11 @@
     [data enumerateObjectsUsingBlock:^(NSDictionary *dic, NSUInteger idx, BOOL * _Nonnull stop) {
         NSError *error = nil;
         BrandListModel *brandListModel =[MTLJSONAdapter modelOfClass:[BrandListModel class] fromJSONDictionary:dic error:&error];
+        __weak ChannelbrandsViewController *selfB = self;
+        brandListModel.clickMoreBtnBlock = ^void(BrandListModel *brandListModel){
+            UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://brandinfo?title=%@&brandid=%ld", brandListModel.name, brandListModel.brandId]];
+            [selfB.navigationController pushViewController:vc animated:YES];
+        };
         [self.models addObject:brandListModel];
         [self.models addObject:[NSObject new]];
     }];
@@ -123,4 +128,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Notification_UpadteCountLabel" object:nil];
+}
 @end

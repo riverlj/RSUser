@@ -7,7 +7,9 @@
 //
 
 #import "RSModel.h"
+@class BrandListModel;
 
+typedef void(^ClickMoreBtnBlock)(BrandListModel *channelModel);
 @interface BrandListModel : RSModel<MTLJSONSerializing>
 
 @property (nonatomic ,assign)NSInteger brandId;
@@ -16,5 +18,8 @@
 @property (nonatomic ,strong)NSArray *detailimg;
 @property (nonatomic ,assign)NSInteger hasmore;
 @property (nonatomic ,strong)NSArray *products;
+
+@property (nonatomic ,copy)ClickMoreBtnBlock clickMoreBtnBlock;
+
 
 @end

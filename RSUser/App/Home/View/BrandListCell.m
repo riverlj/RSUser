@@ -102,7 +102,7 @@
 }
 
 -(void)moreBtnClicked{
-    NSLog(@"点击了更多");
+    _brandListModel.clickMoreBtnBlock(_brandListModel);
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

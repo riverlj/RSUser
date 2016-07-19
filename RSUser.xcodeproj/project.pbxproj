@@ -119,6 +119,7 @@
 		B1F490111D3CA99F005A806C /* ChannelbrandsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F490101D3CA99F005A806C /* ChannelbrandsViewController.m */; };
 		B1F490141D3CA9C7005A806C /* BrandListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F490131D3CA9C7005A806C /* BrandListModel.m */; };
 		B1F490171D3CB4A8005A806C /* BrandListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F490161D3CB4A8005A806C /* BrandListCell.m */; };
+		B1F4901A1D3DF0E9005A806C /* BrandinfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F490191D3DF0E9005A806C /* BrandinfoViewController.m */; };
 		B1FD1C771CEABC7C004E21DB /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FD1C761CEABC7C004E21DB /* SettingViewController.m */; };
 		B1FF2AC61D3881B1005736AB /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FF2AC51D3881B1005736AB /* ChannelCell.m */; };
 		B1FFB87B1CB64DCA00255F21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FFB87A1CB64DCA00255F21 /* main.m */; };
@@ -368,6 +369,8 @@
 		B1F490131D3CA9C7005A806C /* BrandListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandListModel.m; sourceTree = "<group>"; };
 		B1F490151D3CB4A8005A806C /* BrandListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandListCell.h; sourceTree = "<group>"; };
 		B1F490161D3CB4A8005A806C /* BrandListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandListCell.m; sourceTree = "<group>"; };
+		B1F490181D3DF0E9005A806C /* BrandinfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandinfoViewController.h; sourceTree = "<group>"; };
+		B1F490191D3DF0E9005A806C /* BrandinfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandinfoViewController.m; sourceTree = "<group>"; };
 		B1FD1C751CEABC7C004E21DB /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		B1FD1C761CEABC7C004E21DB /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		B1FF2AC41D3881B1005736AB /* ChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChannelCell.h; path = ../../Order/View/ChannelCell.h; sourceTree = "<group>"; };
@@ -736,6 +739,8 @@
 				B18322541CD07709006E7EBC /* PayWebViewController.m */,
 				B1F4900F1D3CA99F005A806C /* ChannelbrandsViewController.h */,
 				B1F490101D3CA99F005A806C /* ChannelbrandsViewController.m */,
+				B1F490181D3DF0E9005A806C /* BrandinfoViewController.h */,
+				B1F490191D3DF0E9005A806C /* BrandinfoViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1289,6 +1294,7 @@
 				B1738DB31CB665C3006C7207 /* RSProgressView.m in Sources */,
 				30221E501CCDC04C00126D72 /* RSTitleCell.m in Sources */,
 				B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */,
+				B1F4901A1D3DF0E9005A806C /* BrandinfoViewController.m in Sources */,
 				B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */,
 				B183225E1CD0C6C5006E7EBC /* OrderCell.m in Sources */,
 				30221E7B1CCE41FE00126D72 /* AddressesViewController.m in Sources */,
