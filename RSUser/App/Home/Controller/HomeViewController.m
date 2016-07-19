@@ -149,8 +149,8 @@
     channelViewModel.channelsArray = array;
     
     [_channelArray addObject:channelViewModel];
-    [self.tableView reloadData];
-    
+
+    [self updateCountLabel];
 }
 
 
@@ -250,8 +250,6 @@
         goodListModel.cellHeight = 93;
         [_goodListArray addObject:goodListModel];
     }
-    
-    [self updateCountLabel];
     
     [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
         [AppConfig getAPPDelegate].schoolModel = schoolModel;

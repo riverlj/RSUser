@@ -34,12 +34,13 @@ static ThrowLineTool *s_sharedInstance = nil;
 
     //初始化抛物线path
     CGMutablePathRef path = CGPathCreateMutable();
-//    CGFloat cpx = (start.x + end.x) / 5;
-//    CGFloat cpy = -height;
+    CGFloat cpx = end.x+200;
+    CGFloat cpy = start.y-100;
+    
     
     CGPathMoveToPoint(path, NULL, start.x, start.y);
     //添加二次被塞尔曲线
-    CGPathAddQuadCurveToPoint(path, NULL, start.x-300, -20, end.x, end.y);
+    CGPathAddQuadCurveToPoint(path, NULL, cpx, cpy, end.x, end.y);
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     animation.path = path;
     CFRelease(path);
@@ -53,11 +54,12 @@ static ThrowLineTool *s_sharedInstance = nil;
     groupAnimation.duration = duration;
     groupAnimation.removedOnCompletion = YES;
     groupAnimation.animations = @[animation];
-    [obj.layer addAnimation:groupAnimation forKey:@"position scale"];
+    [self.showingView.layer addAnimation:groupAnimation forKey:@"position scale"];
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
+    [[[AppConfig getAPPDelegate].window viewWithTag:10] removeFromSuperview];
     if (self.delegate && [self.delegate respondsToSelector:@selector(animationDidFinish)]) {
         [self.delegate performSelector:@selector(animationDidFinish) withObject:nil];
     }

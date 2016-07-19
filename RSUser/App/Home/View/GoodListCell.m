@@ -212,15 +212,14 @@
         [[RSToastView shareRSToastView] showToast:@"库存不足啦，先买这么多吧～"];
         return;
     }
-    
     CGSize addSize = [UIImage imageNamed:@"addActivate"].size;
     UIImageView *throwedView = [[UIImageView alloc]init];
-//    throwedView.frame = CGRectMake(self.addIV.x, self.addIV.y + (self.addIV.y - addSize.height)/2, addSize.width, addSize.height);
+    throwedView.frame = CGRectMake(self.addIV.x, self.addIV.y + (self.addIV.y - addSize.height)/2, addSize.width, addSize.height);
     [throwedView setImage:[UIImage imageNamed:@"addActivate"]];
     throwedView.contentMode = UIViewContentModeLeft;
 
     throwedView.tag = 10;
-//    [self.contentView addSubview:throwedView];
+    [self.contentView addSubview:throwedView];
     
     
     ThrowLineTool *throwLineTool = [ThrowLineTool sharedTool];
@@ -231,25 +230,31 @@
     cartLabelPoint = [cartNumberLabel.superview convertPoint:cartLabelPoint toView:self.contentView];
     CGRect beginRect = [self.addIV.superview convertRect:self.addIV.frame toView:nil];
     CGRect endRect = [cartNumberLabel.superview convertRect:cartNumberLabel.frame toView:nil];
-//    cartLabelPoint = [cartNumberLabel.superview convertPoint:cartLabelPoint toView:nil];
+    cartLabelPoint = [cartNumberLabel.superview convertPoint:cartLabelPoint toView:nil];
     
     CGPoint benginPoint = CGPointMake(beginRect.origin.x+self.addIV.width/2, beginRect.origin.y+self.addIV.height/2);
     CGPoint endpoint = CGPointMake(endRect.origin.x+cartNumberLabel.width/2, endRect.origin.y+cartNumberLabel.height/2);
     
     UIWindow *window = [AppConfig getAPPDelegate].window;
+//    throwedView.x = beginRect.origin.x;
+//    throwedView.y = beginRect.origin.y + 14;
     throwedView.frame = beginRect;
     [window addSubview:throwedView];
     
+//    [throwLineTool throwObject:throwedView from:throwedView.center to:cartLabelPoint height:40 duration:0.5];
     [throwLineTool throwObject:throwedView from:benginPoint to:endpoint height:40 duration:0.5];
     
-    [UIView animateWithDuration:0.25 animations:^{
-        self.countLabel.text = [NSString stringWithFormat:@"%zd",[self.countLabel.text integerValue] +1];
-        cartNumberLabel.transform = CGAffineTransformScale(cartNumberLabel.transform, 2, 2);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.25 animations:^{
-            cartNumberLabel.transform = CGAffineTransformScale(cartNumberLabel.transform, 0.5, 0.5);
-        }];
-    }];
+//    [UIView animateWithDuration:0.25 animations:^{
+//        self.countLabel.text = [NSString stringWithFormat:@"%zd",[self.countLabel.text integerValue] +1];
+//        cartNumberLabel.transform = CGAffineTransformScale(cartNumberLabel.transform, 2, 2);
+//    } completion:^(BOOL finished) {
+//        [UIView animateWithDuration:0.25 animations:^{
+//            cartNumberLabel.transform = CGAffineTransformScale(cartNumberLabel.transform, 0.5, 0.5);
+//        }];
+//    }];
+    
+    self.countLabel.text = [NSString stringWithFormat:@"%zd",[self.countLabel.text integerValue] +1];
+
     
     if ([self.countLabel.text integerValue] > 0)
     {
@@ -263,7 +268,7 @@
 
 - (void)animationDidFinish
 {
-    [[self.contentView viewWithTag:10] removeFromSuperview];
+    [[[AppConfig getAPPDelegate].window viewWithTag:10] removeFromSuperview];
 }
 
 - (void)subCountClick
