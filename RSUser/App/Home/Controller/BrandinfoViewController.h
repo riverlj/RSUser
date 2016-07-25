@@ -11,5 +11,7 @@
 @interface BrandinfoViewController : RSRefreshTableViewController
 @property (nonatomic ,assign)NSInteger brandid;
 @property (nonatomic ,strong)NSString *brandName;
+@property (nonatomic ,copy)NSString *navtitle;
+
 
 @end

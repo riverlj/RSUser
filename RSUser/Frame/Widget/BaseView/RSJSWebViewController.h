@@ -12,6 +12,9 @@
 -(void) closeWebView;
 -(NSString *)getTokenFromNative;
 -(void)setNativeTokenInWeb:(NSString *)token;
+- (void)takePhoneByNative;
+- (void)setNavTitle:(NSString *)title;
+- (void)loginByNative;
 
 @end
 

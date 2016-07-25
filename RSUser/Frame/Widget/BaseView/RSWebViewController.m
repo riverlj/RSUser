@@ -8,6 +8,9 @@
 
 #import "RSWebViewController.h"
 #import "RSWebView.h"
+#import <AVFoundation/AVCaptureDevice.h>
+#import <AVFoundation/AVMediaFormat.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface RSWebViewController ()
 
@@ -29,6 +32,11 @@
     [self initWebView];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
 -(void)initWebView
 {
     NSURL *url;
@@ -44,6 +52,7 @@
         [RSToastView alertView:@"URL地址错误"];
         return;
     }
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:5];
     [_bannerView loadRequest:request];
     [self.view addSubview:_bannerView];
@@ -52,20 +61,13 @@
 
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    NSMutableURLRequest *req = [request mutableCopy];
-    NSString *urlStr = [req.URL absoluteString];
-    //判断是否有带上统计参数
-    if([urlStr rangeOfString:@"utm_campaign="].location == NSNotFound) {
-        req.URL = [NSURL URLWithString:[urlStr urlWithHost:nil]];
-        [_bannerView loadRequest:req];
-        return NO;
-    }
     return YES;
 }
 
+
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [[RSToastView shareRSToastView]showHUD:@"加载中"];
+    [[RSToastView shareRSToastView]showHUD:@""];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -85,7 +87,6 @@
     NSString *errmsg = [error.userInfo valueForKey:@"NSLocalizedDescription"];
     [[RSToastView shareRSToastView]showToast:errmsg];
 }
-
 
 
 

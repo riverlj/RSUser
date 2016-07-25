@@ -23,5 +23,16 @@
              @"price" : @"price"
              };
 }
+
+-(NSString *)headimg {
+    if (!_headimg) {
+        return nil;
+    }
+    NSString *sizestr = @"@71h_71w_0e";
+    if ([_headimg isAliyImageUrlStr] && ![_headimg hasSuffix:sizestr]) {
+        _headimg = [_headimg stringByAppendingString:sizestr];
+    }
+    return _headimg;
+}
 @end
 

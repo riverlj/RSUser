@@ -59,14 +59,9 @@
     
 }
 
-- (void)itemClicked:(UITapGestureRecognizer *)sender
-{
-    if (sender.view.tag == 0) {
-        ChannelModel *channelModel = _channelViewModel.channelsArray[sender.view.tag];
-        channelModel.clickChennelBlock(channelModel);
-        
-    }
-    
+- (void)itemClicked:(UITapGestureRecognizer *)sender {
+    ChannelModel *channelModel = _channelViewModel.channelsArray[sender.view.tag];
+    channelModel.clickChennelBlock(channelModel);
 }
 
 @end

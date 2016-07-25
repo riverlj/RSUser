@@ -63,6 +63,9 @@
     return [[urlPrefix append:@"?"] append:[NSString urlParameterWithDictionary:urlParams]];
 }
 
+- (NSString *)urlAppendToken {
+    return  [self stringByAppendingString:[NSString stringWithFormat:@"&token=%@", [NSUserDefaults getValue:@"token"]]];
+}
 
 + (NSString*)URLencode:(NSString*)originalString stringEncoding:(NSStringEncoding)stringEncoding
 {

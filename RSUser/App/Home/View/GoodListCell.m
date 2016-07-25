@@ -236,22 +236,10 @@
     CGPoint endpoint = CGPointMake(endRect.origin.x+cartNumberLabel.width/2, endRect.origin.y+cartNumberLabel.height/2);
     
     UIWindow *window = [AppConfig getAPPDelegate].window;
-//    throwedView.x = beginRect.origin.x;
-//    throwedView.y = beginRect.origin.y + 14;
     throwedView.frame = beginRect;
     [window addSubview:throwedView];
     
-//    [throwLineTool throwObject:throwedView from:throwedView.center to:cartLabelPoint height:40 duration:0.5];
     [throwLineTool throwObject:throwedView from:benginPoint to:endpoint height:40 duration:0.5];
-    
-//    [UIView animateWithDuration:0.25 animations:^{
-//        self.countLabel.text = [NSString stringWithFormat:@"%zd",[self.countLabel.text integerValue] +1];
-//        cartNumberLabel.transform = CGAffineTransformScale(cartNumberLabel.transform, 2, 2);
-//    } completion:^(BOOL finished) {
-//        [UIView animateWithDuration:0.25 animations:^{
-//            cartNumberLabel.transform = CGAffineTransformScale(cartNumberLabel.transform, 0.5, 0.5);
-//        }];
-//    }];
     
     self.countLabel.text = [NSString stringWithFormat:@"%zd",[self.countLabel.text integerValue] +1];
 
@@ -281,7 +269,6 @@
     }
     
     [[Cart sharedCart] deleteGoods:_listModel];
-
 }
 
 @end

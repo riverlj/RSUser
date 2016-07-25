@@ -13,6 +13,8 @@
 - (NSString *)append:(NSString *)string;
 //获取url
 -(NSString *) urlWithHost:(NSString *)host;
+//添加Token
+- (NSString *)urlAppendToken;
 //对比版本号
 - (NSComparisonResult)versionStringCompare:(NSString *)other;
 - (NSString *)addString:(NSString *)string every:(NSInteger)charCount;

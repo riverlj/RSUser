@@ -22,7 +22,7 @@
     [super viewDidLoad];
     
     self.url = @"/brand/info";
-    self.navigationController.title = self.title;
+    self.navigationItem.title= self.navtitle;
     self.models = [[NSMutableArray alloc]init];
     self.bannerImageUrls = [[NSMutableArray alloc] init];
     
@@ -34,7 +34,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCountLabel) name:@"Notification_UpadteCountLabel" object:nil];
     
     [self beginHttpRequest];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated{

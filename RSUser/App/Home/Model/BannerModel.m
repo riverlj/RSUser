@@ -41,4 +41,16 @@
         [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 }
+
+-(NSString *)path
+{
+    if (!_path) {
+        return nil;
+    }
+    NSString *sizestr = [NSString stringWithFormat:@"@%dh_%dw_2e", (int)SCREEN_WIDTH,150];
+    if ([_path isAliyImageUrlStr] && ![_path hasSuffix:sizestr]) {
+        _path = [_path stringByAppendingString:sizestr];
+    }
+    return _path;
+}
 @end

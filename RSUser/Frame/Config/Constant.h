@@ -15,6 +15,8 @@
 #define REDSCARF_MOBILE_URL @"http://test.dev.honglingjinclub.com"
 #define APP_REGISTER_URL @"http://test.dev.honglingjinclub.com/web/register.html"
 #define APP_RESETPWD_URL @"http://test.dev.honglingjinclub.com/web/resetPwd.html"
+
+#define APP_CHANNEL_BASE_URL @"http://test.dev.honglingjinclub.com/web/index.html#"
 #else
 //正式
 #define  REDSCARF_BASE_URL @"http://waimai.honglingjinclub.com"
@@ -22,6 +24,11 @@
 #define  REDSCARF_MOBILE_URL @"http://waimai.honglingjinclub.com"
 #define APP_REGISTER_URL @"http://waimai.honglingjinclub.com/web/register.html"
 #define APP_RESETPWD_URL @"http://waimai.honglingjinclub.com/web/resetPwd.html"
+
+//#define APP_CHANNEL_BASE_URL @"http://waimai.honglingjinclub.com/web/index.html#"
+#define APP_CHANNEL_BASE_URL @"http://test.dev.honglingjinclub.com/web/index.html#"
+
+
 #endif
 
 #ifdef DEBUG

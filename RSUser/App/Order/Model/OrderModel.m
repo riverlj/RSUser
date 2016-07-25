@@ -24,4 +24,14 @@
     };
 }
 
+-(NSString *)imgurl{
+    if (!_imgurl) {
+        return nil;
+    }
+    NSString *sizestr = [NSString stringWithFormat:@"@71h_71w_0e"];
+    if ([_imgurl isAliyImageUrlStr] && ![_imgurl hasSuffix:sizestr]) {
+        _imgurl = [_imgurl stringByAppendingString:sizestr];
+    }
+    return _imgurl;
+}
 @end

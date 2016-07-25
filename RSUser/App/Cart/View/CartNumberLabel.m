@@ -25,7 +25,6 @@ static CartNumberLabel *shareCarNumberLabel = nil;
             shareCarNumberLabel.clipsToBounds = YES;
             shareCarNumberLabel.textAlignment = NSTextAlignmentCenter;
             shareCarNumberLabel.layer.cornerRadius = 8.f;
-            shareCarNumberLabel.text = @"0";
         }
     }
     return shareCarNumberLabel;

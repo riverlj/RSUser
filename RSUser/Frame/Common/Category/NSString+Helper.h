@@ -43,4 +43,7 @@
 
 - (BOOL)isPureFloat;
 - (BOOL)isPureInt;
+
+//判断image Url 是否在阿里云服务器上
+- (Boolean)isAliyImageUrlStr;
 @end

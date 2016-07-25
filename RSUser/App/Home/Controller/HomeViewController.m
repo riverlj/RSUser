@@ -14,6 +14,7 @@
 #import "CartModel.h"
 #import "SchoolModel.h"
 #import "ChannelbrandsViewController.h"
+#import "RSJSWebViewController.h"
 
 @interface HomeViewController ()<SDCycleScrollViewDelegate>
 @property (nonatomic ,strong)NSMutableArray *bannerImageUrls;
@@ -93,12 +94,18 @@
     
     if (canRefrash) {
         [self.tableView.mj_header beginRefreshing];
+        [self requestBanner];
     }
 
     [self.locationBtn setTitle:COMMUNITITYNAME forState:UIControlStateNormal];
     CGSize size = [COMMUNITITYNAME sizeWithFont:RS_FONT_F1 byHeight:30.0];
     self.locationBtn.frame = CGRectMake((SCREEN_WIDTH-(size.width+50))/2, 25, size.width+50, 30);
     
+    self.navigationController.navigationBar.hidden = YES;
+
+}
+
+- (void)requestBanner{
     [BannerModel getBannerArraySuccess:^(NSArray *array) {
         [self.bannerActionUrls removeAllObjects];
         [self.bannerImageUrls removeAllObjects];
@@ -113,8 +120,6 @@
         [self initBannerView];
         
     }];
-    self.navigationController.navigationBar.hidden = YES;
-
 }
 
 - (void)createNaviView
@@ -136,8 +141,20 @@
     __weak HomeViewController *selfB = self;
     [array enumerateObjectsUsingBlock:^(ChannelModel *channelModel, NSUInteger idx, BOOL * _Nonnull stop) {
         channelModel.clickChennelBlock = ^void(ChannelModel *cmodel){
-            ChannelbrandsViewController *vc = [[ChannelbrandsViewController alloc] init];
-            [selfB.navigationController pushViewController:vc animated:YES];
+            if (cmodel.channelId == 4 || cmodel.channelId == 5) {
+                [[RSToastView shareRSToastView] showToast:@"敬请期待...."];
+                return;
+            }
+            if ([cmodel.appurl hasPrefix:@"RSUser://"]) {
+                UIViewController *vc = [RSRoute getViewControllerByPath:cmodel.appurl];
+                [selfB.navigationController pushViewController:vc animated:YES];
+            }
+            if ([cmodel.appurl hasPrefix:@"/"]) {
+                RSJSWebViewController *vc = [[RSJSWebViewController alloc] init];
+                NSString* urlStr = [NSString URLencode:[[cmodel.appurl urlWithHost:APP_CHANNEL_BASE_URL] urlAppendToken] stringEncoding:NSUTF8StringEncoding];
+                vc.urlString = urlStr;
+                [selfB.navigationController pushViewController:vc animated:YES];
+            }
         };
     }];
     
@@ -225,6 +242,7 @@
 -(void)beforeHttpRequest
 {
     [super beforeHttpRequest];
+    [self requestBanner];
     
     [_channelArray removeAllObjects];
     [_goodListArray removeAllObjects];

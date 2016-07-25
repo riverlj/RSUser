@@ -160,4 +160,17 @@
     return [scan scanInt:&val] && [scan isAtEnd];
 }
 
+- (Boolean)isAliyImageUrlStr {
+    NSString *str1 = @"img-cn";
+    NSString *str2 = @"aliyuncs.com";
+    NSRange range1 = [self rangeOfString:str1];
+    NSRange range2 = [self rangeOfString:str2];
+    
+    if (range1.location!= NSNotFound && range2.location!=NSNotFound ) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
 @end

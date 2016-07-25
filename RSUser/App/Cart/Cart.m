@@ -304,6 +304,10 @@ static Cart *shareCart = nil;
         textLabel.text = [NSString stringWithFormat:@"%zd", num];
     }
     
+    if (num==0) {
+        textLabel.text = nil;
+    }
+    
 }
 
 - (NSInteger)getCartCountLabelText
