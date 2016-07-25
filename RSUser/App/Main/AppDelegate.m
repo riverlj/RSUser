@@ -12,6 +12,7 @@
 #import "LoginModel.h"
 #import "LaunchimageViewController.h"
 #import <JSPatch/JPEngine.h>
+#import "CustomNSURLProtocol.h"
 
 @interface AppDelegate ()
 
@@ -21,6 +22,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self configThreeLib];
+
+    [NSURLProtocol registerClass:[CustomNSURLProtocol class]];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = RS_Background_Color;

@@ -13,7 +13,7 @@
 #import <AVFoundation/AVMediaFormat.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
-@interface RSJSWebViewController ()<UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface RSJSWebViewController ()<UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,TSWebViewDelegate>
 
 @end
 
@@ -28,17 +28,27 @@
     [super viewWillAppear:animated];
 }
 
+
+- (void)webView:(UIWebView *)webView didCreateJavaScriptContext:(JSContext *)ctx
+{
+    ctx[@"RS_APP"] = self;
+}
+
+
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    webView.request
-        return YES;
+    return YES;
+}
+
+-(void)webViewDidStartLoad:(UIWebView *)webView {
+    [super webViewDidStartLoad:webView];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [super webViewDidFinishLoad:webView];
-    self.context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    self.context[@"RS_APP"] = self;
+//    self.context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+//    self.context[@"RS_APP"] = self;
     self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 }
 
@@ -62,7 +72,6 @@
 #pragma mark RS_APP
 
 - (void)loginByNative {
-    NSLog(@"XXXX");
     LoginViewController *loginVc = [[LoginViewController alloc]init];
     [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:loginVc animated:YES];
 }
@@ -151,18 +160,18 @@
     [[RSToastView shareRSToastView] showHUD:@""];
     [RSHttp requestWithURL:@"/user/settingheadimg" params:dic httpMethod:@"POSTJSON" success:^(id data) {
         [[RSToastView shareRSToastView] hidHUD];
-        NSMutableURLRequest *request = [self.bannerView.request mutableCopy];
-        NSString *urlStr = [request.URL absoluteString];
-        request.URL = [NSURL URLWithString:[[urlStr urlWithHost:nil] urlAppendToken]];
-        [self.bannerView loadRequest:request];
+        [picker dismissViewControllerAnimated:YES completion:nil];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.bannerView reload];
+        });
+        
     } failure:^(NSInteger code, NSString *errmsg) {
         [[RSToastView shareRSToastView] hidHUD];
         [[RSToastView shareRSToastView] showToast:errmsg];
+        [picker dismissViewControllerAnimated:YES completion:nil];
 
     }];
-    
-    [picker dismissViewControllerAnimated:YES completion:nil];
-
 }
 
 -(BOOL) imageHasAlpha: (UIImage *) image {

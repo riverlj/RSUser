@@ -44,6 +44,8 @@
 		B123DCCF1CC8B9EF00F08E8D /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCCE1CC8B9EF00F08E8D /* AddressModel.m */; };
 		B123DCD21CC8CA9000F08E8D /* BandleCellPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCD11CC8CA9000F08E8D /* BandleCellPhoneViewController.m */; };
 		B123DCD51CC8E33300F08E8D /* CouponModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCD41CC8E33300F08E8D /* CouponModel.m */; };
+		B12484061D462689003C587A /* CustomNSURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = B12484051D462689003C587A /* CustomNSURLProtocol.m */; };
+		B12484091D4633F8003C587A /* UIWebView+TS_JavaScriptContext.m in Sources */ = {isa = PBXBuildFile; fileRef = B12484081D4633F8003C587A /* UIWebView+TS_JavaScriptContext.m */; };
 		B1326E361CE428DC001F90CE /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E351CE428DC001F90CE /* libBaiduMobStat.a */; };
 		B1326E391CE42960001F90CE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E381CE42960001F90CE /* JavaScriptCore.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B1326E3B1CE42995001F90CE /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E3A1CE42995001F90CE /* libstdc++.6.0.9.tbd */; };
@@ -230,6 +232,10 @@
 		B123DCD11CC8CA9000F08E8D /* BandleCellPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandleCellPhoneViewController.m; sourceTree = "<group>"; };
 		B123DCD31CC8E33300F08E8D /* CouponModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponModel.h; sourceTree = "<group>"; };
 		B123DCD41CC8E33300F08E8D /* CouponModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponModel.m; sourceTree = "<group>"; };
+		B12484041D462689003C587A /* CustomNSURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomNSURLProtocol.h; path = ../../App/Home/Controller/CustomNSURLProtocol.h; sourceTree = "<group>"; };
+		B12484051D462689003C587A /* CustomNSURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomNSURLProtocol.m; path = ../../App/Home/Controller/CustomNSURLProtocol.m; sourceTree = "<group>"; };
+		B12484071D4633F8003C587A /* UIWebView+TS_JavaScriptContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIWebView+TS_JavaScriptContext.h"; path = "../../../App/Home/Controller/UIWebView+TS_JavaScriptContext.h"; sourceTree = "<group>"; };
+		B12484081D4633F8003C587A /* UIWebView+TS_JavaScriptContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIWebView+TS_JavaScriptContext.m"; path = "../../../App/Home/Controller/UIWebView+TS_JavaScriptContext.m"; sourceTree = "<group>"; };
 		B1326E351CE428DC001F90CE /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
 		B1326E371CE4290F001F90CE /* BaiduMobStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobStat.h; sourceTree = "<group>"; };
 		B1326E381CE42960001F90CE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -572,6 +578,8 @@
 		B162BCA01CBE10FB00E27228 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B12484041D462689003C587A /* CustomNSURLProtocol.h */,
+				B12484051D462689003C587A /* CustomNSURLProtocol.m */,
 				B1021DDB1CBF611B00050AEB /* ThrowLineTool.h */,
 				B1021DDC1CBF611B00050AEB /* ThrowLineTool.m */,
 				B162BCA11CBE115D00E27228 /* RSLocation.h */,
@@ -1039,6 +1047,8 @@
 		B1FFB8BB1CB6562E00255F21 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				B12484071D4633F8003C587A /* UIWebView+TS_JavaScriptContext.h */,
+				B12484081D4633F8003C587A /* UIWebView+TS_JavaScriptContext.m */,
 				B1B1EE431D069DE400F1A5F3 /* UIViewController+Aspects.h */,
 				B1B1EE441D069DE400F1A5F3 /* UIViewController+Aspects.m */,
 				B1E81D4A1CB7553E00F587D1 /* NSString+Helper.h */,
@@ -1298,6 +1308,7 @@
 				B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */,
 				B183225E1CD0C6C5006E7EBC /* OrderCell.m in Sources */,
 				30221E7B1CCE41FE00126D72 /* AddressesViewController.m in Sources */,
+				B12484091D4633F8003C587A /* UIWebView+TS_JavaScriptContext.m in Sources */,
 				B168FF2B1CCB32670003B3FA /* Cart.m in Sources */,
 				30221E531CCDDD8700126D72 /* RSTitleModel.m in Sources */,
 				B1738DB21CB665C3006C7207 /* RSHeadView.m in Sources */,
@@ -1327,6 +1338,7 @@
 				B1F490141D3CA9C7005A806C /* BrandListModel.m in Sources */,
 				B1738DB81CB665C3006C7207 /* RSTipsView.m in Sources */,
 				B1738DB41CB665C3006C7207 /* RSMenuButton.m in Sources */,
+				B12484061D462689003C587A /* CustomNSURLProtocol.m in Sources */,
 				B1E81D6B1CB7B04100F587D1 /* RSAlertView.m in Sources */,
 				B1F490111D3CA99F005A806C /* ChannelbrandsViewController.m in Sources */,
 				B1738DB51CB665C3006C7207 /* RSPlaceHolderTextView.m in Sources */,

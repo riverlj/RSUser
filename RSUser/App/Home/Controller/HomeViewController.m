@@ -151,7 +151,7 @@
             }
             if ([cmodel.appurl hasPrefix:@"/"]) {
                 RSJSWebViewController *vc = [[RSJSWebViewController alloc] init];
-                NSString* urlStr = [NSString URLencode:[[cmodel.appurl urlWithHost:APP_CHANNEL_BASE_URL] urlAppendToken] stringEncoding:NSUTF8StringEncoding];
+                NSString* urlStr = [NSString URLencode:[cmodel.appurl urlWithHost:APP_CHANNEL_BASE_URL] stringEncoding:NSUTF8StringEncoding];
                 vc.urlString = urlStr;
                 [selfB.navigationController pushViewController:vc animated:YES];
             }

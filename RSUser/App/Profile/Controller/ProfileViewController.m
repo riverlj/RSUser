@@ -167,7 +167,7 @@
     {
         RSJSWebViewController *vc = [[RSJSWebViewController alloc] init];
         NSString * url = @"/static/myAccount";
-        NSString* urlStr = [NSString URLencode:[[url urlWithHost:APP_CHANNEL_BASE_URL] urlAppendToken] stringEncoding:NSUTF8StringEncoding];
+        NSString* urlStr = [NSString URLencode:[url urlWithHost:APP_CHANNEL_BASE_URL] stringEncoding:NSUTF8StringEncoding];
         vc.urlString = urlStr;
         [self.navigationController pushViewController:vc animated:YES];
         
