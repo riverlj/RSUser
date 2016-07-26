@@ -48,7 +48,7 @@
     [super webViewDidFinishLoad:webView];
 //    self.context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
 //    self.context[@"RS_APP"] = self;
-    self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+//    self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 }
 
 - (void)backUp

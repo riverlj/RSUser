@@ -1155,7 +1155,7 @@
 				TargetAttributes = {
 					B1FFB8751CB64DCA00255F21 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = HVW9LQ2544;
+						DevelopmentTeam = 78WD89EN9R;
 					};
 					B1FFB88E1CB64DCA00255F21 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -1589,7 +1589,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.RSUser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.Breakfast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1691,7 +1691,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.RSUser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.Breakfast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
