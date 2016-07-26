@@ -40,15 +40,15 @@
     }
     
     [self.tableView reloadData];
-    
-    UIButton *loginOutBtn = [RSButton themeBackGroundButton:CGRectMake((SCREEN_WIDTH-295)/2, self.view.height/2-64, 295, 40) Text:@"退出登陆"];
-    [self.view addSubview:loginOutBtn];
-    
-    [[loginOutBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        [NSUserDefaults clearValueForKey:@"token"];
-        [[AppConfig getAPPDelegate]setappRootViewControler];
-        
-    }];
+//    
+//    UIButton *loginOutBtn = [RSButton themeBackGroundButton:CGRectMake((SCREEN_WIDTH-295)/2, self.view.height/2-64, 295, 40) Text:@"退出登陆"];
+//    [self.view addSubview:loginOutBtn];
+//    
+//    [[loginOutBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+//        [NSUserDefaults clearValueForKey:@"token"];
+//        [[AppConfig getAPPDelegate]setappRootViewControler];
+//        
+//    }];
     
     
 }

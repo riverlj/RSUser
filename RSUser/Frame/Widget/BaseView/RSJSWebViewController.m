@@ -91,6 +91,10 @@
 - (void)setNavTitle:(NSString *)title {
     self.title = title;
 }
+
+- (void)backToNativeHomeView {
+    [self cyl_popSelectTabBarChildViewControllerAtIndex:0];
+}
 #pragma mark 相册
 - (void)takePhoneByNative
 {

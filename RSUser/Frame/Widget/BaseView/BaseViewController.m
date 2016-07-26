@@ -50,6 +50,14 @@
             [view addSubview:_countLabel];
         }
     }
+    
+    [RACObserve(_countLabel, text) subscribeNext:^(NSString *text) {
+        if ([text integerValue] == 0) {
+            _countLabel.hidden = YES;
+        }else{
+            _countLabel.hidden = NO;
+        }
+    }];
 }
 
 
