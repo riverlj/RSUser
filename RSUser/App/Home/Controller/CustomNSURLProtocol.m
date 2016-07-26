@@ -13,6 +13,7 @@
 {
     [NSURLProtocol registerClass:self];
 }
+
 + (BOOL)canInitWithRequest:(NSMutableURLRequest *)request
 {
     if ([request isKindOfClass:[NSMutableURLRequest class]]) {
