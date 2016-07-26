@@ -76,6 +76,8 @@
     }
     [self.models addObject:tempArr4];
     
+    [self.tableView reloadData];
+    
 }
 
 

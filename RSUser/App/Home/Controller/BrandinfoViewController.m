@@ -26,7 +26,7 @@
     self.models = [[NSMutableArray alloc]init];
     self.bannerImageUrls = [[NSMutableArray alloc] init];
     
-    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-113);
+    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49);
     self.tableView.tableHeaderView = self.cycleScrollView;
     self.useFooterRefresh = NO;
     self.useHeaderRefresh = YES;

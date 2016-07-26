@@ -54,6 +54,8 @@
     [self.models removeAllObjects];
     [self.models addObject:model];
     
+    [self.tableView reloadData];
+    
     [self initBottom];
 }
 

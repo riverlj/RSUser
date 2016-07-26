@@ -103,6 +103,8 @@
     [dict setValue:temp forKey:@"models"];
     self.models = [dict objectForKey:@"models"];
     
+    [self.tableView reloadData];
+    
 }
 
 -(UIView *)headView
