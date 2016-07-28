@@ -163,6 +163,10 @@
 - (void)setModel:(GoodListModel *)model
 {
     _listModel = model;
+    
+    // 重用机制导致显示不一致
+    self.selloutLabel.hidden = YES;
+    
     [self.iconIV sd_setImageWithURL:[NSURL URLWithString:model.headimg]];
     self.titleLabel.text = model.name;
     _menuLabel.text = model.desc;
