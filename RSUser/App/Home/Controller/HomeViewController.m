@@ -314,6 +314,18 @@
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    RSModel *model = [self getModelByIndexPath:indexPath];
+    
+    if ([model isKindOfClass:[GoodListModel class]]) {
+        GoodListModel *goodListModel = (GoodListModel*)model;
+        NSString *path = [NSString stringWithFormat:@"RSUser://goodinfo?communityid=%@&productid=%ld",COMMUNTITYID, goodListModel.comproductid];
+        UIViewController *vc = [RSRoute getViewControllerByPath:path];
+        [self.navigationController pushViewController:vc animated:YES];
+     }
+}
+
 #pragma mark getter setter
 -(UIButton *)locationBtn
 {

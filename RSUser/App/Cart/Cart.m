@@ -63,6 +63,34 @@ static Cart *shareCart = nil;
 }
 
 /**
+ *  根据学校ID，产品ID返回当前商品
+ *
+ *  @param communtityId 学校ID
+ *  @param productid    产品ID
+ *
+ *  @return 商品
+ */
+- (GoodListModel *)getGoodsCommuntityId:(NSInteger)communtityId productid:(NSInteger)productid
+{
+    if (productid<=0) {
+        return nil;
+    }
+    
+    NSMutableDictionary *dic = [self getCartByCommuntityId:communtityId];
+    if (dic) {
+         NSArray *array = [dic valueForKey:@"carts"];
+        for (int i=0; i<array.count; i++) {
+            GoodListModel *model = array[i];
+            if (model.comproductid == productid) {
+                return model;
+            }
+        }
+    }
+    
+    return nil;
+}
+
+/**
  *  返回当前学校的购物车
  *
  *
@@ -307,7 +335,7 @@ static Cart *shareCart = nil;
     if (num==0) {
         textLabel.text = nil;
     }
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCountLabel" object:nil];
 }
 
 - (NSInteger)getCartCountLabelText

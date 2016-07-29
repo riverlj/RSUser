@@ -54,4 +54,31 @@
     
     return label;
 }
+
++(UILabel *)mainLabel {
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
+    label.textColor = RS_COLOR_C1;
+    label.font = RS_FONT_F1;
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    return label;
+}
+
++(UILabel *)twoLabel {
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
+    label.textColor = RS_COLOR_C3;
+    label.font = RS_FONT_F4;
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    return label;
+}
+
++(UILabel *)themeLabel {
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
+    label.textColor = RS_Theme_Color;
+    label.font = RS_FONT_F1;
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    return label;
+}
 @end

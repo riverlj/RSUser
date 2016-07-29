@@ -37,7 +37,7 @@
     
     [AppConfig setUserAgent];
     [AppConfig customsizeInterface];
-    
+
     [self.window makeKeyAndVisible];
     return YES;
 }

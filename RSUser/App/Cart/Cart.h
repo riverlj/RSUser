@@ -14,6 +14,7 @@
 - (void)clearDataSource;
 - (NSMutableDictionary *)getCartByCommuntityId:(NSInteger)communtityId;
 - (NSMutableArray *)getCartGoodsByCommuntityId:(NSInteger)communtityId;
+- (GoodListModel *)getGoodsCommuntityId:(NSInteger)communtityId productid:(NSInteger)productid;
 - (NSMutableDictionary *)getCart;
 - (NSMutableArray *)getCartGoods;
 

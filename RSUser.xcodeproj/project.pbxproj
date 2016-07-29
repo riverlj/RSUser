@@ -46,6 +46,10 @@
 		B123DCD51CC8E33300F08E8D /* CouponModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DCD41CC8E33300F08E8D /* CouponModel.m */; };
 		B12484061D462689003C587A /* CustomNSURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = B12484051D462689003C587A /* CustomNSURLProtocol.m */; };
 		B12484091D4633F8003C587A /* UIWebView+TS_JavaScriptContext.m in Sources */ = {isa = PBXBuildFile; fileRef = B12484081D4633F8003C587A /* UIWebView+TS_JavaScriptContext.m */; };
+		B12484501D49B9B5003C587A /* GoodinfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B124844F1D49B9B5003C587A /* GoodinfoViewController.m */; };
+		B12484531D49D489003C587A /* GoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B12484521D49D489003C587A /* GoodModel.m */; };
+		B12484561D49DE36003C587A /* GoodInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B12484551D49DE36003C587A /* GoodInfoView.m */; };
+		B124845C1D49F441003C587A /* GoodInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B124845B1D49F441003C587A /* GoodInfoCell.m */; };
 		B1326E361CE428DC001F90CE /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E351CE428DC001F90CE /* libBaiduMobStat.a */; };
 		B1326E391CE42960001F90CE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E381CE42960001F90CE /* JavaScriptCore.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B1326E3B1CE42995001F90CE /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E3A1CE42995001F90CE /* libstdc++.6.0.9.tbd */; };
@@ -236,6 +240,14 @@
 		B12484051D462689003C587A /* CustomNSURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomNSURLProtocol.m; path = ../../App/Home/Controller/CustomNSURLProtocol.m; sourceTree = "<group>"; };
 		B12484071D4633F8003C587A /* UIWebView+TS_JavaScriptContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIWebView+TS_JavaScriptContext.h"; path = "../../../App/Home/Controller/UIWebView+TS_JavaScriptContext.h"; sourceTree = "<group>"; };
 		B12484081D4633F8003C587A /* UIWebView+TS_JavaScriptContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIWebView+TS_JavaScriptContext.m"; path = "../../../App/Home/Controller/UIWebView+TS_JavaScriptContext.m"; sourceTree = "<group>"; };
+		B124844E1D49B9B5003C587A /* GoodinfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodinfoViewController.h; sourceTree = "<group>"; };
+		B124844F1D49B9B5003C587A /* GoodinfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodinfoViewController.m; sourceTree = "<group>"; };
+		B12484511D49D489003C587A /* GoodModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodModel.h; sourceTree = "<group>"; };
+		B12484521D49D489003C587A /* GoodModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodModel.m; sourceTree = "<group>"; };
+		B12484541D49DE36003C587A /* GoodInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodInfoView.h; sourceTree = "<group>"; };
+		B12484551D49DE36003C587A /* GoodInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodInfoView.m; sourceTree = "<group>"; };
+		B124845A1D49F441003C587A /* GoodInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodInfoCell.h; sourceTree = "<group>"; };
+		B124845B1D49F441003C587A /* GoodInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodInfoCell.m; sourceTree = "<group>"; };
 		B1326E351CE428DC001F90CE /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
 		B1326E371CE4290F001F90CE /* BaiduMobStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobStat.h; sourceTree = "<group>"; };
 		B1326E381CE42960001F90CE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -749,6 +761,8 @@
 				B1F490101D3CA99F005A806C /* ChannelbrandsViewController.m */,
 				B1F490181D3DF0E9005A806C /* BrandinfoViewController.h */,
 				B1F490191D3DF0E9005A806C /* BrandinfoViewController.m */,
+				B124844E1D49B9B5003C587A /* GoodinfoViewController.h */,
+				B124844F1D49B9B5003C587A /* GoodinfoViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -766,6 +780,8 @@
 				B123DCCB1CC8895100F08E8D /* SchoolModel.m */,
 				B1F490121D3CA9C7005A806C /* BrandListModel.h */,
 				B1F490131D3CA9C7005A806C /* BrandListModel.m */,
+				B12484511D49D489003C587A /* GoodModel.h */,
+				B12484521D49D489003C587A /* GoodModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -778,11 +794,15 @@
 				B1A8D4B21CC09D3C00471E93 /* RSSearchView.h */,
 				B1A8D4B31CC09D3C00471E93 /* RSSearchView.m */,
 				B1A8D4B51CC0CAEC00471E93 /* SchoolAddressCell.h */,
+				B124845A1D49F441003C587A /* GoodInfoCell.h */,
+				B124845B1D49F441003C587A /* GoodInfoCell.m */,
 				B1A8D4B61CC0CAEC00471E93 /* SchoolAddressCell.m */,
 				B1FF2AC41D3881B1005736AB /* ChannelCell.h */,
 				B1FF2AC51D3881B1005736AB /* ChannelCell.m */,
 				B1F490151D3CB4A8005A806C /* BrandListCell.h */,
 				B1F490161D3CB4A8005A806C /* BrandListCell.m */,
+				B12484541D49DE36003C587A /* GoodInfoView.h */,
+				B12484551D49DE36003C587A /* GoodInfoView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1273,6 +1293,7 @@
 				B162BC9A1CBCFE4E00E27228 /* BannerwebViewController.m in Sources */,
 				B162BC911CBC91FB00E27228 /* GoodListModel.m in Sources */,
 				B1FFB8CF1CB6566100255F21 /* UIView+CustomFrame.m in Sources */,
+				B12484501D49B9B5003C587A /* GoodinfoViewController.m in Sources */,
 				B1FFB8CD1CB6566100255F21 /* UIView+ViewController.m in Sources */,
 				B18322581CD0C6A2006E7EBC /* OrderViewController.m in Sources */,
 				B123DCC91CC8893E00F08E8D /* ConfirmOrderViewController.m in Sources */,
@@ -1282,11 +1303,14 @@
 				B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */,
 				B1738D891CB65E71006C7207 /* RSHttp.m in Sources */,
 				B168FF281CC9C6CF0003B3FA /* AddressCell.m in Sources */,
+				B12484531D49D489003C587A /* GoodModel.m in Sources */,
 				B10769A71CBE490400586304 /* RSImageView.m in Sources */,
 				B1FFB8D01CB6566100255F21 /* UIDeviceAdditions.m in Sources */,
 				B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */,
 				B1738D911CB6626E006C7207 /* RSWebView.m in Sources */,
+				B124845C1D49F441003C587A /* GoodInfoCell.m in Sources */,
 				B123DC541CC74CFB00F08E8D /* SeckillModel.m in Sources */,
+				B12484561D49DE36003C587A /* GoodInfoView.m in Sources */,
 				B1738DBE1CB665E2006C7207 /* RSRefreshTableViewController.m in Sources */,
 				30221E491CC9FC1800126D72 /* ProfileCell.m in Sources */,
 				B1CA723B1CFFDF7500C13231 /* UITextField+RSAdd.m in Sources */,
