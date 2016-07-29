@@ -128,4 +128,15 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    RSModel *model = _datasourceArray[indexPath.row];
+    
+    if ([model isKindOfClass:[GoodListModel class]]) {
+        GoodListModel *goodListModel = (GoodListModel*)model;
+        NSString *path = [NSString stringWithFormat:@"RSUser://goodinfo?communityid=%@&productid=%ld",COMMUNTITYID, goodListModel.comproductid];
+        UIViewController *vc = [RSRoute getViewControllerByPath:path];
+        [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:vc animated:YES];
+    }
+}
+
 @end
