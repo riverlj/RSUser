@@ -15,7 +15,9 @@
     if(self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        _orderImageView = [[UIImageView alloc] initWithFrame:CGRectMake(18, 10, 71, 71)];
+        _orderImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 71, 71)];
+        _orderImageView.layer.cornerRadius = 5;
+        _orderImageView.layer.masksToBounds = YES;
         [self.contentView addSubview:_orderImageView];
         
         _orderdateLabel = [[UILabel alloc] initWithFrame:CGRectMake(_orderImageView.right+12.5, 15, 0, 0)];
@@ -28,14 +30,15 @@
         _statusLabel.textColor = [NSString colorFromHexString:@"5faaff"];
         [self.contentView addSubview:_statusLabel];
         
-        _statusButton = [RSButton buttonWithFrame:CGRectMake(SCREEN_WIDTH-88, 37.5, 70, 26) ImageName:nil Text:@"" TextColor:nil];
+        _statusButton = [RSButton buttonWithFrame:CGRectMake(SCREEN_WIDTH-80, 37.5, 70, 26) ImageName:nil Text:@"" TextColor:nil];
         _statusButton.layer.cornerRadius = 4;
         _statusButton.layer.borderWidth = 1;
         _statusButton.titleLabel.font = RS_FONT_F3;
         [_statusButton addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        
         [self.contentView addSubview:_statusButton];
         
+        _lineView = [RSLineView lineViewHorizontalWithFrame:CGRectMake(10, 90, SCREEN_WIDTH-10, 1) Color:RS_Line_Color];
+        [self.contentView addSubview:_lineView];
     }
     return self;
 }
@@ -86,7 +89,9 @@
         _statusButton.layer.borderColor = RS_COLOR_C8.CGColor;
         [_statusButton setTitleColor:RS_COLOR_C8 forState:UIControlStateNormal];
     }
-    
+    if (model.hiddenLine) {
+        [self.lineView removeFromSuperview];
+    }
     model.cellHeight = 91;
 }
 

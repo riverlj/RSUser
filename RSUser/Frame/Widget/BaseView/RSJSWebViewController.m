@@ -72,11 +72,19 @@
 
 - (void)loginByNative {
     LoginViewController *loginVc = [[LoginViewController alloc]init];
-    [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:loginVc animated:YES];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 -(void) closeWebView
 {
+    NSString *documentLocation = [self.bannerView stringByEvaluatingJavaScriptFromString:@"document.location.hash"];
+    
+    if ([documentLocation isEqualToString:@"#/static/myAccount"]) {
+        [self cyl_popSelectTabBarChildViewControllerAtIndex:0];
+        return;
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -86,15 +94,27 @@
 
 -(void)setNativeTokenInWeb:(NSString *)token{
     [NSUserDefaults setValue:token forKey:@"token"];
+    [AppConfig checkToken];
 }
 
 - (void)setNavTitle:(NSString *)title {
-    self.title = title;
+    dispatch_async(dispatch_get_main_queue(), ^{
+       self.navigationItem.title = title; 
+    });
 }
 
-- (void)backToNativeHomeView {
-    [self cyl_popSelectTabBarChildViewControllerAtIndex:0];
+- (void)showLoadingByNative {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[RSToastView shareRSToastView] showHUD:@""];
+    });
 }
+
+- (void)hiddenLoadingByNative{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[RSToastView shareRSToastView] hidHUD];
+    });
+}
+
 #pragma mark 相册
 - (void)takePhoneByNative
 {

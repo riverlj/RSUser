@@ -20,13 +20,32 @@
              @"title" : @"title",
              @"path" : @"path",
              @"appurl" : @"appurl",
-             @"h5url" : @"h5url"
+             @"h5url" : @"h5url",
+             @"needlogin" : @"needlogin"
              };
 }
 
 -(NSComparisonResult) sortChannels: (ChannelModel *)another
 {
     return self.channelId > another.channelId;
+}
+
+@end
+
+@implementation Categorys
+
++(NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    return @{
+//             @"addtime" : @"addtime",
+             @"name" : @"name",
+//             @"pid" : @"pid",
+//             @"status" : @"status",
+//             @"type" : @"type",
+//             @"modtime" :@"modtime",
+             @"categoryid" : @"id",
+//             @"attr" : @"attr"
+             };
 }
 
 @end
@@ -45,6 +64,7 @@
              @"channels": @"channels",
              @"minprice": @"minprice",
              @"contactMobile" : @"contactmobile",
+             @"categorys" : @"categorys"
              };
 }
 
@@ -70,4 +90,9 @@
 + (NSValueTransformer *)channelsJSONTransformer {
     return [MTLJSONAdapter arrayTransformerWithModelClass:ChannelModel.class];
 }
+
++ (NSValueTransformer *)categorysJSONTransformer {
+    return [MTLJSONAdapter arrayTransformerWithModelClass:Categorys.class];
+}
+
 @end

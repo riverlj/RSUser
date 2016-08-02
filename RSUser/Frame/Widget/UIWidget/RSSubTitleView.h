@@ -16,3 +16,9 @@
 @property(nonatomic, strong) UIColor *highlightColor;
 
 @end
+
+@interface RSSubButtonView : UIView
+@property (nonatomic, strong)UILabel *nameLabel;
+@property (nonatomic ,assign)BOOL selected;
+@property (nonatomic ,assign)NSInteger index;
+@end

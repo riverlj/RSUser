@@ -26,6 +26,7 @@
 @property(nonatomic, strong)RSTabBarControllerConfig *tabBarControllerConfig;
 
 @property (nonatomic, strong)SchoolModel *schoolModel;
+@property (nonatomic ,assign)BOOL userValid;
 
 - (void)setappRootViewControler;
 @end

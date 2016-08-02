@@ -19,6 +19,7 @@
 @property (nonatomic,assign)int cellHeight;
 @property (nonatomic) BOOL isSelectable;
 @property (nonatomic) int itemid;
+@property (nonatomic ,assign)BOOL hiddenLine;
 
 - (void)setSelectAction:(SEL)selectAction target:(id)target;
 - (int)cellHeightWithWidth:(int)width;

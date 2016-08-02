@@ -52,10 +52,13 @@
     }
     
     [RACObserve(_countLabel, text) subscribeNext:^(NSString *text) {
+        RSCartButtion *button = (RSCartButtion *)CYLExternPlusButton;
         if ([text integerValue] == 0) {
             _countLabel.hidden = YES;
+            button.highlighted = NO;
         }else{
             _countLabel.hidden = NO;
+            button.highlighted = YES;
         }
     }];
 }

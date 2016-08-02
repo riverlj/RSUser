@@ -31,5 +31,7 @@
 /*选中数量*/
 @property (nonatomic ,assign)NSInteger num;
 
+@property (nonatomic ,assign)NSInteger topcategoryid;
+
 
 @end

@@ -20,7 +20,8 @@
              @"comproductid" : @"id",
              @"headimg" : @"headimg",
              @"name" : @"name",
-             @"price" : @"price"
+             @"price" : @"price",
+             @"topcategoryid" : @"topcategoryid"
              };
 }
 

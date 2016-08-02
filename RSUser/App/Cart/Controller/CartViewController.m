@@ -103,6 +103,7 @@
         return;
     }
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.models.count*49);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     conView.y = SCREEN_HEIGHT - (32 + self.tableView.height + 49);
     self.tableView.y = conView.y + 32;
     [self.tableView reloadData];
@@ -167,19 +168,29 @@
         
         @strongify(self)
         [self disappearView];
-        NSString *path = [NSString stringWithFormat:@"RSUser://confirmOrder?totalprice=%.2f",totalPrice];
-        UIViewController *vc = [RSRoute getViewControllerByPath:path];
+        if(![AppConfig getAPPDelegate].userValid){
+            UIViewController *vc = [RSRoute getViewControllerByPath:@"RSUser://login"];
+            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+            [[AppConfig getAPPDelegate].window.rootViewController presentViewController:nav animated:YES completion:nil];
+        }else {
+            NSString *path = [NSString stringWithFormat:@"RSUser://confirmOrder?totalprice=%.2f",totalPrice];
+            UIViewController *vc = [RSRoute getViewControllerByPath:path];
         
-        //去下单
-        [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:vc animated:YES];
-        
+            //去下单
+            [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:vc animated:YES];
+        }
     }];
-
 }
 
 - (void)disappearView
 {
     [self.view removeFromSuperview];
+    RSCartButtion *button = (RSCartButtion *)CYLExternPlusButton;
+    CartNumberLabel *label = [CartNumberLabel shareCartNumberLabel];
+    if ([label.text integerValue] > 0) {
+        button.highlighted = YES;
+    }
+
 }
 
 -(void)dealloc {

@@ -118,18 +118,28 @@
         case 401:{
             [NSUserDefaults clearValueForKey:@"token"];
             vc = [[LoginViewController alloc]init];
-            [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:vc animated:YES];
+            [[AppConfig getAPPDelegate].crrentNavCtl presentViewController:[[UINavigationController alloc]initWithRootViewController:vc] animated:YES completion:nil];
             break;
         }
         case 403:{
             
             vc = [[BandleCellPhoneViewController alloc]init];
-            [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:vc animated:YES];
+            [[AppConfig getAPPDelegate].crrentNavCtl presentViewController:vc animated:YES completion:nil];
             break;
         }
         default:
             break;
     }
+}
+
++ (void)checkToken {
+    [RSHttp requestWithURL:@"/site/checktoken" params:nil httpMethod:@"GET" success:^(id data) {
+        NSDictionary *dic = (NSDictionary *)data;
+        BOOL valid = [[dic valueForKey:@"valid"] boolValue];
+        [AppConfig getAPPDelegate].userValid = valid;
+    } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSToastView] showToast:errmsg];
+    }];
 }
 
 @end

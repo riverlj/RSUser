@@ -36,9 +36,11 @@
         model.title = [dict valueForKey:@"title"];
         model.url = [dict valueForKey:@"url"];
         model.imgUrl = [dict valueForKey:@"imgUrl"];
+        model.hiddenLine = YES;
+        model.cellHeight = 44;
         [self.models addObject:model];
     }
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView reloadData];
 //    
 //    UIButton *loginOutBtn = [RSButton themeBackGroundButton:CGRectMake((SCREEN_WIDTH-295)/2, self.view.height/2-64, 295, 40) Text:@"退出登陆"];

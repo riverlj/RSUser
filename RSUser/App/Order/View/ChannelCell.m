@@ -15,6 +15,7 @@
 
 -(void)setModel:(ChannelViewModel *)model
 {
+    [self.contentView removeAllSubviews];
     _channelViewModel = model;
     CGFloat cellHeight = 0;
     

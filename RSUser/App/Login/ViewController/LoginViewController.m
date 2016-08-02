@@ -58,6 +58,16 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    iv.image = [UIImage imageNamed:@"nav-goback"];
+    [iv addTapAction:@selector(backUp) target:self];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:iv];
+    self.navigationItem.leftBarButtonItem = item;
+}
+
 - (void)keyboardWillChangeFrame
 {
     [self hideKeyboard];
@@ -96,12 +106,15 @@
         @strongify(self)
         if (self.loginView.loginType == 1) {
             [self.loginModel loginbyPassword:^{
-                [self.navigationController popViewControllerAnimated:YES];
+                [AppConfig getAPPDelegate].userValid = YES;
+//                [self.navigationController popViewControllerAnimated:YES];
+                [self backUp];
             }];
         }
         if (self.loginView.loginType == 2) {
             [self.loginModel loginByMobileCode:^{
-                [self.navigationController popViewControllerAnimated:YES];
+                [AppConfig getAPPDelegate].userValid = YES;
+                [self backUp];
             }];
         }
     }];
@@ -194,8 +207,9 @@
 
 #pragma mark back
 -(void)backUp{
+    [self dismissViewControllerAnimated:YES completion:nil];
     [AppConfig getAPPDelegate].tabBarControllerConfig.tabBarController.selectedIndex = 0;
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [[AppConfig getAPPDelegate].crrentNavCtl popToRootViewControllerAnimated:YES];
 }
 
 - (void)sendCode

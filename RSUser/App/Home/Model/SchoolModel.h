@@ -24,10 +24,24 @@ typedef void(^ClickChennelBlock)(ChannelModel *channelModel);
 /**App使用的跳转链接*/
 @property (nonatomic, strong)NSString *appurl;
 @property (nonatomic, strong)NSString *h5url;
+/**是否需要本地进行登录*/
+@property (nonatomic ,assign)BOOL needlogin;
+
 
 @property (nonatomic ,copy)ClickChennelBlock clickChennelBlock;
 
 -(NSComparisonResult) sortChannels: (ChannelModel *)another;
+@end
+
+@interface Categorys : RSModel<MTLJSONSerializing>
+@property (nonatomic ,assign)NSInteger categoryid;
+@property (nonatomic, strong)NSString *name;
+@property (nonatomic ,assign)NSInteger addtime;
+@property (nonatomic, strong)NSString *attr;
+@property (nonatomic, assign)NSInteger modtime;
+@property (nonatomic ,assign)NSInteger pid;
+@property (nonatomic ,assign)NSInteger status;
+@property (nonatomic ,assign)NSInteger type;
 @end
 
 @interface SchoolModel : RSModel<MTLJSONSerializing>
@@ -41,6 +55,7 @@ typedef void(^ClickChennelBlock)(ChannelModel *channelModel);
 @property (nonatomic ,strong)NSDictionary *deliverytime;
 @property (nonatomic ,assign)CGFloat minprice;
 @property (nonatomic ,strong)NSArray *channels;
+@property (nonatomic ,strong)NSArray *categorys;
 @property (nonatomic, strong) NSString *contactMobile;
 
 + (void)getSchoolMsg:(void (^)(SchoolModel *))successArray;

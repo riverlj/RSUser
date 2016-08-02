@@ -68,8 +68,12 @@
         model.title = [dict valueForKey:@"title"];
         model.url = [dict valueForKey:@"url"];
         model.imgUrl = [dict valueForKey:@"imgUrl"];
+        model.cellHeight = 44;
         [self.models addObject:model];
     }
+    
+    ProfileModel *model = self.models.lastObject;
+    model.hiddenLine = YES;
     
     [self.tableView reloadData];
     
@@ -91,6 +95,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self initDataSorce];
     self.tableView.y = 63;
 

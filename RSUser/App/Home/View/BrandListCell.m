@@ -56,16 +56,28 @@
         _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 110)];
         
         //logo
-        _logoimgView = [[UIImageView alloc]initWithFrame:CGRectMake(18, 10, 100, 100)];
+        _logoimgView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 100, 100)];
         _logoimgView.contentMode = UIViewContentModeScaleAspectFill;
         [_headerView addSubview:_logoimgView];
 
         //品牌名
-        _brandNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(130, 10, SCREEN_WIDTH-20-130, 125)];
-        _brandNameLabel.textAlignment = NSTextAlignmentCenter;
+        _brandNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(_logoimgView.right + 18, 20, SCREEN_WIDTH-20-128, 40)];
+        _brandNameLabel.textAlignment = NSTextAlignmentLeft;
         _brandNameLabel.textColor = RS_COLOR_C1;
         _brandNameLabel.font = RS_FONT_F1;
         [_headerView addSubview:_brandNameLabel];
+        
+        NSArray *colors = @[@"fa4a5e",@"00b7ee", @"2eca76"];
+        NSArray *texts = @[@"品牌", @"品质" , @"超值"];
+        for (int i=0; i<3; i++) {
+            
+            UIButton *button = [RSButton themeBorderButton:CGRectMake(_brandNameLabel.left + 58 * i, _brandNameLabel.bottom + 8, 46, 15) Text:texts[i]];
+            UIColor *color = [NSString colorFromHexString:[NSString stringWithFormat:@"%@",colors[i]]];
+            button.layer.borderColor = color.CGColor;
+            [button setTitleColor:color forState:UIControlStateNormal];
+            button.titleLabel.font = Font(10);
+            [_headerView addSubview:button];
+        }
     
     }
     return _headerView;
@@ -95,6 +107,9 @@
     if (model.hasmore) {
          model.cellHeight += 52;
         _brandtableView.tableFooterView = self.footerView;
+    }else{
+        GoodListModel *model = [_datasourceArray lastObject];
+        model.hiddenLine = YES;
     }
     _brandtableView.height = model.cellHeight;
     [_brandtableView reloadData];
@@ -120,10 +135,10 @@
         cell = [[GoodListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"brandGoodlistCell"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (indexPath.row != _datasourceArray.count-1 || _brandListModel.hasmore) {
-        RSLineView *lineView = [RSLineView lineViewHorizontalWithFrame:CGRectMake(18, 92, SCREEN_WIDTH-36, 1) Color:RS_Line_Color];
-        [cell addSubview:lineView];
-    }
+//    if (indexPath.row != _datasourceArray.count-1 || _brandListModel.hasmore) {
+//        RSLineView *lineView = [RSLineView lineViewHorizontalWithFrame:CGRectMake(10, 92, SCREEN_WIDTH-36, 1) Color:RS_Line_Color];
+//        [cell addSubview:lineView];
+//    }
     [cell setModel:_datasourceArray[indexPath.row]];
     return cell;
 }

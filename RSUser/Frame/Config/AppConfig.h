@@ -48,4 +48,11 @@
  *  JSPatch 热更新
  */
 + (void)configJSPatch;
+
+/**
+ *  检查token是否有效
+ *
+ *  @return
+ */
++ (void)checkToken;
 @end

@@ -22,6 +22,8 @@
 /**选中量*/
 @property (nonatomic, strong) UILabel *countLabel;
 
+@property (nonatomic, strong)UIView *lineView;
+
 @property (nonatomic, strong)GoodListModel *cartmodel;
 
 @end
@@ -38,8 +40,6 @@
 
 /**删除线*/
 @property (nonatomic, strong)UIView *deleteLineView;
-
-
 @property (nonatomic, strong) UIView *subView;
 @property (nonatomic, strong) UIView *addView;
 
@@ -47,8 +47,6 @@
 
 /*已售罄*/
 @property (nonatomic ,strong)UILabel *selloutLabel;
-
-
 @property (nonatomic, strong) GoodListModel *listModel;
 
 - (void)addCountClick;

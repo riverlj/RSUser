@@ -19,6 +19,8 @@
 @property (nonatomic ,strong)UIImageView *orderImageView;
 @property (nonatomic ,strong)RSButton *statusButton;
 @property (nonatomic ,strong)OrderModel *orderModel;
+@property (nonatomic, strong)UIView *lineView;
+
 
 @property (nonatomic ,weak)id<cellBtnClickedDelegate> cellBtnClickedDelegate;
 

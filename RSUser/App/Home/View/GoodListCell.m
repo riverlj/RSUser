@@ -48,7 +48,9 @@
     [self.contentView addSubview:self.subIV];
     [self.subIV addTapAction:@selector(subCountClick) target:self];
     
-
+    self.lineView = [RSLineView lineViewHorizontalWithFrame:CGRectMake(10, 0, SCREEN_WIDTH-10, 1) Color:RS_Line_Color];
+    [self.contentView addSubview:self.lineView];
+    
 }
 
 -(void)setModel:(GoodListModel *)model
@@ -65,6 +67,8 @@
     self.titleLabel.frame = CGRectMake(18, 0, SCREEN_WIDTH/2-20, 49);
     CGSize priceSize = [self.priceLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, self.titleLabel.height)];
     self.priceLabel.frame = CGRectMake(SCREEN_WIDTH/2, 0, priceSize.width, _titleLabel.height);
+    
+    self.lineView.y = 48;
 }
 
 - (void)addCountClick
@@ -104,12 +108,13 @@
 
 - (void)createUI
 {
-    _iconIV = [[UIImageView alloc]initWithFrame:CGRectMake(18, 12, 71, 71)];
-    _iconIV.layer.borderWidth = 1.0f;
-    _iconIV.layer.borderColor = RS_Line_Color.CGColor;
+    _iconIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 12, 71, 71)];
+    _iconIV.layer.cornerRadius = 5;
+    _iconIV.layer.masksToBounds = YES;
     [self.contentView addSubview:_iconIV];
     
     _saledLabel = [RSLabel lableViewWithFrame:CGRectMake(0, _iconIV.height-15, _iconIV.width, 15) bgColor:RS_COLOR_C4 textColor:RS_COLOR_C7];
+    _saledLabel.backgroundColor = RGBA(204, 204, 204, 0.4);
     _saledLabel.font = RS_FONT_F4;
     [_iconIV addSubview:_saledLabel];
 
@@ -128,7 +133,7 @@
     [self.contentView addSubview:self.priceLabel];
     
     CGSize addSize = [UIImage imageNamed:@"addActivate"].size;
-    self.addIV = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-32, 93/2, 2*addSize.width, 93/2)];
+    self.addIV = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-26, 93/2, 2*addSize.width, 93/2)];
     self.addIV.contentMode = UIViewContentModeLeft;
     [self.contentView addSubview:self.addIV];
     self.addIV.hidden = YES;
@@ -158,6 +163,10 @@
     self.selloutLabel.layer.masksToBounds = YES;
     self.selloutLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:self.selloutLabel];
+    
+    self.lineView = [RSLineView lineViewHorizontalWithFrame:CGRectMake(10, 92, SCREEN_WIDTH-10, 1) Color:RS_Line_Color];
+    self.lineView.hidden = YES;
+    [self.contentView addSubview:self.lineView];
 }
 
 - (void)setModel:(GoodListModel *)model
@@ -189,6 +198,9 @@
         self.subIV.hidden = YES;
         self.selloutLabel.hidden = NO;
     }
+    
+    self.lineView.hidden = model.hiddenLine;
+
     
     [self setFramesWithModel:model];
 }

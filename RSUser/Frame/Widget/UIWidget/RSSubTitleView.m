@@ -79,3 +79,40 @@
 }
 
 @end
+
+@implementation RSSubButtonView
+
+-(instancetype) initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if(self) {
+        [self addSubview:self.nameLabel];
+    }
+    return self;
+}
+
+-(UILabel *)nameLabel{
+    if (_nameLabel) {
+        return _nameLabel;
+    }
+    _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, self.width-20, 21)];
+    _nameLabel.layer.cornerRadius = 10;
+    _nameLabel.layer.masksToBounds = YES;
+    _nameLabel.font = Font(13);
+    _nameLabel.textAlignment = NSTextAlignmentCenter;
+    return _nameLabel;
+}
+
+
+-(void) setSelected:(BOOL)selected
+{
+    _selected = selected;
+    if(!self.selected) {
+        self.nameLabel.backgroundColor = RS_Clear_Clor;
+        self.nameLabel.textColor = RS_COLOR_C1;
+    } else {
+        self.nameLabel.backgroundColor = RS_Theme_Color;
+        self.nameLabel.textColor = [UIColor whiteColor];
+    }
+}
+@end

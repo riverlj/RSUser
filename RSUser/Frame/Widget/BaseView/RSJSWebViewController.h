@@ -15,6 +15,8 @@
 - (void)takePhoneByNative;
 - (void)setNavTitle:(NSString *)title;
 - (void)loginByNative;
+- (void)showLoadingByNative;
+- (void)hiddenLoadingByNative;
 
 @end
 

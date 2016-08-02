@@ -170,7 +170,8 @@
         return _loginByWeChatButton;
     }
     
-    _loginByWeChatButton = [RSButton buttonWithFrame:CGRectMake((SCREEN_WIDTH-45)/2, self.loginByCodeButton.bottom + 30, 45, 45) ImageName:@"icon_weixin" Text:nil TextColor:RS_Clear_Clor];
+    _loginByWeChatButton = [RSButton buttonWithFrame:CGRectMake((SCREEN_WIDTH-60)/2, self.loginByCodeButton.bottom + 30, 60, 60) ImageName:@"icon_weixin" Text:nil TextColor:RS_Clear_Clor];
+    _loginByWeChatButton.contentMode = UIViewContentModeCenter;
     
     return _loginByWeChatButton;
     

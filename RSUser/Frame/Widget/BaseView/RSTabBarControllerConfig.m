@@ -8,7 +8,8 @@
 
 #import "RSTabBarControllerConfig.h"
 
-@interface RSTabBarControllerConfig()
+@interface RSTabBarControllerConfig()<UITabBarControllerDelegate>
+
 @end
 
 @implementation RSTabBarControllerConfig
@@ -28,6 +29,7 @@
         for (int i=0; i< hosts.count; i++) {
             UIViewController *vc = [RSRoute getViewControllerByHost:hosts[i]];
             UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+            nav.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -2.5);
             vc.title = [tabBarItemsAttributes[i] valueForKey:CYLTabBarItemTitle];
             [array addObject:nav];
         }
@@ -36,10 +38,33 @@
         [tabBarController setViewControllers:array];
         
         _tabBarController = tabBarController;
-        
+        _tabBarController.delegate = self;
     }
     
     return _tabBarController;
 }
+
+
+
+-(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *nav = (UINavigationController *)viewController;
+        UIViewController *vc = nav.topViewController;
+        NSString *str = NSStringFromClass([vc class]);
+        if (![AppConfig getAPPDelegate].userValid) {
+            if ([str isEqualToString:@"OrderViewController"] ||
+                [str isEqualToString:@"ProfileViewController"]) {
+                UIViewController *vc = [RSRoute getViewControllerByPath:@"RSUser://login"];
+                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+                [[AppConfig getAPPDelegate].window.rootViewController presentViewController:nav animated:YES completion:nil];
+                return NO;
+            }
+        }
+        
+    }
+    
+    return YES;
+}
+
 
 @end

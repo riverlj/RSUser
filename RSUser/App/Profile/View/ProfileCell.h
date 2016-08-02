@@ -11,5 +11,6 @@
 @interface ProfileCell : RSTableViewCell
 @property(nonatomic, strong) UIImageView *imgView;
 @property(nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong)UIView *lineView;
 @end
 

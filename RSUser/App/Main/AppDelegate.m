@@ -21,6 +21,7 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [AppConfig checkToken];
     [self configThreeLib];
 
     [NSURLProtocol registerClass:[CustomNSURLProtocol class]];
@@ -53,8 +54,9 @@
 {
     _tabBarControllerConfig = [[RSTabBarControllerConfig alloc] init];
     [self.window setRootViewController:_tabBarControllerConfig.tabBarController];
-    
 }
+
+
 
 #pragma mark UIApplicationDelegate 代理方法
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url

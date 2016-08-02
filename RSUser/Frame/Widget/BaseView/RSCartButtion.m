@@ -14,6 +14,7 @@
 
 @end
 
+static RSCartButtion *shareObject = nil;
 @implementation RSCartButtion
 +(void)load {
     [super registerSubclass];
@@ -28,21 +29,40 @@
     return 0.3;
 }
 
++(id)shareRSCartButton{
+    @synchronized(self)
+    {
+        if (shareObject == nil)
+        {
+            shareObject = [RSCartButtion plusButton];
+        }
+    }
+    return shareObject;
+}
+
 + (instancetype)plusButton
 {
-     
-    RSCartButtion *button = [RSCartButtion buttonWithType:UIButtonTypeCustom];
+    @synchronized(self)
+    {
+        if (shareObject == nil)
+        {
+            RSCartButtion *button = [RSCartButtion buttonWithType:UIButtonTypeCustom];
+            
+            UIImage *buttonImage = [UIImage imageNamed:@"tab_cart"];
+            UIImage *buttonImage_no = [UIImage imageNamed:@"tab_cart_noselected"];
+            [button setImage:buttonImage_no forState:UIControlStateNormal];
+            [button setImage:buttonImage forState:UIControlStateHighlighted];
+            [button setTitle:@"购物车" forState:UIControlStateNormal];
+            [button setTitleColor:RS_COLOR_C3 forState:UIControlStateNormal];
+            button.titleLabel.font = [UIFont systemFontOfSize:10];
+            [button sizeToFit];
+            [button addTarget:button action:@selector(clickCart:) forControlEvents:UIControlEventTouchUpInside];
+            shareObject = button;
+        
+        }
+    }
     
-    UIImage *buttonImage = [UIImage imageNamed:@"tab_cart"];
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    [button setImage:buttonImage forState:UIControlStateHighlighted];
-    [button setTitle:@"购物车" forState:UIControlStateNormal];
-    [button setTitleColor:RS_COLOR_C3 forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont systemFontOfSize:10];
-    [button sizeToFit]; // or set frame in this way `button.frame = CGRectMake(0.0, 0.0, 250, 100);`
-    [button addTarget:button action:@selector(clickCart:) forControlEvents:UIControlEventTouchUpInside];
-    
-    return button;
+    return shareObject;
 }
 
 //上下结构的 button
@@ -50,7 +70,7 @@
     [super layoutSubviews];
     
     // 控件大小,间距大小
-    CGFloat const imageViewEdgeWidth   = self.bounds.size.width * 0.7;
+    CGFloat const imageViewEdgeWidth   = 44;
     CGFloat const imageViewEdgeHeight  = imageViewEdgeWidth ;
     CGFloat const centerOfView    = self.bounds.size.width * 0.5;
     CGFloat const labelLineHeight = self.titleLabel.font.lineHeight;
@@ -59,7 +79,7 @@
     
     // imageView 和 titleLabel 中心的 Y 值
     CGFloat const centerOfImageView  = verticalMargin + imageViewEdgeWidth * 0.5;
-    CGFloat const centerOfTitleLabel = imageViewEdgeWidth  + verticalMargin * 2 + labelLineHeight * 0.5 + 10;
+    CGFloat const centerOfTitleLabel = imageViewEdgeWidth  + verticalMargin * 2 + labelLineHeight * 0.5 + 7.5;
     
     //imageView position 位置
     self.imageView.bounds = CGRectMake(0, 0, imageViewEdgeWidth, imageViewEdgeHeight);
@@ -83,8 +103,6 @@
         UIView *view = [AppConfig getAPPDelegate].cartViewVc.view;
         [self.window addSubview : view];
     }
-    
-
 }
 
 @end

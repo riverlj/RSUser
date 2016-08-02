@@ -19,15 +19,20 @@
         _titleLabel.font = RS_FONT_F2;
         [self.contentView addSubview:_titleLabel];
         
-        _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(18, 0, 18, 18)];
+        _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 15, 15)];
         _imgView.centerY = 49/2;
         [self.contentView addSubview:_imgView];
+        _titleLabel.x = _imgView.right+10;
         
         UIImageView *arrow = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
-        arrow.right = SCREEN_WIDTH - 18;
+        arrow.right = SCREEN_WIDTH - 10;
         arrow.centerY = 49/2;
         arrow.image = [UIImage imageNamed:@"arrow_right"];
         [self.contentView addSubview:arrow];
+        
+        self.lineView = [RSLineView lineViewHorizontalWithFrame:CGRectMake(10, 43, SCREEN_WIDTH-10, 1) Color:RS_Line_Color];
+        self.lineView.hidden = YES;
+        [self.contentView addSubview:self.lineView];
     }
     return self;
 }
@@ -41,5 +46,6 @@
     } else {
         self.imgView.image = [UIImage imageNamed:model.imgUrl];
     }
+    self.lineView.hidden = model.hiddenLine;
 }
 @end

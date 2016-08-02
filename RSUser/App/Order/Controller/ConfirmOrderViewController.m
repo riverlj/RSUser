@@ -213,6 +213,7 @@
         [[RSToastView shareRSToastView]hidHUD];
         //清空购物车
         [[Cart sharedCart] clearDataSource];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"GoodListChangedInOrderView" object:nil];
         
         NSString *url = [data valueForKey:@"url"];
         NSString *urlStr = [NSString URLencode:url stringEncoding:NSUTF8StringEncoding];

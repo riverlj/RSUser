@@ -186,5 +186,5 @@ static RSRoute *gsharedAccount = nil;
         return vc;
     }
     return nil;
-  }
+}
 @end

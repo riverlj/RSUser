@@ -24,13 +24,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.tableView.frame = CGRectMake(0, 50, SCREEN_WIDTH, SCREEN_HEIGHT-163);
-    
-    
-    lastRequest = requestType;
-    self.pageNum = 1;
-    
-    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)didClickBtn:(RSSubTitleView *)sender
@@ -97,6 +90,22 @@
     [group setSelectedIndex:0];
     requestType = 0;
     
+    self.tableView.frame = CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-89);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    lastRequest = requestType;
+    self.pageNum = 1;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changedGoodListView) name:@"GoodListChangedInOrderView" object:nil];
+    [self.tableView.mj_header beginRefreshing];
+    
+}
+
+-(void)changedGoodListView {
+    [group setSelectedIndex:0];
+    lastRequest = requestType;
+    self.pageNum = 1;
+    [self.tableView.mj_header beginRefreshing];
 }
 
 
@@ -162,5 +171,9 @@
     [group.objArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj setEnabled:b];
     }];
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"GoodListChangedInOrderView" object:nil];
 }
 @end
