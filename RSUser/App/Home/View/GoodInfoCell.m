@@ -34,6 +34,7 @@
         return _saledLabel;
     }
     _saledLabel = [RSLabel twoLabel];
+    _saledLabel.numberOfLines = 0;
     return _saledLabel;
 }
 
@@ -56,7 +57,7 @@
     self.nameLabel.frame = CGRectMake(18, 15, nameSize.width,nameSize.height);
     
     CGSize saledSize = [self.saledLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
-    self.saledLabel.frame = CGRectMake(self.nameLabel.left, self.nameLabel.bottom + 6, saledSize.width, saledSize.height);
+    self.saledLabel.frame = CGRectMake(self.nameLabel.left, self.nameLabel.bottom + 6, SCREEN_WIDTH-2*self.nameLabel.left, saledSize.height);
     
     cellHeight = self.saledLabel.bottom + 15;
     

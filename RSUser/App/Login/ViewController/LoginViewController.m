@@ -168,7 +168,7 @@
                           delay:0
                         options:UIViewAnimationOptionCurveLinear
                      animations:^ {
-                         self.loginView.contentInset = UIEdgeInsetsMake(-(textField.bottom -50), 0.0f, 0.0f, 0.0f);
+                         self.loginView.contentInset = UIEdgeInsetsMake(-100, 0.0f, 0.0f, 0.0f);
                      }
                      completion:^(BOOL finished) {
                      }];

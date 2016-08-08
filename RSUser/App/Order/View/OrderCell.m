@@ -16,7 +16,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         _orderImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 71, 71)];
-        _orderImageView.layer.cornerRadius = 5;
+        _orderImageView.layer.cornerRadius = 3;
         _orderImageView.layer.masksToBounds = YES;
         [self.contentView addSubview:_orderImageView];
         

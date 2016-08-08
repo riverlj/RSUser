@@ -109,7 +109,7 @@
 - (void)createUI
 {
     _iconIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 12, 71, 71)];
-    _iconIV.layer.cornerRadius = 5;
+    _iconIV.layer.cornerRadius = 3;
     _iconIV.layer.masksToBounds = YES;
     [self.contentView addSubview:_iconIV];
     
@@ -144,16 +144,17 @@
     self.countLabel.font = RS_FONT_F2;
     self.countLabel.adjustsFontSizeToFitWidth = YES;
     self.countLabel.hidden = YES;
+    [self.countLabel addTapAction:@selector(countLabelClicked) target:self];
     [self.contentView addSubview:self.countLabel];
     
-    self.subIV = [[UIImageView alloc]initWithFrame:CGRectMake(self.countLabel.x-2*addSize.width, self.addIV.top, self.addIV.width, self.addIV.height)];
+    self.subIV = [[UIImageView alloc]initWithFrame:CGRectMake(self.countLabel.x-3*addSize.width, self.addIV.top, 3*addSize.width, self.addIV.height)];
     self.subIV.contentMode = UIViewContentModeRight;
     [self.subIV setImage:[UIImage imageNamed:@"subActivate"]];
     [self.contentView addSubview:self.subIV];
     self.subIV.hidden = YES;
     [self.subIV addTapAction:@selector(subCountClick) target:self];
         
-    self.selloutLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-18-54, 93/2+10, 54, 20)];
+    self.selloutLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-10-54, 93/2+10, 54, 20)];
     self.selloutLabel.text = @"已售罄";
     self.selloutLabel.textColor = RS_COLOR_C7;
     self.selloutLabel.backgroundColor = RS_COLOR_C4;
@@ -220,6 +221,8 @@
     self.priceLabel.size = priceSize;
 
 }
+
+- (void)countLabelClicked{}
 
 - (void)addCountClick
 {

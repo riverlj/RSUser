@@ -32,6 +32,7 @@
     }
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.frame =CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49);
     self.tableView.contentInset = UIEdgeInsetsMake(kHEIGHT, 0, 0, 0);
     [self.tableView addSubview:self.headImgeView];
     
@@ -63,7 +64,7 @@
         return _headImgeView;
     }
     _headImgeView = [[UIImageView alloc]initWithFrame:CGRectMake(0, -kHEIGHT, SCREEN_WIDTH, kHEIGHT)];
-    _headImgeView.contentMode = UIViewContentModeScaleAspectFill;
+    _headImgeView.contentMode = UIViewContentModeScaleToFill;
     _headImgeView.clipsToBounds  = YES;
     _headImgeView.tag = 101;
     
