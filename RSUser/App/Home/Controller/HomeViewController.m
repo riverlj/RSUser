@@ -14,6 +14,7 @@
 #import "SchoolModel.h"
 #import "ChannelbrandsViewController.h"
 #import "RSJSWebViewController.h"
+#import "DeliverytimeManager.h"
 
 @interface HomeViewController ()<SDCycleScrollViewDelegate>
 @property (nonatomic ,strong)NSMutableArray *bannerImageUrls;
@@ -296,7 +297,12 @@
         _categoryView = [selfB creatTypeGroupView];
         [selfB initChannelData];
         [selfB refeshTableWithType:@(selectedCategoryId)];
+        [selfB getDeliverytimes];
     }];
+}
+
+- (void)getDeliverytimes {
+    [DeliverytimeManager getDeliveryTimesFromNet];
 }
 
 #pragma mark SDCycleScrollView广告滚动代理

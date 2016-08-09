@@ -76,6 +76,8 @@
 		B162BCA31CBE115D00E27228 /* RSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BCA21CBE115D00E27228 /* RSLocation.m */; };
 		B168FF281CC9C6CF0003B3FA /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B168FF271CC9C6CF0003B3FA /* AddressCell.m */; };
 		B168FF2B1CCB32670003B3FA /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = B168FF2A1CCB32670003B3FA /* Cart.m */; };
+		B16A08B91D582E1600192531 /* DeliverytimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B16A08B81D582E1600192531 /* DeliverytimeModel.m */; };
+		B16A08BC1D582EF400192531 /* DeliverytimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B16A08BB1D582EF400192531 /* DeliverytimeManager.m */; };
 		B16D5F9D1CFFD4C100BC587C /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16D5F9C1CFFD4C100BC587C /* LoginView.m */; };
 		B1738D891CB65E71006C7207 /* RSHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = B1738D881CB65E71006C7207 /* RSHttp.m */; };
 		B1738D8B1CB65FBF006C7207 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1738D8A1CB65FBF006C7207 /* UIKit.framework */; };
@@ -118,6 +120,7 @@
 		B1BD00861CD9F2AC00D41676 /* OrderStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18322751CD8470A006E7EBC /* OrderStatusViewController.m */; };
 		B1C57AB61CFC2DAC00F52366 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = B1C57AB51CFC2DAC00F52366 /* main.js */; };
 		B1CA723B1CFFDF7500C13231 /* UITextField+RSAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA723A1CFFDF7500C13231 /* UITextField+RSAdd.m */; };
+		B1E3D0211D59B086000F43EA /* SimulateActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E3D0201D59B086000F43EA /* SimulateActionSheet.m */; };
 		B1E81D4C1CB7553E00F587D1 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */; };
 		B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4F1CB7622E00F587D1 /* AppConfig.m */; };
 		B1E81D631CB78A7D00F587D1 /* RSToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D621CB78A7D00F587D1 /* RSToastView.m */; };
@@ -291,6 +294,10 @@
 		B168FF271CC9C6CF0003B3FA /* AddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
 		B168FF291CCB32670003B3FA /* Cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cart.h; sourceTree = "<group>"; };
 		B168FF2A1CCB32670003B3FA /* Cart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cart.m; sourceTree = "<group>"; };
+		B16A08B71D582E1600192531 /* DeliverytimeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeliverytimeModel.h; sourceTree = "<group>"; };
+		B16A08B81D582E1600192531 /* DeliverytimeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliverytimeModel.m; sourceTree = "<group>"; };
+		B16A08BA1D582EF400192531 /* DeliverytimeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeliverytimeManager.h; sourceTree = "<group>"; };
+		B16A08BB1D582EF400192531 /* DeliverytimeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeliverytimeManager.m; sourceTree = "<group>"; };
 		B16D5F9B1CFFD4C100BC587C /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		B16D5F9C1CFFD4C100BC587C /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		B1738D871CB65E71006C7207 /* RSHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSHttp.h; sourceTree = "<group>"; };
@@ -371,6 +378,8 @@
 		B1C57AB51CFC2DAC00F52366 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
 		B1CA72391CFFDF7500C13231 /* UITextField+RSAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+RSAdd.h"; sourceTree = "<group>"; };
 		B1CA723A1CFFDF7500C13231 /* UITextField+RSAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+RSAdd.m"; sourceTree = "<group>"; };
+		B1E3D01F1D59B086000F43EA /* SimulateActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulateActionSheet.h; sourceTree = "<group>"; };
+		B1E3D0201D59B086000F43EA /* SimulateActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulateActionSheet.m; sourceTree = "<group>"; };
 		B1E81D4A1CB7553E00F587D1 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
 		B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
 		B1E81D4D1CB7564F00F587D1 /* UtilMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilMacro.h; sourceTree = "<group>"; };
@@ -782,6 +791,8 @@
 				B1F490131D3CA9C7005A806C /* BrandListModel.m */,
 				B12484511D49D489003C587A /* GoodModel.h */,
 				B12484521D49D489003C587A /* GoodModel.m */,
+				B16A08B71D582E1600192531 /* DeliverytimeModel.h */,
+				B16A08B81D582E1600192531 /* DeliverytimeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1027,6 +1038,10 @@
 				B1FFB88A1CB64DCA00255F21 /* Info.plist */,
 				B1FFB87C1CB64DCA00255F21 /* AppDelegate.h */,
 				B1FFB87D1CB64DCA00255F21 /* AppDelegate.m */,
+				B16A08BA1D582EF400192531 /* DeliverytimeManager.h */,
+				B16A08BB1D582EF400192531 /* DeliverytimeManager.m */,
+				B1E3D01F1D59B086000F43EA /* SimulateActionSheet.h */,
+				B1E3D0201D59B086000F43EA /* SimulateActionSheet.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1352,6 +1367,7 @@
 				B1FFB8D51CB6568200255F21 /* RSFileStorage.m in Sources */,
 				B15395261CE17B93001763C7 /* LaunchimageViewController.m in Sources */,
 				30221E591CCE1E2200126D72 /* AboutusViewController.m in Sources */,
+				B16A08B91D582E1600192531 /* DeliverytimeModel.m in Sources */,
 				B1E81D4C1CB7553E00F587D1 /* NSString+Helper.m in Sources */,
 				B1422BFE1CBBAAF400C988FE /* RSLineView.m in Sources */,
 				B1B764621CB8D286005A90BD /* HomeViewController.m in Sources */,
@@ -1363,10 +1379,12 @@
 				B1738DB81CB665C3006C7207 /* RSTipsView.m in Sources */,
 				B1738DB41CB665C3006C7207 /* RSMenuButton.m in Sources */,
 				B12484061D462689003C587A /* CustomNSURLProtocol.m in Sources */,
+				B16A08BC1D582EF400192531 /* DeliverytimeManager.m in Sources */,
 				B1E81D6B1CB7B04100F587D1 /* RSAlertView.m in Sources */,
 				B1F490111D3CA99F005A806C /* ChannelbrandsViewController.m in Sources */,
 				B1738DB51CB665C3006C7207 /* RSPlaceHolderTextView.m in Sources */,
 				B162BCA31CBE115D00E27228 /* RSLocation.m in Sources */,
+				B1E3D0211D59B086000F43EA /* SimulateActionSheet.m in Sources */,
 				B18322791CD84F64006E7EBC /* OrderStatusCell.m in Sources */,
 				B123DCB71CC77D9C00F08E8D /* LoginViewController.m in Sources */,
 				B1738DB71CB665C3006C7207 /* RSRadioGroup.m in Sources */,

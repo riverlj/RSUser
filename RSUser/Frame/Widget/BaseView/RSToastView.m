@@ -35,6 +35,7 @@ static RSToastView *shareObject = nil;
 
 - (void)showHUD:(NSString *)title
 {
+    [self hidHUD];
     self.hud = nil;
     self.hud.mode=MBProgressHUDModeIndeterminate;
     self.hud.labelText = title;

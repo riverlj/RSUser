@@ -74,7 +74,6 @@
 - (void)addCountClick
 {
     [[Cart sharedCart] addGoods:_cartmodel];
-    _cartmodel.num ++;
     self.countLabel.text = [NSString stringWithFormat:@"%zd", _cartmodel.num];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCartCountLabel" object:nil userInfo:nil];
 }
@@ -82,7 +81,6 @@
 -(void)subCountClick
 {
     [[Cart sharedCart] deleteGoods:_cartmodel];
-    _cartmodel.num --;
     self.countLabel.text = [NSString stringWithFormat:@"%zd", _cartmodel.num];
  
 

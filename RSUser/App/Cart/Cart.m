@@ -8,7 +8,19 @@
 
 #import "Cart.h"
 #import "LocationModel.h"
-
+/**
+ 购物车结构：
+ {
+    学校ID : {
+                carts : []      // 商品列表
+                isMerge : 1/0   // 当前学校的购物车是否合并了
+                类别ID : {
+                            date : 日期
+                            time : 时间
+                        }
+            }
+ }
+ */
 static Cart *shareCart = nil;
 @interface Cart()
 @property (nonatomic, strong)NSMutableDictionary *cartDataSource;
@@ -359,4 +371,57 @@ static Cart *shareCart = nil;
     
 }
 
+/**
+ *  根据类别进行分类
+ *
+ *  @return {id : goods, id:goods}
+ */
+- (NSDictionary *)getCartsOrderByCategoryid {
+    NSArray *array = [self getCartGoodsByCommuntityId:[COMMUNTITYID integerValue]];
+    [array enumerateObjectsUsingBlock:^(GoodListModel  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.cellClassName = @"CartCell";
+        obj.cellHeight = 49;
+    }];
+    NSMutableDictionary *groupdic = [self groupAction:array];
+    return [groupdic copy];
+}
+
+- (NSMutableDictionary *)groupAction:(NSArray *)arr {
+    NSMutableSet *set = [NSMutableSet set];
+    [arr enumerateObjectsUsingBlock:^(GoodListModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+        [set addObject:@(model.topcategoryid)];
+    }];
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [set enumerateObjectsUsingBlock:^(NSString * _Nonnull topcategoryid, BOOL * _Nonnull stop) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"topcategoryid = %@", topcategoryid];
+        NSArray *tempArr = [NSArray arrayWithArray:[arr filteredArrayUsingPredicate:predicate]];
+        [dic setValue:tempArr forKey:topcategoryid];
+    }];
+    
+    return dic;
+}
+
+/**
+ *  设置当前购物车的品类对应的配送时间
+ *
+ *  @param time       配送时间
+ *  @param categoryid 品类ID
+ */
+- (void)setDeliveryTime:(NSDictionary *)time categoryid:(NSInteger)categoryid {
+    NSMutableDictionary *dic = [self getCart];
+    [dic setValue:time forKey:[NSString stringFromNumber:@(categoryid)]];
+}
+
+/**
+ *  根据品类ID 获取对应的配送时间
+ *
+ *  @param categoryid 品类ID
+ *
+ *  @return 配送时间
+ */
+- (NSDictionary *)getDeliveryTimeByCategoryid:(NSInteger)categoryid {
+    NSMutableDictionary *dic = [self getCart];
+    return [dic valueForKey:[NSString stringFromNumber:@(categoryid)]];
+}
 @end
