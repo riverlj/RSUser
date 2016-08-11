@@ -13,7 +13,7 @@
 #import "DeliverytimeModel.h"
 #import "SimulateActionSheet.h"
 
-@interface CartViewController()<SimulateActionSheetDelegate, UIPickerViewDataSource>
+@interface CartViewController()
 {
     UIView *conView;
     UIView *shadowView;
@@ -25,7 +25,6 @@
     NSArray *categorys;
     NSMutableDictionary *categoryDic;
     
-    SimulateActionSheet *sheet;
     NSMutableArray *keysArray;
     NSMutableArray *valuesArray;
     NSInteger selectedPickerRow;
@@ -186,7 +185,6 @@
     GoodListModel *model = self.models[section][0];
     NSDictionary *dic = [categoryDic valueForKey:[NSString stringFromNumber:@(model.topcategoryid)]];
     NSString *name = [dic valueForKey:@"name"];
-    NSArray *array = [dic valueForKey:@"times"];
     
     UILabel *namelabel = [[UILabel alloc]initWithFrame:CGRectMake(18, 0, 60, 30)];
     namelabel.text = name;
@@ -195,23 +193,6 @@
     namelabel.textColor = RS_Theme_Color;
     [view addSubview:namelabel];
     
-    UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 180, 0, 180, 30)];
-    DeliverytimeModel *timeModel = array[0];
-    timeLabel.text = [NSString stringWithFormat:@"%@  %@", timeModel.datedesc, timeModel.time[0]];
-    timeLabel.textAlignment = NSTextAlignmentRight;
-    timeLabel.tag = model.topcategoryid;
-    [timeLabel addTapAction:@selector(selcectTime:) target:self];
-    timeLabel.textAlignment = NSTextAlignmentCenter;
-    timeLabel.font = RS_FONT_F4;
-    timeLabel.textColor = RS_Theme_Color;
-    CGSize timeSize = [timeLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, 30)];
-    timeLabel.frame = CGRectMake(SCREEN_WIDTH - 18 - 6 - 5 -timeSize.width, 0, timeSize.width, 30);
-    [view addSubview:timeLabel];
-    
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-24, 10, 6, 10)];
-    imageView.image = [UIImage imageNamed:@"cart_arrow"];
-    [view addSubview:imageView];
-    
     return view;
 }
 
@@ -219,82 +200,6 @@
     return 30;
 }
 
-#pragma mark pickerView delegate
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 2;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    if (component == 0) {
-        return keysArray.count;
-    } else {
-        NSArray *array = valuesArray[selectedPickerRow];
-        return array.count;
-    }
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView
-             titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    
-    if (component == 0) {
-        return keysArray[row];
-    }else {
-        NSArray *array = valuesArray[selectedPickerRow];
-        return array[row];
-    }
-    
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    if (component == 0) {
-        selectedPickerRow = row;
-        [pickerView reloadComponent:1];
-    }else {
-        
-    }
-}
-
--(void)actionCancle{
-    [sheet dismiss:self];
-}
-
--(void)actionDone{
-    [sheet dismiss:self];
-    
-    NSInteger cateforyid = taptimeLabel.tag;
-    
-    NSUInteger index = [sheet selectedRowInComponent:0];
-    NSUInteger index2 = [sheet selectedRowInComponent:1];
-    
-    NSString * dateDes = keysArray[index];
-    NSString *time = valuesArray[index][index2];
-    
-    taptimeLabel.text = [NSString stringWithFormat:@"%@  %@", dateDes,time];
-    CGSize timeSize = [taptimeLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, 30)];
-    taptimeLabel.frame = CGRectMake(SCREEN_WIDTH - 18 - 6 - 5 -timeSize.width, 0, timeSize.width, 30);
-    
-    NSDictionary *dic = [categoryDic valueForKey:[NSString stringFromNumber:@(cateforyid)]];
-    NSArray *times = [dic valueForKey:@"times"];
-    
-    __block NSString *date = @"" ;
-    [times enumerateObjectsUsingBlock:^(DeliverytimeModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.datedesc isEqualToString:dateDes]) {
-            date = obj.date;
-        }
-    }];
-    
-    NSDictionary *deliveryTimeDic = @{
-                          @"date" : date,
-                          @"time" : time,
-                          @"datedes" : dateDes
-                          };
-    
-    [[Cart sharedCart] setDeliveryTime:deliveryTimeDic categoryid:cateforyid];
-
-}
 
 #pragma mark 事件响应
 - (void)okButtonClicked
@@ -357,27 +262,6 @@
     if ([label.text integerValue] > 0) {
         button.highlighted = YES;
     }
-}
-
-- (void)selcectTime:(UIGestureRecognizer *)sender {
-    
-    taptimeLabel = (UILabel *)sender.view;
-    NSArray *times = [[DeliverytimeManager shareDelivertimeManger] getTimesByCategoryid:taptimeLabel.tag];
-    
-    keysArray = [NSMutableArray array];
-    valuesArray = [NSMutableArray array];
-    [times enumerateObjectsUsingBlock:^(DeliverytimeModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [keysArray addObject:obj.datedesc];
-        [valuesArray addObject:obj.time];
-    }];
-    
-    selectedPickerRow = 0;
-    sheet = [SimulateActionSheet styleDefault];
-    sheet.delegate = self;
-    [sheet selectRow:0 inComponent:0 animated:YES];
-    [sheet selectRow:0 inComponent:1 animated:YES];
-    
-    [sheet show:self];
 }
 
 
