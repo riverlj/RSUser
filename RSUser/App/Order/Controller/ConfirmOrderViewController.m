@@ -9,11 +9,15 @@
 #import "ConfirmOrderViewController.h"
 #import "AddressModel.h"
 #import "CouponModel.h"
-#import "AddressCell.h"
+#import "ConfirmGoodDetailCell.h"
 #import "GoodListModel.h"
 #import "ChooseCouponViewController.h"
+#import "PromotionModel.h"
+#import "DeliverytimeManager.h"
+#import "SimulateActionSheet.h"
+#import "DeliverytimeModel.h"
 
-@interface ConfirmOrderViewController ()<closeGoodsDetail>
+@interface ConfirmOrderViewController ()<SelectedSendTimeDelegate,SimulateActionSheetDelegate, UIPickerViewDataSource>
 {
     RSLabel *_priceLable;
     RSLabel *_goPayLable;
@@ -21,9 +25,22 @@
     AddressModel *_addressModel;
     CouponModel *_couponModel;
     CouponModel * couponModel1;
-    CouponModel *couponModel3;
+    MoneypromotionViewModel *moneypromotionViewModel;
     NSArray *_couponsArray;
     NSMutableArray *array1;
+    NSArray *categorys;
+    MoneypromotionModel *moneyModel;
+    
+    SimulateActionSheet *sheet;
+    NSMutableArray *keysArray;
+    NSMutableArray *valuesArray;
+    
+    NSArray *allCategorys;
+    NSMutableDictionary *categoryDic;
+    NSInteger selectedPickerRow;
+    UILabel *timeLabel;
+    NSInteger selectedCategoryid;
+
 }
 @end
 
@@ -34,62 +51,116 @@
     self.title = @"确认订单";
     self.models = [[NSMutableArray alloc]init];
     self.tableView.backgroundColor = RS_Clear_Clor;
+    self.tableView.height = SCREEN_HEIGHT - 76;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.sections = [[NSMutableArray alloc]init];
     
     [self.models removeAllObjects];
+    
+    //地址
     _addressModel = [[AddressModel alloc]init];
     _addressModel.address = @"请选择地址";
-    
     array1 = [[NSMutableArray alloc]init];
     [array1 addObject:_addressModel];
     [self.models addObject:array1];
     
-    NSMutableArray *array2 = [[NSMutableArray alloc]init];
-    SchoolModel *schoolModel = [AppConfig getAPPDelegate].schoolModel;
-    schoolModel.cellHeight = 48;
-    schoolModel.cellClassName = @"mainTitleCell";
-    [array2 addObject:schoolModel];
-    _goodDic = [[NSMutableDictionary alloc]init];
-    [_goodDic setValue:@"0" forKey:@"isClosed"];
-    [_goodDic setValue:[[Cart sharedCart] getCartDetail] forKey:@"goods"];
-    [array2 addObject:_goodDic];
-    [self.models addObject:array2];
+    //根据类别分类的餐品
+    NSDictionary *dic = [[Cart sharedCart] getCartsOrderByCategoryid];
     
+    //购物车中的商品分类ID
+    categorys = [dic allKeys];
+    NSArray *categoryInfos = [AppConfig getAPPDelegate].schoolModel.categorys;
+    for (int i=0; i<categorys.count; i++) {
+        
+        NSMutableArray *array = [NSMutableArray array];
+        
+        ConfirmOrderDetailViewModel *confirmOrderModel = [[ConfirmOrderDetailViewModel alloc] init];
+        confirmOrderModel.categoryid = [categorys[i] integerValue];
+        for (int j=0; j<categoryInfos.count; j++) {
+            Categorys *category = categoryInfos[j];
+            if (category.categoryid == confirmOrderModel.categoryid) {
+                confirmOrderModel.categoryName = category.name;
+            }
+        }
+        
+        NSArray *goods = dic[@(confirmOrderModel.categoryid)];
+        confirmOrderModel.goods = goods;
+        NSDictionary *sendTime = [[Cart sharedCart] getDeliveryTimeByCategoryid:confirmOrderModel.categoryid];
+        
+        confirmOrderModel.sendDay = [sendTime valueForKey:@"date"];
+        confirmOrderModel.sendTime = [sendTime valueForKey:@"time"];
+        confirmOrderModel.sendTimeDes = [NSString stringWithFormat:@"%@  %@",[sendTime valueForKey:@"datedes"], confirmOrderModel.sendTime];
+        confirmOrderModel.cellClassName = @"ConfirmGoodDetailCell";
+                [array addObject:confirmOrderModel];
+        
+        [self.models addObject:array];
+    }
+    
+    //优惠券
     NSMutableArray *array3 = [[NSMutableArray alloc]init];
     couponModel1 = [[CouponModel alloc]init];
     couponModel1.cellHeight = 49;
-    couponModel1.cellClassName = @"mainTitleCell";
+    couponModel1.cellClassName = @"TwoLabelTitleCell";
     [couponModel1 setSelectAction:@selector(selectedCoupon) target:self];
     [array3 addObject:couponModel1];
-    
-    
+
+    //商品金额
     CouponModel *couponModel2 = [[CouponModel alloc]init];
     couponModel2.cellHeight = 49;
-    couponModel2.cellClassName = @"mainTitleCell";
+    couponModel2.cellClassName = @"TwoLabelTitleCell";
     [array3 addObject:couponModel2];
-    
-    couponModel3 = [[CouponModel alloc]init];
-    couponModel3.cellHeight = 49;
-    couponModel3.cellClassName = @"mainTitleCell";
-    [array3 addObject:couponModel3];
-    
-    couponModel1.title = @"优惠券";
-    couponModel2.title = @"商品金额";
-    couponModel3.title = @"优惠减免";
-    
+
+    //优惠减免
+    moneypromotionViewModel = [[MoneypromotionViewModel alloc]init];
+    moneypromotionViewModel.cellHeight = 49;
+    moneypromotionViewModel.cellClassName = @"AbatementCell";
+    [array3 addObject:moneypromotionViewModel];
+
+    couponModel1.title = @"优  惠  券:";
+    couponModel2.title = @"商品金额:";
+    moneypromotionViewModel.title = @"优惠减免:";
+
     couponModel1.subTitle = @"";
-    couponModel2.subTitle = [NSString stringWithFormat:@"%.2f",self.totalprice];
-    couponModel3.subTitle = @"";
+    couponModel2.subTitle = [NSString stringWithFormat:@"¥%.2f",self.totalprice];
+    moneypromotionViewModel.subtitle = @"";
     
     couponModel1.hiddenLine = NO;
     couponModel2.hiddenLine = NO;
-    couponModel3.hiddenLine = YES;
+    moneypromotionViewModel.hiddenLine = YES;
     [self.models addObject:array3];
     
     [self.tableView reloadData];
-    
     [self initBottomView];
+
+    [self getCoupon];
+    
+    
+    // 所有的品类
+    allCategorys = [AppConfig getAPPDelegate].schoolModel.categorys;
+    
+    //需要展示的分类ID
+    NSMutableArray *sectionsArray = [NSMutableArray array];
+    
+    // 分类好的购物车商品
+    NSDictionary *goodDic = [[Cart sharedCart] getCartsOrderByCategoryid];
+    [goodDic enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSArray *obj, BOOL * _Nonnull stop) {
+        [sectionsArray addObject:key];
+    }];
+    
+    //{id : {name:早餐， times : 配送时间}}
+    categoryDic = [NSMutableDictionary dictionary];
+    for (int i=0; i<allCategorys.count; i++) {
+        Categorys *category = allCategorys [i];
+        if ([sectionsArray containsObject:@(category.categoryid)]) {
+            NSArray *array = [[DeliverytimeManager shareDelivertimeManger] getTimesByCategoryid:category.categoryid];
+            NSDictionary *dic = @{
+                                  @"times" : array,
+                                  @"name" : category.name
+                                  };
+            [categoryDic setValue:dic forKey:[NSString stringFromNumber:@(category.categoryid)]];
+        }
+    }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -105,37 +176,44 @@
             }
         }];
         
-        _addressModel.cellHeight = 60;
         [_addressModel setSelectAction:@selector(updateAddress) target:self];
         [array1 removeAllObjects];
         [array1 addObject:_addressModel];
         
         [selfB.tableView reloadData];
         
-        [self getCoupon];
     }];
 
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-}
+- (void)getCoupon {
 
-- (void)getCoupon
-{
     __weak ConfirmOrderViewController *selfB = self;
-    [CouponModel getCounponList:^(NSArray *couponList) {
-        _couponsArray = [[NSArray alloc]initWithArray:couponList];
-        
-        couponModel1.subTitle = [NSString stringWithFormat:@"您有%ld张优惠券可用", couponList.count];
-        if (couponList.count == 0) {
+    [PromotionModel getPromotion:^(PromotionModel * promotionModel) {
+        NSArray *coupons = promotionModel.coupons;
+        _couponsArray = coupons;
+            couponModel1.subTitle = [NSString stringWithFormat:@"您有%ld张优惠券可用", coupons.count];
+        if (coupons.count == 0) {
+            couponModel1.subTitle = @"暂无可用优惠券可用";
             [couponModel1 setSelectAction:@selector(noCouponAction) target:self];
         }
-        [selfB computePayNumber];
+        
+        NSArray *moneypromotions = promotionModel.moneypromotions;
+        if (moneypromotions.count != 0) {
+           moneyModel = moneypromotions[0];
+            moneypromotionViewModel.subtitle = moneyModel.desc;
+            moneypromotionViewModel.reduce = [NSString stringWithFormat:@"¥%.2lf",moneyModel.reduce];
+            moneypromotionViewModel.imageName = moneyModel.imageName;
+        }else {
+            moneypromotionViewModel.subtitle =@"";
+            moneypromotionViewModel.reduce = @"¥0";
+            moneypromotionViewModel.imageName = @"";
+        }
+        
         [selfB.tableView reloadData];
+        [self computePayNumber];
     }];
 }
-
 
 - (void)updateAddress
 {
@@ -159,9 +237,9 @@
         [RSFileStorage removeFile:@"coupon"];
         
         if (_couponModel) {
-            couponModel3.subTitle = [NSString stringWithFormat:@"-%@", _couponModel.reduce];
+            couponModel1.subTitle = [NSString stringWithFormat:@"¥%@", _couponModel.reduce];
         }else{
-            couponModel3.subTitle = @"";
+            couponModel1.subTitle = @"";
         }
         
         [selfB computePayNumber];
@@ -170,6 +248,30 @@
     
     [self.navigationController pushViewController:couponVc animated:YES];
 }
+
+#pragma mark tableViewDelegate
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 0;
+    }
+    return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger count = categorys.count;
+    if ((0 < indexPath.section &&  indexPath.section < count + 1) && indexPath.row == 0) {
+        ConfirmGoodDetailCell *cell = [[ConfirmGoodDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ConfirmGoodDetailCell"];
+        cell.delegate = self;
+        ConfirmOrderDetailViewModel *model = (ConfirmOrderDetailViewModel *)[self getModelByIndexPath:indexPath];
+        [cell setData:model];
+        return cell;
+    }
+    
+   return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+}
+
 
 - (void)initBottomView
 {
@@ -195,15 +297,33 @@
  */
 - (void)createOrder
 {
+
+    NSMutableDictionary *products = [NSMutableDictionary dictionary];
+    
+    for (int i=0; i<categorys.count; i++) {
+        NSInteger categoryid = [categorys[i] integerValue];
+        //当前品类的配送时间
+        NSDictionary *dic =[[Cart sharedCart] getDeliveryTimeByCategoryid:categoryid];
+        NSArray *goods = [[Cart sharedCart] getGoodsByCategoryid:categoryid];
+        if ([products valueForKey:dic[@"date"]]) {
+            NSArray *array = [products valueForKey:dic[@"date"]];
+            NSMutableArray *marray = [NSMutableArray arrayWithArray:array];
+            [marray addObjectsFromArray:goods];
+            [products setValue:marray forKey:dic[@"date"]];
+        }else {
+            [products setValue:goods forKey:dic[@"date"]];
+        }
+    }
+
     [[BaiduMobStat defaultStat] logEvent:@"goPay" eventLabel:@"去支付"];
     NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
     [params setValue:_addressModel.addressId forKey:@"addressid"];
     [params setValue:COMMUNTITYID forKey:@"communityid"];
     [params setValue:@1 forKey:@"business"];
-    [params setValue:[[Cart sharedCart] filterLocalCartData]  forKey:@"products"];
-    [params setValue:[AppConfig getAPPDelegate].schoolModel.subscribedates[0] forKey:@"subscribetime"];
+    [params setValue:products forKey:@"products"];
     [params setValue:@(0) forKey:@"couponid"];
-
+    [params setValue:@(moneyModel.moneypromotionid) forKey:@"moneypromotionid"];
+    
     if (_couponModel) {
         [params setValue:@(_couponModel.couponId) forKey:@"couponid"];
     }
@@ -241,71 +361,108 @@
     if (_couponModel) {
         payNumber -= [_couponModel.reduce floatValue];
     }
+    
+    if (moneyModel) {
+        payNumber -= moneyModel.reduce;
+    }
     _priceLable.text = [NSString stringWithFormat:@"       总计:%.2f", payNumber];
 }
 
-
-#pragma mark tableViewDelegate
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if (section == 0) {
-        return 0;
-    }
-    return 10;
+-(void)selectedSendTimeWithCategoryid:(NSInteger)categoryid withTimeLable:(UILabel *)sendtimeLabel {
+    selectedCategoryid = categoryid;
+    timeLabel = sendtimeLabel;
+    
+    NSArray *times = [[DeliverytimeManager shareDelivertimeManger] getTimesByCategoryid:categoryid];
+    
+    keysArray = [NSMutableArray array];
+    valuesArray = [NSMutableArray array];
+    [times enumerateObjectsUsingBlock:^(DeliverytimeModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [keysArray addObject:obj.datedesc];
+        [valuesArray addObject:obj.time];
+    }];
+    
+    selectedPickerRow = 0;
+    sheet = [SimulateActionSheet styleDefault];
+    sheet.delegate = self;
+    [sheet selectRow:0 inComponent:0 animated:YES];
+    [sheet selectRow:0 inComponent:1 animated:YES];
+    
+    [sheet show:self];
 }
 
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark pickerView delegate
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 2;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    if (indexPath.section == 0 && indexPath.row==0) {
-        return 60;
+    if (component == 0) {
+        return keysArray.count;
+    } else {
+        NSArray *array = valuesArray[selectedPickerRow];
+        return array.count;
+    }
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView
+             titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    
+    if (component == 0) {
+        return keysArray[row];
+    }else {
+        NSArray *array = valuesArray[selectedPickerRow];
+        return array[row];
     }
     
-    if (indexPath.section==1 && indexPath.row==1) {
-        NSDictionary *dic = self.models[indexPath.section][indexPath.row];
-        NSArray *array = [dic valueForKey:@"goods"];
-        if ([[dic valueForKey:@"isClosed"] integerValue ]== 0) {
-            return array.count * 30 + 40;
-        }else{
-            return 70;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if (component == 0) {
+        selectedPickerRow = row;
+        [pickerView reloadComponent:1];
+    }else {
+        
+    }
+}
+
+-(void)actionCancle{
+    [sheet dismiss:self];
+}
+
+-(void)actionDone{
+    [sheet dismiss:self];
+    
+    NSUInteger index = [sheet selectedRowInComponent:0];
+    NSUInteger index2 = [sheet selectedRowInComponent:1];
+    
+    NSString * dateDes = keysArray[index];
+    NSString *time = valuesArray[index][index2];
+    
+    timeLabel.text = [NSString stringWithFormat:@"%@  %@", dateDes,time];
+    CGSize timeSize = [timeLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, 30)];
+    timeLabel.width = timeSize.width;
+    timeLabel.x = SCREEN_WIDTH - 18 - 6 - 4 - timeSize.width;
+    
+    NSDictionary *dic = [categoryDic valueForKey:[NSString stringFromNumber:@(selectedCategoryid)]];
+    NSArray *times = [dic valueForKey:@"times"];
+    
+    __block NSString *date = @"" ;
+    [times enumerateObjectsUsingBlock:^(DeliverytimeModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.datedesc isEqualToString:dateDes]) {
+            date = obj.date;
         }
-    }
-    if (indexPath.section == 2) {
-        return 49;
-    }
+    }];
     
-    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 1 && indexPath.row == 1) {
-        OrderDatialCell *cell = [[OrderDatialCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"OrderDatialCell"];
-        cell.closeGoodsDetailDelegate = self;
-        NSDictionary *dic = self.models[indexPath.section][indexPath.row];
-        [cell setData:dic];
-        return cell;
-    }
+    NSDictionary *deliveryTimeDic = @{
+                                      @"date" : date,
+                                      @"time" : time,
+                                      @"datedes" : dateDes
+                                      };
     
-   return [super tableView:tableView cellForRowAtIndexPath:indexPath];
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 1 && indexPath.row == 1) {
-        return;
-    }
-    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-
-}
-
--(void)closeGoodsDetail
-{
-    if ([[_goodDic valueForKey:@"isClosed"] integerValue] == 0) {
-        [_goodDic setValue:@"1" forKey:@"isClosed"];
-    }else{
-        [_goodDic setValue:@"0" forKey:@"isClosed"];
-    }
-    [self.tableView reloadData];
+    [[Cart sharedCart] setDeliveryTime:deliveryTimeDic categoryid:selectedCategoryid];
     
 }
 @end

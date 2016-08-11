@@ -299,6 +299,7 @@
 #pragma mark 事件响应
 - (void)okButtonClicked
 {
+    
     RACSignal * signalA = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         if (![AppConfig getAPPDelegate].schoolModel) {
             [SchoolModel getSchoolMsg:^(SchoolModel *model) {

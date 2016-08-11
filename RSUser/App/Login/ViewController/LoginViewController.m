@@ -50,12 +50,12 @@
     }];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:_registerBtn];
     
-    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
-    [recognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];
-    [self.loginView addGestureRecognizer:recognizer];
+//    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
+//    [recognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];
+//    [self.loginView addGestureRecognizer:recognizer];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame) name:UIKeyboardWillHideNotification object:nil];
-    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame) name:UIKeyboardWillHideNotification object:nil];
+//    
 }
 
 -(void)viewWillAppear:(BOOL)animated{

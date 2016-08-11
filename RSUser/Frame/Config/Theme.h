@@ -48,5 +48,7 @@
 #define RS_FONT_F4 Font(12)
 #define RS_FONT_F5 Font(10)
 
+#define RS_BOLDFONT_F3 BoldFont(14)
+
 
 #endif /* Theme_h */

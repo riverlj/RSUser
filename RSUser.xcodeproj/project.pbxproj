@@ -121,6 +121,8 @@
 		B1C57AB61CFC2DAC00F52366 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = B1C57AB51CFC2DAC00F52366 /* main.js */; };
 		B1CA723B1CFFDF7500C13231 /* UITextField+RSAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA723A1CFFDF7500C13231 /* UITextField+RSAdd.m */; };
 		B1E3D0211D59B086000F43EA /* SimulateActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E3D0201D59B086000F43EA /* SimulateActionSheet.m */; };
+		B1E3D0241D59D91F000F43EA /* PromotionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E3D0231D59D91F000F43EA /* PromotionModel.m */; };
+		B1E3D0271D5B0252000F43EA /* ConfirmGoodDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E3D0261D5B0252000F43EA /* ConfirmGoodDetailCell.m */; };
 		B1E81D4C1CB7553E00F587D1 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */; };
 		B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4F1CB7622E00F587D1 /* AppConfig.m */; };
 		B1E81D631CB78A7D00F587D1 /* RSToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D621CB78A7D00F587D1 /* RSToastView.m */; };
@@ -380,6 +382,10 @@
 		B1CA723A1CFFDF7500C13231 /* UITextField+RSAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+RSAdd.m"; sourceTree = "<group>"; };
 		B1E3D01F1D59B086000F43EA /* SimulateActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulateActionSheet.h; sourceTree = "<group>"; };
 		B1E3D0201D59B086000F43EA /* SimulateActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulateActionSheet.m; sourceTree = "<group>"; };
+		B1E3D0221D59D91F000F43EA /* PromotionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromotionModel.h; sourceTree = "<group>"; };
+		B1E3D0231D59D91F000F43EA /* PromotionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionModel.m; sourceTree = "<group>"; };
+		B1E3D0251D5B0252000F43EA /* ConfirmGoodDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmGoodDetailCell.h; sourceTree = "<group>"; };
+		B1E3D0261D5B0252000F43EA /* ConfirmGoodDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmGoodDetailCell.m; sourceTree = "<group>"; };
 		B1E81D4A1CB7553E00F587D1 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
 		B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
 		B1E81D4D1CB7564F00F587D1 /* UtilMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilMacro.h; sourceTree = "<group>"; };
@@ -805,9 +811,9 @@
 				B1A8D4B21CC09D3C00471E93 /* RSSearchView.h */,
 				B1A8D4B31CC09D3C00471E93 /* RSSearchView.m */,
 				B1A8D4B51CC0CAEC00471E93 /* SchoolAddressCell.h */,
+				B1A8D4B61CC0CAEC00471E93 /* SchoolAddressCell.m */,
 				B124845A1D49F441003C587A /* GoodInfoCell.h */,
 				B124845B1D49F441003C587A /* GoodInfoCell.m */,
-				B1A8D4B61CC0CAEC00471E93 /* SchoolAddressCell.m */,
 				B1FF2AC41D3881B1005736AB /* ChannelCell.h */,
 				B1FF2AC51D3881B1005736AB /* ChannelCell.m */,
 				B1F490151D3CB4A8005A806C /* BrandListCell.h */,
@@ -864,6 +870,8 @@
 				B123DCD41CC8E33300F08E8D /* CouponModel.m */,
 				B183226E1CD8420F006E7EBC /* OrderLogModel.h */,
 				B183226F1CD8420F006E7EBC /* OrderLogModel.m */,
+				B1E3D0221D59D91F000F43EA /* PromotionModel.h */,
+				B1E3D0231D59D91F000F43EA /* PromotionModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -883,6 +891,8 @@
 				B183226C1CD2FE4C006E7EBC /* OrderInfoAddressCell.m */,
 				B18322771CD84F64006E7EBC /* OrderStatusCell.h */,
 				B18322781CD84F64006E7EBC /* OrderStatusCell.m */,
+				B1E3D0251D5B0252000F43EA /* ConfirmGoodDetailCell.h */,
+				B1E3D0261D5B0252000F43EA /* ConfirmGoodDetailCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1344,6 +1354,7 @@
 				30221E501CCDC04C00126D72 /* RSTitleCell.m in Sources */,
 				B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */,
 				B1F4901A1D3DF0E9005A806C /* BrandinfoViewController.m in Sources */,
+				B1E3D0241D59D91F000F43EA /* PromotionModel.m in Sources */,
 				B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */,
 				B183225E1CD0C6C5006E7EBC /* OrderCell.m in Sources */,
 				30221E7B1CCE41FE00126D72 /* AddressesViewController.m in Sources */,
@@ -1352,6 +1363,7 @@
 				30221E531CCDDD8700126D72 /* RSTitleModel.m in Sources */,
 				B1738DB21CB665C3006C7207 /* RSHeadView.m in Sources */,
 				B1A8D4B41CC09D3C00471E93 /* RSSearchView.m in Sources */,
+				B1E3D0271D5B0252000F43EA /* ConfirmGoodDetailCell.m in Sources */,
 				30221E811CCE427500126D72 /* AddressDetailCell.m in Sources */,
 				B1021DDD1CBF611B00050AEB /* ThrowLineTool.m in Sources */,
 				B123DCCF1CC8B9EF00F08E8D /* AddressModel.m in Sources */,

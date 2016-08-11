@@ -14,7 +14,7 @@
 
 @interface AddressCell : mainTitleCell
 @property (nonatomic ,strong)RSLabel *subTitleLabel;
-
+@property (nonatomic, strong)UIImageView *addreessImageView;
 @end
 
 @protocol closeGoodsDetail <NSObject>
@@ -24,5 +24,14 @@
 @interface OrderDatialCell: RSTableViewCell
 @property (nonatomic ,weak) id<closeGoodsDetail> closeGoodsDetailDelegate;
 - (void)setData:(NSDictionary *)dic;
+@end
+
+@interface TwoLabelTitleCell : mainTitleCell
+@property (nonatomic, strong)UILabel *subTitleLabel;
+@end
+
+@interface  AbatementCell: TwoLabelTitleCell
+@property (nonatomic, strong)UIImageView *abatementTypeImageView;
+@property (nonatomic, strong)UILabel *desLabel;
 
 @end

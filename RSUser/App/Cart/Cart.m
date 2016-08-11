@@ -68,7 +68,9 @@ static Cart *shareCart = nil;
 {
     NSMutableDictionary *cartDic = [self.cartDataSource valueForKey:[NSString stringWithFormat:@"%zd", communtityId]];
     if(cartDic == nil){
-        return [[NSMutableDictionary alloc]init];
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+        [self.cartDataSource setValue:dic forKey:[NSString stringWithFormat:@"%ld", communtityId]];
+        return dic;
     }
     
     return cartDic;
@@ -386,6 +388,27 @@ static Cart *shareCart = nil;
     return [groupdic copy];
 }
 
+- (NSArray *)getGoodsByCategoryid:(NSInteger)categoryid {
+    
+    NSDictionary *dic = [self getCartsOrderByCategoryid];
+    NSArray *array = dic[@(categoryid)];
+    
+    NSDictionary *timedic = [self getDeliveryTimeByCategoryid:categoryid];
+    
+    NSMutableArray *filterArray = [NSMutableArray array];
+    [array enumerateObjectsUsingBlock:^(GoodListModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSDictionary *dic = @{
+                              @"id" : @(obj.comproductid),
+                              @"num" : @(obj.num),
+                              @"deliverytime" : timedic[@"time"]
+                              };
+        [filterArray addObject:dic];
+    }];
+
+    
+    return [filterArray copy];
+}
+
 - (NSMutableDictionary *)groupAction:(NSArray *)arr {
     NSMutableSet *set = [NSMutableSet set];
     [arr enumerateObjectsUsingBlock:^(GoodListModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -422,6 +445,7 @@ static Cart *shareCart = nil;
  */
 - (NSDictionary *)getDeliveryTimeByCategoryid:(NSInteger)categoryid {
     NSMutableDictionary *dic = [self getCart];
-    return [dic valueForKey:[NSString stringFromNumber:@(categoryid)]];
+    NSDictionary *resultDic = [dic valueForKey:[NSString stringWithFormat:@"%ld", categoryid]];
+    return resultDic;
 }
 @end

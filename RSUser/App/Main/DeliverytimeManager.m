@@ -66,12 +66,26 @@ static DeliverytimeManager *deliverytimeManager = nil;
         for (int i=0; i<key.count; i++) {
             NSMutableArray *timeModelArray = [[NSMutableArray alloc]init];
             NSArray *timesArray = [data valueForKey:key[i]];
+            
+            NSString *temp = key[i];
             for (int j=0; j<timesArray.count; j++) {
                 NSDictionary *dic = timesArray[j];
                 DeliverytimeModel *model = [MTLJSONAdapter modelOfClass:[DeliverytimeModel class] fromJSONDictionary:dic error:nil];
                 [timeModelArray addObject:model];
+                
             }
-            NSString *temp = key[i];
+            
+            if (timeModelArray.count > 0) {
+                DeliverytimeModel *tempModel = timeModelArray[0];
+                NSDictionary *deliveryTimeDic = @{
+                                                  @"date" : tempModel.date,
+                                                  @"time" : tempModel.time[0],
+                                                  @"datedes" : tempModel.datedesc
+                                                  };
+                [[Cart sharedCart] setDeliveryTime:deliveryTimeDic categoryid:temp.integerValue];
+            }
+            
+            
             [deliverytimeManager addDeliveryTimes:timeModelArray categoryid:temp.integerValue];
         }
     } failure:^(NSInteger code, NSString *errmsg) {

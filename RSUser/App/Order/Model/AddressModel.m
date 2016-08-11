@@ -27,11 +27,6 @@
              };
 }
 
--(int) cellHeight
-{
-    return 67;
-}
-
 + (void)getAddressList: (void(^)(NSArray *))successArray
 {
     [[RSToastView shareRSToastView] showHUD:@""];

@@ -88,6 +88,6 @@
     }
     self.height = _descriptionLabel.bottom;
 
-    model.cellHeight = self.height;
+    model.cellHeight = SCREEN_WIDTH * 100 / 340 + 10;;
 }
 @end
