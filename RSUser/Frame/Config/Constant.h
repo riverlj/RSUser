@@ -10,13 +10,13 @@
 #define Constant_h
 
 #ifdef DEBUG
-#define  REDSCARF_BASE_URL @"http://test.dev.honglingjinclub.com"
+#define  REDSCARF_BASE_URL @"http://test2.dev.honglingjinclub.com"
 #define REDSCARF_PAY_URL @""
-#define REDSCARF_MOBILE_URL @"http://test.dev.honglingjinclub.com"
-#define APP_REGISTER_URL @"http://test.dev.honglingjinclub.com/web/register.html"
-#define APP_RESETPWD_URL @"http://test.dev.honglingjinclub.com/web/resetPwd.html"
+#define REDSCARF_MOBILE_URL @"http://test2.dev.honglingjinclub.com"
+#define APP_REGISTER_URL @"http://test2.dev.honglingjinclub.com/web/register.html"
+#define APP_RESETPWD_URL @"http://test2.dev.honglingjinclub.com/web/resetPwd.html"
 
-#define APP_CHANNEL_BASE_URL @"http://test.dev.honglingjinclub.com/web/index.html#"
+#define APP_CHANNEL_BASE_URL @"http://test2.dev.honglingjinclub.com/web/index.html#"
 #else
 //正式
 #define  REDSCARF_BASE_URL @"http://waimai.honglingjinclub.com"
@@ -29,11 +29,11 @@
 
 #endif
 
-#ifdef DEBUG
-#   define NSLog(...) NSLog(__VA_ARGS__)
-#else
-#   define NSLog(...)
-#endif
+//#ifdef DEBUG
+//#   define NSLog(...) NSLog(__VA_ARGS__)
+//#else
+//#   define NSLog(...)
+//#endif
 
 #define iPhone4S ([UIScreen mainScreen].bounds.size.height == 480 ? YES : NO)
 #define iPhone5S ([UIScreen mainScreen].bounds.size.height == 568 ? YES : NO)

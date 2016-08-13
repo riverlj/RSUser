@@ -11,6 +11,8 @@
 
 @protocol cellBtnClickedDelegate <NSObject>
 - (void)goOrderInfo:(NSString *)orderId;
+- (void)goToPay:(NSString *)orderId;
+- (void)reCreatOrder:(NSString *)orderId;
 @end
 
 @interface OrderCell : RSTableViewCell
@@ -18,8 +20,9 @@
 @property (nonatomic, strong) UILabel *statusLabel;
 @property (nonatomic ,strong)UIImageView *orderImageView;
 @property (nonatomic ,strong)RSButton *statusButton;
-@property (nonatomic ,strong)OrderModel *orderModel;
 @property (nonatomic, strong)UIView *lineView;
+
+@property (nonatomic ,strong)OrderModel *orderModel;
 
 
 @property (nonatomic ,weak)id<cellBtnClickedDelegate> cellBtnClickedDelegate;

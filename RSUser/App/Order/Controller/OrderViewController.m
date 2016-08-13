@@ -16,15 +16,14 @@
     NSMutableArray *_btnArray;
     RSRadioGroup *group;
     NSInteger requestType;
-    NSInteger lastRequest;
+    
+    
 }
+@property (nonatomic, strong)NSTimer *m_timer;
+
 @end
 
 @implementation OrderViewController
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
 
 - (void)didClickBtn:(RSSubTitleView *)sender
 {
@@ -38,7 +37,7 @@
     
 }
 
-
+#pragma mark life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.url = @"/order/list";
@@ -54,13 +53,13 @@
                            @"models":[NSMutableArray array]
                            };
     NSDictionary *btn2 = @{
-                           @"title":@"待支付",
-                           @"key":@"waitPay",
+                           @"title":@"待评价",
+                           @"key":@"needrate",
                            @"models":[NSMutableArray array]
                            };
     NSDictionary *btn3 = @{
-                           @"title":@"已完成",
-                           @"key":@"finished",
+                           @"title":@"退款",
+                           @"key":@"refund",
                            @"models":[NSMutableArray array]
                            };
     [_btnArray addObject:btn1];
@@ -92,18 +91,53 @@
     
     self.tableView.frame = CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-89);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.sections = [NSMutableArray array];
     
-    lastRequest = requestType;
     self.pageNum = 1;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changedGoodListView) name:@"GoodListChangedInOrderView" object:nil];
     [self.tableView.mj_header beginRefreshing];
     
+    [self createTimer];
 }
+
+- (void)createTimer {
+    
+    self.m_timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerEvent) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_m_timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)timerEvent {
+    
+    for (int count = 0; count < self.models.count; count++) {
+        NSArray *array = self.models[count];
+        OrderModel *model = array[0];
+        if (model.reduceTime > 0) {
+            [model countDown];
+            
+            if (model.reduceTime == 0 ) {
+                [self.tableView.mj_header beginRefreshing];
+            }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"NOTIFICATION_TIME_CELL" object:nil];
+
+        }else {
+            
+        }
+    }
+    
+}
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
 
 -(void)changedGoodListView {
     [group setSelectedIndex:0];
-    lastRequest = requestType;
+    requestType = 0;
     self.pageNum = 1;
     [self.tableView.mj_header beginRefreshing];
 }
@@ -112,30 +146,54 @@
 -(void)beforeHttpRequest
 {
     [super beforeHttpRequest];
-    
+
     if (requestType == 0) {
         [self.params setValue:@"all" forKey:@"type"];
     }else if(requestType == 1){
-        [self.params setValue:@"new" forKey:@"type"];
+        [self.params setValue:@"needrate" forKey:@"type"];
     }else if(requestType == 2){
-        [self.params setValue:@"completed" forKey:@"type"];
+        [self.params setValue:@"refund" forKey:@"type"];
     }
-    [self.params setValue:@(self.pageNum-1) forKey:@"offset"];
+    
+    if (self.pageNum == 1) {
+        [self.models removeAllObjects];
+    }
+
+    [self.params setValue:@(self.models.count) forKey:@"offset"];
+    NSLog(@"%@",self.params);
     
 }
 
 -(void) afterHttpSuccess:(NSArray *)data
 {
     NSArray *list = data;
-    NSMutableArray *temp = [[MTLJSONAdapter modelsOfClass:[OrderModel class] fromJSONArray:list error:nil] mutableCopy];
+    NSError *error=nil;
+    NSMutableArray *temp = [[MTLJSONAdapter modelsOfClass:[OrderModel class] fromJSONArray:list error:&error] mutableCopy];
     
-    if (lastRequest!=requestType) {
-        lastRequest = requestType;
-        self.models = temp;
-    }else{
-        [self.models addObjectsFromArray:temp];
-    }
+    [temp enumerateObjectsUsingBlock:^(OrderModel* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSMutableArray *array = [NSMutableArray arrayWithCapacity:1];
+        
+        NSDate *orderTime = [NSDate dateFromString:obj.ordertime WithFormatter:@"yyyy-MM-dd HH:mm:ss"];
+        NSTimeInterval order =[orderTime timeIntervalSince1970]*1;
+        NSDate *nowTime = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval now=[nowTime timeIntervalSince1970]*1;
+
+        if (obj.statusid == 0) {
+            NSTimeInterval cha = now - order;
+            if (cha < 30 * 60 && cha > 0) {
+                obj.reduceTime = 1800 - (long)(cha);
+            }else {
+                obj.reduceTime = 0;
+            }
+        }
+        
+        [array addObject:obj];
+        [self.models addObject:array];
+    }];
+    
     [self.tableView reloadData];
+    
+
     
     __weak OrderViewController *selfB = self;
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -150,6 +208,15 @@
 }
 
 #pragma mark tableview
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 0;
+    }
+    
+    return 10;
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OrderCell *cell = (OrderCell *)[super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -166,6 +233,37 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)goToPay:(NSString *)orderId {
+    
+    NSDictionary *params = @{
+                             @"orderid" : orderId
+                             };
+    
+    __weak OrderViewController *selfB = self;
+    [RSHttp requestWithURL:@"/order/pay" params:params httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
+        [[RSToastView shareRSToastView] hidHUD];
+        NSString *url = [data objectForKey:@"url"];
+        
+        NSString *urlStr = [NSString URLencode:url stringEncoding:NSUTF8StringEncoding];
+        NSString *orderid = orderId;
+        NSString *path = [NSString stringWithFormat:@"RSUser://payWeb?urlString=%@&orderId=%@", urlStr, orderid];
+        UIViewController *vc = [RSRoute getViewControllerByPath:path];
+        [selfB.navigationController pushViewController:vc animated:YES];
+            
+    } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSToastView] hidHUD];
+        [[RSToastView shareRSToastView] showToast:errmsg];
+    }];
+
+
+    
+}
+
+-(void)reCreatOrder:(NSString *)orderId {
+    //再来一单
+    [[RSToastView shareRSToastView]showToast:@"敬请期待"];
+}
+
 -(void)setalbeItems:(BOOL)b
 {
     [group.objArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -175,5 +273,6 @@
 
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"GoodListChangedInOrderView" object:nil];
+    [self.m_timer invalidate];
 }
 @end
