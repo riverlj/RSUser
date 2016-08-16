@@ -8,6 +8,7 @@
 
 #import "Cart.h"
 #import "LocationModel.h"
+#import "DeliverytimeManager.h"
 /**
  购物车结构：
  {
@@ -393,7 +394,7 @@ static Cart *shareCart = nil;
     NSDictionary *dic = [self getCartsOrderByCategoryid];
     NSArray *array = dic[@(categoryid)];
     
-    NSDictionary *timedic = [self getDeliveryTimeByCategoryid:categoryid];
+    NSDictionary *timedic = [[DeliverytimeManager shareDelivertimeManger]getSelectedTimeWithCategoryid:categoryid];
     
     NSMutableArray *filterArray = [NSMutableArray array];
     [array enumerateObjectsUsingBlock:^(GoodListModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -430,11 +431,11 @@ static Cart *shareCart = nil;
  *
  *  @param time       配送时间
  *  @param categoryid 品类ID
- */
-- (void)setDeliveryTime:(NSDictionary *)time categoryid:(NSInteger)categoryid {
-    NSMutableDictionary *dic = [self getCart];
-    [dic setValue:time forKey:[NSString stringFromNumber:@(categoryid)]];
-}
+// */
+//- (void)setDeliveryTime:(NSDictionary *)time categoryid:(NSInteger)categoryid {
+//    NSMutableDictionary *dic = [self getCart];
+//    [dic setValue:time forKey:[NSString stringFromNumber:@(categoryid)]];
+//}
 
 /**
  *  根据品类ID 获取对应的配送时间
@@ -443,9 +444,9 @@ static Cart *shareCart = nil;
  *
  *  @return 配送时间
  */
-- (NSDictionary *)getDeliveryTimeByCategoryid:(NSInteger)categoryid {
-    NSMutableDictionary *dic = [self getCart];
-    NSDictionary *resultDic = [dic valueForKey:[NSString stringWithFormat:@"%ld", categoryid]];
-    return resultDic;
-}
+//- (NSDictionary *)getDeliveryTimeByCategoryid:(NSInteger)categoryid {
+//    NSMutableDictionary *dic = [self getCart];
+//    NSDictionary *resultDic = [dic valueForKey:[NSString stringWithFormat:@"%ld", categoryid]];
+//    return resultDic;
+//}
 @end

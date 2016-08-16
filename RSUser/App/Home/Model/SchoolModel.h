@@ -59,4 +59,5 @@ typedef void(^ClickChennelBlock)(ChannelModel *channelModel);
 @property (nonatomic, strong) NSString *contactMobile;
 
 + (void)getSchoolMsg:(void (^)(SchoolModel *))successArray;
+- (NSString *)getCategoryName:(NSInteger)categoryid;
 @end

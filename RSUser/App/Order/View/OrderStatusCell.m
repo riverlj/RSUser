@@ -33,7 +33,6 @@
         OrderLogModel *logmodel = orderlogs[i]; //第i条订单日志信息
         
         UIImageView *imageView = [RSImageView imageViewWithFrame:CGRectMake(0, cellh, 62, 0) ImageName:nil];
-        [self setImageView:imageView Type:logmodel.changetype];
         imageView.contentMode = UIViewContentModeCenter;
         [self.contentView addSubview:imageView];
         
@@ -92,6 +91,11 @@
         }
         if (i==orderlogs.count-1) {
             epoint = CGPointMake(imageView.center.x, lineView.bottom-imageView.height/2);
+            [self setImageView:imageView Type:logmodel.changetype];
+        }else {
+            UIImage *image = [UIImage imageFromColor:[NSString colorFromHexString:@"ffa53a"] forSize:CGSizeMake(8, 8) withCornerRadius:4];
+            [imageView setImage:image];
+            imageView.contentMode = UIViewContentModeCenter;
         }
         
     }
@@ -99,7 +103,7 @@
     self.height = cellh;
 
     
-    UIView *VlineView = [RSLineView lineViewVerticalWithFrame:CGRectMake(0, 0, 1, 0) Color:[NSString colorFromHexString:@"5faaff"]];
+    UIView *VlineView = [RSLineView lineViewVerticalWithFrame:CGRectMake(0, 0, 1, 0) Color:[NSString colorFromHexString:@"ffa53a"]];
     VlineView.x = spoint.x;
     VlineView.y = spoint.y;
     VlineView.height = epoint.y - spoint.y;
@@ -112,24 +116,27 @@
 - (void)setImageView:(UIImageView *)imageView Type:(NSInteger)type
 {
     NSDictionary *dic = @{
-                          @"0" : @"order_dzf",
-                          @"1" : @"order_yzf",
-                          @"2" : @"order_shz",
-                          @"3" : @"order_dpj",
-                          @"4" : @"order_ywc",
-                          @"5" : @"order_ywc",
-                          @"10" : @"order_tkz",
-                          @"11" : @"order_ytk",
-                          @"12" : @"order_tkz",
-                          @"13" : @"order_ytk",
-                          @"127" : @"order_yqx",
-                          @"128" : @"order_yqx",
-                          @"129" : @"order_tkz",
-                          @"130" : @"order_ytk"
+                          @"0" : @"order_waitpay",  //创建，待支付
+                          @"1" : @"order_paycomplete", //已支付
+                          @"2" : @"order_deliverying", //周特惠：进行中 其它：送货中
+                          @"3" : @"order_deliveryed",  //待评价
+                          @"4" : @"order_complete",   //已完成
+                          @"20" : @"order_deliverying", //商家制作中
+                          @"30" : @"order_deliverying", //配送中
+                          @"10" : @"order_refunding", //售前退款中
+                          @"11" : @"order_refund", //售前退款完成
+                          @"12" : @"order_refunding", //售后退单中
+                          @"13" : @"order_refund", //售后退单完成
+                          @"127" : @"order_canceled", //用户自主取消
+                          @"128" : @"order_canceled" //系统自动取消
                           };
     
     NSString *imageName = [dic valueForKey:[NSString stringWithFormat:@"%zd",type]];
+    if (imageName.length == 0) {
+        imageName = @"order_complete";
+    }
     [imageView setImage:[UIImage imageNamed:imageName]];
+
 }
 
 @end

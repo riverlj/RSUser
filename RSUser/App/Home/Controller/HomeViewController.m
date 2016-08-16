@@ -297,12 +297,7 @@
         _categoryView = [selfB creatTypeGroupView];
         [selfB initChannelData];
         [selfB refeshTableWithType:@(selectedCategoryId)];
-        [selfB getDeliverytimes];
     }];
-}
-
-- (void)getDeliverytimes {
-    [DeliverytimeManager getDeliveryTimesFromNet];
 }
 
 #pragma mark SDCycleScrollView广告滚动代理

@@ -13,6 +13,7 @@
 @interface ConfirmGoodDetailCell()
 {
     Boolean isReWrite;
+    UIImageView *arrowimageView;
 }
 @end
 @implementation ConfirmGoodDetailCell
@@ -38,10 +39,10 @@
         self.sendTimeLabel.textColor = RS_Theme_Color;
         [self.contentView addSubview:self.sendTimeLabel];
         
-        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-18, self.categoryImageView.top, 6, 10)];
-        imageView.image = [UIImage imageNamed:@"cart_arrow"];
-        imageView.centerY = self.categoryImageView.centerY;
-        [self.contentView addSubview:imageView];
+        arrowimageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-18, self.categoryImageView.top, 6, 10)];
+        arrowimageView.image = [UIImage imageNamed:@"cart_arrow"];
+        arrowimageView.centerY = self.categoryImageView.centerY;
+        [self.contentView addSubview:arrowimageView];
     }
     return self;
 }
@@ -102,6 +103,12 @@
         goodNameLbel.frame = CGRectMake(self.categoryLabel.left, h, priceLabel.x - 30, goodNameLbelSize.height);
         
         h = goodNameLbelSize.height + h + 10;
+    }
+    
+    if (model.inOderDetail) {
+        arrowimageView.hidden = YES;
+        self.sendTimeLabel.textColor = RS_COLOR_C2;
+        self.sendTimeLabel.x = SCREEN_WIDTH - self.sendTimeLabel.width - 18;
     }
 
     model.cellHeight = h;

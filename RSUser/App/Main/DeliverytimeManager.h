@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+@class DeliverytimeModel;
 
 @interface DeliverytimeManager : NSObject
 + (id)shareDelivertimeManger;
-- (void)setDeliveryTimes:(NSDictionary *)deliveryTimes;
 - (NSArray *)getTimesByCategoryid:(NSInteger)categoryid;
 - (void)addDeliveryTimes:(NSArray *)array categoryid:(NSInteger)categoryid;
-+ (void) getDeliveryTimesFromNet;
++ (void) getDeliveryTimesFromNet:(void (^)(void))sucess;
+
+- (NSDictionary *)getSelectedTimeWithCategoryid:(NSInteger)categoryid;
+- (void)setSelectedTimes:(NSDictionary *)dic With:(NSInteger)categoryid;
+-(void) clearData;
 @end

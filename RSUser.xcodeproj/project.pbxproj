@@ -123,6 +123,7 @@
 		B1E3D0211D59B086000F43EA /* SimulateActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E3D0201D59B086000F43EA /* SimulateActionSheet.m */; };
 		B1E3D0241D59D91F000F43EA /* PromotionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E3D0231D59D91F000F43EA /* PromotionModel.m */; };
 		B1E3D0271D5B0252000F43EA /* ConfirmGoodDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E3D0261D5B0252000F43EA /* ConfirmGoodDetailCell.m */; };
+		B1E3D0611D61C32C000F43EA /* RSTwoTitleViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E3D0601D61C32C000F43EA /* RSTwoTitleViewModel.m */; };
 		B1E81D4C1CB7553E00F587D1 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */; };
 		B1E81D501CB7622E00F587D1 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D4F1CB7622E00F587D1 /* AppConfig.m */; };
 		B1E81D631CB78A7D00F587D1 /* RSToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E81D621CB78A7D00F587D1 /* RSToastView.m */; };
@@ -386,6 +387,8 @@
 		B1E3D0231D59D91F000F43EA /* PromotionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionModel.m; sourceTree = "<group>"; };
 		B1E3D0251D5B0252000F43EA /* ConfirmGoodDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmGoodDetailCell.h; sourceTree = "<group>"; };
 		B1E3D0261D5B0252000F43EA /* ConfirmGoodDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmGoodDetailCell.m; sourceTree = "<group>"; };
+		B1E3D05F1D61C32C000F43EA /* RSTwoTitleViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTwoTitleViewModel.h; sourceTree = "<group>"; };
+		B1E3D0601D61C32C000F43EA /* RSTwoTitleViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTwoTitleViewModel.m; sourceTree = "<group>"; };
 		B1E81D4A1CB7553E00F587D1 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
 		B1E81D4B1CB7553E00F587D1 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
 		B1E81D4D1CB7564F00F587D1 /* UtilMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilMacro.h; sourceTree = "<group>"; };
@@ -706,6 +709,8 @@
 				B19E1B9E1CB6674B009C38CD /* RSModel.m */,
 				30221E511CCDDD8700126D72 /* RSTitleModel.h */,
 				30221E521CCDDD8700126D72 /* RSTitleModel.m */,
+				B1E3D05F1D61C32C000F43EA /* RSTwoTitleViewModel.h */,
+				B1E3D0601D61C32C000F43EA /* RSTwoTitleViewModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1406,6 +1411,7 @@
 				B1422BFB1CBB9E4100C988FE /* CartNumberLabel.m in Sources */,
 				30221E3A1CC9FAFE00126D72 /* ProfileViewController.m in Sources */,
 				B1422BF21CBB575500C988FE /* RSTabBarControllerConfig.m in Sources */,
+				B1E3D0611D61C32C000F43EA /* RSTwoTitleViewModel.m in Sources */,
 				30A3C5271CCF6CD700F5E55E /* CouponCell.m in Sources */,
 				30A3C51B1CCF02C700F5E55E /* RSInputFieldCell.m in Sources */,
 				30221E461CC9FC0E00126D72 /* ProfileModel.m in Sources */,

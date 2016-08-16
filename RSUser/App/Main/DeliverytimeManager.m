@@ -12,11 +12,7 @@
 static DeliverytimeManager *deliverytimeManager = nil;
 
 @interface DeliverytimeManager()
-/**
- {
-    categoryid : times(timeModel);
- }
- */
+@property (nonatomic, strong)NSMutableDictionary *selectedTimes;
 @property (nonatomic, strong)NSMutableDictionary *deliveryTimes;
 @end
 
@@ -36,12 +32,9 @@ static DeliverytimeManager *deliverytimeManager = nil;
     self = [super init];
     if (self) {
         self.deliveryTimes = [NSMutableDictionary dictionary];
+        self.selectedTimes = [NSMutableDictionary dictionary];
     }
     return self;
-}
-
--(void)setDeliveryTimes:(NSDictionary *)deliveryTimes{
-    _deliveryTimes = [deliveryTimes mutableCopy];
 }
 
 - (NSArray *)getTimesByCategoryid:(NSInteger)categoryid {
@@ -53,14 +46,13 @@ static DeliverytimeManager *deliverytimeManager = nil;
     [_deliveryTimes setValue:array forKey:[NSString stringFromNumber:@(categoryid)]];
 }
 
-+ (void) getDeliveryTimesFromNet {
++ (void) getDeliveryTimesFromNet:(void (^)(void))sucess {
     
     NSDictionary *params = @{
                              @"communityid" : COMMUNTITYID
                              };
     
     [RSHttp requestWithURL:@"/community/deliverytimes" params:params httpMethod:@"GET" success:^(NSDictionary *data) {
-        NSLog(@"%@", data);
         NSArray *key = [data allKeys];
         DeliverytimeManager *deliverytimeManager = [DeliverytimeManager shareDelivertimeManger];
         for (int i=0; i<key.count; i++) {
@@ -75,26 +67,37 @@ static DeliverytimeManager *deliverytimeManager = nil;
                 
             }
             
-            if (timeModelArray.count > 0) {
-                DeliverytimeModel *tempModel = timeModelArray[0];
-                NSDictionary *deliveryTimeDic = @{
-                                                  @"date" : tempModel.date,
-                                                  @"time" : tempModel.time[0],
-                                                  @"datedes" : tempModel.datedesc
-                                                  };
-                [[Cart sharedCart] setDeliveryTime:deliveryTimeDic categoryid:temp.integerValue];
-            }
-            
-            
             [deliverytimeManager addDeliveryTimes:timeModelArray categoryid:temp.integerValue];
         }
+        sucess();
     } failure:^(NSInteger code, NSString *errmsg) {
         [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 }
 
-- (void)updateDeliveryTimes {
-    [DeliverytimeManager getDeliveryTimesFromNet];
+- (NSDictionary *)getSelectedTimeWithCategoryid:(NSInteger)categoryid {
+     NSDictionary *dic = [self.selectedTimes valueForKey:[NSString stringFromNumber:@(categoryid)]];
+    if (!dic) {
+        NSArray *array = [self getTimesByCategoryid:categoryid];
+        DeliverytimeModel *model = array[0];
+        dic = @{
+               @"date" : model.date,
+               @"time" : model.time[0]
+               };
+        
+        [self.selectedTimes setValue:dic forKey:[NSString stringFromNumber:@(categoryid)]];
+    }
+    
+    return dic;
+    
 }
 
+- (void)setSelectedTimes:(NSDictionary *)dic With:(NSInteger)categoryid {
+    [self.selectedTimes setValue:dic forKey:[NSString stringFromNumber:@(categoryid)]];
+}
+
+-(void) clearData {
+    [self.selectedTimes removeAllObjects];
+    [self.deliveryTimes removeAllObjects];
+}
 @end

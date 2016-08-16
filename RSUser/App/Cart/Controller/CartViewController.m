@@ -122,9 +122,7 @@
     for (int i=0; i<categorys.count; i++) {
         Categorys *category = categorys [i];
         if ([sectionsArray containsObject:@(category.categoryid)]) {
-            NSArray *array = [[DeliverytimeManager shareDelivertimeManger] getTimesByCategoryid:category.categoryid];
             NSDictionary *dic = @{
-                                  @"times" : array,
                                   @"name" : category.name
                                   };
             [categoryDic setValue:dic forKey:[NSString stringFromNumber:@(category.categoryid)]];

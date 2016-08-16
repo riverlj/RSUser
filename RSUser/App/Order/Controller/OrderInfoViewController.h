@@ -7,9 +7,11 @@
 //
 
 #import "RSRefreshTableViewController.h"
+@class OrderInfoModel;
 
 @interface OrderInfoViewController : RSRefreshTableViewController
 @property (nonatomic ,strong)NSString *orderId;
-
+@property (nonatomic, strong)OrderInfoModel *orderInfoModel;
+-(void) formatDate;
 @end
 

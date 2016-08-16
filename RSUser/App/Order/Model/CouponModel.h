@@ -37,6 +37,10 @@ typedef NS_ENUM(NSUInteger, CouponModelStatus) {
 @property (nonatomic ,copy)NSString *subTitle;
 @property (nonatomic ,assign)Boolean hiddenLine;
 
+@property (nonatomic, strong)UIColor *subtextColor;
+@property (nonatomic, strong)UIFont *subtextFont;
+
+
 + (void)getCounponList:(void(^)(NSArray *))success;
 + (void)bindCoupon:(NSString *)couponcode success:(void(^)())success failure:(void(^)())failure;
 -(NSString *) getBeginDate;

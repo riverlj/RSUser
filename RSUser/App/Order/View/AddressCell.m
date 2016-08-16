@@ -228,6 +228,14 @@
         self.mainTitleLabel.frame = CGRectMake(18, 10, maintitleSize.width, maintitleSize.height);
         
         self.subTitleLabel.text = couponModel.subTitle;
+        if (couponModel.subtextFont) {
+            self.subTitleLabel.font = couponModel.subtextFont;
+        }
+        
+        if (couponModel.subtextColor) {
+            self.subTitleLabel.textColor = couponModel.subtextColor;
+        }
+        
         CGSize subTitleLabelSize = [self.subTitleLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
         self.subTitleLabel.frame = CGRectMake(SCREEN_WIDTH-18 - subTitleLabelSize.width, self.mainTitleLabel.top, subTitleLabelSize.width, subTitleLabelSize.height);
         
@@ -236,10 +244,27 @@
         self.mainTitleLabel.centerY = model.cellHeight /2;
         self.subTitleLabel.centerY = model.cellHeight /2;
         
+        RSLineView *line = nil;;
         if (!couponModel.hiddenLine) {
-            RSLineView *line = [RSLineView lineViewHorizontalWithFrame:CGRectMake(18, 48, SCREEN_WIDTH-18, 1) Color:RS_Line_Color];
+             line = [RSLineView lineViewHorizontalWithFrame:CGRectMake(18, 48, SCREEN_WIDTH-18, 1) Color:RS_Line_Color];
             [self.contentView addSubview:line];
         }
+        
+        if (self.subTitleLabel.x < self.mainTitleLabel.right) {
+            self.subTitleLabel.x = self.mainTitleLabel.right + 5;
+            self.subTitleLabel.width = SCREEN_WIDTH - self.subTitleLabel.x - 18;
+            self.subTitleLabel.numberOfLines = 0;
+            
+            subTitleLabelSize = [self.subTitleLabel sizeThatFits:CGSizeMake(self.subTitleLabel.width, SCREEN_HEIGHT)];
+            self.subTitleLabel.height = subTitleLabelSize.height;
+            model.cellHeight = subTitleLabelSize.height + 30;
+            self.mainTitleLabel.y = 15;
+            self.subTitleLabel.y = self.mainTitleLabel.top;
+            line.y = model.cellHeight-1;
+        }else {
+            model.cellHeight = 49;
+        }
+        
     }
 }
 @end

@@ -95,4 +95,17 @@
     return [MTLJSONAdapter arrayTransformerWithModelClass:Categorys.class];
 }
 
+- (NSString *)getCategoryName:(NSInteger)categoryid {
+    NSString *name = nil;
+    NSArray *array = self.categorys;
+    for (int i=0; i<array.count; i++) {
+        Categorys *category = array[i];
+        if (category.categoryid == categoryid) {
+            name = category.name;
+            break;
+        }
+    }
+    return name;
+}
+
 @end

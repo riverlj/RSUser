@@ -39,10 +39,14 @@
         @"notifytime" : @"notifytime",
         @"promotions" : @"promotions",
         @"amount" : @"amount",
+        
         @"canfeedback" : @"canfeedback",
         @"canpay" : @"canpay",
         @"canreorder" : @"canreorder",
         @"cancancel" : @"cancancel",
+        @"canrefund" : @"canrefund",
+        @"canrate" : @"canrate",
+        
         @"deliverytime" : @"deliverytime",
     };
 }

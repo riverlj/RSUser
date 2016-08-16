@@ -9,7 +9,7 @@
 #import "RSAlertView.h"
 #import "RSLineView.h"
 
-#define ALERTVIEW_WIDTH 216
+#define ALERTVIEW_WIDTH 216*(SCREEN_WIDTH / 320)
 #define ALERTVIEW_TITLE_HEIGHT 38.5
 
 @interface RSAlertView ()
@@ -20,6 +20,7 @@
 
 -(id) initWithTile:(NSString *)title msg:(NSString *)msg leftButtonTitle:(NSString *)leftBtnText AndLeftBlock:(dispatch_block_t)leftBlock
 {
+    
     self = [self initWithTile:title msg:msg leftButtonTitle:leftBtnText rightButtonTitle:nil];
     if (self) {
         self.leftBlock = leftBlock;
@@ -58,9 +59,9 @@
         return _titleLabel;
     }
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ALERTVIEW_WIDTH, ALERTVIEW_TITLE_HEIGHT)];
-    _titleLabel.textColor = RS_COLOR_C7;
+    _titleLabel.textColor = RS_COLOR_C1;
     _titleLabel.font = RS_FONT_F2;
-    _titleLabel.backgroundColor = RS_Theme_Color;
+    _titleLabel.backgroundColor = RS_COLOR_WHITE;
     _titleLabel.numberOfLines = 1;
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     return _titleLabel;
@@ -87,11 +88,11 @@
         return _leftButton;
     }
     _leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _leftButton.frame = CGRectMake(0, 0, (ALERTVIEW_WIDTH-1)/2.0, 34);
+    _leftButton.frame = CGRectMake(0, 0, (ALERTVIEW_WIDTH-1)/2.0, 44);
     [_leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [_leftButton setBackgroundColor:RS_Theme_Color];
+    [_leftButton setBackgroundColor:RS_COLOR_WHITE];
     [_leftButton.titleLabel setFont:Font(16)];
-    [_leftButton setTitleColor:RS_COLOR_C7 forState:UIControlStateNormal];
+    [_leftButton setTitleColor:RS_COLOR_C1 forState:UIControlStateNormal];
     return _leftButton;
 }
 
@@ -133,8 +134,12 @@
         [self.alertView addSubview:self.titleLabel];
         height += self.titleLabel.height;
     }
-
     height += 43;
+    
+    UIView *lineView1 = [RSLineView lineViewHorizontalWithFrame: CGRectMake(0, 43, ALERTVIEW_WIDTH, 1) Color:RS_Line_Color];
+    [self.alertView addSubview:lineView1];
+    
+    height ++;
     
     if(self.msg) {
         self.contentLabel.text = self.msg;
@@ -148,7 +153,9 @@
     }
     height += 43;
     
-
+    UIView *lineView2 = [RSLineView lineViewHorizontalWithFrame: CGRectMake(0, height, ALERTVIEW_WIDTH, 1) Color:RS_Line_Color];
+    [self.alertView addSubview:lineView2];
+    height ++;
 
     if(self.leftBtnText) {
         [self.leftButton setTitle:self.leftBtnText forState:UIControlStateNormal];
@@ -156,6 +163,9 @@
         self.leftButton.top = height;
         self.leftButton.left = 0;
         height += self.leftButton.height;
+        
+        UIView *lineView3 = [RSLineView lineViewVerticalWithFrame: CGRectMake(self.leftButton.right, self.leftButton.top, 1, self.leftButton.height) Color:RS_Line_Color];
+        [self.alertView addSubview:lineView3];
     }
     
     if (self.rightBtnText)

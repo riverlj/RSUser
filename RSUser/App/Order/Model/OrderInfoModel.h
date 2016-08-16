@@ -6,6 +6,7 @@
 //  Copyright © 2016年 lishipeng. All rights reserved.
 //
 
+
 #import "RSModel.h"
 
 @interface OrderInfoModel : RSModel<MTLJSONSerializing>
@@ -35,12 +36,15 @@
 @property (nonatomic, strong) NSString *notifytime;
 @property (nonatomic, strong) NSArray *promotions;
 @property (nonatomic, strong) NSString *amount;
-@property (nonatomic) NSInteger canfeedback;
-@property (nonatomic) NSInteger canpay;
-@property (nonatomic) NSInteger canreorder;
-@property (nonatomic) NSInteger cancancel;
-@property (nonatomic, strong) NSDictionary *deliverytime;
 
+@property (nonatomic) NSInteger canfeedback; //反馈
+@property (nonatomic) NSInteger canpay; // 支付
+@property (nonatomic) NSInteger canreorder; // 再来一单
+@property (nonatomic) NSInteger cancancel; //取消
+@property (nonatomic) NSInteger canrate; // 评价， 1 评价， 2， 查看评价
+@property (nonatomic) NSInteger canrefund; //退单
+
+@property (nonatomic, strong) NSDictionary *deliverytime;
 
 
 @property (nonatomic ,assign)NSInteger displayFlag;

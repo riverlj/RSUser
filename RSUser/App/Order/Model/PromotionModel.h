@@ -43,4 +43,7 @@
 @property (nonatomic ,strong)NSString *sendDay;
 @property (nonatomic ,strong)NSString *sendTime;
 @property (nonatomic ,strong)NSArray *goods;
+
+@property (nonatomic, assign)BOOL inOderDetail;
+
 @end

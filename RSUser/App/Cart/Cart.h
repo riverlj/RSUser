@@ -34,8 +34,8 @@
 - (NSMutableArray *)getCartDetail;
 - (NSDictionary *)getCartsOrderByCategoryid;
 
-- (void)setDeliveryTime:(NSDictionary *)time categoryid:(NSInteger)categoryid;
-- (NSDictionary *)getDeliveryTimeByCategoryid:(NSInteger)categoryid;
+//- (void)setDeliveryTime:(NSDictionary *)time categoryid:(NSInteger)categoryid;
+//- (NSDictionary *)getDeliveryTimeByCategoryid:(NSInteger)categoryid;
 
 - (NSArray *)getGoodsByCategoryid:(NSInteger)categoryid;
 @end
