@@ -25,7 +25,7 @@
 @property (nonatomic, strong) NSString *statusDesc;
 @property (nonatomic, strong) NSString *totalprice;
 @property (nonatomic, strong) NSString *paymethod;
-@property (nonatomic, strong) NSArray *products;
+//@property (nonatomic, strong) NSArray *products;
 @property (nonatomic, strong) NSArray *deliverys;
 @property (nonatomic, strong) NSArray *orderlog;
 @property (nonatomic) NSInteger couponid;

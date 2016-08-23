@@ -70,41 +70,41 @@
     return self;
 }
 
--(void)setModel:(OrderInfoModel *)model
-{
-    CGSize detailLabelSize = [_detailLabel sizeThatFits:CGSizeMake(1000, 1000)];
-    _detailLabel.frame = CGRectMake(18, 10, SCREEN_WIDTH-36, detailLabelSize.height + 9);
-    
-    NSArray *products =  model.products;
-    NSInteger h = _detailLabel.bottom;
-    for (int i=0; i<products.count; i++) {
-        NSDictionary *dic = products[i];
-        NSString *name = [dic valueForKey:@"name"];
-        NSInteger num = [[dic valueForKey:@"num"] integerValue];
-        NSString *saleprice = [dic valueForKey:@"saleprice"];
-        
-        RSLabel *goodNameLbel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_COLOR_C2];
-        goodNameLbel.textAlignment = NSTextAlignmentLeft;
-        goodNameLbel.font = RS_FONT_F4;
-        goodNameLbel.text = name;
-        [self.contentView addSubview:goodNameLbel];
-        
-        RSLabel *priceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_COLOR_C3];
-        priceLabel.font = RS_FONT_F4;
-        priceLabel.textAlignment = NSTextAlignmentRight;
-        priceLabel.text =[NSString stringWithFormat:@"¥%@ × %ld",saleprice,num];
-        [self.contentView addSubview:priceLabel];
-        
-        CGSize size = [goodNameLbel sizeThatFits:CGSizeMake(1000, 1000)];
-        goodNameLbel.frame = CGRectMake(18, h, size.width, 12+size.height);
-        CGSize priceSize = [priceLabel sizeThatFits:CGSizeMake(1000, 1000)];
-        priceLabel.frame = CGRectMake(SCREEN_WIDTH-18-priceSize.width, h, priceSize.width, 12+size.height);
-        h += 12+size.height;
-        self.height = goodNameLbel.bottom;
-    }
-    model.cellHeight = self.height;
-    
-}
+//-(void)setModel:(OrderInfoModel *)model
+//{
+//    CGSize detailLabelSize = [_detailLabel sizeThatFits:CGSizeMake(1000, 1000)];
+//    _detailLabel.frame = CGRectMake(18, 10, SCREEN_WIDTH-36, detailLabelSize.height + 9);
+//    
+////    NSArray *products =  model.products;
+//    NSInteger h = _detailLabel.bottom;
+//    for (int i=0; i<products.count; i++) {
+//        NSDictionary *dic = products[i];
+//        NSString *name = [dic valueForKey:@"name"];
+//        NSInteger num = [[dic valueForKey:@"num"] integerValue];
+//        NSString *saleprice = [dic valueForKey:@"saleprice"];
+//        
+//        RSLabel *goodNameLbel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_COLOR_C2];
+//        goodNameLbel.textAlignment = NSTextAlignmentLeft;
+//        goodNameLbel.font = RS_FONT_F4;
+//        goodNameLbel.text = name;
+//        [self.contentView addSubview:goodNameLbel];
+//        
+//        RSLabel *priceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_COLOR_C3];
+//        priceLabel.font = RS_FONT_F4;
+//        priceLabel.textAlignment = NSTextAlignmentRight;
+//        priceLabel.text =[NSString stringWithFormat:@"¥%@ × %ld",saleprice,num];
+//        [self.contentView addSubview:priceLabel];
+//        
+//        CGSize size = [goodNameLbel sizeThatFits:CGSizeMake(1000, 1000)];
+//        goodNameLbel.frame = CGRectMake(18, h, size.width, 12+size.height);
+//        CGSize priceSize = [priceLabel sizeThatFits:CGSizeMake(1000, 1000)];
+//        priceLabel.frame = CGRectMake(SCREEN_WIDTH-18-priceSize.width, h, priceSize.width, 12+size.height);
+//        h += 12+size.height;
+//        self.height = goodNameLbel.bottom;
+//    }
+//    model.cellHeight = self.height;
+//    
+//}
 
 @end
 

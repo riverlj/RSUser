@@ -34,6 +34,7 @@
         return _saledLabel;
     }
     _saledLabel = [RSLabel twoLabel];
+    _saledLabel.textAlignment = NSTextAlignmentLeft;
     _saledLabel.numberOfLines = 0;
     return _saledLabel;
 }

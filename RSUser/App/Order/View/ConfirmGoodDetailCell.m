@@ -24,7 +24,7 @@
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         isReWrite = NO;
-        self.categoryImageView = [RSImageView imageViewWithFrame:CGRectMake(10, 15, 14, 14) ImageName:@""];
+        self.categoryImageView = [RSImageView imageViewWithFrame:CGRectMake(18, 15, 14, 14) ImageName:@""];
         [self.contentView addSubview:self.categoryImageView];
         
         self.categoryLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.categoryImageView.right+3, self.categoryImageView.top, 0, 0)];
@@ -103,6 +103,8 @@
         goodNameLbel.frame = CGRectMake(self.categoryLabel.left, h, priceLabel.x - 30, goodNameLbelSize.height);
         
         h = goodNameLbelSize.height + h + 10;
+        
+        priceLabel.centerY = goodNameLbel.centerY;
     }
     
     if (model.inOderDetail) {

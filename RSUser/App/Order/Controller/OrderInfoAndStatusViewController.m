@@ -96,11 +96,19 @@
                              @"orderid" : self.orderId
                              };
     
+    
     __weak OrderInfoAndStatusViewController *selfB = self;
+    [[RSToastView shareRSToastView]showHUD:@""];
     [RSHttp requestWithURL:@"/order/info" params:params httpMethod:@"GET" success:^(id data) {
-        selfB.orderInfoModel  = [MTLJSONAdapter modelOfClass:[OrderInfoModel class] fromJSONDictionary:data error:nil];
+        NSError *error = nil;
+        selfB.orderInfoModel  = [MTLJSONAdapter modelOfClass:[OrderInfoModel class] fromJSONDictionary:data error:&error];
+        [[RSToastView shareRSToastView]hidHUD];
+        if (error) {
+            NSLog(@"%@",error);
+        }
         sucess();
     }failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSToastView]hidHUD];
         [[RSToastView shareRSToastView]showToast:errmsg];
     }];
 
@@ -247,12 +255,7 @@
             NSString *orderid = _orderInfoModel.orderId;
             NSString *path = [NSString stringWithFormat:@"RSUser://payWeb?urlString=%@&orderId=%@", urlStr, orderid];
             UIViewController *vc = [RSRoute getViewControllerByPath:path];
-            
-            if ([self.view.superview.nextResponder isKindOfClass:[OrderInfoAndStatusViewController class]]) {
-                OrderInfoAndStatusViewController *orderVC = (OrderInfoAndStatusViewController*)self.view.superview.nextResponder;
-                [orderVC.navigationController pushViewController:vc animated:YES];
-                
-            }
+            [self.navigationController pushViewController:vc animated:YES];
         }];
     }];
     
@@ -305,6 +308,9 @@
     _oneMoreBtn.layer.masksToBounds = YES;
     [_oneMoreBtn setBackgroundColor:RS_Theme_Color];
     
+    [[_oneMoreBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        [[RSToastView shareRSToastView] showToast:@"马上上线..."];
+    }];
     [self.bottomView addSubview:_oneMoreBtn];
     return _oneMoreBtn;
 }
@@ -315,11 +321,15 @@
         return _retreatBtn;
     }
     
-    _retreatBtn = (UIButton *)[RSButton buttonWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/3, 38) ImageName:@"" Text:@"退单" TextColor:RS_Theme_Color];
+    _retreatBtn = (UIButton *)[RSButton buttonWithFrame:CGRectMake(0, 10, SCREEN_WIDTH/3, 38) ImageName:@"" Text:@"退单" TextColor:RS_Theme_Color];
     _retreatBtn.layer.cornerRadius = 4;
     _retreatBtn.layer.masksToBounds = YES;
     _retreatBtn.layer.borderWidth = 1;
     _retreatBtn.layer.borderColor = RS_COLOR_C4.CGColor;
+    
+    [[_retreatBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        [[RSToastView shareRSToastView] showToast:@"马上上线..."];
+    }];
     
     [self.bottomView addSubview:_retreatBtn];
     return _retreatBtn;
@@ -330,7 +340,7 @@
         return _feedBackBtn;
     }
     
-    _feedBackBtn = (UIButton *)[RSButton buttonWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/3, 38) ImageName:@"" Text:@"用户反馈" TextColor:RS_COLOR_WHITE];
+    _feedBackBtn = (UIButton *)[RSButton buttonWithFrame:CGRectMake(0, 10, SCREEN_WIDTH/3, 38) ImageName:@"" Text:@"用户反馈" TextColor:RS_COLOR_WHITE];
     _feedBackBtn.layer.cornerRadius = 4;
     _feedBackBtn.layer.masksToBounds = YES;
     _feedBackBtn.layer.borderColor = RS_COLOR_C4.CGColor;
@@ -346,8 +356,6 @@
             [orderVC.navigationController pushViewController:vc animated:YES];
             
         }
-        
-        
     }];
     
     [self.bottomView addSubview:_feedBackBtn];
@@ -359,12 +367,15 @@
         return _rateBtn;
     }
     
-    _rateBtn = (UIButton *)[RSButton buttonWithFrame:CGRectMake(0, 0, (SCREEN_WIDTH-56)/3, 38) ImageName:@"" Text:@"评价" TextColor:RS_Theme_Color];
+    _rateBtn = (UIButton *)[RSButton buttonWithFrame:CGRectMake(0, 10, (SCREEN_WIDTH-56)/3, 38) ImageName:@"" Text:@"评价" TextColor:RS_Theme_Color];
     _rateBtn.layer.cornerRadius = 4;
     _rateBtn.layer.masksToBounds = YES;
     _rateBtn.layer.borderWidth = 1;
     _rateBtn.layer.borderColor = RS_COLOR_C4.CGColor;
     
+    [[_rateBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        [[RSToastView shareRSToastView] showToast:@"马上上线..."];
+    }];
     
     [self.bottomView addSubview:_rateBtn];
     return _rateBtn;
@@ -375,11 +386,15 @@
         return _checkAppraiseBtn;
     }
     
-    _checkAppraiseBtn = (UIButton *)[RSButton buttonWithFrame:CGRectMake(0, 0, (SCREEN_WIDTH-56)/3, 38) ImageName:@"" Text:@"查看评价" TextColor:RS_Theme_Color];
+    _checkAppraiseBtn = (UIButton *)[RSButton buttonWithFrame:CGRectMake(0, 10, (SCREEN_WIDTH-56)/3, 38) ImageName:@"" Text:@"查看评价" TextColor:RS_Theme_Color];
     _checkAppraiseBtn.layer.cornerRadius = 4;
     _checkAppraiseBtn.layer.masksToBounds = YES;
     _checkAppraiseBtn.layer.borderColor = RS_COLOR_C4.CGColor;
     _checkAppraiseBtn.layer.borderWidth = 1;
+    
+    [[_checkAppraiseBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        [[RSToastView shareRSToastView] showToast:@"马上上线..."];
+    }];
     
     [self.bottomView addSubview:_checkAppraiseBtn];
     return _checkAppraiseBtn;

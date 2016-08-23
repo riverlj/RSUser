@@ -221,7 +221,11 @@
     RACSignal * signalB = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
         SchoolModel *schoolModel = [AppConfig getAPPDelegate].schoolModel;
-        if (totalPrice <= schoolModel.minprice) {
+        
+        NSNumber *totalPriceNumber = [NSNumber numberWithFloat:totalPrice];
+        NSNumber *minPriceNumber = [NSNumber numberWithFloat:schoolModel.minprice];
+        
+        if ([totalPriceNumber compare:minPriceNumber] == -1) {
             @strongify(self)
             [self disappearView];
             

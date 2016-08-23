@@ -14,7 +14,7 @@
 - (void)closeWebView;
 - (void)hideTitleBar;
 - (void)payWeChat:(id)str;
--(void)payAli:(NSString *)str;
+-(void)payAli:(id)str;
 @end
 
 @interface PayWebViewController : RSWebViewController<NavtiveJSExport>

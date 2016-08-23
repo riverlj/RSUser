@@ -67,6 +67,12 @@
 		B1422BFE1CBBAAF400C988FE /* RSLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BFD1CBBAAF400C988FE /* RSLineView.m */; };
 		B15395261CE17B93001763C7 /* LaunchimageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B15395251CE17B93001763C7 /* LaunchimageViewController.m */; };
 		B15395291CE1ADFB001763C7 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B15395281CE1ADFB001763C7 /* UserInfoModel.m */; };
+		B15BA5201D6406FA00F16982 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15BA51F1D6406FA00F16982 /* QuartzCore.framework */; };
+		B15BA5221D64070E00F16982 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15BA5211D64070E00F16982 /* CoreText.framework */; };
+		B15BA5241D64072A00F16982 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15BA5231D64072A00F16982 /* CFNetwork.framework */; };
+		B15BA5261D64073900F16982 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15BA5251D64073900F16982 /* CoreMotion.framework */; };
+		B15BA5291D640B9600F16982 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B15BA5271D640B9600F16982 /* AlipaySDK.bundle */; };
+		B15BA52A1D640B9600F16982 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15BA5281D640B9600F16982 /* AlipaySDK.framework */; };
 		B162BC911CBC91FB00E27228 /* GoodListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC901CBC91FB00E27228 /* GoodListModel.m */; };
 		B162BC941CBC951500E27228 /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC931CBC951500E27228 /* BannerModel.m */; };
 		B162BC971CBCA3ED00E27228 /* GoodListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC961CBCA3ED00E27228 /* GoodListCell.m */; };
@@ -280,6 +286,14 @@
 		B15395251CE17B93001763C7 /* LaunchimageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchimageViewController.m; sourceTree = "<group>"; };
 		B15395271CE1ADFB001763C7 /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		B15395281CE1ADFB001763C7 /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
+		B15BA51B1D6406AE00F16982 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		B15BA51D1D6406BA00F16982 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		B15BA51F1D6406FA00F16982 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B15BA5211D64070E00F16982 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		B15BA5231D64072A00F16982 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		B15BA5251D64073900F16982 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		B15BA5271D640B9600F16982 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		B15BA5281D640B9600F16982 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		B162BC8F1CBC91FB00E27228 /* GoodListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodListModel.h; sourceTree = "<group>"; };
 		B162BC901CBC91FB00E27228 /* GoodListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodListModel.m; sourceTree = "<group>"; };
 		B162BC921CBC951500E27228 /* BannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerModel.h; sourceTree = "<group>"; };
@@ -450,6 +464,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B15BA5261D64073900F16982 /* CoreMotion.framework in Frameworks */,
+				B15BA5241D64072A00F16982 /* CFNetwork.framework in Frameworks */,
+				B15BA52A1D640B9600F16982 /* AlipaySDK.framework in Frameworks */,
+				B15BA5221D64070E00F16982 /* CoreText.framework in Frameworks */,
+				B15BA5201D6406FA00F16982 /* QuartzCore.framework in Frameworks */,
 				B10470881CFC1A2F008DAA7D /* JSPatch.framework in Frameworks */,
 				B1326E471CE42A0B001F90CE /* Foundation.framework in Frameworks */,
 				B1738D8B1CB65FBF006C7207 /* UIKit.framework in Frameworks */,
@@ -507,6 +526,12 @@
 		89CD2143532C7CFFFAD5050B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B15BA5251D64073900F16982 /* CoreMotion.framework */,
+				B15BA5231D64072A00F16982 /* CFNetwork.framework */,
+				B15BA5211D64070E00F16982 /* CoreText.framework */,
+				B15BA51F1D6406FA00F16982 /* QuartzCore.framework */,
+				B15BA51D1D6406BA00F16982 /* libz.tbd */,
+				B15BA51B1D6406AE00F16982 /* libc++.tbd */,
 				B1326E461CE42A0B001F90CE /* Foundation.framework */,
 				B1326E441CE429F9001F90CE /* CoreGraphics.framework */,
 				B1326E421CE429D1001F90CE /* CoreTelephony.framework */,
@@ -533,6 +558,7 @@
 		B123DCA71CC7704B00F08E8D /* ThreeLib */ = {
 			isa = PBXGroup;
 			children = (
+				B15BA5161D64059F00F16982 /* Alipay */,
 				B10470861CFC1A14008DAA7D /* JSPatch */,
 				B1326E341CE428B1001F90CE /* Baidu */,
 				B123DCA81CC7705900F08E8D /* WeiXin */,
@@ -548,7 +574,7 @@
 				B123DCAB1CC7707600F08E8D /* WXApi.h */,
 				B123DCAC1CC7707600F08E8D /* WXApiObject.h */,
 			);
-			name = WeiXin;
+			path = WeiXin;
 			sourceTree = "<group>";
 		};
 		B123DCAE1CC77C7B00F08E8D /* Login */ = {
@@ -603,6 +629,15 @@
 				B1326E351CE428DC001F90CE /* libBaiduMobStat.a */,
 			);
 			path = Baidu;
+			sourceTree = "<group>";
+		};
+		B15BA5161D64059F00F16982 /* Alipay */ = {
+			isa = PBXGroup;
+			children = (
+				B15BA5271D640B9600F16982 /* AlipaySDK.bundle */,
+				B15BA5281D640B9600F16982 /* AlipaySDK.framework */,
+			);
+			path = Alipay;
 			sourceTree = "<group>";
 		};
 		B162BCA01CBE10FB00E27228 /* Utils */ = {
@@ -1205,7 +1240,7 @@
 				TargetAttributes = {
 					B1FFB8751CB64DCA00255F21 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 78WD89EN9R;
+						DevelopmentTeam = HVW9LQ2544;
 					};
 					B1FFB88E1CB64DCA00255F21 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -1242,6 +1277,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B15BA5291D640B9600F16982 /* AlipaySDK.bundle in Resources */,
 				B123DC481CC637C400F08E8D /* Assets.xcassets in Resources */,
 				B1C57AB61CFC2DAC00F52366 /* main.js in Resources */,
 			);
@@ -1566,6 +1602,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RSUser/Frame",
+					"$(PROJECT_DIR)/RSUser/Frame/Alipay",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = RSUser/Frame/Config/AppHeader.h;
@@ -1649,7 +1686,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.Breakfast;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.redscarfuser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1668,6 +1705,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RSUser/Frame",
+					"$(PROJECT_DIR)/RSUser/Frame/Alipay",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = RSUser/Frame/Config/AppHeader.h;
@@ -1751,7 +1789,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.Breakfast;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.redscarfuser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

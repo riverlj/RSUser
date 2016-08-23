@@ -28,7 +28,7 @@
         @"statusDesc" : @"statusDesc",
         @"totalprice" : @"totalprice",
         @"paymethod" : @"paymethod",
-        @"products" : @"products",
+//        @"products" : @"products",
         @"deliverys" : @"deliverys",
         @"orderlog" : @"orderlog",
         @"couponid" : @"couponid",

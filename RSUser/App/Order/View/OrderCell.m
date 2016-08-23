@@ -367,7 +367,6 @@
 
 - (void)notificationCenterEvent:(id)sender {
     if (_orderModel.reduceTime > 0) {
-        NSLog(@"%@+++++%ld", _orderModel.orderId, _orderModel.reduceTime);
         
         [self.orderTableView reloadData];
     }else {

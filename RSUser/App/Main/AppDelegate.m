@@ -13,6 +13,7 @@
 #import "LaunchimageViewController.h"
 #import <JSPatch/JPEngine.h>
 #import "CustomNSURLProtocol.h"
+#import <AlipaySDK/AlipaySDK.h>
 
 @interface AppDelegate ()
 
@@ -61,14 +62,56 @@
 #pragma mark UIApplicationDelegate 代理方法
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    [WXApi handleOpenURL:url delegate:self];
-     return YES;
+    if ([url.scheme isEqualToString:@"wx3ba861f7b4956067"]) {
+        [WXApi handleOpenURL:url delegate:self];
+    }
+    
+    __weak AppDelegate *selfB = self;
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            [selfB handleALIPayResult:resultDic];
+        }];
+    }
+    return YES;
+    
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
 {
-    [WXApi handleOpenURL:url delegate:self];
+    if ([url.scheme isEqualToString:@"wx3ba861f7b4956067"]) {
+        [WXApi handleOpenURL:url delegate:self];
+    }
+    
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        __weak AppDelegate *selfB = self;
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"%@", resultDic);
+            [selfB handleALIPayResult:resultDic];
+        }];
+    }
+    
     return YES;
+}
+
+- (void)handleALIPayResult:(NSDictionary *)resultDic {
+
+    NSInteger resultStatus = [[resultDic valueForKey:@"resultStatus"] integerValue];
+    if (resultStatus == 9000) {
+        [[RSToastView shareRSToastView] showToast:@"支付成功"];
+        [self gotoOrderInfoViewController];
+    }else {
+        [[RSToastView shareRSToastView] showToast:@"支付未完成,请重新支付"];
+    }
+    
+}
+
+- (void)gotoOrderInfoViewController {
+    NSString *orderid = [NSUserDefaults getValue:@"currentorderid"];
+    [NSUserDefaults clearValueForKey:@"currentorderid"];
+    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderId=%@",orderid]];
+    [self.crrentNavCtl pushViewController:vc animated:YES];
 }
 
 #pragma mark WXApiDelegate 代理方法
@@ -81,16 +124,11 @@
             {
                 [[RSToastView shareRSToastView] showToast:@"支付成功"];
                 //跳转到订单详情
-                NSString *orderid = [NSUserDefaults getValue:@"currentorderid"];
-                [NSUserDefaults clearValueForKey:@"currentorderid"];
-                UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderId=%@",orderid]];
-                [self.crrentNavCtl pushViewController:vc animated:YES];
-                
+                [self gotoOrderInfoViewController];
                 break;
             }
             case WXErrCodeUserCancel:  //用户取消并返回
             {
-                
                 [[RSToastView shareRSToastView] showToast:@"支付未完成,请重新支付"];
                 break;
             }
@@ -98,10 +136,7 @@
             default: //其他类型的错误
             {
                 [[RSToastView shareRSToastView] showToast:@"支付失败，请重新支付"];
-                NSString *orderid = [NSUserDefaults getValue:@"currentorderid"];
-                [NSUserDefaults clearValueForKey:@"currentorderid"];
-                UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderId=%@",orderid]];
-                [self.crrentNavCtl pushViewController:vc animated:YES];
+                [self gotoOrderInfoViewController];
                 break;
             }
         }
@@ -115,6 +150,10 @@
         [LoginModel getAccess_token:code];
     }
     
+}
+
+-(void)applicationWillEnterForeground:(UIApplication *)application {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"GoodListChangedInOrderView" object:nil];
 }
 
 @end

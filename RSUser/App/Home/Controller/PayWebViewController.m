@@ -8,6 +8,7 @@
 
 #import "PayWebViewController.h"
 #import "OrderInfoAndStatusViewController.h"
+#import <AlipaySDK/AlipaySDK.h>
 
 @interface PayWebViewController ()
 
@@ -69,10 +70,19 @@
     
 }
 
--(void)payAli:(NSString *)str
+-(void)payAli:(id)str
 {
+    [NSUserDefaults setValue:self.orderId forKey:@"currentorderid"];
+
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dic  = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+    NSString *payData = [dic valueForKey:@"payData"];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[RSToastView shareRSToastView] showToast:@"暂未提供该服务"];
+        NSString *appScheme = @"rsuser";
+        [[AlipaySDK defaultService] payOrder:payData fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+            [[AppConfig getAPPDelegate] handleALIPayResult:resultDic];
+        }];
     });
 }
 

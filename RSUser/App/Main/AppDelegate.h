@@ -29,4 +29,6 @@
 @property (nonatomic ,assign)BOOL userValid;
 
 - (void)setappRootViewControler;
+
+- (void)handleALIPayResult:(NSDictionary *)resultDic;
 @end

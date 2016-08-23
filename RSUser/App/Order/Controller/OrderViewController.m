@@ -160,7 +160,6 @@
     }
 
     [self.params setValue:@(self.models.count) forKey:@"offset"];
-    NSLog(@"%@",self.params);
     
 }
 
