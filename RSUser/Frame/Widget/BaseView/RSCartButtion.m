@@ -48,10 +48,10 @@ static RSCartButtion *shareObject = nil;
         {
             RSCartButtion *button = [RSCartButtion buttonWithType:UIButtonTypeCustom];
             
-            UIImage *buttonImage = [UIImage imageNamed:@"tab_cart"];
+//            UIImage *buttonImage = [UIImage imageNamed:@"tab_cart"];
             UIImage *buttonImage_no = [UIImage imageNamed:@"tab_cart_noselected"];
             [button setImage:buttonImage_no forState:UIControlStateNormal];
-            [button setImage:buttonImage forState:UIControlStateHighlighted];
+            [button setImage:buttonImage_no forState:UIControlStateHighlighted];
             [button setTitle:@"购物车" forState:UIControlStateNormal];
             [button setTitleColor:RS_COLOR_C3 forState:UIControlStateNormal];
             button.titleLabel.font = [UIFont systemFontOfSize:10];

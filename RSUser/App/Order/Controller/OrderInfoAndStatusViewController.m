@@ -176,6 +176,9 @@
             
             self.goPayBtn.x = self.cancelBtn.right + 10;
             self.goPayBtn.width = btnWidth;
+            
+            //TODO
+            self.bottomView.hidden = NO;
         }
             break;
         case 128:
@@ -183,6 +186,9 @@
         {// 已取消(系统取消，用户取消), 再来一单
             self.oneMoreBtn.x = 18;
             self.oneMoreBtn.width = btnWidth;
+            
+            //TODO
+            self.bottomView.hidden = YES;
         }
             break;
         case 1:
@@ -192,6 +198,9 @@
             
             self.oneMoreBtn.x = self.retreatBtn.right + 10;
             self.oneMoreBtn.width = btnWidth;
+            
+            //TODO
+            self.bottomView.hidden = YES;
         }
             break;
         case 129:
@@ -208,6 +217,10 @@
             
             self.oneMoreBtn.x = self.feedBackBtn.right + 10;
             self.oneMoreBtn.width =btnWidth;
+            
+            //TODO
+            self.feedBackBtn.width = SCREEN_WIDTH - 36;
+            self.oneMoreBtn.hidden = YES;
         }
             break;
         case 3:
@@ -220,6 +233,11 @@
             
             self.rateBtn.x = self.oneMoreBtn.right + 10;
             self.rateBtn.width = btnWidth;
+            
+            //TODO
+            self.feedBackBtn.width = SCREEN_WIDTH - 36;
+            self.oneMoreBtn.hidden = YES;
+            self.rateBtn.hidden = YES;
         }
             break;
         case 4:
@@ -232,10 +250,20 @@
             
             self.checkAppraiseBtn.x = self.oneMoreBtn.right + 10;
             self.checkAppraiseBtn.width = btnWidth;
+            
+            //TODO
+            self.feedBackBtn.width = SCREEN_WIDTH - 36;
+            self.oneMoreBtn.hidden = YES;
+            self.checkAppraiseBtn.hidden = YES;
         }
             break;
         default:
             break;
+    }
+
+    if (self.bottomView.hidden) {
+        self.orderStatusVc.view.height = self.view.height-50;
+        self.orderInfoVc.view.height = self.view.height-50;
     }
 }
 

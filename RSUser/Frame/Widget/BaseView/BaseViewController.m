@@ -53,12 +53,17 @@
     
     [RACObserve(_countLabel, text) subscribeNext:^(NSString *text) {
         RSCartButtion *button = (RSCartButtion *)CYLExternPlusButton;
+        UIImage *buttonImage = [UIImage imageNamed:@"tab_cart"];
+        UIImage *buttonImage_no = [UIImage imageNamed:@"tab_cart_noselected"];
+        
         if ([text integerValue] == 0) {
             _countLabel.hidden = YES;
-            button.highlighted = NO;
+            [button setImage:buttonImage_no forState:UIControlStateNormal];
+            [button setImage:buttonImage_no forState:UIControlStateHighlighted];
         }else{
             _countLabel.hidden = NO;
-            button.highlighted = YES;
+            [button setImage:buttonImage forState:UIControlStateNormal];
+            [button setImage:buttonImage forState:UIControlStateHighlighted];
         }
     }];
 }
