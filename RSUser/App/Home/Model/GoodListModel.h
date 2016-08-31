@@ -8,6 +8,15 @@
 
 #import "RSModel.h"
 
+@interface GoodListpromotion : RSModel<MTLJSONSerializing>
+@property (nonatomic ,strong)NSString *desc;
+@property (nonatomic ,strong)NSString *title;
+@property (nonatomic ,assign)NSInteger type;
+@property (nonatomic ,assign)NSInteger promotionid;
+
+- (NSString *)getImageNameByType;
+@end
+
 @interface GoodListModel : RSModel<MTLJSONSerializing>
 /**通用商品销量*/
 @property (nonatomic ,assign)NSInteger saled;
@@ -32,6 +41,9 @@
 @property (nonatomic ,assign)NSInteger num;
 
 @property (nonatomic ,assign)NSInteger topcategoryid;
+@property (nonatomic ,assign)Boolean ishot;
+@property (nonatomic ,assign)Boolean isnew;
+@property (nonatomic ,strong)NSArray *promotions;
 
-
+- (NSString *)getImageNameBytopcategoryid;
 @end

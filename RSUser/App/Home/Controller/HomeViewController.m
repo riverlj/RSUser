@@ -287,7 +287,6 @@
         NSDictionary *dic = data[i];
         GoodListModel *goodListModel =[MTLJSONAdapter modelOfClass:[GoodListModel class] fromJSONDictionary:dic error:&error];
         goodListModel.cellClassName = @"GoodListCell";
-        goodListModel.cellHeight = 93;
         [_goodListArray addObject:goodListModel];
     }
     
@@ -490,7 +489,6 @@
         NSDictionary *dic = tempArray[i];
         GoodListModel *goodListModel =[MTLJSONAdapter modelOfClass:[GoodListModel class] fromJSONDictionary:dic error:nil];
         goodListModel.cellClassName = @"GoodListCell";
-        goodListModel.cellHeight = 93;
         [_goodListArray addObject:goodListModel];
         if (i==tempArray.count-1) {
             goodListModel.hiddenLine = YES;

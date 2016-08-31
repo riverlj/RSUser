@@ -8,6 +8,30 @@
 
 #import "GoodListModel.h"
 
+@implementation GoodListpromotion
+
++(NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    return @{
+             @"desc" : @"desc",
+             @"title" : @"title",
+             @"type" : @"type",
+             @"promotionid" : @"id",
+             };
+}
+
+- (NSString *)getImageNameByType {
+    NSString *imageName = @"icon_hui";
+    
+    if (self.type == 2) {
+        imageName = @"icon_zhe";
+    }else if(self.type == 5) {
+        imageName = @"icon_zeng";
+    }
+    return imageName;
+}
+@end
+
 @implementation GoodListModel
 +(NSDictionary *)JSONKeyPathsByPropertyKey
 {
@@ -21,7 +45,10 @@
              @"headimg" : @"headimg",
              @"name" : @"name",
              @"price" : @"price",
-             @"topcategoryid" : @"topcategoryid"
+             @"topcategoryid" : @"topcategoryid",
+             @"ishot" : @"ishot",
+             @"isnew" : @"isnew",
+             @"promotions" : @"promotions"
              };
 }
 
@@ -34,6 +61,22 @@
         _headimg = [_headimg stringByAppendingString:sizestr];
     }
     return _headimg;
+}
+
++ (NSValueTransformer *)promotionsJSONTransformer {
+    return [MTLJSONAdapter arrayTransformerWithModelClass:GoodListpromotion.class];
+}
+
+- (NSString *)getImageNameBytopcategoryid {
+    NSString *imageName = @"";
+    if (self.topcategoryid == 1) {
+        imageName = @"label_breakfast";
+    }else if(self.topcategoryid == 2) {
+        imageName = @"label_lunch";
+    }else if(self.topcategoryid == 3) {
+        imageName = @"label_fruit";
+    }
+    return imageName;
 }
 @end
 

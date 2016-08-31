@@ -21,11 +21,8 @@
 @property (nonatomic, strong) UIImageView *subIV;
 /**选中量*/
 @property (nonatomic, strong) UILabel *countLabel;
-
 @property (nonatomic, strong)UIView *lineView;
-
 @property (nonatomic, strong)GoodListModel *cartmodel;
-
 @end
 
 @interface GoodListCell : CartCell
@@ -43,6 +40,11 @@
 @property (nonatomic, strong) UIView *subView;
 @property (nonatomic, strong) UIView *addView;
 
+@property (nonatomic ,strong)UIImageView *labelImageView;
+@property (nonatomic ,strong)UIImageView *newsImageView;
+@property (nonatomic ,strong)UIImageView *hotImageView;
+
+
 @property (nonatomic, strong) NSIndexPath *indexPath;
 
 /*已售罄*/
@@ -50,7 +52,5 @@
 @property (nonatomic, strong) GoodListModel *listModel;
 
 - (void)addCountClick;
-
-
 @end
 
