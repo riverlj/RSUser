@@ -9,14 +9,30 @@
 #import "GoodinfoViewController.h"
 #import "GoodModel.h"
 
-#define kHEIGHT 250
+#define kHEIGHT 215
 
 @interface GoodinfoViewController ()
+{
+    UIImage *oldImg1;
+    UIImage *oldImg2;
+    UIView *statusBarView;
+}
 @property (nonatomic, strong)UIImageView *headImgeView;
+@property (nonatomic, strong)UIImageView *shadowView;
+
 
 @end
 
 @implementation GoodinfoViewController
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.showCartBottom = YES;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,6 +51,7 @@
     self.tableView.frame =CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49);
     self.tableView.contentInset = UIEdgeInsetsMake(kHEIGHT, 0, 0, 0);
     [self.tableView addSubview:self.headImgeView];
+    [self.headImgeView addSubview:self.shadowView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCountLabel) name:@"Notification_UpadteCountLabel" object:nil];
 
@@ -56,7 +73,26 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.tabBarController.tabBar.hidden = NO;
+    
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    oldImg1 = [self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault];
+    oldImg2 = [self.navigationController.navigationBar shadowImage];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    
+    statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, SCREEN_WIDTH, 20)];
+    statusBarView.backgroundColor = [UIColor clearColor];
+    [self.navigationController.navigationBar addSubview:statusBarView];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:oldImg1 forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:oldImg2];
+    self.navigationController.navigationBar.backgroundColor = RS_Theme_Color;
+    
+    [statusBarView removeFromSuperview];
 }
 
 -(UIImageView *)headImgeView{
@@ -69,6 +105,17 @@
     _headImgeView.tag = 101;
     
     return _headImgeView;
+}
+
+-(UIView *)shadowView {
+    if (_shadowView) {
+        return  _shadowView;
+    }
+    _shadowView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kHEIGHT)];
+    _shadowView.image = [UIImage imageNamed:@"goodImageshadow"];
+    _shadowView.contentMode = UIViewContentModeScaleAspectFill;
+
+    return _shadowView;
 }
 
 -(void)beforeHttpRequest {

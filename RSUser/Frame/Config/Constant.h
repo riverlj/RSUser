@@ -29,11 +29,11 @@
 
 #endif
 
-#ifdef DEBUG
-#   define NSLog(...) NSLog(__VA_ARGS__)
-#else
-#   define NSLog(...)
-#endif
+//#ifdef DEBUG
+//#   define NSLog(...) NSLog(__VA_ARGS__)
+//#else
+//#   define NSLog(...)
+//#endif
 
 #define iPhone4S ([UIScreen mainScreen].bounds.size.height == 480 ? YES : NO)
 #define iPhone5S ([UIScreen mainScreen].bounds.size.height == 568 ? YES : NO)
@@ -57,5 +57,8 @@
 
 //百度统计key
 #define RSUSER_BAIDU_KEY @"43a650796d"
+
+#pragma mark 通知中心
+#define UPDATE_BOTTOM_CAR_TDATE @"updateBottomCartDate"
 
 #endif /* Constant_h */

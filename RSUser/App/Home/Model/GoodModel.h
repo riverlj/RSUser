@@ -22,6 +22,10 @@
 @property (nonatomic ,copy)NSString *saleprice;
 @property (nonatomic ,copy)NSString *name;
 @property (nonatomic ,copy)NSString *desc;
+@property (nonatomic ,assign)Boolean ishot;
+@property (nonatomic ,assign)Boolean isnew;
+@property (nonatomic, strong)NSArray *promotions;
+
 
 @property (nonatomic ,assign)Boolean lineHidden;
 @property (nonatomic, strong)NSString *subText;

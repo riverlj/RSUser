@@ -17,13 +17,23 @@
 @implementation ChannelbrandsViewController
 
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.showCartBottom = YES;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"品牌馆";
     
+    self.bottomCartView.y -= 64;
+
     self.models = [[NSMutableArray alloc]init];
-    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49);
+    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-44);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.url = @"/brand/list";
@@ -72,7 +82,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.tabBarController.tabBar.hidden = NO;
 }
 
 - (void)beforeHttpRequest {

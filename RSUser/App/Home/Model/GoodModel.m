@@ -24,7 +24,10 @@
              @"headimg" : @"headimg",
              @"saleprice" : @"saleprice",
              @"name" : @"name",
-             @"desc" : @"desc"
+             @"desc" : @"desc",
+             @"ishot" : @"ishot",
+             @"isnew" : @"isnew",
+             @"promotions" : @"promotions"
              };
 }
 
@@ -43,5 +46,9 @@
         _headimg = [_headimg stringByAppendingString:sizestr];
     }
     return _headimg;
+}
+
++ (NSValueTransformer *)promotionsJSONTransformer {
+    return [MTLJSONAdapter arrayTransformerWithModelClass:GoodListpromotion.class];
 }
 @end

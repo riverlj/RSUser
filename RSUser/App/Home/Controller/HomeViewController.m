@@ -75,7 +75,7 @@
     canRefrash = YES;
     self.tableView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-113);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.tableHeaderView = self.cycleScrollView;
+//    self.tableView.tableHeaderView = self.cycleScrollView;
     
     self.url = @"/product/list";
     self.useFooterRefresh = NO;
@@ -245,6 +245,12 @@
 
 -(void)initBannerView
 {
+    if (_bannerImageUrls.count == 0) {
+        self.tableView.tableHeaderView = nil;
+    }else{
+        self.tableView.tableHeaderView = self.cycleScrollView;
+    }
+    
     if (_bannerImageUrls.count < 2)
     {
         self.cycleScrollView.infiniteLoop = NO;
@@ -340,7 +346,6 @@
     }
     return nil;
 }
-
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 1) {

@@ -13,6 +13,7 @@
 #import "OrderViewController.h"
 #import "ProfileViewController.h"
 
+
 @interface BaseViewController ()
 
 @end
@@ -23,9 +24,12 @@
 {
     self = [super init];
     if (self) {
+        self.showCartBottom = NO;
     }
     return self;
 }
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,6 +39,10 @@
     self.navigationController.navigationBar.hidden = NO;
     self.view.backgroundColor = RS_Background_Color;
     
+    if (self.navigationController.viewControllers.count > 1 && self.showCartBottom) {
+        self.bottomCartView = [[BottomCartView alloc]initWithFrame:CGRectMake(0, self.view.height-44, SCREEN_WIDTH, 44)];
+        [self.view addSubview:self.bottomCartView];
+    }
 }
 
 - (void)creatCountLable
@@ -55,6 +63,8 @@
         RSCartButtion *button = (RSCartButtion *)CYLExternPlusButton;
         UIImage *buttonImage = [UIImage imageNamed:@"tab_cart"];
         UIImage *buttonImage_no = [UIImage imageNamed:@"tab_cart_noselected"];
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:UPDATE_BOTTOM_CAR_TDATE object:nil];
         
         if ([text integerValue] == 0) {
             _countLabel.hidden = YES;
@@ -80,6 +90,18 @@
         [AppConfig getAPPDelegate].crrentNavCtl = self.navigationController;
     }
     
+    if (self.bottomCartView) {
+        NSArray *subViews = self.view.subviews;
+        
+         NSInteger index=0;
+        for (int i=0; i<subViews.count; i++) {
+            if (self.bottomCartView == subViews[i]) {
+                index = i;
+            }
+        }
+        
+        [self.view exchangeSubviewAtIndex:index withSubviewAtIndex:subViews.count-1];
+    }
 }
 
 -(RSTipsView *) tips

@@ -30,5 +30,11 @@
 
 @property (nonatomic, strong)GoodModel *goodmodel;
 
+@property (nonatomic ,strong)UIImageView *newsImageView;
+@property (nonatomic ,strong)UIImageView *hotImageView;
+
+@property (nonatomic, strong)UIView *goodInfolineView;
+
+
 
 @end

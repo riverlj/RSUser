@@ -50,6 +50,7 @@
 		B12484531D49D489003C587A /* GoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B12484521D49D489003C587A /* GoodModel.m */; };
 		B12484561D49DE36003C587A /* GoodInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B12484551D49DE36003C587A /* GoodInfoView.m */; };
 		B124845C1D49F441003C587A /* GoodInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B124845B1D49F441003C587A /* GoodInfoCell.m */; };
+		B12A5DFF1D768FF400883DAB /* BottomCartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B12A5DFE1D768FF400883DAB /* BottomCartView.m */; };
 		B1326E361CE428DC001F90CE /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E351CE428DC001F90CE /* libBaiduMobStat.a */; };
 		B1326E391CE42960001F90CE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E381CE42960001F90CE /* JavaScriptCore.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B1326E3B1CE42995001F90CE /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E3A1CE42995001F90CE /* libstdc++.6.0.9.tbd */; };
@@ -260,6 +261,8 @@
 		B12484551D49DE36003C587A /* GoodInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodInfoView.m; sourceTree = "<group>"; };
 		B124845A1D49F441003C587A /* GoodInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodInfoCell.h; sourceTree = "<group>"; };
 		B124845B1D49F441003C587A /* GoodInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodInfoCell.m; sourceTree = "<group>"; };
+		B12A5DFD1D768FF400883DAB /* BottomCartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomCartView.h; sourceTree = "<group>"; };
+		B12A5DFE1D768FF400883DAB /* BottomCartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomCartView.m; sourceTree = "<group>"; };
 		B1326E351CE428DC001F90CE /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
 		B1326E371CE4290F001F90CE /* BaiduMobStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobStat.h; sourceTree = "<group>"; };
 		B1326E381CE42960001F90CE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -787,6 +790,8 @@
 			children = (
 				B1422BF91CBB9E4100C988FE /* CartNumberLabel.h */,
 				B1422BFA1CBB9E4100C988FE /* CartNumberLabel.m */,
+				B12A5DFD1D768FF400883DAB /* BottomCartView.h */,
+				B12A5DFE1D768FF400883DAB /* BottomCartView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1455,6 +1460,7 @@
 				30221E5D1CCE30AC00126D72 /* UILabe+Growth.m in Sources */,
 				B118A0BC1CDB106D00598506 /* CodesView.m in Sources */,
 				B10769A41CBE43E600586304 /* RSLabel.m in Sources */,
+				B12A5DFF1D768FF400883DAB /* BottomCartView.m in Sources */,
 				B123DCBA1CC77FAD00F08E8D /* LoginModel.m in Sources */,
 				B15395291CE1ADFB001763C7 /* UserInfoModel.m in Sources */,
 				30221E561CCE06C300126D72 /* HeadviewCell.m in Sources */,

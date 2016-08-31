@@ -9,6 +9,8 @@
 #import "GoodInfoCell.h"
 #import "GoodListModel.h"
 
+#define MARGIN_LEFT 18
+
 @implementation GoodInfoSubCell
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -57,6 +59,8 @@
     CGSize nameSize = [self.nameLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
     self.nameLabel.frame = CGRectMake(18, 15, nameSize.width,nameSize.height);
     
+
+    
     CGSize saledSize = [self.saledLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
     self.saledLabel.frame = CGRectMake(self.nameLabel.left, self.nameLabel.bottom + 6, SCREEN_WIDTH-2*self.nameLabel.left, saledSize.height);
     
@@ -73,16 +77,24 @@
 
 @end
 
+
 @implementation GoodInfoCell
+{
+    NSInteger maxCount;
+}
+
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        [self.contentView addSubview:self.hotImageView];
+        [self.contentView addSubview:self.newsImageView];
         [self.contentView addSubview:self.priceLabel];
         [self.contentView addSubview:self.addCartBtn];
         [self.contentView addSubview:self.subIV];
         [self.contentView addSubview:self.addIV];
+        [self.contentView addSubview:self.goodInfolineView];
         [self.contentView addSubview:self.countLabel];
         
         [RACObserve(self.countLabel, text) subscribeNext:^(NSString *value) {
@@ -98,6 +110,24 @@
         }];
     }
     return self;
+}
+
+- (UIImageView *)hotImageView {
+    if (_hotImageView) {
+        return _hotImageView;
+    }
+    _hotImageView = [RSImageView imageViewWithFrame:CGRectZero ImageName:@"label_hot"];
+    _hotImageView.hidden = YES;
+    return _hotImageView;
+}
+
+-(UIImageView *)newsImageView {
+    if (_newsImageView) {
+        return _newsImageView;
+    }
+    _newsImageView = [RSImageView imageViewWithFrame:CGRectZero ImageName:@"label_new"];
+    _newsImageView.hidden = YES;
+    return _newsImageView;
 }
 
 -(UILabel *)priceLabel {
@@ -155,13 +185,54 @@
     return _addCartBtn;
 }
 
+-(UIView *)goodInfolineView{
+    if (_goodInfolineView) {
+        return _goodInfolineView;
+    }
+    _goodInfolineView = [RSLineView lineViewHorizontalWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-18, 1) Color:RS_Line_Color];
+    _goodInfolineView.hidden = YES;
+    
+    return _goodInfolineView;
+}
+
 -(void)setModel:(GoodModel *)model {
-    [super setModel:model];
-    self.goodmodel = model;
     CGFloat cellHeight = 0;
-    _priceLabel.text = [NSString stringWithFormat:@"¥%@", model.saleprice];
+
+    self.goodmodel = model;
+    
+    //商品名称
+    self.nameLabel.text = model.name;
+    CGSize nameSize = [self.nameLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
+    if (model.isnew) { //是否是新品
+        self.newsImageView.hidden = NO;
+        self.newsImageView.frame = CGRectMake(MARGIN_LEFT, 10, 14, 14);
+        self.nameLabel.frame = CGRectMake(MARGIN_LEFT + 14 + 4, 10, nameSize.width,nameSize.height);
+        self.nameLabel.centerY = self.newsImageView.centerY;
+    }else {
+        self.newsImageView.hidden = YES;
+        self.nameLabel.frame = CGRectMake(MARGIN_LEFT, 10, nameSize.width, nameSize.height);
+    }
+    
+    //商品销售量
+    self.saledLabel.text = model.subText;
+    CGSize saledSize = [self.saledLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
+    self.saledLabel.frame = CGRectMake(MARGIN_LEFT, self.nameLabel.bottom + 6, SCREEN_WIDTH-2*self.nameLabel.left, saledSize.height);
+
+    // 商品价格
+    self.priceLabel.text = [NSString stringWithFormat:@"¥%@", model.saleprice];
     CGSize priceSize = [self.priceLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
-    _priceLabel.frame = CGRectMake(self.nameLabel.left, self.saledLabel.bottom+10, priceSize.width, priceSize.height);
+    _priceLabel.frame = CGRectMake(MARGIN_LEFT, self.saledLabel.bottom+10, priceSize.width, priceSize.height);
+    
+    //人气旺
+    if (model.ishot) {
+        self.hotImageView.hidden = NO;
+        self.hotImageView.frame = CGRectMake(self.priceLabel.right + 10, self.priceLabel.top, 38, 14);
+        self.hotImageView.centerY = self.priceLabel.centerY;
+    }else{
+        self.hotImageView.hidden = YES;
+    }
+    
+    //加入购物车按钮
     self.addCartBtn.x = SCREEN_WIDTH - 10 - self.addCartBtn.width;
     self.addCartBtn.y = self.priceLabel.top - 5;
     
@@ -180,7 +251,47 @@
     self.subIV.frame = CGRectMake(self.countLabel.x-2*addSize.width, self.addIV.top, self.addIV.width, self.addIV.height);
     self.subIV.centerY = self.addCartBtn.centerY;
     
-    cellHeight = self.priceLabel.bottom + 15;
+    
+    //优惠信息
+    NSArray *promotions = model.promotions;
+    if (promotions.count > 0) {
+        _goodInfolineView.hidden = NO;
+        _goodInfolineView.x = MARGIN_LEFT;
+        _goodInfolineView.y = self.priceLabel.bottom + 14;
+    }else {
+        _goodInfolineView.hidden = YES;
+    }
+    CGFloat h = self.priceLabel.bottom;
+    h += 25;
+    
+    if (promotions.count>maxCount) {
+        maxCount = promotions.count;
+    }
+    for (int i=0; i<maxCount; i++) {
+        [[self.contentView viewWithTag:(1000+i)] removeFromSuperview];
+        [[self.contentView viewWithTag:(10000+i)] removeFromSuperview];
+    }
+    for (int i=0;  i<promotions.count; i++) {
+        GoodListpromotion *promotion = promotions[i];
+        NSString *imageName = [promotion getImageNameByType];
+        UIImageView *actionImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:imageName]];
+        actionImageView.tag = 1000+i;
+        actionImageView.frame = CGRectMake(MARGIN_LEFT, h+4, 15, 15);
+        actionImageView.contentMode = UIViewContentModeScaleAspectFill;
+        [self.contentView addSubview:actionImageView];
+        
+        UILabel *label = [RSLabel labellWithFrame:CGRectMake(actionImageView.right+5, actionImageView.top, SCREEN_WIDTH-actionImageView.right-23, 15) Text:promotion.desc Font:Font(9) TextColor:[NSString colorFromHexString:@"818181"]];
+        label.tag = 10000+i;
+        [self.contentView addSubview:label];
+        
+        label.centerY = actionImageView.centerY;
+        
+        h = label.bottom;
+    }
+    
+    cellHeight = h + 15;
+    
+    
     model.cellHeight = cellHeight;
 }
 
