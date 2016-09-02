@@ -218,8 +218,6 @@ static Cart *shareCart = nil;
         GoodListModel *model = [good copy];
         [goodsArray addObject:model];
     }
-    
-    [self updateCartCountLabelText];
 }
 
 /**
@@ -350,9 +348,11 @@ static Cart *shareCart = nil;
     if (num==0) {
         textLabel.text = nil;
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCountLabel" object:nil];
 }
 
+/**
+ * 获取购物车上的数值，即购物车中商品数量
+ */
 - (NSInteger)getCartCountLabelText
 {
     CartNumberLabel *textLabel = [CartNumberLabel shareCartNumberLabel];
@@ -424,6 +424,29 @@ static Cart *shareCart = nil;
     }];
     
     return dic;
+}
+
+/**
+ *  返回当前订单赠品id
+ *
+ */
+- (NSArray *)getGiftpromotionids {
+    NSMutableArray *cartGoods = [self getCartGoods];
+    NSLog(@"%@", cartGoods);
+    
+    NSMutableArray *promotionids = [[NSMutableArray alloc] init];
+    for (int i=0; i<cartGoods.count; i++) {
+        GoodListModel *goodListModel = cartGoods[i];
+        NSArray *promotions = goodListModel.promotions;
+        for (int j=0; j<promotions.count; j++) {
+            GoodListpromotion *goodListpromotion = promotions[j];
+            if (goodListpromotion.type == 5) {
+                [promotionids addObject:@(goodListpromotion.promotionid)];
+            }
+        }
+    }
+    
+    return [promotionids copy];
 }
 
 /**

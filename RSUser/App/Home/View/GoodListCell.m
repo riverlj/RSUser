@@ -243,7 +243,7 @@
     //商品描述
     self.menuLabel.text = model.desc;
     CGSize menuLabelSize = [self.menuLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
-    self.menuLabel.frame = CGRectMake(self.iconIV.right + 10, self.saledLabel.bottom + 4, menuLabelSize.width, menuLabelSize.height);
+    self.menuLabel.frame = CGRectMake(self.iconIV.right + 10, self.saledLabel.bottom + 4, SCREEN_WIDTH-self.iconIV.right-10-80, menuLabelSize.height);
     
 
     //商品价格
@@ -262,7 +262,7 @@
     
     //已售罄
     self.selloutLabel.text = @"已售罄";
-    self.selloutLabel.frame = CGRectMake(SCREEN_WIDTH-54, self.priceLabel.top, 54, 20);
+    self.selloutLabel.frame = CGRectMake(SCREEN_WIDTH-54-15, self.priceLabel.top, 54, 20);
     self.selloutLabel.centerY = self.priceLabel.centerY;
     self.selloutLabel.hidden = YES;
     if (_listModel.canbuymax == 0) {
@@ -318,37 +318,17 @@
         [[RSToastView shareRSToastView] showToast:@"库存不足啦，先买这么多吧～"];
         return;
     }
-    CGSize addSize = [UIImage imageNamed:@"addActivate"].size;
-    UIImageView *throwedView = [[UIImageView alloc]init];
-    throwedView.frame = CGRectMake(self.addIV.x, self.addIV.y + (self.addIV.y - addSize.height)/2, addSize.width, addSize.height);
-    [throwedView setImage:[UIImage imageNamed:@"addActivate"]];
-    throwedView.contentMode = UIViewContentModeLeft;
 
-    throwedView.tag = 10;
-    [self.contentView addSubview:throwedView];
-    
-    
-    ThrowLineTool *throwLineTool = [ThrowLineTool sharedTool];
-    throwLineTool.delegate = self;
+    ThrowLineTool *throwLineTool = [[ThrowLineTool alloc] init];
     CartNumberLabel *cartNumberLabel = [CartNumberLabel shareCartNumberLabel];
-    CGPoint cartLabelPoint = cartNumberLabel.center;
+
+    CGPoint benginPoint = [self.addIV.superview convertPoint:self.addIV.center toView:nil];
+    benginPoint.x -= 10;
+    CGPoint endpoint = [cartNumberLabel.superview convertPoint:cartNumberLabel.center toView:nil];
     
-    cartLabelPoint = [cartNumberLabel.superview convertPoint:cartLabelPoint toView:self.contentView];
-    CGRect beginRect = [self.addIV.superview convertRect:self.addIV.frame toView:nil];
-    CGRect endRect = [cartNumberLabel.superview convertRect:cartNumberLabel.frame toView:nil];
-    cartLabelPoint = [cartNumberLabel.superview convertPoint:cartLabelPoint toView:nil];
-    
-    CGPoint benginPoint = CGPointMake(beginRect.origin.x+self.addIV.width/2, beginRect.origin.y+self.addIV.height/2);
-    CGPoint endpoint = CGPointMake(endRect.origin.x+cartNumberLabel.width/2, endRect.origin.y+cartNumberLabel.height/2);
-    
-    UIWindow *window = [AppConfig getAPPDelegate].window;
-    throwedView.frame = beginRect;
-    [window addSubview:throwedView];
-    
-    [throwLineTool throwObject:throwedView from:benginPoint to:endpoint height:40 duration:0.5];
+    [throwLineTool throwObject:nil from:benginPoint to:endpoint height:40 duration:0.5];
     
     self.countLabel.text = [NSString stringWithFormat:@"%zd",[self.countLabel.text integerValue] +1];
-
     
     if ([self.countLabel.text integerValue] > 0)
     {
@@ -357,12 +337,8 @@
     }
     
     [[Cart sharedCart] addGoods:_listModel];
+     [[Cart sharedCart] updateCartCountLabelText];
     
-}
-
-- (void)animationDidFinish
-{
-    [[[AppConfig getAPPDelegate].window viewWithTag:10] removeFromSuperview];
 }
 
 - (void)subCountClick

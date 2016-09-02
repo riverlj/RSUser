@@ -20,6 +20,9 @@
 @property (nonatomic, strong)UIImageView *categoryImageView;
 @property (nonatomic, strong)UILabel *categoryLabel;
 @property (nonatomic, strong)UILabel *sendTimeLabel;
+@property (nonatomic, strong)UIView *categoryLineView;
+@property (nonatomic, strong)UIView *cellLineView;
+
 @property (nonatomic ,weak)id<SelectedSendTimeDelegate> delegate;
 
 

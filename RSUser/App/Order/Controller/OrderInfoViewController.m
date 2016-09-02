@@ -59,15 +59,20 @@
         confirmOrderViewModel.cellClassName = @"ConfirmGoodDetailCell";
         
         NSArray *goods = [dic valueForKey:@"products"];
+        
         NSMutableArray *viewGoods = [NSMutableArray array];
+        
         for (int i=0; i<goods.count; i++) {
             NSDictionary *goodDic = goods[i];
             GoodListModel *goodlistModel = [[GoodListModel alloc]init];
             goodlistModel.num = [[goodDic valueForKey:@"num"] integerValue];
             goodlistModel.name = [goodDic valueForKey:@"name"];
             goodlistModel.saleprice = [goodDic valueForKey:@"saleprice"];
+            goodlistModel.gift = [[goodDic valueForKey:@"gift"] integerValue];
             [viewGoods addObject:goodlistModel];
         }
+        
+        confirmOrderViewModel.viewType = @"orderinfoview";
         confirmOrderViewModel.goods = viewGoods;
         [goodArray addObject:confirmOrderViewModel];
     }

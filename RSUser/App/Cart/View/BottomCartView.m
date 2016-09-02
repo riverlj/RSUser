@@ -8,7 +8,7 @@
 
 #import "BottomCartView.h"
 
-#define BOTTOMVIIEW_HEIGHT 44
+#define BOTTOMVIIEW_HEIGHT 49
 
 @implementation BottomCartView
 {

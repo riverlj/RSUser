@@ -100,7 +100,7 @@
         return _headImgeView;
     }
     _headImgeView = [[UIImageView alloc]initWithFrame:CGRectMake(0, -kHEIGHT, SCREEN_WIDTH, kHEIGHT)];
-    _headImgeView.contentMode = UIViewContentModeScaleToFill;
+    _headImgeView.contentMode = UIViewContentModeScaleAspectFill;
     _headImgeView.clipsToBounds  = YES;
     _headImgeView.tag = 101;
     
@@ -205,6 +205,12 @@
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Notification_UpadteCountLabel" object:nil];
+}
+
+- (void)backUp
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_UpadteCountLabel" object:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

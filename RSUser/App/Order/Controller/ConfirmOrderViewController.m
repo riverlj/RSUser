@@ -39,7 +39,11 @@
     NSInteger selectedPickerRow;
     UILabel *timeLabel;
     NSInteger selectedCategoryid;
-
+    
+    NSInteger categoryCount;
+    
+    NSArray *gitfsArray;
+    NSArray *moneypromotionsArray;
 }
 @end
 
@@ -84,13 +88,12 @@
         [selfB.tableView reloadData];
         
     }];
-
 }
 
 - (void)getDeliverytimes {
     __weak ConfirmOrderViewController *selfB = self;
     [DeliverytimeManager getDeliveryTimesFromNet:^{
-        [selfB initData];
+        [selfB getCoupon];
     }];
 }
 
@@ -108,6 +111,7 @@
     
     //购物车中的商品分类ID
     categorys = [dic allKeys];
+    categoryCount = categorys.count;
     NSArray *categoryInfos = [AppConfig getAPPDelegate].schoolModel.categorys;
     
     for (int i=0; i<categorys.count; i++) {
@@ -124,6 +128,7 @@
         
         NSArray *goods = dic[@(confirmOrderModel.categoryid)];
         confirmOrderModel.goods = goods;
+        confirmOrderModel.gifts = gitfsArray;
         
         NSArray *times = [[DeliverytimeManager shareDelivertimeManger] getTimesByCategoryid:confirmOrderModel.categoryid];
         
@@ -132,6 +137,10 @@
             confirmOrderModel.sendDay = deliverytimeModel.datedesc;
             confirmOrderModel.sendTime = deliverytimeModel.time[0];
             confirmOrderModel.sendTimeDes = [NSString stringWithFormat:@"%@  %@",confirmOrderModel.sendDay, confirmOrderModel.sendTime];
+        }
+        
+        if (i==categoryCount-1) {
+            confirmOrderModel.cellLineHidden = YES;
         }
         
         confirmOrderModel.cellClassName = @"ConfirmGoodDetailCell";
@@ -174,11 +183,27 @@
     moneypromotionViewModel.hiddenLine = YES;
     [self.models addObject:array3];
     
+    
+    couponModel1.subTitle = [NSString stringWithFormat:@"您有%ld张优惠券可用", _couponsArray.count];
+    if (_couponsArray.count == 0) {
+        couponModel1.subTitle = @"暂无可用优惠券可用";
+        [couponModel1 setSelectAction:@selector(noCouponAction) target:self];
+    }
+    
+    if (moneypromotionsArray.count != 0) {
+        moneyModel = moneypromotionsArray[0];
+        moneypromotionViewModel.subtitle = moneyModel.desc;
+        moneypromotionViewModel.reduce = [NSString stringWithFormat:@"¥%.2lf",moneyModel.reduce];
+        moneypromotionViewModel.imageName = moneyModel.imageName;
+    }else {
+        moneypromotionViewModel.subtitle =@"";
+        moneypromotionViewModel.reduce = @"¥0";
+        moneypromotionViewModel.imageName = @"";
+    }
+    
     [self.tableView reloadData];
     
-    [self getCoupon];
     [self getAddress];
-    
     [self initBottomView];
 }
 
@@ -188,25 +213,13 @@
     [PromotionModel getPromotion:^(PromotionModel * promotionModel) {
         NSArray *coupons = promotionModel.coupons;
         _couponsArray = coupons;
-            couponModel1.subTitle = [NSString stringWithFormat:@"您有%ld张优惠券可用", coupons.count];
-        if (coupons.count == 0) {
-            couponModel1.subTitle = @"暂无可用优惠券可用";
-            [couponModel1 setSelectAction:@selector(noCouponAction) target:self];
-        }
         
         NSArray *moneypromotions = promotionModel.moneypromotions;
-        if (moneypromotions.count != 0) {
-           moneyModel = moneypromotions[0];
-            moneypromotionViewModel.subtitle = moneyModel.desc;
-            moneypromotionViewModel.reduce = [NSString stringWithFormat:@"¥%.2lf",moneyModel.reduce];
-            moneypromotionViewModel.imageName = moneyModel.imageName;
-        }else {
-            moneypromotionViewModel.subtitle =@"";
-            moneypromotionViewModel.reduce = @"¥0";
-            moneypromotionViewModel.imageName = @"";
-        }
+        moneypromotionsArray = moneypromotions;
         
-        [selfB.tableView reloadData];
+        gitfsArray = promotionModel.giftpromotions;
+        
+        [selfB initData];
         [self computePayNumber];
     }];
 }
@@ -248,7 +261,11 @@
 #pragma mark tableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    NSLog(@"%ld", section);
     if (section == 0) {
+        return 0;
+    }
+    if (section > 1 && section<=categoryCount) {
         return 0;
     }
     return 10;
@@ -293,7 +310,6 @@
  */
 - (void)createOrder
 {
-
     NSMutableDictionary *products = [NSMutableDictionary dictionary];
     
     for (int i=0; i<categorys.count; i++) {
@@ -316,6 +332,8 @@
             
         }
     }
+    
+    NSArray *giftpromotionids = [[Cart sharedCart] getGiftpromotionids];
 
     [[BaiduMobStat defaultStat] logEvent:@"goPay" eventLabel:@"去支付"];
     NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
@@ -325,6 +343,7 @@
     [params setValue:products forKey:@"products"];
     [params setValue:@(0) forKey:@"couponid"];
     [params setValue:@(moneyModel.moneypromotionid) forKey:@"moneypromotionid"];
+    [params setValue:giftpromotionids forKey:@"giftpromotionids"];
     
     if (_couponModel) {
         [params setValue:@(_couponModel.couponId) forKey:@"couponid"];

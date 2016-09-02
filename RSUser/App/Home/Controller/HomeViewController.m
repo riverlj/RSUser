@@ -73,9 +73,9 @@
     [self initSourceDate];
     
     canRefrash = YES;
-    self.tableView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-113);
+    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    self.tableView.tableHeaderView = self.cycleScrollView;
+    self.tableView.tableHeaderView = self.cycleScrollView;
     
     self.url = @"/product/list";
     self.useFooterRefresh = NO;
@@ -227,7 +227,7 @@
     {
         return _cycleScrollView;
     }
-    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 100) imageURLStringsGroup:nil];
+    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 128*(SCREEN_WIDTH/320)) imageURLStringsGroup:nil];
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
     _cycleScrollView.delegate = self;
     _cycleScrollView.pageDotColor = RS_Theme_Color;
@@ -245,12 +245,6 @@
 
 -(void)initBannerView
 {
-    if (_bannerImageUrls.count == 0) {
-        self.tableView.tableHeaderView = nil;
-    }else{
-        self.tableView.tableHeaderView = self.cycleScrollView;
-    }
-    
     if (_bannerImageUrls.count < 2)
     {
         self.cycleScrollView.infiniteLoop = NO;
@@ -360,18 +354,27 @@
 }
 
 #pragma mark - ScrollViewDelegate
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-//{
-//    if (scrollView == self.tableView) {
-//        CGFloat naviAlpha = scrollView.contentOffset.y/(SCREEN_HEIGHT*0.25-64);
-//        _naviView.alpha = naviAlpha;
-//        
-//        self.locationBtn.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4-naviAlpha/0.4];
-//        
-//        CGFloat naviAlpha1 = scrollView.contentOffset.y/64+1;
-//        self.locationBtn.alpha = naviAlpha1;
-//    }
-//}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    UIView *view = [self.tableView headerViewForSection:1];
+    CGFloat header = view.frame.origin.y;
+    
+    if (scrollView == self.tableView) {
+        CGFloat naviAlpha = scrollView.contentOffset.y/(SCREEN_HEIGHT*0.25-64);
+        _naviView.alpha = naviAlpha;
+        
+        self.locationBtn.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4-naviAlpha/0.4];
+        
+        CGFloat naviAlpha1 = scrollView.contentOffset.y/64+1;
+        self.locationBtn.alpha = naviAlpha1;
+        
+        if (scrollView.contentOffset.y <= 64) {
+            scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        }else if(scrollView.contentOffset.y>header)  {
+            scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+        }
+    }
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];

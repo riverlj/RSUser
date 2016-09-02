@@ -40,7 +40,7 @@
     self.view.backgroundColor = RS_Background_Color;
     
     if (self.navigationController.viewControllers.count > 1 && self.showCartBottom) {
-        self.bottomCartView = [[BottomCartView alloc]initWithFrame:CGRectMake(0, self.view.height-44, SCREEN_WIDTH, 44)];
+        self.bottomCartView = [[BottomCartView alloc]initWithFrame:CGRectMake(0, self.view.height-49, SCREEN_WIDTH, 49)];
         [self.view addSubview:self.bottomCartView];
     }
 }

@@ -38,4 +38,8 @@
 //- (NSDictionary *)getDeliveryTimeByCategoryid:(NSInteger)categoryid;
 
 - (NSArray *)getGoodsByCategoryid:(NSInteger)categoryid;
+
+- (NSArray *)getGiftpromotionids;
+
+- (void)updateCartCountLabelText;
 @end

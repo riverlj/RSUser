@@ -15,6 +15,7 @@
     return @{
              @"coupons" : @"coupons",
              @"moneypromotions" : @"moneypromotions",
+             @"giftpromotions" : @"giftpromotions",
              };
 }
 
@@ -32,11 +33,12 @@
     [dic setValue:COMMUNTITYID forKey:@"communityid"];
     [dic setValue:@"1" forKey:@"business"];
     [dic setValue:@(true) forKey:@"coupon"];
-    [dic setValue:@(false) forKey:@"giftpromotion"];
+    [dic setValue:@(true) forKey:@"giftpromotion"];
     [dic setValue:@(true) forKey:@"moneypromotion"];
-    [dic setValue:@"2" forKey:@"platform"];
-    [dic setValue:@(false) forKey:@"paypromotion"];
+    [dic setValue:@(true) forKey:@"paypromotion"];
     [dic setValue:@(false) forKey:@"seckill"];
+    
+    [dic setValue:@"2" forKey:@"platform"];
     [dic setValue:[[Cart sharedCart]filterLocalCartData] forKey:@"products"];
     
     [RSHttp requestWithURL:@"/order/promotion" params:dic httpMethod:@"POSTJSON" success:^(NSDictionary *data) {
@@ -61,12 +63,44 @@
         }else {
             promotionModel.moneypromotions = nil;
         }
+        
+        if (giftpromotionsArray.count > 0) {
+            NSArray *array = [MTLJSONAdapter modelsOfClass:GiftPromotionModel.class fromJSONArray:giftpromotionsArray error:nil];
+            promotionModel.giftpromotions = array;
+        }else {
+            promotionModel.giftpromotions = nil;
+        }
+        
         success(promotionModel);
     } failure:^(NSInteger code, NSString *errmsg) {
         [[RSToastView shareRSToastView] showToast:errmsg];
     }];
 }
 
+@end
+
+
+@implementation GiftModel
++ (NSDictionary *) JSONKeyPathsByPropertyKey {
+    return @{
+             @"masterid" : @"master",
+             @"master_name" : @"master_name",
+             @"master_amount" : @"master_amount",
+             @"giftid" : @"gift",
+             @"gift_name" : @"gift_name",
+             @"gift_amount" : @"gift_amount",
+             };
+}
+@end
+
+@implementation GiftPromotionModel
++ (NSDictionary *) JSONKeyPathsByPropertyKey {
+    return @{
+             @"giftpromotionid" : @"id",
+             @"type" : @"type",
+             @"gift" : @"gift",
+             };
+}
 @end
 
 

@@ -33,7 +33,7 @@
     self.bottomCartView.y -= 64;
 
     self.models = [[NSMutableArray alloc]init];
-    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-44);
+    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.url = @"/brand/list";

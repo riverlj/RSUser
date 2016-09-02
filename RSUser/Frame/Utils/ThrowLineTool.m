@@ -30,13 +30,12 @@ static ThrowLineTool *s_sharedInstance = nil;
 - (void)throwObject:(UIView *)obj from:(CGPoint)start to:(CGPoint)end
              height:(CGFloat)height duration:(CGFloat)duration
 {
-    self.showingView = obj;
+    [[AppConfig getAPPDelegate].window addSubview:self.showingView];
 
     //初始化抛物线path
     CGMutablePathRef path = CGPathCreateMutable();
     CGFloat cpx = end.x+200;
     CGFloat cpy = start.y-100;
-    
     
     CGPathMoveToPoint(path, NULL, start.x, start.y);
     //添加二次被塞尔曲线
@@ -57,12 +56,19 @@ static ThrowLineTool *s_sharedInstance = nil;
     [self.showingView.layer addAnimation:groupAnimation forKey:@"position scale"];
 }
 
+-(UIView *)showingView {
+    if (_showingView) {
+        return _showingView;
+    }
+    _showingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 16, 16)];
+    _showingView.backgroundColor = RS_Theme_Color;
+    _showingView.layer.cornerRadius = 8;
+    _showingView.layer.masksToBounds = YES;
+    return _showingView;
+}
+
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    [[[AppConfig getAPPDelegate].window viewWithTag:10] removeFromSuperview];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(animationDidFinish)]) {
-        [self.delegate performSelector:@selector(animationDidFinish) withObject:nil];
-    }
     [self.showingView removeFromSuperview];
     self.showingView = nil;
 }

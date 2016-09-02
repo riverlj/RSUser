@@ -45,10 +45,10 @@
 #define IOS9 ([[[UIDevice currentDevice] systemVersion] floatValue]>=9.0f ? YES : NO)
 
 //APP请求超时时间
-#define APPREQUESTTIMEOUT 5
+#define APPREQUESTTIMEOUT 30
 //微信登陆
 #define WEIXIN_LOGIN_SCOPE @"snsapi_message,snsapi_userinfo,snsapi_friend,snsapi_contact"
-#define WEIXIN_LOGIN_STATUS @"demochenshujuan"
+#define WEIXIN_LOGIN_STATUS @"redscarf"
 #define WEIXIN_LOGIN_APPID @"wx3ba861f7b4956067"
 #define WEIXIN_LOGIN_SECRET @"d4624c36b6795d1d99dcf0547af5443d"
 

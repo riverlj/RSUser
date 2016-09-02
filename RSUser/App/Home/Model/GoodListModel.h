@@ -45,5 +45,8 @@
 @property (nonatomic ,assign)Boolean isnew;
 @property (nonatomic ,strong)NSArray *promotions;
 
+/**表示该商品是不是赠品*/
+@property (nonatomic ,assign)NSInteger gift;
+
 - (NSString *)getImageNameBytopcategoryid;
 @end

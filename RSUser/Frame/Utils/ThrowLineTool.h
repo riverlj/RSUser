@@ -15,7 +15,7 @@
 @interface ThrowLineTool : NSObject
 
 @property (nonatomic, assign) id<ThrowLineToolDelegate>delegate;
-@property (nonatomic, retain) UIView *showingView;
+@property (nonatomic, strong) UIView *showingView;
 
 + (ThrowLineTool *)sharedTool;
 

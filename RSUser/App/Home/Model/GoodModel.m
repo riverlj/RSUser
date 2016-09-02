@@ -41,7 +41,7 @@
         return nil;
     }
 
-    NSString *sizestr = [NSString stringWithFormat:@"@250h_%dw_0e_1c", (int)SCREEN_WIDTH];
+    NSString *sizestr = [NSString stringWithFormat:@"@%dw_215h_2e", (int)SCREEN_WIDTH];
     if ([_headimg isAliyImageUrlStr] && ![_headimg hasSuffix:sizestr]) {
         _headimg = [_headimg stringByAppendingString:sizestr];
     }
