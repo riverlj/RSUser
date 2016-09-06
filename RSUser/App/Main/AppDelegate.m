@@ -20,7 +20,6 @@
 @interface AppDelegate (){
     NSString *updateUrl;
 }
-
 @end
 
 @implementation AppDelegate
@@ -98,7 +97,7 @@
 #pragma mark UIApplicationDelegate 代理方法
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    if ([url.scheme isEqualToString:WEIXIN_SCHEME]) {
+    if ([url.scheme isEqualToString:SCHEME_WEIXIN]) {
         [WXApi handleOpenURL:url delegate:self];
     }
     
@@ -115,7 +114,7 @@
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
 {
-    if ([url.scheme isEqualToString:WEIXIN_SCHEME]) {
+    if ([url.scheme isEqualToString:SCHEME_WEIXIN]) {
         [WXApi handleOpenURL:url delegate:self];
     }
     

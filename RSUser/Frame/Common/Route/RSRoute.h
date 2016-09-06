@@ -14,21 +14,22 @@
 extern NSString *const RSRoute_SCheme;
 @interface RSRoute : NSObject
 
-@property (nonatomic ,strong)NSURL *parseURL;
-
-@property (nonatomic, copy)NSString *url;   //要分析的URL
+@property (nonatomic ,strong)NSURL *parseURL;   //url
+@property (nonatomic ,strong)NSString *urlstr;  //url字符串格式
 @property (nonatomic, copy)NSString *scheme;    //协议
 @property (nonatomic, copy)NSString *host;  //  对应要跳转的Controller
 @property (nonatomic, copy)NSNumber *port;  //  一般用不到
-@property (nonatomic, copy)NSString *path;  //
-@property (nonatomic, copy)NSString *fragment;//参数
+@property (nonatomic, copy)NSString *path;  // 对应于要调用的方法
+@property (nonatomic, copy)NSString *fragment;//参数,字符串格式
+@property (nonatomic ,strong)NSMutableDictionary *params; //参数，字典格式
+
+@property (nonatomic, copy)NSString *url;   //要分析的URL
 
 + (id)shareRSRoute;
 + (id)routeWithURL:(NSURL *)parseURL;
-
--(void)register:(NSString *)name vcName:(NSString *)vcName;
-
 +(id)getViewControllerByHost:(NSString *)host;
 +(id)getViewControllerByPath:(NSString *)path;
-- (void)parseURL:(NSURL *)url FromTarget:(id)target;
+
+-(void)register:(NSString *)name vcName:(NSString *)vcName;
+- (void)actionMethodFromTarget:(id)target;
 @end

@@ -56,7 +56,12 @@
 /**
  * 微信scheme
  */
-#define WEIXIN_SCHEME @"wx3ba861f7b4956067"
+#define SCHEME_WEIXIN @"wx3ba861f7b4956067"
+
+/**
+ * 本APP的scheme
+ */
+#define SCHEME_RSUSER @"rsuser"
 
 #define UMSOCIAL_APPKEY @"57cd0f1967e58e635b003c1a"
 /**

@@ -8,11 +8,9 @@
 
 #import "RSJSWebViewController.h"
 #import "LoginViewController.h"
-
 #import <AVFoundation/AVCaptureDevice.h>
 #import <AVFoundation/AVMediaFormat.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-
 #import "XHCustomShareView.h"
 
 @interface RSJSWebViewController ()<UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,TSWebViewDelegate>
@@ -38,48 +36,16 @@
 
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-//    NSString *parseURLstr = [[NSString alloc] initWithString:request.URL.absoluteString];
-//    NSURL *parseURL = [[NSURL alloc] initWithString:[parseURLstr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//    RSRoute *route = [RSRoute routeWithURL:parseURL];
-//    if ([route.scheme isEqualToString:@"rsuser"]) {
-//        [route parseURL:parseURL FromTarget:self];
-//        return NO;
-//    }else {
-//        return  YES;
-//    }
-
-    NSURL *url = request.URL;
-    NSString *urlstr = url.absoluteString;
-    NSDictionary *dic = [urlstr parseUrl];
     
-    NSString *protocol = nil;
-    NSString *classname = nil;
-    NSString *actionname = nil;
-    NSDictionary *params = nil;
-    
-    if (dic) {
-        NSString *path = [dic valueForKey:@"path"];
-        NSArray *pathArray = [path componentsSeparatedByString:@"/"];
-        if (pathArray.count == 2) {
-            classname = pathArray[0];
-            actionname = pathArray[1];
-        }
-        protocol = [dic valueForKey:@"protocol"];
-        params = [dic valueForKey:@"params"];
-    }
-    
-    if ([protocol isEqualToString:@"rsuser"] && [classname isEqualToString:@"webview"]) {
-        
-        NSString *actionString = [NSString stringWithFormat:@"%@:", actionname];
-        SEL action = NSSelectorFromString([NSString stringWithFormat:@"%@",actionString]);
-        id target = self;
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [target performSelector:action withObject:params];
-        
+    NSString *parseURLstr = [[NSString alloc] initWithString:request.URL.absoluteString];
+    NSURL *parseURL = [[NSURL alloc] initWithString:[parseURLstr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    RSRoute *route =  [RSRoute routeWithURL:parseURL];
+    if ([route.scheme isEqualToString:SCHEME_RSUSER]) {
+        [route actionMethodFromTarget:self];
         return NO;
+    }else {
+        return  YES;
     }
-    
-    return YES;
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView {

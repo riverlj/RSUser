@@ -9,11 +9,12 @@
 #import "RSRoute.h"
 #import "AppDelegate.h"
 #import "RSWebViewController.h"
+
 static RSRoute *shareRSRoute = nil;
 static  NSString *const k_route_controller_name = @"webview";
 static  NSString *const k_route_method_name = @"action";
-
 NSString *const RSRoute_SCheme = @"rsuser";
+
 @implementation RSRoute
 {
     NSMutableDictionary *routeDic;
@@ -39,19 +40,31 @@ NSString *const RSRoute_SCheme = @"rsuser";
 
 - (void)initPropertys {
     if (!self.parseURL) {
+        self.urlstr = nil;
         self.scheme = nil;
         self.host = nil;
         self.path = nil;
         self.port = nil;
         self.fragment = nil;
+        self.params = [NSMutableDictionary dictionary];
     }else {
+        self.urlstr = self.parseURL.absoluteString;
+        NSDictionary *dic = [self.urlstr parseUrl];
         self.scheme = self.parseURL.scheme;
         self.host = self.parseURL.host;
-        self.path = self.parseURL.host;
+        self.path = [self.parseURL.path substringFromIndex:1];
         self.port = self.parseURL.port;
-        self.fragment = self.parseURL.parameterString;
+        NSArray *array = [self.urlstr componentsSeparatedByString:@"?"];
+        if (array.count>1) {
+            self.fragment = array[1];
+        }else {
+            self.fragment = nil;
+        }
+        self.params = [[dic valueForKey:@"params"] mutableCopy];
     }
 }
+
+
 
 
 -(NSMutableDictionary *) getObjectByName:(NSString *)name
@@ -202,64 +215,45 @@ NSString *const RSRoute_SCheme = @"rsuser";
 }
 
 /**
- *  通过scheme调用本地方法
+ *  webview内部调用native方法
+ *  @param target  来自哪个对象
  */
-- (void)parseURL:(NSURL *)url FromTarget:(id)target {
-    NSDictionary *urlDic = [url.absoluteString parseUrl];
-    if (!urlDic) {
+- (void)actionMethodFromTarget:(id)target {
+    if (![self.scheme isEqualToString:RSRoute_SCheme]) {
         return;
     }
-    
-    NSString *protocol = nil;
-    NSString *classname = nil;
-    NSString *actionname = nil;
-    NSDictionary *params = nil;
-    
-    protocol = [urlDic valueForKey:@"protocol"];
-    if (![protocol isEqualToString:RSRoute_SCheme]) {
-        return;
-    }
-    
-    NSString *path = [urlDic valueForKey:@"path"];
-    NSArray *pathArray = [path componentsSeparatedByString:@"/"];
-    if (pathArray.count == 2) {
-        classname = pathArray[0];   //类名
-        actionname = pathArray[1];  //方法名
-    }
-    //参数
-    params = [urlDic valueForKey:@"params"];
     
     //类名处理
     id finalTarget = nil;
-    if ([classname isEqualToString:k_route_controller_name]) { //webview内部跳转
+    if ([self.host isEqualToString:k_route_controller_name]) { //webview内部跳转
         finalTarget = target;
     }else { //页面跳转
-        Class targetClass = NSClassFromString([AppConfig findControllerNameByHost:classname]);
+        Class targetClass = NSClassFromString([AppConfig findControllerNameByHost:self.host]);
         finalTarget = [[targetClass alloc] init];
     }
     
     //方法名处理
     SEL action = nil;
     NSString *actionString = nil;
-    if (![actionname isEqualToString:k_route_method_name]) {  //webView内部调用本地方法
-        if (params.count > 0) {
-            actionString = [NSString stringWithFormat:@"%@:", actionname];
+    if (![self.path isEqualToString:k_route_method_name]) {  //webView内部调用本地方法
+        if (self.params.count > 0) {
+            actionString = [NSString stringWithFormat:@"%@:", self.path];
         }else { //页面跳转
-            actionString = [NSString stringWithFormat:@"%@", actionname];
+            actionString = [NSString stringWithFormat:@"%@", self.path];
         }
         action = NSSelectorFromString(actionString);
     }else {
         action = nil;
     }
     
-    if (params.count>0) {
+    if (self.params.count>0) {
         if ([target respondsToSelector:action]) {
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            [target performSelector:action withObject:params];
+            [target performSelector:action withObject:self.params];
         }else {
             [[RSToastView shareRSToastView] showToast:@"努力更新中，试试其他功能吧~"];
         }
-
+        
     }else {
         if ([target respondsToSelector:action]) {
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -269,4 +263,5 @@ NSString *const RSRoute_SCheme = @"rsuser";
         }
     }
 }
+
 @end
