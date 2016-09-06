@@ -1,5 +1,6 @@
 platform:ios,'7.0'
 inhibit_all_warnings!
+target 'RSUser' do
 pod 'AFNetworking', '~> 2.5.1'
 pod 'SDWebImage' , '~>3.7.4'
 pod 'SDCycleScrollView', '~>1.3'
@@ -13,3 +14,4 @@ pod 'ReactiveCocoa'
 pod 'CYLTabBarController'
 pod 'YJLogFactory'
 pod 'Aspects'
+end
