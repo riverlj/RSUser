@@ -142,4 +142,23 @@
     }];
 }
 
+
++ (NSString *)findControllerNameByHost:(NSString *)host {
+    NSString *controllerName = @"HomeViewController";
+    NSDictionary *dic = @{
+                          @"orderlist" : @"OrderViewController",
+                          @"account" : @"ProfileViewController",
+                          @"gooddetail" : @"GoodinfoViewController",
+                          @"orderdetail" : @"OrderInfoViewController",
+                          @"brandlist" : @"ChannelbrandsViewController",
+                          @"brandinfo" : @"BrandinfoViewController"
+                          };
+    
+    NSString *tempControllerName = [dic valueForKey:controllerName];
+    if (tempControllerName.length>0) {
+        controllerName = tempControllerName;
+    }
+    
+    return controllerName;
+}
 @end

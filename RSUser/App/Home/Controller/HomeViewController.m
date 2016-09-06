@@ -42,6 +42,8 @@
     RSRadioGroup *group;
     NSInteger groupSelectedIndex;
     NSInteger selectedCategoryId;
+    
+    Boolean isrefrash;
 }
 @end
 @implementation HomeViewController
@@ -264,6 +266,7 @@
 #pragma mark 网络请求处理
 -(void)beforeHttpRequest
 {
+    isrefrash = YES;
     [super beforeHttpRequest];
     [self initSourceDate];
     [self requestBanner];
@@ -296,6 +299,7 @@
         _categoryView = [selfB creatTypeGroupView];
         [selfB initChannelData];
         [selfB refeshTableWithType:@(selectedCategoryId)];
+        isrefrash = NO;
     }];
 }
 
@@ -319,7 +323,7 @@
     if (section == 1) {
         if ([AppConfig getAPPDelegate].schoolModel.categorys.count > 1) {
             return 42;
-        }else{
+        }else {
             return 0;
         }
     }
@@ -356,8 +360,9 @@
 #pragma mark - ScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    UIView *view = [self.tableView headerViewForSection:1];
-    CGFloat header = view.frame.origin.y;
+    CGFloat header = _categoryView.y;
+//    NSLog(@"contentOffset:%lf+++++++++header:%lf+++++++++%lf++++++++contentInset:%lf",scrollView.contentOffset.y, header, scrollView.contentOffset.y - header, scrollView.contentInset.top);
+    header -= scrollView.contentOffset.y;
     
     if (scrollView == self.tableView) {
         CGFloat naviAlpha = scrollView.contentOffset.y/(SCREEN_HEIGHT*0.25-64);
@@ -368,10 +373,12 @@
         CGFloat naviAlpha1 = scrollView.contentOffset.y/64+1;
         self.locationBtn.alpha = naviAlpha1;
         
-        if (scrollView.contentOffset.y <= 64) {
-            scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        }else if(scrollView.contentOffset.y>header)  {
-            scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+        if (!isrefrash && scrollView.contentOffset.y > 0) {
+            if (scrollView.contentOffset.y>=header-64) {
+                scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+            }else if(scrollView.contentOffset.y<header-64 && scrollView.contentOffset.y>0){
+                scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+            }
         }
     }
 }
@@ -463,6 +470,7 @@
 }
 
 - (void)didClickBtn:(UITapGestureRecognizer *)sender {
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     RSSubButtonView *title = (RSSubButtonView *)sender.view;
     groupSelectedIndex = title.index;
     selectedCategoryId = sender.view.tag;

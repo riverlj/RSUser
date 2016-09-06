@@ -13,6 +13,8 @@
 #import <AVFoundation/AVMediaFormat.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
+#import "XHCustomShareView.h"
+
 @interface RSJSWebViewController ()<UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,TSWebViewDelegate>
 
 @end
@@ -36,6 +38,47 @@
 
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+//    NSString *parseURLstr = [[NSString alloc] initWithString:request.URL.absoluteString];
+//    NSURL *parseURL = [[NSURL alloc] initWithString:[parseURLstr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//    RSRoute *route = [RSRoute routeWithURL:parseURL];
+//    if ([route.scheme isEqualToString:@"rsuser"]) {
+//        [route parseURL:parseURL FromTarget:self];
+//        return NO;
+//    }else {
+//        return  YES;
+//    }
+
+    NSURL *url = request.URL;
+    NSString *urlstr = url.absoluteString;
+    NSDictionary *dic = [urlstr parseUrl];
+    
+    NSString *protocol = nil;
+    NSString *classname = nil;
+    NSString *actionname = nil;
+    NSDictionary *params = nil;
+    
+    if (dic) {
+        NSString *path = [dic valueForKey:@"path"];
+        NSArray *pathArray = [path componentsSeparatedByString:@"/"];
+        if (pathArray.count == 2) {
+            classname = pathArray[0];
+            actionname = pathArray[1];
+        }
+        protocol = [dic valueForKey:@"protocol"];
+        params = [dic valueForKey:@"params"];
+    }
+    
+    if ([protocol isEqualToString:@"rsuser"] && [classname isEqualToString:@"webview"]) {
+        
+        NSString *actionString = [NSString stringWithFormat:@"%@:", actionname];
+        SEL action = NSSelectorFromString([NSString stringWithFormat:@"%@",actionString]);
+        id target = self;
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [target performSelector:action withObject:params];
+        
+        return NO;
+    }
+    
     return YES;
 }
 
@@ -215,4 +258,53 @@
     
     return [NSString stringWithFormat:@"data:%@;base64,%@",mimeType , [imageData base64EncodedStringWithOptions:0]];
 }
+
+- (void)share:(NSDictionary *)params {
+    
+    NSMutableDictionary *requestParams = [NSMutableDictionary dictionary];
+    [requestParams setValue:[params valueForKey:@"campaign"] forKey:@"campaign"];
+    
+    [RSHttp mobileRequestWithURL:@"/mobile/index/campaignconfig" params:requestParams httpMethod:@"GET" success:^(NSDictionary *data) {
+        NSString *title = [data valueForKey:@"title"];
+        NSString *context = [data valueForKey:@"desc"];
+        NSString *clickUrl = [data valueForKey:@"link"];
+        NSString *imageUrl = [data valueForKey:@"imgurl"];
+        NSArray *array = [params allKeys];
+        clickUrl = [clickUrl stringByAppendingString:@"?"];
+        for (int i=0; i<array.count; i++) {
+            NSString *key = array[i];
+            NSString *value = [params valueForKey:key];
+            if ([key isEqualToString:@"campaign"]) {
+                continue;
+            }else {
+               clickUrl = [clickUrl stringByAppendingString:[NSString stringWithFormat:@"%@=%@&", key, value]];
+            }
+        }
+        
+        [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@",clickUrl];
+        [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@",clickUrl];
+        [UMSocialData defaultData].extConfig.wechatSessionData.title = title;
+        [UMSocialData defaultData].extConfig.wechatTimelineData.title = title;
+        [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+        [UMSocialData defaultData].extConfig.wechatSessionData.shareText = context;
+        [UMSocialData defaultData].extConfig.wechatTimelineData.shareText=  context;
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                XHCustomShareView *shareView = [XHCustomShareView shareViewWithPresentedViewController:self items:@[UMShareToWechatSession,UMShareToWechatTimeline] title:nil image:image urlResource:nil];
+                shareView.tag = 9876;
+                [[UIApplication sharedApplication].keyWindow addSubview:shareView];
+            });
+        });
+        
+        
+    } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSToastView]showToast:errmsg];
+    }];
+
+    
+}
+
+
 @end

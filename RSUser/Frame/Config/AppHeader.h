@@ -39,5 +39,6 @@
 #import "RSCartButtion.h"
 
 #import "BaiduMobStat.h"
+#import "UMSocial.h"
 
 #endif /* AppHeader_h */

@@ -17,6 +17,7 @@
 - (void)loginByNative;
 - (void)showLoadingByNative;
 - (void)hiddenLoadingByNative;
+- (void)share:(NSArray *)params;
 
 @end
 

@@ -45,14 +45,28 @@
 #define IOS9 ([[[UIDevice currentDevice] systemVersion] floatValue]>=9.0f ? YES : NO)
 
 //APP请求超时时间
-#define APPREQUESTTIMEOUT 30
-//微信登陆
+#define APPREQUESTTIMEOUT 5
+/**
+ * 微信第三方信息
+ */
 #define WEIXIN_LOGIN_SCOPE @"snsapi_message,snsapi_userinfo,snsapi_friend,snsapi_contact"
 #define WEIXIN_LOGIN_STATUS @"redscarf"
 #define WEIXIN_LOGIN_APPID @"wx3ba861f7b4956067"
 #define WEIXIN_LOGIN_SECRET @"d4624c36b6795d1d99dcf0547af5443d"
+/**
+ * 微信scheme
+ */
+#define WEIXIN_SCHEME @"wx3ba861f7b4956067"
 
-//JSPatch 热更新
+#define UMSOCIAL_APPKEY @"57cd0f1967e58e635b003c1a"
+/**
+ * 线上APP在APPstore的编号
+ */
+#define APPID_IN_APPSTORE @"1133053071"
+
+/**
+ *  JSPatch 热更新
+ */
 #define RSUSER_JSPATCH_KEY @"ec064665c804cea3"
 
 //百度统计key

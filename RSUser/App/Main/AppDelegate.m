@@ -14,8 +14,12 @@
 #import <JSPatch/JPEngine.h>
 #import "CustomNSURLProtocol.h"
 #import <AlipaySDK/AlipaySDK.h>
+#import "UMSocialWechatHandler.h"
+#import "XHCustomShareView.h"
 
-@interface AppDelegate ()
+@interface AppDelegate (){
+    NSString *updateUrl;
+}
 
 @end
 
@@ -34,7 +38,7 @@
     _location =  [[RSLocation alloc]init];
     [_location startLocation];
     
-    
+    [self UpdateVersion];
     self.window.rootViewController = [[LaunchimageViewController alloc]init];
     
     [AppConfig setUserAgent];
@@ -44,11 +48,43 @@
     return YES;
 }
 
+-(void)UpdateVersion
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    [RSHttp mobileRequestWithURL:@"/mobile/version/" params:params httpMethod:@"GET" success:^(NSDictionary *dic) {
+        NSString *content = [dic valueForKey:@"content"];
+        updateUrl = [dic valueForKey:@"url"];
+        if ([[dic valueForKey:@"forceUpdate"] boolValue]) {
+            UIAlertView * alert=[[UIAlertView alloc]initWithTitle:@"提示" message:content delegate:self cancelButtonTitle:nil otherButtonTitles:@"更新", nil];
+            [alert show];
+        } else {
+            if([[dic valueForKey:@"showUpdate"] boolValue]) {
+                UIAlertView * alert=[[UIAlertView alloc]initWithTitle:@"提示" message:content delegate:self cancelButtonTitle:@"更新" otherButtonTitles:@"取消", nil];
+                [alert show];
+            }
+        }
+    } failure:^(NSInteger code, NSString *errmsg) {
+    }];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    NSString * url = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=%@",APPID_IN_APPSTORE];
+
+    if (buttonIndex==0) {
+        updateUrl = url;
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:updateUrl]];
+    }
+}
+
 -(void)configThreeLib
 {
     [WXApi registerApp:WEIXIN_LOGIN_APPID];
     [AppConfig baiduMobStat];
     [AppConfig configJSPatch];
+    [UMSocialData setAppKey:UMSOCIAL_APPKEY];
+    [UMSocialWechatHandler setWXAppId:WEIXIN_LOGIN_APPID appSecret:WEIXIN_LOGIN_SECRET url:@"http://honglingjinclub.com"];
 }
 
 - (void)setappRootViewControler
@@ -62,7 +98,7 @@
 #pragma mark UIApplicationDelegate 代理方法
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    if ([url.scheme isEqualToString:@"wx3ba861f7b4956067"]) {
+    if ([url.scheme isEqualToString:WEIXIN_SCHEME]) {
         [WXApi handleOpenURL:url delegate:self];
     }
     
@@ -79,7 +115,7 @@
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
 {
-    if ([url.scheme isEqualToString:@"wx3ba861f7b4956067"]) {
+    if ([url.scheme isEqualToString:WEIXIN_SCHEME]) {
         [WXApi handleOpenURL:url delegate:self];
     }
     
@@ -140,6 +176,19 @@
                 break;
             }
         }
+        return;
+    }
+    
+    if ([resp isKindOfClass:SendMessageToWXResp.class]) {
+        SendMessageToWXResp *aresp = (SendMessageToWXResp *)resp;
+        XHCustomShareView *shareView = [self.window viewWithTag:9876];
+        [shareView dismissShareView];
+        if (aresp.errCode == 0) {
+            [[RSToastView shareRSToastView] showToast:@"分享成功"];
+        }else{
+            [[RSToastView shareRSToastView] showToast:@"分享失败"];
+        }
+        
         return;
     }
     

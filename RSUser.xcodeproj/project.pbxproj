@@ -61,6 +61,7 @@
 		B1326E451CE429F9001F90CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E441CE429F9001F90CE /* CoreGraphics.framework */; };
 		B1326E471CE42A0B001F90CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1326E461CE42A0B001F90CE /* Foundation.framework */; };
 		B1326E501CE9CB0C001F90CE /* ChooseCouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1326E4F1CE9CB0C001F90CE /* ChooseCouponViewController.m */; };
+		B13E53661D7964FB00577C3C /* XHCustomShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = B13E53651D7964FB00577C3C /* XHCustomShareView.m */; };
 		B1422BF21CBB575500C988FE /* RSTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */; };
 		B1422BF51CBB71DB00C988FE /* UIImage+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF41CBB71DB00C988FE /* UIImage+Helper.m */; };
 		B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */ = {isa = PBXBuildFile; fileRef = B1422BF71CBB733600C988FE /* RSCartButtion.m */; };
@@ -275,6 +276,8 @@
 		B1326E461CE42A0B001F90CE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B1326E4E1CE9CB0C001F90CE /* ChooseCouponViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseCouponViewController.h; sourceTree = "<group>"; };
 		B1326E4F1CE9CB0C001F90CE /* ChooseCouponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseCouponViewController.m; sourceTree = "<group>"; };
+		B13E53641D7964FB00577C3C /* XHCustomShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHCustomShareView.h; sourceTree = "<group>"; };
+		B13E53651D7964FB00577C3C /* XHCustomShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHCustomShareView.m; sourceTree = "<group>"; };
 		B1422BF01CBB575500C988FE /* RSTabBarControllerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTabBarControllerConfig.h; sourceTree = "<group>"; };
 		B1422BF11CBB575500C988FE /* RSTabBarControllerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTabBarControllerConfig.m; sourceTree = "<group>"; };
 		B1422BF31CBB71DB00C988FE /* UIImage+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helper.h"; sourceTree = "<group>"; };
@@ -851,6 +854,8 @@
 		B1B764551CB8D286005A90BD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B13E53641D7964FB00577C3C /* XHCustomShareView.h */,
+				B13E53651D7964FB00577C3C /* XHCustomShareView.m */,
 				B162BC951CBCA3ED00E27228 /* GoodListCell.h */,
 				B162BC961CBCA3ED00E27228 /* GoodListCell.m */,
 				B1A8D4B21CC09D3C00471E93 /* RSSearchView.h */,
@@ -1245,7 +1250,7 @@
 				TargetAttributes = {
 					B1FFB8751CB64DCA00255F21 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = HVW9LQ2544;
+						DevelopmentTeam = 78WD89EN9R;
 					};
 					B1FFB88E1CB64DCA00255F21 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -1474,6 +1479,7 @@
 				B1738DC81CB665EC006C7207 /* RSTableViewController.m in Sources */,
 				B123DC401CC4D27600F08E8D /* RSButton.m in Sources */,
 				B18322701CD8420F006E7EBC /* OrderLogModel.m in Sources */,
+				B13E53661D7964FB00577C3C /* XHCustomShareView.m in Sources */,
 				B162BC971CBCA3ED00E27228 /* GoodListCell.m in Sources */,
 				30A3C51E1CCF379E00F5E55E /* BuildingModel.m in Sources */,
 				B1FFB8D11CB6566100255F21 /* NSUserDefaults+Token.m in Sources */,
@@ -1692,7 +1698,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.redscarfuser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.Breakfast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1795,7 +1801,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.redscarfuser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.Breakfast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

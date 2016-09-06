@@ -55,4 +55,13 @@
  *  @return
  */
 + (void)checkToken;
+
+/**
+ * 路由对照表
+ *
+ *  @param host
+ *
+ *  @return 类名
+ */
++ (NSString *)findControllerNameByHost:(NSString *)host;
 @end
