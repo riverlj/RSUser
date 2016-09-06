@@ -177,8 +177,8 @@
             self.goPayBtn.x = self.cancelBtn.right + 10;
             self.goPayBtn.width = btnWidth;
             
-            //TODO
-            self.bottomView.hidden = NO;
+//            //TODO
+//            self.bottomView.hidden = NO;
         }
             break;
         case 128:
@@ -187,8 +187,8 @@
             self.oneMoreBtn.x = 18;
             self.oneMoreBtn.width = btnWidth;
             
-            //TODO
-            self.bottomView.hidden = YES;
+//            //TODO
+//            self.bottomView.hidden = YES;
         }
             break;
         case 1:
@@ -200,7 +200,7 @@
             self.oneMoreBtn.width = btnWidth;
             
             //TODO
-            self.bottomView.hidden = YES;
+//            self.bottomView.hidden = YES;
         }
             break;
         case 129:
@@ -219,8 +219,8 @@
             self.oneMoreBtn.width =btnWidth;
             
             //TODO
-            self.feedBackBtn.width = SCREEN_WIDTH - 36;
-            self.oneMoreBtn.hidden = YES;
+//            self.feedBackBtn.width = SCREEN_WIDTH - 36;
+//            self.oneMoreBtn.hidden = YES;
         }
             break;
         case 3:
@@ -235,9 +235,9 @@
             self.rateBtn.width = btnWidth;
             
             //TODO
-            self.feedBackBtn.width = SCREEN_WIDTH - 36;
-            self.oneMoreBtn.hidden = YES;
-            self.rateBtn.hidden = YES;
+//            self.feedBackBtn.width = SCREEN_WIDTH - 36;
+//            self.oneMoreBtn.hidden = YES;
+//            self.rateBtn.hidden = YES;
         }
             break;
         case 4:
@@ -252,9 +252,9 @@
             self.checkAppraiseBtn.width = btnWidth;
             
             //TODO
-            self.feedBackBtn.width = SCREEN_WIDTH - 36;
-            self.oneMoreBtn.hidden = YES;
-            self.checkAppraiseBtn.hidden = YES;
+//            self.feedBackBtn.width = SCREEN_WIDTH - 36;
+//            self.oneMoreBtn.hidden = YES;
+//            self.checkAppraiseBtn.hidden = YES;
         }
             break;
         default:

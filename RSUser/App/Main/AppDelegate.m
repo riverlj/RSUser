@@ -130,23 +130,25 @@
     return YES;
 }
 
-- (void)handleALIPayResult:(NSDictionary *)resultDic {
+- (void)handleALIPayResult:(NSDictionary *)resultDic
+{
 
     NSInteger resultStatus = [[resultDic valueForKey:@"resultStatus"] integerValue];
-    if (resultStatus == 9000) {
+    if (resultStatus == 9000)
+    {
         [[RSToastView shareRSToastView] showToast:@"支付成功"];
         [self gotoOrderInfoViewController];
-    }else {
+    }
+    else
+    {
         [[RSToastView shareRSToastView] showToast:@"支付未完成,请重新支付"];
     }
-    
 }
 
-- (void)gotoOrderInfoViewController {
-    NSString *orderid = [NSUserDefaults getValue:@"currentorderid"];
-    [NSUserDefaults clearValueForKey:@"currentorderid"];
-    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderId=%@",orderid]];
-    [self.crrentNavCtl pushViewController:vc animated:YES];
+- (void)gotoOrderInfoViewController
+{
+    [self.crrentNavCtl popToRootViewControllerAnimated:NO];
+    self.tabBarControllerConfig.tabBarController.selectedIndex = 1;
 }
 
 #pragma mark WXApiDelegate 代理方法

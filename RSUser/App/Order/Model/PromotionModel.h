@@ -50,6 +50,8 @@
 @property (nonatomic, strong)NSString *subtitle;
 @property (nonatomic, strong)NSString *imageName;
 @property (nonatomic, strong)NSString *reduce;
+@property (nonatomic ,strong)NSArray *promotions;
+
 @end
 
 @interface ConfirmOrderDetailViewModel : RSModel

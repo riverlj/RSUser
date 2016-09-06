@@ -191,10 +191,7 @@
     }
     
     if (moneypromotionsArray.count != 0) {
-        moneyModel = moneypromotionsArray[0];
-        moneypromotionViewModel.subtitle = moneyModel.desc;
-        moneypromotionViewModel.reduce = [NSString stringWithFormat:@"¥%.2lf",moneyModel.reduce];
-        moneypromotionViewModel.imageName = moneyModel.imageName;
+        moneypromotionViewModel.promotions = moneypromotionsArray;
     }else {
         moneypromotionViewModel.subtitle =@"";
         moneypromotionViewModel.reduce = @"¥0";
@@ -384,8 +381,11 @@
         payNumber -= [_couponModel.reduce floatValue];
     }
     
-    if (moneyModel) {
-        payNumber -= moneyModel.reduce;
+    if (moneypromotionsArray) {
+        for (int i=0; i<moneypromotionsArray.count; i++) {
+            MoneypromotionModel *tempmoneypromotionModel = moneypromotionsArray[i];
+            payNumber -= tempmoneypromotionModel.reduce;
+        }
     }
     _priceLable.text = [NSString stringWithFormat:@"       总计:%.2f", payNumber];
 }

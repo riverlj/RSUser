@@ -270,6 +270,9 @@
 @end
 
 @implementation AbatementCell
+{
+    NSInteger maxCount;
+}
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -285,25 +288,64 @@
 
 -(void)setModel:(MoneypromotionViewModel *)model {
     
+    CGFloat cellHeight = 0;
     self.mainTitleLabel.text = model.title;
-    self.subTitleLabel.text = model.reduce;
-    self.abatementTypeImageView.image = [UIImage imageNamed:model.imageName];
-    self.desLabel.text = model.subtitle;
-    
     CGSize mainTitleSize = [self.mainTitleLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
     self.mainTitleLabel.frame = CGRectMake(18, 5, mainTitleSize.width, mainTitleSize.height);
+    cellHeight = self.mainTitleLabel.bottom + 6;
     
-    self.abatementTypeImageView.frame = CGRectMake(self.mainTitleLabel.left, self.mainTitleLabel.bottom+4, 15, 15);
+    NSArray *array = model.promotions;
+    if (array.count > maxCount) {
+        maxCount = array.count;
+    }
+    for (int i=0; i<maxCount; i++) {
+        [[self.contentView viewWithTag:(1001+i)] removeFromSuperview];
+        [[self.contentView viewWithTag:(10001+i)] removeFromSuperview];
+        [[self.contentView viewWithTag:(100001+i)] removeFromSuperview];
+
+    }
     
-    CGSize desLabelSize = [self.desLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
-    self.desLabel.frame = CGRectMake(self.abatementTypeImageView.right, self.desLabel.top, SCREEN_WIDTH-100, desLabelSize.height);
-    
+    CGFloat totalreduce = 0;
+    for (int i=0; i<array.count; i++) {
+        
+        //优惠标签
+        MoneypromotionModel *moneyModel = array[i];
+        UIImageView *iconImageView = [[UIImageView alloc] init ];
+        iconImageView.image = [UIImage imageNamed:moneyModel.imageName];
+        iconImageView.tag = 1001+i;
+        iconImageView.frame = CGRectMake(18, cellHeight, 15, 15);
+        [self.contentView addSubview:iconImageView];
+        
+        //优惠信息
+        UILabel *desLabel = [RSLabel labellWithFrame:CGRectZero Text:@"" Font:RS_FONT_F4 TextColor:RS_COLOR_C2];
+        desLabel.text = moneyModel.desc;
+        desLabel.tag = 10001+i;
+        CGSize desLabelSize = [desLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
+        desLabel.frame = CGRectMake(35, cellHeight, desLabelSize.width, desLabelSize.height);
+        [self.contentView addSubview:desLabel];
+        
+        //减免金额
+        UILabel *reducepriceLabel = [RSLabel labellWithFrame:CGRectZero Text:@"" Font:RS_FONT_F4 TextColor:RS_COLOR_C2];
+        reducepriceLabel.text = [NSString stringWithFormat:@"￥%.2lf",moneyModel.reduce];
+        reducepriceLabel.tag = 100001+i;
+        CGSize reducepriceLabelSize = [reducepriceLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
+        reducepriceLabel.frame = CGRectMake(SCREEN_WIDTH-18-reducepriceLabelSize.width, desLabel.top, reducepriceLabelSize.width, reducepriceLabelSize.height);
+        [self.contentView addSubview:reducepriceLabel];
+
+        desLabel.centerY = iconImageView.centerY;
+        reducepriceLabel.centerY = iconImageView.centerY;
+        cellHeight = iconImageView.bottom + 6;
+        
+        totalreduce += moneyModel.reduce;
+    }
+
+    self.subTitleLabel.text = [NSString stringWithFormat:@"-￥%.2lf", totalreduce];
     CGSize subTitleLabelSize = [self.subTitleLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
     self.subTitleLabel.frame = CGRectMake(SCREEN_WIDTH-18-subTitleLabelSize.width, 0, subTitleLabelSize.width, subTitleLabelSize.height);
+    self.subTitleLabel.centerY = self.mainTitleLabel.centerY;
     
-    self.desLabel.centerY = self.abatementTypeImageView.centerY;
-    self.subTitleLabel.centerY = model.cellHeight/2;
-    
+    cellHeight += 6;
+    model.cellHeight = cellHeight;
 }
 
 @end

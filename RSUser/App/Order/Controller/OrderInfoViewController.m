@@ -152,7 +152,7 @@
         orderPayWayModel.cellClassName = @"TwoLabelTitleCell";
         orderPayWayModel.title = @"支付方式：";
         orderPayWayModel.subtextColor = RS_COLOR_C2;
-        orderPayWayModel.subTitle = [NSString stringWithFormat:@"%@",model.statusDesc];
+        orderPayWayModel.subTitle = [NSString stringWithFormat:@"%@",model.paymethod];
         [payArray addObject:orderPayWayModel];
     }
     [self.models addObject:payArray];

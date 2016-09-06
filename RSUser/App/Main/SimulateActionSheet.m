@@ -119,8 +119,11 @@
     cancle.translatesAutoresizingMaskIntoConstraints = NO;
     NSLayoutConstraint *cancleConstraintLeft = [NSLayoutConstraint constraintWithItem:cancle attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:tools attribute:NSLayoutAttributeLeading multiplier:1.0f constant:10.0f];
     NSLayoutConstraint *cancleConstrainY = [NSLayoutConstraint constraintWithItem:cancle attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:tools attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0];
+    NSLayoutConstraint *cancleConstrainW = [NSLayoutConstraint constraintWithItem:cancle attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:70];
+    [cancle setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [tools addConstraint:cancleConstraintLeft];
     [tools addConstraint:cancleConstrainY];
+    [tools addConstraint:cancleConstrainW];
     
     UILabel *tipLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
     tipLabel.text = @"选择收货时间";
@@ -140,8 +143,13 @@
     ok.translatesAutoresizingMaskIntoConstraints = NO;
     NSLayoutConstraint *okConstraintRight = [NSLayoutConstraint constraintWithItem:ok attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:tools attribute:NSLayoutAttributeTrailing multiplier:1.0f constant:-10.0f];
     NSLayoutConstraint *okConstraintY = [NSLayoutConstraint constraintWithItem:ok attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:tools attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0];
+    
+     NSLayoutConstraint *okConstraintW = [NSLayoutConstraint constraintWithItem:ok attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:70];
+    [ok setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
     [tools addConstraint:okConstraintRight];
     [tools addConstraint:okConstraintY];
+    [tools addConstraint:okConstraintW];
+    
 
     return tools;
 }

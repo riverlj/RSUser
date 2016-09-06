@@ -128,7 +128,7 @@ static const CGFloat kcellMarginRight = 15;
                 RSLabel *priceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_COLOR_C3];
                 priceLabel.font = RS_FONT_F5;
                 priceLabel.textAlignment = NSTextAlignmentRight;
-                priceLabel.text =[NSString stringWithFormat:@"¥%@ × %ld",goodListModel.saleprice,goodListModel.num];
+                priceLabel.text =[NSString stringWithFormat:@"¥%@ × %zd",goodListModel.saleprice,goodListModel.num];
                 [self.contentView addSubview:priceLabel];
                 
                 CGSize priceSize = [priceLabel sizeThatFits:CGSizeMake(1000, 1000)];
@@ -155,7 +155,7 @@ static const CGFloat kcellMarginRight = 15;
                 RSLabel *priceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_COLOR_C2];
                 priceLabel.font = RS_FONT_F4;
                 priceLabel.textAlignment = NSTextAlignmentRight;
-                priceLabel.text =[NSString stringWithFormat:@"¥%@ × %ld",goodListModel.saleprice,goodListModel.num];
+                priceLabel.text =[NSString stringWithFormat:@"¥%@ × %zd",goodListModel.saleprice,goodListModel.num];
                 [self.contentView addSubview:priceLabel];
                 
                 CGSize priceSize = [priceLabel sizeThatFits:CGSizeMake(1000, 1000)];

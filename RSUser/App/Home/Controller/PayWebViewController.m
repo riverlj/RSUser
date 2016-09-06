@@ -45,9 +45,6 @@
 //微信支付
 -(void)payWeChat:(id)param
 {
-    
-    [NSUserDefaults setValue:self.orderId forKey:@"currentorderid"];
-    
     NSData *data = [param dataUsingEncoding:NSUTF8StringEncoding];
      NSDictionary *dic  = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
      
@@ -72,8 +69,6 @@
 
 -(void)payAli:(id)str
 {
-    [NSUserDefaults setValue:self.orderId forKey:@"currentorderid"];
-
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *dic  = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
     NSString *payData = [dic valueForKey:@"payData"];
