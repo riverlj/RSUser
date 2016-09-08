@@ -35,6 +35,9 @@
     self.tableView.frame = self.view.frame;
     self.sections = [NSMutableArray array];
     
+    self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.showsHorizontalScrollIndicator = NO;
+    
     [self formatDate];
 }
 

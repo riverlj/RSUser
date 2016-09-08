@@ -97,7 +97,8 @@
     }
     _cartImageView = [[UIImageView alloc]init];
     _cartImageView.image = [UIImage imageNamed:@"tab_cart"];
-    _cartImageView.frame = CGRectMake(15, -22, 44, 44);
+    _cartImageView.frame = CGRectMake(15, -22, 44, 22+49);
+    _cartImageView.contentMode = UIViewContentModeTop;
     [_cartImageView addTapAction:@selector(showCarts) target:self];
     return _cartImageView;
 }

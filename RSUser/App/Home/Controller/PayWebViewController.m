@@ -83,19 +83,8 @@
 
 - (void)backUp
 {
-    //订单详情页面
-    OrderInfoAndStatusViewController *vc = [[OrderInfoAndStatusViewController alloc]init];
-    vc.orderId = self.orderId;
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.5;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
-    transition.type = kCATransitionMoveIn;
-    transition.subtype = kCATransitionFromLeft;
-    transition.delegate = self;
-    [self.navigationController.view.layer addAnimation:transition forKey:nil];
-    
-    [self.navigationController pushViewController:vc animated:NO];
-
+    self.tabBarController.selectedIndex = 1;
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

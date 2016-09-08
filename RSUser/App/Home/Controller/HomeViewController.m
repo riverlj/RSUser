@@ -361,6 +361,9 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat header = _categoryView.y;
+    if (header == 0) {
+        
+    }
 //    NSLog(@"contentOffset:%lf+++++++++header:%lf+++++++++%lf++++++++contentInset:%lf",scrollView.contentOffset.y, header, scrollView.contentOffset.y - header, scrollView.contentInset.top);
     header -= scrollView.contentOffset.y;
     
@@ -373,7 +376,7 @@
         CGFloat naviAlpha1 = scrollView.contentOffset.y/64+1;
         self.locationBtn.alpha = naviAlpha1;
         
-        if (!isrefrash && scrollView.contentOffset.y > 0) {
+        if (!isrefrash && scrollView.contentOffset.y > 0 && header > 0) {
             if (scrollView.contentOffset.y>=header-64) {
                 scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
             }else if(scrollView.contentOffset.y<header-64 && scrollView.contentOffset.y>0){

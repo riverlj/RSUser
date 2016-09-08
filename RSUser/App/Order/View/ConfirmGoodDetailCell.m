@@ -113,7 +113,7 @@ static const CGFloat kcellMarginRight = 15;
         for (int i=0; i < goods.count; i++) {
             GoodListModel *goodListModel = goods[i];
             
-            if (goodListModel.gift == 1) {
+            if (goodListModel.gift != 0) {
                 h += 6;
                 UIImageView *iconImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.categoryLabel.left, h, 15, 15)];
                 iconImageView.image = [UIImage imageNamed:@"icon_zeng"];

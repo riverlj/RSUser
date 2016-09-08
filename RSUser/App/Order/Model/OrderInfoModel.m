@@ -40,12 +40,12 @@
         @"promotions" : @"promotions",
         @"amount" : @"amount",
         
-        @"canfeedback" : @"canfeedback",
         @"canpay" : @"canpay",
         @"canreorder" : @"canreorder",
         @"cancancel" : @"cancancel",
         @"canrefund" : @"canrefund",
         @"canrate" : @"canrate",
+        @"canticket" : @"canticket",
         
         @"deliverytime" : @"deliverytime",
     };

@@ -85,7 +85,7 @@
     __weak OrderInfoAndStatusViewController *selfB = self;
     [self getOrderInfo:^{
         [selfB.view addSubview:self.orderStatusVc.view];
-        [selfB initBottom];
+        [self setViewsHidden];
     }];
 }
 
@@ -161,111 +161,7 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-/**
- *  设置底部
- */
-- (void)initBottom
-{
-    [self setViewsHidden];
-    
-    switch (_orderInfoModel.status) {
-        case 0:
-        {// 待支付, 取消订单、去支付
-            self.cancelBtn.x = 18;
-            self.cancelBtn.width = btnWidth;
-            
-            self.goPayBtn.x = self.cancelBtn.right + 10;
-            self.goPayBtn.width = btnWidth;
-            
-//            //TODO
-//            self.bottomView.hidden = NO;
-        }
-            break;
-        case 128:
-        case 130:
-        {// 已取消(系统取消，用户取消), 再来一单
-            self.oneMoreBtn.x = 18;
-            self.oneMoreBtn.width = btnWidth;
-            
-//            //TODO
-//            self.bottomView.hidden = YES;
-        }
-            break;
-        case 1:
-        {//已支付， 退单、再来一单
-            self.retreatBtn.x = 18;
-            self.retreatBtn.width = btnWidth;
-            
-            self.oneMoreBtn.x = self.retreatBtn.right + 10;
-            self.oneMoreBtn.width = btnWidth;
-            
-            //TODO
-//            self.bottomView.hidden = YES;
-        }
-            break;
-        case 129:
-        {//退款中
-            //底部隐藏
-            self.bottomView.hidden = YES;
-        }
-            break;
-        case 20:
-        case 30:
-        {//商家配餐中， 用户反馈、再来一单
-            self.feedBackBtn.x = 18;
-            self.feedBackBtn.width = btnWidth;
-            
-            self.oneMoreBtn.x = self.feedBackBtn.right + 10;
-            self.oneMoreBtn.width =btnWidth;
-            
-            //TODO
-//            self.feedBackBtn.width = SCREEN_WIDTH - 36;
-//            self.oneMoreBtn.hidden = YES;
-        }
-            break;
-        case 3:
-        {//待评价,  用户反馈、再来一单、去评价
-            self.feedBackBtn.x = 18;
-            self.feedBackBtn.width = btnWidth;
-            
-            self.oneMoreBtn.x = self.feedBackBtn.right + 10;
-            self.oneMoreBtn.width = btnWidth;
-            
-            self.rateBtn.x = self.oneMoreBtn.right + 10;
-            self.rateBtn.width = btnWidth;
-            
-            //TODO
-//            self.feedBackBtn.width = SCREEN_WIDTH - 36;
-//            self.oneMoreBtn.hidden = YES;
-//            self.rateBtn.hidden = YES;
-        }
-            break;
-        case 4:
-        {//已完成, 用户反馈、再来一单、查看评价
-            self.feedBackBtn.x = 18;
-            self.feedBackBtn.width = btnWidth;
-            
-            self.oneMoreBtn.x = self.feedBackBtn.right + 10;
-            self.oneMoreBtn.width = btnWidth;
-            
-            self.checkAppraiseBtn.x = self.oneMoreBtn.right + 10;
-            self.checkAppraiseBtn.width = btnWidth;
-            
-            //TODO
-//            self.feedBackBtn.width = SCREEN_WIDTH - 36;
-//            self.oneMoreBtn.hidden = YES;
-//            self.checkAppraiseBtn.hidden = YES;
-        }
-            break;
-        default:
-            break;
-    }
 
-    if (self.bottomView.hidden) {
-        self.orderStatusVc.view.height = self.view.height-50;
-        self.orderInfoVc.view.height = self.view.height-50;
-    }
-}
 
 - (UIButton *)goPayBtn {
     if (_goPayBtn) {
@@ -275,6 +171,7 @@
     _goPayBtn = (UIButton *)[RSButton buttonWithFrame:CGRectMake(0, 10, SCREEN_WIDTH/3, 38) ImageName:@"" Text:@"去支付" TextColor:RS_COLOR_WHITE];
     _goPayBtn.layer.cornerRadius = 4;
     _goPayBtn.layer.masksToBounds = YES;
+    _goPayBtn.titleLabel.font = RS_FONT_F2;
     
     [[_goPayBtn rac_signalForControlEvents:(UIControlEventTouchUpInside)] subscribeNext:^(id x) {
         // 去支付
@@ -293,7 +190,6 @@
     return _goPayBtn;
 }
 
-
 - (UIButton *)cancelBtn {
     if (_cancelBtn) {
         return _cancelBtn;
@@ -304,6 +200,7 @@
     _cancelBtn.layer.masksToBounds = YES;
     _cancelBtn.layer.borderWidth = 1;
     _cancelBtn.layer.borderColor = RS_COLOR_C4.CGColor;
+    _cancelBtn.titleLabel.font = RS_FONT_F2;
     [self.bottomView addSubview:_cancelBtn];
     
     @weakify(self)
@@ -335,6 +232,7 @@
     _oneMoreBtn.layer.cornerRadius = 4;
     _oneMoreBtn.layer.masksToBounds = YES;
     [_oneMoreBtn setBackgroundColor:RS_Theme_Color];
+    _oneMoreBtn.titleLabel.font = RS_FONT_F2;
     
     [[_oneMoreBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         [[RSToastView shareRSToastView] showToast:@"马上上线..."];
@@ -354,6 +252,7 @@
     _retreatBtn.layer.masksToBounds = YES;
     _retreatBtn.layer.borderWidth = 1;
     _retreatBtn.layer.borderColor = RS_COLOR_C4.CGColor;
+    _retreatBtn.titleLabel.font = RS_FONT_F2;
     
     [[_retreatBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         [[RSToastView shareRSToastView] showToast:@"马上上线..."];
@@ -368,11 +267,12 @@
         return _feedBackBtn;
     }
     
-    _feedBackBtn = (UIButton *)[RSButton buttonWithFrame:CGRectMake(0, 10, SCREEN_WIDTH/3, 38) ImageName:@"" Text:@"用户反馈" TextColor:RS_COLOR_WHITE];
+    _feedBackBtn = (UIButton *)[RSButton buttonWithFrame:CGRectMake(0, 10, SCREEN_WIDTH/3, 38) ImageName:@"" Text:@"用户反馈" TextColor:RS_Theme_Color];
     _feedBackBtn.layer.cornerRadius = 4;
     _feedBackBtn.layer.masksToBounds = YES;
     _feedBackBtn.layer.borderColor = RS_COLOR_C4.CGColor;
     _feedBackBtn.layer.borderWidth = 1;
+    _feedBackBtn.titleLabel.font = RS_FONT_F2;
     
     [[_feedBackBtn rac_signalForControlEvents:(UIControlEventTouchUpInside)] subscribeNext:^(id x) {
         
@@ -395,11 +295,12 @@
         return _rateBtn;
     }
     
-    _rateBtn = (UIButton *)[RSButton buttonWithFrame:CGRectMake(0, 10, (SCREEN_WIDTH-56)/3, 38) ImageName:@"" Text:@"评价" TextColor:RS_Theme_Color];
+    _rateBtn = (UIButton *)[RSButton buttonWithFrame:CGRectMake(0, 10, (SCREEN_WIDTH-56)/3, 38) ImageName:@"" Text:@"去评价" TextColor:RS_Theme_Color];
     _rateBtn.layer.cornerRadius = 4;
     _rateBtn.layer.masksToBounds = YES;
     _rateBtn.layer.borderWidth = 1;
     _rateBtn.layer.borderColor = RS_COLOR_C4.CGColor;
+    _rateBtn.titleLabel.font = RS_FONT_F2;
     
     [[_rateBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         [[RSToastView shareRSToastView] showToast:@"马上上线..."];
@@ -419,6 +320,7 @@
     _checkAppraiseBtn.layer.masksToBounds = YES;
     _checkAppraiseBtn.layer.borderColor = RS_COLOR_C4.CGColor;
     _checkAppraiseBtn.layer.borderWidth = 1;
+    _checkAppraiseBtn.titleLabel.font = RS_FONT_F2;
     
     [[_checkAppraiseBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         [[RSToastView shareRSToastView] showToast:@"马上上线..."];
@@ -440,35 +342,30 @@
 }
 
 - (void)setViewsHidden {
+    
+    NSMutableArray *showArray = [[NSMutableArray alloc] init];
     NSInteger cancancel = _orderInfoModel.cancancel;
     NSInteger canpay = _orderInfoModel.canpay;
     NSInteger canrate = _orderInfoModel.canrate;
     NSInteger canrefund = _orderInfoModel.canrefund;
-    NSInteger canfeedback = _orderInfoModel.canfeedback;
+    NSInteger canticket = _orderInfoModel.canticket;
     NSInteger canreoder = _orderInfoModel.canreorder;
     
-    NSInteger count = 0;
     if (cancancel == 1) {
-        count ++;
         self.cancelBtn.hidden = NO;
+        [showArray addObject:self.cancelBtn];
     }else {
         self.cancelBtn.hidden = YES;
     }
     
-    if (canpay == 1) {
-        count ++;
-        self.goPayBtn.hidden = NO;
-    }else {
-        self.goPayBtn.hidden = YES;
-    }
-    
     if (canrate == 1 || canrate == 2) {
-        count ++;
         if (canrate == 1) {
             self.rateBtn.hidden = NO;
+            [showArray addObject:self.rateBtn];
             self.checkAppraiseBtn.hidden = YES;
         }else {
             self.checkAppraiseBtn.hidden = NO;
+            [showArray addObject:self.checkAppraiseBtn];
             self.rateBtn.hidden = YES;
         }
     }else{
@@ -477,27 +374,58 @@
     }
     
     if (canrefund == 1) {
-        count ++;
         self.retreatBtn.hidden = NO;
+        [showArray addObject:self.retreatBtn];
     }else {
         self.retreatBtn.hidden = YES;
     }
     
-    if (canfeedback == 1) {
-        count ++;
+    //
+    if (canticket == 1) {
         self.feedBackBtn.hidden = NO;
+        [showArray addObject:self.feedBackBtn];
     }else {
         self.feedBackBtn.hidden = YES;
     }
     
+    //再来一单
     if (canreoder == 1) {
-        count ++;
         self.oneMoreBtn.hidden = NO;
+        [showArray addObject:self.oneMoreBtn];
     }else {
         self.oneMoreBtn.hidden = YES;
     }
     
-    btnWidth = (SCREEN_WIDTH - 36 - 10 * (count-1))/count;
+    //去支付
+    if (canpay == 1) {
+        self.goPayBtn.hidden = NO;
+        [showArray addObject:self.goPayBtn];
+    }else {
+        self.goPayBtn.hidden = YES;
+    }
+    
+    if (showArray.count == 0) {
+        self.bottomView.hidden = YES;
+    }else {
+        //按钮宽度
+        btnWidth = (SCREEN_WIDTH - 36 - 10 * (showArray.count-1))/showArray.count;
+        
+        //数据展示
+        for (int i=0; i<showArray.count; i++) {
+            UIButton *button = showArray[i];
+            if (i==0) {
+                button.x = 18;
+            }else {
+                button.x = 18 + (btnWidth + 10) * i;
+            }
+            button.width = btnWidth;
+        }
+    }
+    
+    if (self.bottomView.hidden) {
+        self.orderStatusVc.view.height = self.view.height-50;
+        self.orderInfoVc.view.height = self.view.height-50;
+    }
 }
 
 - (void)freshenTableView {
@@ -510,8 +438,7 @@
         [selfB.orderStatusVc.models removeAllObjects];
         selfB.orderStatusVc.orderInfoModel = selfB.orderInfoModel;
         [selfB.orderStatusVc formatDate];
-        
-        [self initBottom];
+        [self setViewsHidden];
         
     }];
 }

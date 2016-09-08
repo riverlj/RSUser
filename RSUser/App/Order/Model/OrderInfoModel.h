@@ -37,12 +37,13 @@
 @property (nonatomic, strong) NSArray *promotions;
 @property (nonatomic, strong) NSString *amount;
 
-@property (nonatomic) NSInteger canfeedback; //反馈
+
 @property (nonatomic) NSInteger canpay; // 支付
 @property (nonatomic) NSInteger canreorder; // 再来一单
 @property (nonatomic) NSInteger cancancel; //取消
 @property (nonatomic) NSInteger canrate; // 评价， 1 评价， 2， 查看评价
 @property (nonatomic) NSInteger canrefund; //退单
+@property (nonatomic) NSInteger canticket; //反馈
 
 @property (nonatomic, strong) NSDictionary *deliverytime;
 
