@@ -47,7 +47,7 @@
     if (!_path) {
         return nil;
     }
-    NSString *sizestr = [NSString stringWithFormat:@"@%dh_%dw_2e", (int)SCREEN_WIDTH,150];
+    NSString *sizestr = [NSString stringWithFormat:@"@%dh_%0.lfw_1e_1c", (int)SCREEN_WIDTH, 110*(SCREEN_WIDTH/320)];
     if ([_path isAliyImageUrlStr] && ![_path hasSuffix:sizestr]) {
         _path = [_path stringByAppendingString:sizestr];
     }

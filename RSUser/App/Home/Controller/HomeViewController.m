@@ -16,6 +16,7 @@
 #import "RSJSWebViewController.h"
 #import "DeliverytimeManager.h"
 
+
 @interface HomeViewController ()<SDCycleScrollViewDelegate>
 @property (nonatomic ,strong)NSMutableArray *bannerImageUrls;
 @property (nonatomic ,strong)NSMutableArray *bannerActionUrls;
@@ -94,6 +95,7 @@
 }
 
 - (void)updateHomeVC {
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     [self refeshTableWithType:@(selectedCategoryId)];
 }
 
@@ -120,9 +122,15 @@
         [self.tableView.mj_header beginRefreshing];
     }
 
-    [self.locationBtn setTitle:COMMUNITITYNAME forState:UIControlStateNormal];
-    CGSize size = [COMMUNITITYNAME sizeWithFont:RS_FONT_F1 byHeight:30.0];
-    self.locationBtn.frame = CGRectMake((SCREEN_WIDTH-(size.width+50))/2, 25, size.width+50, 30);
+    CGSize size;
+    if (COMMUNITITYNAME.length > 8) {
+        size = [[[COMMUNITITYNAME substringToIndex:8] stringByAppendingString:@"..."] sizeWithFont:RS_FONT_F1 byHeight:30.0];
+        [self.locationBtn setTitle:[[COMMUNITITYNAME substringToIndex:8] stringByAppendingString:@"..."] forState:UIControlStateNormal];
+    }else {
+        [self.locationBtn setTitle:COMMUNITITYNAME forState:UIControlStateNormal];
+        size = [COMMUNITITYNAME sizeWithFont:RS_FONT_F1 byHeight:25.0];
+    }
+    self.locationBtn.frame = CGRectMake((SCREEN_WIDTH-(size.width+50))/2, 25, size.width+30, 25);
     
     self.navigationController.navigationBar.hidden = YES;
 
@@ -229,11 +237,11 @@
     {
         return _cycleScrollView;
     }
-    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 128*(SCREEN_WIDTH/320)) imageURLStringsGroup:nil];
+    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 110*(SCREEN_WIDTH/320)) imageURLStringsGroup:nil];
     _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
+    _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
     _cycleScrollView.delegate = self;
     _cycleScrollView.pageDotColor = RS_Theme_Color;
-    _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     _cycleScrollView.backgroundColor = RS_Background_Color;
     return _cycleScrollView;
 }
@@ -405,12 +413,13 @@
         _locationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_locationBtn setImage:[UIImage imageNamed:@"icon_location"] forState:UIControlStateNormal];
         [_locationBtn setImage:[UIImage imageNamed:@"icon_location"] forState:UIControlStateHighlighted];
-        _locationBtn.frame = CGRectMake(0, 25, SCREEN_WIDTH, 30);
+        _locationBtn.frame = CGRectMake(0, 25, SCREEN_WIDTH, 25);
         _locationBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
         _locationBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -5);
         _locationBtn.backgroundColor = [UIColor clearColor];
         _locationBtn.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-        _locationBtn.layer.cornerRadius = 15;
+        _locationBtn.titleLabel.font = RS_FONT_F3;
+        _locationBtn.layer.cornerRadius = 12.5;
         
         @weakify(self)
         [[_locationBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {

@@ -9,6 +9,7 @@
 #import "GoodModel.h"
 #import "SeckillModel.h"
 
+#define kHEIGHT [AppConfig adapterDeviceHeight:215]
 @implementation GoodModel
 
 +(NSDictionary *)JSONKeyPathsByPropertyKey
@@ -41,7 +42,7 @@
         return nil;
     }
 
-    NSString *sizestr = [NSString stringWithFormat:@"@%dw_215h_2e", (int)SCREEN_WIDTH];
+    NSString *sizestr = [NSString stringWithFormat:@"@%dw_%.0lfh_1e_1c", (int)SCREEN_WIDTH,kHEIGHT];
     if ([_headimg isAliyImageUrlStr] && ![_headimg hasSuffix:sizestr]) {
         _headimg = [_headimg stringByAppendingString:sizestr];
     }

@@ -34,7 +34,7 @@
 
 #define RS_Theme_Color  [NSString colorFromHexString:@"f9443e"]
 #define RS_Background_Color RS_COLOR_C6
-#define RS_Line_Color  RGBA(238,238,238,0.5)
+#define RS_Line_Color  RGBA(238,238,238,1)
 #define RS_Clear_Clor [UIColor clearColor]
 #define RS_COLOR_WHITE RGB(255, 255, 255)
 #define RS_COLOR_NUMLABEL  [NSString colorFromHexString:@"666666"]
@@ -49,6 +49,5 @@
 #define RS_FONT_F5 Font(10)
 
 #define RS_BOLDFONT_F3 BoldFont(14)
-
 
 #endif /* Theme_h */

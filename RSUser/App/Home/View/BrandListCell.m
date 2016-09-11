@@ -38,7 +38,6 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.contentView.backgroundColor = [UIColor greenColor];
         
         _brandtableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
         _brandtableView.dataSource = self;
@@ -102,16 +101,27 @@
     [_logoimgView sd_setImageWithURL:[NSURL URLWithString:model.logoimg]];
     _brandNameLabel.text = model.name;
     _datasourceArray = [model.products mutableCopy];
+    
+    CGFloat cellheight = 110;
+    for (int i=0; i<_datasourceArray.count; i++) {
+        GoodListModel *goodlistmodel = _datasourceArray[i];
+        GoodListCell *cell = [[GoodListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        [cell setModel:goodlistmodel];
+        cellheight += goodlistmodel.cellHeight;
+        
+    }
 
-    model.cellHeight = 110 + 93*(int)_datasourceArray.count;
+//    model.cellHeight = 110 + 118*(int)_datasourceArray.count;
     if (model.hasmore) {
-         model.cellHeight += 52;
+         cellheight += 52;
         _brandtableView.tableFooterView = self.footerView;
     }else{
         GoodListModel *model = [_datasourceArray lastObject];
         model.hiddenLine = YES;
     }
-    _brandtableView.height = model.cellHeight;
+    
+    model.cellHeight = cellheight;
+    _brandtableView.height = cellheight;
     [_brandtableView reloadData];
     
 }
@@ -122,7 +132,12 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 93;
+    GoodListModel *goodlistmodel = _datasourceArray[indexPath.row];
+    GoodListCell *cell = [[GoodListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    [cell setModel:goodlistmodel];
+    
+    return goodlistmodel.cellHeight;
+    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -139,7 +154,8 @@
 //        RSLineView *lineView = [RSLineView lineViewHorizontalWithFrame:CGRectMake(10, 92, SCREEN_WIDTH-36, 1) Color:RS_Line_Color];
 //        [cell addSubview:lineView];
 //    }
-    [cell setModel:_datasourceArray[indexPath.row]];
+    GoodListModel *goodlistmode = _datasourceArray[indexPath.row];
+    [cell setModel:goodlistmode];
     return cell;
 }
 

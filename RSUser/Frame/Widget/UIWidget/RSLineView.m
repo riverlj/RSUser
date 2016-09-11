@@ -12,7 +12,9 @@
 
 +(id)lineViewHorizontalWithFrame:(CGRect)frame Color:(UIColor*)lineColor
 {
-    RSLineView *lineView = [[RSLineView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, 1)];
+    CGFloat floatsortaPixel =1.0/[UIScreen mainScreen].scale;
+    
+    RSLineView *lineView = [[RSLineView alloc]initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, floatsortaPixel)];
 
     lineView.backgroundColor = lineColor;
     return lineView;

@@ -161,4 +161,16 @@
     
     return controllerName;
 }
+
++(CGFloat)adapterDeviceHeight:(CGFloat)number {
+    if(iPhone6Plus)
+    {
+        return number*1.5;
+    }
+    else
+    {
+        return number;
+    }
+}
+
 @end

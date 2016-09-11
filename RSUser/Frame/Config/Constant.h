@@ -26,6 +26,7 @@
 
 #define APP_CHANNEL_BASE_URL @"http://waimai.honglingjinclub.com/web/index.html#"
 
+#define UTM_SOURCE @"testDev"
 #else
 //正式
 #define  REDSCARF_BASE_URL @"http://waimai.honglingjinclub.com"
@@ -36,6 +37,7 @@
 
 #define APP_CHANNEL_BASE_URL @"http://waimai.honglingjinclub.com/web/index.html#"
 
+#define UTM_SOURCE @"AppStore"
 #endif
 
 //#ifdef DEBUG

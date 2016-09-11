@@ -90,7 +90,7 @@
 
 @end
 
-@interface GoodListCell ()<ThrowLineToolDelegate>
+@interface GoodListCell ()
 
 @property (nonatomic,assign) NSInteger count;
 @end
@@ -273,7 +273,9 @@
     NSArray *promotions = model.promotions;
     if (promotions.count > 0) {
         line.hidden = NO;
-        line.frame = CGRectMake(self.iconIV.right+10, self.priceLabel.bottom+10, SCREEN_WIDTH-self.iconIV.right -10, 1);
+        line.x = self.iconIV.right+10;
+        line.y = self.priceLabel.bottom+10;
+        line.width =  SCREEN_WIDTH-self.iconIV.right -10;
     }else {
         line.hidden = YES;
     }

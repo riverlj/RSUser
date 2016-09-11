@@ -9,7 +9,7 @@
 #import "GoodinfoViewController.h"
 #import "GoodModel.h"
 
-#define kHEIGHT 215
+#define kHEIGHT [AppConfig adapterDeviceHeight:215]
 
 @interface GoodinfoViewController ()
 {

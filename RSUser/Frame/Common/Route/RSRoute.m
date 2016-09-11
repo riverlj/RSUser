@@ -10,16 +10,21 @@
 #import "AppDelegate.h"
 #import "RSWebViewController.h"
 
+//实例方法
 static RSRoute *shareRSRoute = nil;
+//如果host是webview则是内部内部调用方法
 static  NSString *const k_route_controller_name = @"webview";
+//如果path是action则是跳转到某一个界面
 static  NSString *const k_route_method_name = @"action";
-NSString *const RSRoute_SCheme = @"rsuser";
 
 @implementation RSRoute
 {
     NSMutableDictionary *routeDic;
 }
 
+/**
+ *  单例
+ */
 + (id)shareRSRoute {
     if (shareRSRoute) {
         return shareRSRoute;
@@ -31,6 +36,13 @@ NSString *const RSRoute_SCheme = @"rsuser";
     return shareRSRoute;
 }
 
+/**
+ *  实例化
+ *
+ *  @param parseURL 要解析的参数
+ *
+ *  @return 单例对象
+ */
 + (id)routeWithURL:(NSURL *)parseURL {
     RSRoute *route = [RSRoute shareRSRoute];
     route.parseURL = parseURL;
@@ -38,6 +50,9 @@ NSString *const RSRoute_SCheme = @"rsuser";
     return route;
 }
 
+/**
+ *  初始化参数
+ */
 - (void)initPropertys {
     if (!self.parseURL) {
         self.urlstr = nil;
@@ -52,7 +67,11 @@ NSString *const RSRoute_SCheme = @"rsuser";
         NSDictionary *dic = [self.urlstr parseUrl];
         self.scheme = self.parseURL.scheme;
         self.host = self.parseURL.host;
-        self.path = [self.parseURL.path substringFromIndex:1];
+        if (self.parseURL.path.length>0) {
+            self.path = [self.parseURL.path substringFromIndex:1];
+        }else {
+            self.path = nil;
+        }
         self.port = self.parseURL.port;
         NSArray *array = [self.urlstr componentsSeparatedByString:@"?"];
         if (array.count>1) {
@@ -64,7 +83,102 @@ NSString *const RSRoute_SCheme = @"rsuser";
     }
 }
 
+- (void)skipToViewControllerWithModel:(RSRouteSkipViewControllerModel)model {
+    switch (model) {
+        case RSRouteSkipViewControllerPresent:
+            [self presentViewController];
+            break;
+        case RSRouteSkipViewControllerDismiss:
+            [self dismissViewController];
+            break;
+        case RSRouteSkipViewControllerPush:
+            [self pushViewController];
+            break;
+        case RSRouteSkipViewControllerPop:
+            [self popViewController];
+            break;
+        default:
+            [[RSToastView shareRSToastView] showToast:@"跳转模式匹配错误，请检查"];
+            break;
+    }
+}
 
+- (void)presentViewController {
+    UIViewController *vc = [self getViewController];
+    [self setViewControllerParams:vc];
+    [[self currentViewController] presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)dismissViewController {
+    
+}
+
+- (void)pushViewController {
+    UIViewController *vc = [self getViewController];
+    [self setViewControllerParams:vc];
+    UINavigationController *navVc = [self currentViewController].navigationController;
+    if (navVc) {
+        [navVc pushViewController:vc animated:YES];
+    }else{
+        [[RSToastView shareRSToastView] showToast:@"导航控制器为空，请检查"];
+    }
+}
+
+- (void)popViewController {
+    
+}
+
+/**
+ *  获取ViewController
+ *
+ *  @return vc
+ */
+-(UIViewController *)getViewController {
+    NSString *vcName = @"";
+    UIViewController *vc = nil;
+    vcName = [[self.host capitalizedString] append:@"ViewController"];
+    
+    if(!NSClassFromString(vcName)) {
+        vcName = [AppConfig findControllerNameByHost:self.host];
+    }
+    
+    vc = [[NSClassFromString(vcName) alloc] init];
+    return vc;
+}
+
+/**
+ *  设置ViewController的参数
+ */
+- (void)setViewControllerParams:(UIViewController *)vc {
+    NSArray *keys = self.params.allKeys;
+    for (int i=0; i<keys.count; i++) {
+        NSString *key = keys[i];
+        NSString *value = [self.params valueForKey:key];
+        
+        /**
+         *  TODO 简单处理，假设所有的变量的类型都是字符串, 细节判断，runtime
+         */
+        [vc setValue:value forKey:key];
+    }
+}
+
+/**
+ *  获取window中顶层的ViewController
+ */
+- (UIViewController *)currentViewController {
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    UIViewController *vc = keyWindow.rootViewController;
+    while (vc.presentedViewController) {
+        vc = vc.presentedViewController;
+        
+        if ([vc isKindOfClass:[UINavigationController class]]) {
+            vc = [(UINavigationController *)vc visibleViewController];
+        } else if ([vc isKindOfClass:[UITabBarController class]]) {
+            vc = [(UITabBarController *)vc selectedViewController];
+        }
+    }
+    return vc;
+}
 
 
 -(NSMutableDictionary *) getObjectByName:(NSString *)name
@@ -219,7 +333,7 @@ NSString *const RSRoute_SCheme = @"rsuser";
  *  @param target  来自哪个对象
  */
 - (void)actionMethodFromTarget:(id)target {
-    if (![self.scheme isEqualToString:RSRoute_SCheme]) {
+    if (![self.scheme isEqualToString:SCHEME_RSUSER]) {
         return;
     }
     

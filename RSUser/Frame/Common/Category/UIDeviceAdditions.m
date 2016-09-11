@@ -23,7 +23,7 @@
 
 +(NSString *) utm_source
 {
-    return @"AppStore";
+    return UTM_SOURCE;
 }
 
 +(NSString *) utm_content

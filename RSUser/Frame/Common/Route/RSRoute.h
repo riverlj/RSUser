@@ -11,9 +11,17 @@
  scheme://host:port/path?query#fragment
  */
 
-extern NSString *const RSRoute_SCheme;
-@interface RSRoute : NSObject
+enum RSRouteSkipViewControllerModel {
+    RSRouteSkipViewControllerPresent = 0,
+    RSRouteSkipViewControllerDismiss ,
+    RSRouteSkipViewControllerPush ,
+    RSRouteSkipViewControllerPop
+    
+};
+typedef enum RSRouteSkipViewControllerModel RSRouteSkipViewControllerModel;
 
+
+@interface RSRoute : NSObject
 @property (nonatomic ,strong)NSURL *parseURL;   //url
 @property (nonatomic ,strong)NSString *urlstr;  //url字符串格式
 @property (nonatomic, copy)NSString *scheme;    //协议
@@ -22,7 +30,6 @@ extern NSString *const RSRoute_SCheme;
 @property (nonatomic, copy)NSString *path;  // 对应于要调用的方法
 @property (nonatomic, copy)NSString *fragment;//参数,字符串格式
 @property (nonatomic ,strong)NSMutableDictionary *params; //参数，字典格式
-
 @property (nonatomic, copy)NSString *url;   //要分析的URL
 
 + (id)shareRSRoute;
@@ -32,4 +39,6 @@ extern NSString *const RSRoute_SCheme;
 
 -(void)register:(NSString *)name vcName:(NSString *)vcName;
 - (void)actionMethodFromTarget:(id)target;
+
+- (void)skipToViewControllerWithModel:(RSRouteSkipViewControllerModel)model;
 @end

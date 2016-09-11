@@ -64,4 +64,6 @@
  *  @return 类名
  */
 + (NSString *)findControllerNameByHost:(NSString *)host;
+
++(CGFloat)adapterDeviceHeight:(CGFloat)number;
 @end
