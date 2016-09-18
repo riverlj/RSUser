@@ -75,11 +75,18 @@
         subTitle.width = subTitleSize.width;
         subTitle.height = subTitleSize.height;
         
-        UIView *lineView = [RSLineView lineViewHorizontal];
-        lineView.x = 62;
-        lineView.width = SCREEN_WIDTH-62;
-        lineView.y = subTitle.bottom + 20;
-        [self.contentView addSubview:lineView];
+        CGFloat bottom;
+        if (i != orderlogs.count-1) {
+            UIView *lineView = [RSLineView lineViewHorizontal];
+            lineView.x = 62;
+            lineView.width = SCREEN_WIDTH-62;
+            lineView.y = subTitle.bottom + 20;
+            [self.contentView addSubview:lineView];
+            
+            bottom = lineView.bottom;
+        }else {
+            bottom = subTitle.bottom + 20;
+        }
         
         cellh = subTitle.bottom + 21;
         
@@ -87,10 +94,10 @@
         
         
         if (i==0) {
-            spoint = CGPointMake(imageView.center.x, lineView.bottom-imageView.height/2);
+            spoint = CGPointMake(imageView.center.x, bottom-imageView.height/2);
         }
         if (i==orderlogs.count-1) {
-            epoint = CGPointMake(imageView.center.x, lineView.bottom-imageView.height/2);
+            epoint = CGPointMake(imageView.center.x, bottom-imageView.height/2);
             [self setImageView:imageView Type:logmodel.changetype];
         }else {
             UIImage *image = [UIImage imageFromColor:[NSString colorFromHexString:@"ffa53a"] forSize:CGSizeMake(8, 8) withCornerRadius:4];

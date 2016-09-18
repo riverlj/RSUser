@@ -208,7 +208,7 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    if (self) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         self.subTitleLabel = [RSLabel labellWithFrame:CGRectZero Text:@"" Font:RS_FONT_F4 TextColor:RS_Theme_Color];
         [self.contentView addSubview:self.subTitleLabel];
@@ -250,6 +250,10 @@
             [self.contentView addSubview:line];
         }
         
+        if ([couponModel.subTitle isEqualToString:@"暂无可用优惠券可用"]) {
+            self.subTitleLabel.textColor = RS_COLOR_C4;
+        }
+        
         if (self.subTitleLabel.x < self.mainTitleLabel.right) {
             self.subTitleLabel.x = self.mainTitleLabel.right + 5;
             self.subTitleLabel.width = SCREEN_WIDTH - self.subTitleLabel.x - 18;
@@ -264,7 +268,6 @@
         }else {
             model.cellHeight = 49;
         }
-        
     }
 }
 @end
@@ -321,7 +324,7 @@
         desLabel.text = moneyModel.desc;
         desLabel.tag = 10001+i;
         CGSize desLabelSize = [desLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
-        desLabel.frame = CGRectMake(35, cellHeight, desLabelSize.width, desLabelSize.height);
+        desLabel.frame = CGRectMake(35, cellHeight, desLabelSize.width-80, desLabelSize.height);
         [self.contentView addSubview:desLabel];
         
         //减免金额
@@ -345,7 +348,14 @@
     self.subTitleLabel.centerY = self.mainTitleLabel.centerY;
     
     cellHeight += 6;
-    model.cellHeight = cellHeight;
+    if (array.count == 0) {
+        model.cellHeight = 49;
+        self.mainTitleLabel.centerY = model.cellHeight/2;
+        self.subTitleLabel.centerY = model.cellHeight/2;
+    }else {
+        model.cellHeight = cellHeight;
+    }
+
 }
 
 @end

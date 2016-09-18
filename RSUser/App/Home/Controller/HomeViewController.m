@@ -471,6 +471,8 @@
         title.left = i*title.width;
         title.tag = [[dic valueForKey:@"key"] integerValue];
         title.nameLabel.text = [dic valueForKey:@"title"] ;
+        CGSize titleSize = [title.nameLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
+        title.nameLabel.width = titleSize.width + 40;
         title.index = [[dic valueForKey:@"index"] integerValue];
         [title addTapAction:@selector(didClickBtn:) target:self];
         [view addSubview:title];

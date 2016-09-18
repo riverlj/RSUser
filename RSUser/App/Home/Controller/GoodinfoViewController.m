@@ -151,13 +151,13 @@
             }
                 break;
             case 1:{
-                goodModel1.name = @"商品详情:";
+                goodModel1.name = @"商品详情";
                 goodModel1.subText = goodModel1.dashinfo;
                 [self.models addObject:goodModel1];
             }
                 break;
             case 2:{
-                goodModel1.name = @"商品描述:";
+                goodModel1.name = @"商品描述";
                 goodModel1.subText = goodModel1.desc;
                 [self.models addObject:goodModel1];
             }

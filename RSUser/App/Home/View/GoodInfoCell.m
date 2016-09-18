@@ -28,6 +28,7 @@
         return _nameLabel;
     }
     _nameLabel = [RSLabel mainLabel];
+    _nameLabel.font = RS_FONT_F3;
     return _nameLabel;
 }
 
@@ -280,7 +281,7 @@
         actionImageView.contentMode = UIViewContentModeScaleAspectFill;
         [self.contentView addSubview:actionImageView];
         
-        UILabel *label = [RSLabel labellWithFrame:CGRectMake(actionImageView.right+5, actionImageView.top, SCREEN_WIDTH-actionImageView.right-23, 15) Text:promotion.desc Font:Font(9) TextColor:[NSString colorFromHexString:@"818181"]];
+        UILabel *label = [RSLabel labellWithFrame:CGRectMake(actionImageView.right+5, actionImageView.top, SCREEN_WIDTH-actionImageView.right-80, 15) Text:promotion.desc Font:Font(9) TextColor:[NSString colorFromHexString:@"818181"]];
         label.tag = 10000+i;
         [self.contentView addSubview:label];
         

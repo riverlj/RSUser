@@ -76,7 +76,6 @@
 {
     UIWebView* tempWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
     NSString* userAgent = [tempWebView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
-    NSLog(@"%@", userAgent);
     NSString *ua = [NSString stringWithFormat:@"%@ RSUserAPP/%@",
                     userAgent,
                     [UIDevice clientVersion]];
@@ -89,6 +88,7 @@
 {
     BaiduMobStat *statTracker = [BaiduMobStat defaultStat];
     [statTracker startWithAppId:RSUSER_BAIDU_KEY];
+    statTracker.shortAppVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     statTracker.enableExceptionLog = YES; //截获崩溃信息
     statTracker.logStrategy = BaiduMobStatLogStrategyAppLaunch;
     statTracker.logSendInterval = 1;

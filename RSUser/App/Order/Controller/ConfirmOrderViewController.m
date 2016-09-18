@@ -170,9 +170,9 @@
     moneypromotionViewModel.cellClassName = @"AbatementCell";
     [array3 addObject:moneypromotionViewModel];
     
-    couponModel1.title = @"优  惠  券:";
-    couponModel2.title = @"商品金额:";
-    moneypromotionViewModel.title = @"优惠减免:";
+    couponModel1.title = @"优  惠  券";
+    couponModel2.title = @"商品金额";
+    moneypromotionViewModel.title = @"优惠减免";
     
     couponModel1.subTitle = @"";
     couponModel2.subTitle = [NSString stringWithFormat:@"¥%.2f",self.totalprice];

@@ -17,7 +17,7 @@
 
 @end
 
-@interface GoodInfoCell : GoodInfoSubCell<ThrowLineToolDelegate>
+@interface GoodInfoCell : GoodInfoSubCell
 @property (nonatomic, strong)UILabel *priceLabel;
 @property (nonatomic, strong)UIButton *addCartBtn;
 

@@ -22,6 +22,7 @@
 @implementation OrderInfoViewController
 
 - (void)viewDidLoad {
+    self.tableStyle = UITableViewStyleGrouped;
     [super viewDidLoad];
     self.title = @"订单详情";
     
@@ -31,12 +32,12 @@
     
     self.sections = [NSMutableArray new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    self.tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
+    self.tableView.sectionHeaderHeight = CGFLOAT_MIN;
     
     self.tableView.frame = self.view.frame;
     self.sections = [NSMutableArray array];
-    
-    self.tableView.showsVerticalScrollIndicator = NO;
-    self.tableView.showsHorizontalScrollIndicator = NO;
+
     
     [self formatDate];
 }
@@ -83,7 +84,7 @@
     //商品金额
     CouponModel *goodMoney = [[CouponModel alloc]init];
     goodMoney.cellClassName = @"TwoLabelTitleCell";
-    goodMoney.title = @"商品金额：";
+    goodMoney.title = @"商品金额";
     goodMoney.subtextColor = RS_COLOR_C2;
     goodMoney.subTitle = [NSString stringWithFormat:@"¥%@",model.totalprice];
     [goodArray addObject:goodMoney];
@@ -91,7 +92,7 @@
     //优惠减免
     CouponModel *creditModel = [[CouponModel alloc]init];
     creditModel.cellClassName = @"TwoLabelTitleCell";
-    creditModel.title = @"优惠减免：";
+    creditModel.title = @"优惠减免";
     creditModel.subtextColor = RS_COLOR_C2;
     creditModel.subTitle = [NSString stringWithFormat:@"¥%.2f",[model.totalprice floatValue] - [model.payed floatValue]];
     [goodArray addObject:creditModel];
@@ -99,9 +100,10 @@
     //实付金额
     CouponModel *payedModel = [[CouponModel alloc]init];
     payedModel.cellClassName = @"TwoLabelTitleCell";
-    payedModel.title = @"实付金额：";
+    payedModel.title = @"实付金额";
     payedModel.subtextFont = RS_BOLDFONT_F3;
     payedModel.subTitle = [NSString stringWithFormat:@"¥%@",model.payed];
+    payedModel.hiddenLine = YES;
     [goodArray addObject:payedModel];
     
     [self.models addObject:goodArray];
@@ -111,23 +113,24 @@
         //收货姓名
     CouponModel *userNameModel = [[CouponModel alloc]init];
     userNameModel.cellClassName = @"TwoLabelTitleCell";
-    userNameModel.title = @"收货姓名：";
+    userNameModel.title = @"收货姓名";
     userNameModel.subtextColor = RS_COLOR_C2;
     userNameModel.subTitle = [NSString stringWithFormat:@"%@",model.username];
     [deliveryArray addObject:userNameModel];
         //收货电话
     CouponModel *phoneModel = [[CouponModel alloc]init];
     phoneModel.cellClassName = @"TwoLabelTitleCell";
-    phoneModel.title = @"收货电话：";
+    phoneModel.title = @"收货电话";
     phoneModel.subtextColor = RS_COLOR_C2;
     phoneModel.subTitle = [NSString stringWithFormat:@"%@",model.mobile];
     [deliveryArray addObject:phoneModel];
         //收货地址
     CouponModel *addressModel = [[CouponModel alloc]init];
     addressModel.cellClassName = @"TwoLabelTitleCell";
-    addressModel.title = @"收货地址：";
+    addressModel.title = @"收货地址";
     addressModel.subtextColor = RS_COLOR_C2;
     addressModel.subTitle = [NSString stringWithFormat:@"%@",model.address];
+    addressModel.hiddenLine = YES;
     [deliveryArray addObject:addressModel];
     
     [self.models addObject:deliveryArray];
@@ -137,26 +140,28 @@
         //订单号
     CouponModel *orderNumModel = [[CouponModel alloc]init];
     orderNumModel.cellClassName = @"TwoLabelTitleCell";
-    orderNumModel.title = @"订  单  号：";
+    orderNumModel.title = @"订  单  号";
     orderNumModel.subtextColor = RS_COLOR_C2;
     orderNumModel.subTitle = [NSString stringWithFormat:@"%@",model.orderId];
     [payArray addObject:orderNumModel];
         //下单时间
     CouponModel *orderTimeModel = [[CouponModel alloc]init];
     orderTimeModel.cellClassName = @"TwoLabelTitleCell";
-    orderTimeModel.title = @"下单时间：";
+    orderTimeModel.title = @"下单时间";
     orderTimeModel.subtextColor = RS_COLOR_C2;
     orderTimeModel.subTitle = [NSString stringWithFormat:@"%@",model.ordertime];
     [payArray addObject:orderTimeModel];
         //支付方式
-    
     if (![model.paymethod isEqualToString:@""]) {
         CouponModel *orderPayWayModel = [[CouponModel alloc]init];
         orderPayWayModel.cellClassName = @"TwoLabelTitleCell";
-        orderPayWayModel.title = @"支付方式：";
+        orderPayWayModel.title = @"支付方式";
         orderPayWayModel.subtextColor = RS_COLOR_C2;
+        orderPayWayModel.hiddenLine = YES;
         orderPayWayModel.subTitle = [NSString stringWithFormat:@"%@",model.paymethod];
         [payArray addObject:orderPayWayModel];
+    }else {
+        orderTimeModel.hiddenLine = YES;
     }
     [self.models addObject:payArray];
     
@@ -164,15 +169,29 @@
 }
 
 #pragma mark tableview
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//section头部间距
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20;
+    return 30;//section头部高度
+}
+
+//section底部间距
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return CGFLOAT_MIN;
+}
+//section底部视图
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, CGFLOAT_MIN)];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
     view.backgroundColor = RS_Background_Color;
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(18, 0, SCREEN_WIDTH, 20)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(18, 0, SCREEN_WIDTH, 30)];
     label.backgroundColor = RS_Background_Color;
     label.text = self.sectionTitles[section];
     label.textAlignment = NSTextAlignmentLeft;
@@ -187,11 +206,12 @@
 {
     RSModel *model = [self getModelByIndexPath:indexPath];
     if (0 == indexPath.section &&[model isKindOfClass:[ConfirmOrderDetailViewModel class]]) {
-            ConfirmGoodDetailCell *cell = [[ConfirmGoodDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ConfirmGoodDetailCell"];
-            ConfirmOrderDetailViewModel *model = (ConfirmOrderDetailViewModel *)[self getModelByIndexPath:indexPath];
-            [cell setData:model];
-            return cell;
-        }
+        ConfirmGoodDetailCell *cell = [[ConfirmGoodDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ConfirmGoodDetailCell"];
+        ConfirmOrderDetailViewModel *model = (ConfirmOrderDetailViewModel *)[self getModelByIndexPath:indexPath];
+        [cell setData:model];
+        return cell;
+    }
+    
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 @end

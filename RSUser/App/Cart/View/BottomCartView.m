@@ -54,13 +54,9 @@
     NSString *priceStr = [NSString stringWithFormat:@"¥%.2f", price];
     
     if (array.count == 0) {
-        priceStr = @"费用以订单为准";
-        self.totalPriceLabel.font = RS_FONT_F5;
-        self.totalPriceLabel.textColor = RS_COLOR_C4;
+        priceStr = @"0.00";
         self.totalPriceLabel.text = priceStr;
     }else{
-        self.totalPriceLabel.font = RS_FONT_F1;
-        self.totalPriceLabel.textColor = [UIColor whiteColor];
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:priceStr];
         [attrStr addAttribute:NSFontAttributeName value:RS_FONT_F4 range:NSMakeRange(0, 1)];
         self.totalPriceLabel.attributedText = attrStr;
@@ -97,7 +93,7 @@
     }
     _cartImageView = [[UIImageView alloc]init];
     _cartImageView.image = [UIImage imageNamed:@"tab_cart"];
-    _cartImageView.frame = CGRectMake(15, -22, 44, 22+49);
+    _cartImageView.frame = CGRectMake(15, -12, 44, 12+49);
     _cartImageView.contentMode = UIViewContentModeTop;
     [_cartImageView addTapAction:@selector(showCarts) target:self];
     return _cartImageView;

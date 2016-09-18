@@ -34,7 +34,8 @@
     [self.contentView addSubview:self.priceLabel];
     
     CGSize addSize = [UIImage imageNamed:@"addActivate"].size;
-    self.addIV = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-32, 16.5, addSize.width, addSize.height)];
+    self.addIV = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-32, 0, addSize.width+16, 49)];
+    self.addIV.contentMode = UIViewContentModeLeft;
     [self.contentView addSubview:self.addIV];
     [self.addIV setImage:[UIImage imageNamed:@"addActivate"]];
     [self.addIV addTapAction:@selector(addCountClick) target:self];
@@ -46,6 +47,7 @@
     
     self.subIV = [[UIImageView alloc]initWithFrame:CGRectMake(self.countLabel.x-addSize.width, self.addIV.top, self.addIV.width, self.addIV.height)];
     [self.subIV setImage:[UIImage imageNamed:@"subActivate"]];
+    self.subIV.contentMode = UIViewContentModeCenter;
     [self.contentView addSubview:self.subIV];
     [self.subIV addTapAction:@selector(subCountClick) target:self];
     
