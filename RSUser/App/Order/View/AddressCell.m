@@ -28,7 +28,7 @@
 {
     self.mainTitleLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:RS_Clear_Clor textColor:RS_COLOR_C1];
     self.mainTitleLabel.textAlignment = NSTextAlignmentLeft;
-    self.mainTitleLabel.font = RS_FONT_F2;
+    self.mainTitleLabel.font = RS_FONT_F3;
     [self.contentView addSubview:self.mainTitleLabel];
 }
 

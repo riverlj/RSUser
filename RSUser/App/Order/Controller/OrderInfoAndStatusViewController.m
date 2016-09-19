@@ -139,7 +139,7 @@
         _orderInfoVc = [[OrderInfoViewController alloc]init];
         _orderInfoVc.orderId = self.orderId;
         _orderInfoVc.orderInfoModel = self.orderInfoModel;
-        _orderInfoVc.view.frame = CGRectMake(0, 50, SCREEN_WIDTH, self.view.height-108);
+        _orderInfoVc.view.frame = CGRectMake(0, 40, SCREEN_WIDTH, self.view.height-108);
     }
     return _orderInfoVc;
 }
@@ -150,7 +150,7 @@
         _orderStatusVc = [[OrderStatusViewController alloc]init];
         _orderStatusVc.orderId = self.orderId;
         _orderStatusVc.orderInfoModel = self.orderInfoModel;
-        _orderStatusVc.view.frame = CGRectMake(0, 50, SCREEN_WIDTH, self.view.height-108);
+        _orderStatusVc.view.frame = CGRectMake(0, 40, SCREEN_WIDTH, self.view.height-108);
     }
     return _orderStatusVc;
 }
