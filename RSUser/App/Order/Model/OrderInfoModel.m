@@ -28,7 +28,7 @@
         @"statusDesc" : @"statusDesc",
         @"totalprice" : @"totalprice",
         @"paymethod" : @"paymethod",
-//        @"products" : @"products",
+        @"products" : @"products",
         @"deliverys" : @"deliverys",
         @"orderlog" : @"orderlog",
         @"couponid" : @"couponid",
@@ -110,6 +110,43 @@
     } failure:^(NSInteger code, NSString *errmsg) {
         [[RSToastView shareRSToastView] hidHUD];
         [[RSToastView shareRSToastView] showToast:errmsg];
+    }];
+}
+
++ (void)getReOrderInfo:(void(^)(NSArray*))success Orderid:(NSString *)orderid{
+    NSDictionary *params = @{
+                          @"orderid" : orderid
+                          };
+    [RSHttp requestWithURL:@"/cart/reorder" params:params httpMethod:@"POSTJSON" success:^(NSArray *data) {
+        NSError *error = nil;
+        NSArray *array = [MTLJSONAdapter modelsOfClass:GoodListModel.class fromJSONArray:data error:&error];
+        success(array);
+        if (error) {
+            [[RSToastView shareRSToastView] showToast:@"再来一单数据解析失败"];
+        }
+        
+        
+    } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSToastView] showToast:errmsg];
+
+    }];
+}
+
++ (void)getOrderInfo:(void(^)(OrderInfoModel*))success Orderid:(NSString *)orderid{
+    NSDictionary *params = @{
+                             @"orderid" : orderid
+                             };
+    [RSHttp requestWithURL:@"/order/info" params:params httpMethod:@"GET" success:^(id data) {
+        NSError *error = nil;
+        OrderInfoModel *orderInfoModel  = [MTLJSONAdapter modelOfClass:[OrderInfoModel class] fromJSONDictionary:data error:&error];
+        [[RSToastView shareRSToastView]hidHUD];
+        if (error) {
+            NSLog(@"%@",error);
+        }
+        success(orderInfoModel);
+    }failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSToastView]hidHUD];
+        [[RSToastView shareRSToastView]showToast:errmsg];
     }];
 
 }

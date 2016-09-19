@@ -64,7 +64,8 @@
              @"channels": @"channels",
              @"minprice": @"minprice",
              @"contactMobile" : @"contactmobile",
-             @"categorys" : @"categorys"
+             @"categorys" : @"categorys",
+             @"name" : @"name"
              };
 }
 

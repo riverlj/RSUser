@@ -41,6 +41,9 @@ static Cart *shareCart = nil;
     return shareCart;
 }
 
+/**
+ *  清空购物车
+ */
 - (void)clearDataSource
 {
     [self.cartDataSource removeAllObjects];
@@ -248,6 +251,9 @@ static Cart *shareCart = nil;
     [self updateCartCountLabelText];
 }
 
+/**
+ *  清空当前学校的购物车
+ */
 - (void)clearAllCartGoods
 {
     [[self getCartGoods] removeAllObjects];

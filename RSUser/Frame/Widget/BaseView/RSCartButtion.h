@@ -9,4 +9,5 @@
 #import <CYLPlusButton.h>
 
 @interface RSCartButtion : CYLPlusButton<CYLPlusButtonSubclassing>
+- (void)clickCart:(RSCartButtion *)button;
 @end

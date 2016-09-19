@@ -460,7 +460,7 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 42)];
     view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:view];
-    [view setBorderWithView:view top:NO left:NO bottom:YES right:NO borderColor:RS_Line_Color borderWidth:1];
+    [view setBorderWithView:view top:NO left:NO bottom:YES right:NO borderColor:RS_Line_Color borderWidth:1.0/[UIScreen mainScreen].scale];
     
     group = [[RSRadioGroup alloc] init];
     

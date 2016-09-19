@@ -83,7 +83,6 @@ static LocationModel *shareLocationModel = nil;
     return array;
 }
 
-
 - (void)save
 {
     NSMutableArray *array = [NSMutableArray arrayWithArray:[self getCommnitysFromDocument]];

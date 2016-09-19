@@ -10,6 +10,7 @@
 #import "OrderModel.h"
 #import "RSSubTitleView.h"
 #import "OrderInfoAndStatusViewController.h"
+#import "OrderInfoModel.h"
 
 @interface OrderViewController()
 {
@@ -258,10 +259,56 @@
     
 }
 
--(void)reCreatOrder:(NSString *)orderId {
+-(void)reCreatOrder:(NSString *)orderid {
     //再来一单
-    [[RSToastView shareRSToastView]showToast:@"敬请期待"];
+//    [[RSToastView shareRSToastView]showToast:@"敬请期待"];
+    
+    __weak OrderViewController *selfB = self;
+    [OrderInfoModel getOrderInfo:^(OrderInfoModel *orderInfoModel) {
+        if ([COMMUNTITYID integerValue] != orderInfoModel.communityid) {
+            RSAlertView *alert = [[RSAlertView alloc] initWithTile:@"温馨提示" msg:[NSString stringWithFormat:@"该订单位于%@，是否切学校?", orderInfoModel.address] leftButtonTitle:@"切换学校" rightButtonTitle:@"取消" AndLeftBlock:^{
+                [[LocationModel shareLocationModel] setCommuntityId:@(orderInfoModel.communityid)];
+                [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
+                    NSString *commutityName = schoolModel.name;
+                    [[LocationModel shareLocationModel] setCommuntityName:commutityName];
+                    [[LocationModel shareLocationModel] save];
+                    [selfB oneMoreAddGoodToCart:orderid];
+                }];
+            } RightBlock:^{}];
+            
+            [alert show];
+        }else {
+            [self oneMoreAddGoodToCart:orderid];
+        }
+
+    } Orderid:orderid];
 }
+
+- (void) oneMoreAddGoodToCart:(NSString *)orderid {
+    
+    RSAlertView *alert = [[RSAlertView alloc] initWithTile:@"温馨提示" msg:@"确定清空当前购物车吗？" leftButtonTitle:@"确定" rightButtonTitle:@"取消" AndLeftBlock:^{
+        [[Cart sharedCart] clearAllCartGoods];
+        
+        [OrderInfoModel getReOrderInfo:^(NSArray *products) {
+            for (int i=0; i<products.count; i++) {
+                GoodListModel *model = products[i];
+                [[Cart sharedCart] addGoods:model];
+            }
+            
+            [[Cart sharedCart] updateCartCountLabelText];
+            self.cyl_tabBarController.selectedIndex = 0;
+            RSCartButtion *button = (RSCartButtion *)CYLExternPlusButton;
+            [button clickCart:button];
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            
+        } Orderid:orderid];
+        
+    } RightBlock:^{
+        
+    }];
+    [alert show];
+}
+
 
 -(void)setalbeItems:(BOOL)b
 {

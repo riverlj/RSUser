@@ -12,7 +12,7 @@
 @protocol cellBtnClickedDelegate <NSObject>
 - (void)goOrderInfo:(NSString *)orderId;
 - (void)goToPay:(NSString *)orderId;
-- (void)reCreatOrder:(NSString *)orderId;
+- (void)reCreatOrder:(NSString *)orderid;
 @end
 
 @interface OrderCell : RSTableViewCell

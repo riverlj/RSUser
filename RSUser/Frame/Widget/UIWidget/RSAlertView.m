@@ -210,10 +210,8 @@
 {
     UIViewController *topVC = [self superViewController];
     self.alertView.frame = CGRectMake(self.width/2, self.height/2, 0, 0);
-    [UIView animateWithDuration:0 animations:^{
-        [self layout];
-        [topVC.view addSubview:self];
-    }];
+    [self layout];
+    [topVC.view addSubview:self];
  }
 
 //获取superview

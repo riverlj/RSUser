@@ -27,8 +27,6 @@
     self.models = [[NSMutableArray alloc]init];
     [self.models addObjectsFromArray:self.couponArray];
     [self.tableView reloadData];
-    
-    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -139,7 +139,7 @@
         _orderInfoVc = [[OrderInfoViewController alloc]init];
         _orderInfoVc.orderId = self.orderId;
         _orderInfoVc.orderInfoModel = self.orderInfoModel;
-        _orderInfoVc.view.frame = CGRectMake(0, 40, SCREEN_WIDTH, self.view.height-108);
+        _orderInfoVc.view.frame = CGRectMake(0, 40, SCREEN_WIDTH, self.view.height-98);
     }
     return _orderInfoVc;
 }
@@ -150,7 +150,7 @@
         _orderStatusVc = [[OrderStatusViewController alloc]init];
         _orderStatusVc.orderId = self.orderId;
         _orderStatusVc.orderInfoModel = self.orderInfoModel;
-        _orderStatusVc.view.frame = CGRectMake(0, 40, SCREEN_WIDTH, self.view.height-108);
+        _orderStatusVc.view.frame = CGRectMake(0, 40, SCREEN_WIDTH, self.view.height-98);
     }
     return _orderStatusVc;
 }
@@ -234,11 +234,52 @@
     [_oneMoreBtn setBackgroundColor:RS_Theme_Color];
     _oneMoreBtn.titleLabel.font = RS_FONT_F2;
     
+    @weakify(self)
     [[_oneMoreBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        [[RSToastView shareRSToastView] showToast:@"马上上线..."];
+        @strongify(self)
+        if ([COMMUNTITYID integerValue] != self.orderInfoModel.communityid) {
+            RSAlertView *alert = [[RSAlertView alloc] initWithTile:@"温馨提示" msg:[NSString stringWithFormat:@"该订单位于%@，是否切学校?", self.orderInfoModel.address] leftButtonTitle:@"切换学校" rightButtonTitle:@"取消" AndLeftBlock:^{
+                [[LocationModel shareLocationModel] setCommuntityId:@(self.orderInfoModel.communityid)];
+                [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
+                    NSString *commutityName = schoolModel.name;
+                    [[LocationModel shareLocationModel] setCommuntityName:commutityName];
+                    [[LocationModel shareLocationModel] save];
+                    [self oneMoreAddGoodToCart];
+                }];
+            } RightBlock:^{}];
+            
+            [alert show];
+        }else {
+           [self oneMoreAddGoodToCart];
+        }
     }];
     [self.bottomView addSubview:_oneMoreBtn];
     return _oneMoreBtn;
+}
+
+- (void) oneMoreAddGoodToCart {
+    
+    RSAlertView *alert = [[RSAlertView alloc] initWithTile:@"温馨提示" msg:@"确定清空当前购物车吗？" leftButtonTitle:@"确定" rightButtonTitle:@"取消" AndLeftBlock:^{
+        [[Cart sharedCart] clearAllCartGoods];
+        
+        [OrderInfoModel getReOrderInfo:^(NSArray *products) {
+            for (int i=0; i<products.count; i++) {
+                GoodListModel *model = products[i];
+                [[Cart sharedCart] addGoods:model];
+            }
+            
+            [[Cart sharedCart] updateCartCountLabelText];
+            self.cyl_tabBarController.selectedIndex = 0;
+            RSCartButtion *button = (RSCartButtion *)CYLExternPlusButton;
+            [button clickCart:button];
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            
+        } Orderid:self.orderInfoModel.orderId];
+        
+    } RightBlock:^{
+        
+    }];
+    [alert show];
 }
 
 
@@ -254,8 +295,27 @@
     _retreatBtn.layer.borderColor = RS_COLOR_C4.CGColor;
     _retreatBtn.titleLabel.font = RS_FONT_F2;
     
+    @weakify(self)
     [[_retreatBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        [[RSToastView shareRSToastView] showToast:@"马上上线..."];
+        
+        @strongify(self)
+        RSAlertView *alert = [[RSAlertView alloc]initWithTile:@"温馨提示" msg:@"确定退单吗？" leftButtonTitle:@"确定" rightButtonTitle:@"取消" AndLeftBlock:^{
+            NSDictionary *params = @{
+                                     @"orderid" : self.orderInfoModel.orderId,
+                                     };
+            [RSHttp requestWithURL:@"/refund/create" params:params httpMethod:@"POSTJSON" success:^(id data) {
+                [[RSToastView shareRSToastView] showToast:@"退单成功"];
+                [self freshenTableView];
+            } failure:^(NSInteger code, NSString *errmsg) {
+                [[RSToastView shareRSToastView] showToast:errmsg];
+            }];
+        } RightBlock:^{
+            
+        }];
+        
+        [alert show];
+        
+        
     }];
     
     [self.bottomView addSubview:_retreatBtn];
@@ -423,8 +483,8 @@
     }
     
     if (self.bottomView.hidden) {
-        self.orderStatusVc.view.height = self.view.height-50;
-        self.orderInfoVc.view.height = self.view.height-50;
+        self.orderStatusVc.view.height = self.view.height-40;
+        self.orderInfoVc.view.height = self.view.height-40;
     }
 }
 

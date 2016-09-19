@@ -25,7 +25,7 @@
 @property (nonatomic, strong) NSString *statusDesc;
 @property (nonatomic, strong) NSString *totalprice;
 @property (nonatomic, strong) NSString *paymethod;
-//@property (nonatomic, strong) NSArray *products;
+@property (nonatomic, strong) NSArray *products;
 @property (nonatomic, strong) NSArray *deliverys;
 @property (nonatomic, strong) NSArray *orderlog;
 @property (nonatomic) NSInteger couponid;
@@ -58,4 +58,6 @@
 - (OrderInfoModel *)getOtherInfoModel;
 
 - (void)orderPaySuccess:(void(^)(NSString*))success;
++ (void)getReOrderInfo:(void(^)(NSArray*))success Orderid:(NSString *)orderid;
++ (void)getOrderInfo:(void(^)(OrderInfoModel*))success Orderid:(NSString *)orderid;
 @end
