@@ -75,7 +75,7 @@
     [[RSToastView shareRSToastView]hidHUD];
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     [[RSToastView shareRSToastView]hidHUD];
     

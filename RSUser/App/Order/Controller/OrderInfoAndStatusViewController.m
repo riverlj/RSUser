@@ -259,27 +259,32 @@
 
 - (void) oneMoreAddGoodToCart {
     
-    RSAlertView *alert = [[RSAlertView alloc] initWithTile:@"温馨提示" msg:@"确定清空当前购物车吗？" leftButtonTitle:@"确定" rightButtonTitle:@"取消" AndLeftBlock:^{
-        [[Cart sharedCart] clearAllCartGoods];
+    if([[Cart sharedCart] getCartGoods].count > 0){
+        RSAlertView *alert = [[RSAlertView alloc] initWithTile:@"温馨提示" msg:@"确定清空当前购物车吗？" leftButtonTitle:@"确定" rightButtonTitle:@"取消" AndLeftBlock:^{
+            [[Cart sharedCart] clearAllCartGoods];
+            [self addReOrderGoodsToCart];
+        } RightBlock:^{
+        }];
+        [alert show];
+    }else{
+        [self addReOrderGoodsToCart];
+    }
+}
+
+- (void)addReOrderGoodsToCart {
+    [OrderInfoModel getReOrderInfo:^(NSArray *products) {
+        for (int i=0; i<products.count; i++) {
+            GoodListModel *model = products[i];
+            [[Cart sharedCart] addGoods:model];
+        }
         
-        [OrderInfoModel getReOrderInfo:^(NSArray *products) {
-            for (int i=0; i<products.count; i++) {
-                GoodListModel *model = products[i];
-                [[Cart sharedCart] addGoods:model];
-            }
-            
-            [[Cart sharedCart] updateCartCountLabelText];
-            self.cyl_tabBarController.selectedIndex = 0;
-            RSCartButtion *button = (RSCartButtion *)CYLExternPlusButton;
-            [button clickCart:button];
-            [self.navigationController popToRootViewControllerAnimated:NO];
-            
-        } Orderid:self.orderInfoModel.orderId];
+        [[Cart sharedCart] updateCartCountLabelText];
+        self.cyl_tabBarController.selectedIndex = 0;
+        RSCartButtion *button = (RSCartButtion *)CYLExternPlusButton;
+        [button clickCart:button];
+        [self.navigationController popToRootViewControllerAnimated:NO];
         
-    } RightBlock:^{
-        
-    }];
-    [alert show];
+    } Orderid:self.orderInfoModel.orderId];
 }
 
 
