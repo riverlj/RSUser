@@ -100,6 +100,7 @@
 
 + (void)configJSPatch
 {
+//    [JSPatch testScriptInBundle];
     [JSPatch startWithAppKey:RSUSER_JSPATCH_KEY];
     [JSPatch sync];
 }
