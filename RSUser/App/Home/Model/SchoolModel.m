@@ -88,6 +88,31 @@
     }];
 }
 
++ (void)getSchoolMsg:(void (^)(SchoolModel * schoolModel))successArray failure:(void (^)(void))failure schoolid:(NSString *)schoolid
+{
+    NSString *pschoolid = @"";
+    if (schoolid.length > 0) {
+        pschoolid = schoolid;
+    }else {
+        pschoolid = [COMMUNTITYID stringValue];
+    }
+    if (pschoolid.length <= 0) {
+        return;
+    }
+    NSDictionary *params = @{
+                             @"communityid" : pschoolid
+                             };
+    [RSHttp requestWithURL:@"/community/info" params:params httpMethod:@"GET" success:^(NSDictionary *data) {
+        
+        NSError *error = nil;
+        SchoolModel *model = [MTLJSONAdapter modelOfClass:[SchoolModel class] fromJSONDictionary:data error:&error];
+        successArray(model);
+    } failure:^(NSInteger code, NSString *errmsg) {
+        [[RSToastView shareRSToastView]showToast:errmsg];
+        failure();
+    }];
+}
+
 + (NSValueTransformer *)channelsJSONTransformer {
     return [MTLJSONAdapter arrayTransformerWithModelClass:ChannelModel.class];
 }

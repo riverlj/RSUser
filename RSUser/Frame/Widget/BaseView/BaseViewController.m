@@ -43,6 +43,12 @@
         self.bottomCartView = [[BottomCartView alloc]initWithFrame:CGRectMake(0, self.view.height-49, SCREEN_WIDTH, 49)];
         [self.view addSubview:self.bottomCartView];
     }
+    
+    if (self.navigationController.viewControllers.count > 1) {
+        self.hasBackBtn = YES;
+    }else {
+        self.hasBackBtn = NO;
+    }
 }
 
 - (void)creatCountLable
@@ -102,6 +108,29 @@
         
         [self.view exchangeSubviewAtIndex:index withSubviewAtIndex:subViews.count-1];
     }
+    
+    [self setBackUpBtn];
+    
+}
+
+
+- (void)setBackUpBtn
+{
+    if (self.hasBackBtn)
+    {
+        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        iv.image = [UIImage imageNamed:@"nav-goback"];
+        [iv addTapAction:@selector(backUp) target:self];
+        
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:iv];
+        self.navigationItem.leftBarButtonItem = item;
+        
+    }
+}
+
+- (void)backUp
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(RSTipsView *) tips

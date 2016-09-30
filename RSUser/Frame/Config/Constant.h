@@ -10,40 +10,39 @@
 #define Constant_h
 
 #ifdef DEBUG
-#define  REDSCARF_BASE_URL @"http://test.dev.honglingjinclub.com"
-#define REDSCARF_PAY_URL @""
-#define REDSCARF_MOBILE_URL @"http://test.dev.honglingjinclub.com"
-#define APP_REGISTER_URL @"http://test.dev.honglingjinclub.com/web/register.html"
-#define APP_RESETPWD_URL @"http://test.dev.honglingjinclub.com/web/resetPwd.html"
+//    #define  REDSCARF_BASE_URL @"http://test.dev.honglingjinclub.com"
+//    #define REDSCARF_PAY_URL @""
+//    #define REDSCARF_MOBILE_URL @"http://test.dev.honglingjinclub.com"
+//    #define APP_REGISTER_URL @"http://test.dev.honglingjinclub.com/web/register.html"
+//    #define APP_RESETPWD_URL @"http://test.dev.honglingjinclub.com/web/resetPwd.html"
+//    #define APP_CHANNEL_BASE_URL @"http://test.dev.honglingjinclub.com/web/index.html#"
 
-#define APP_CHANNEL_BASE_URL @"http://test.dev.honglingjinclub.com/web/index.html#"
+    #define  REDSCARF_BASE_URL @"http://waimai.honglingjinclub.com"
+    #define  REDSCARF_PAY_URL @""
+    #define  REDSCARF_MOBILE_URL @"http://waimai.honglingjinclub.com"
+    #define APP_REGISTER_URL @"http://waimai.honglingjinclub.com/web/register.html"
+    #define APP_RESETPWD_URL @"http://waimai.honglingjinclub.com/web/resetPwd.html"
+    #define APP_CHANNEL_BASE_URL @"http://waimai.honglingjinclub.com/web/index.html#"
 
-//#define  REDSCARF_BASE_URL @"http://waimai.honglingjinclub.com"
-//#define  REDSCARF_PAY_URL @""
-//#define  REDSCARF_MOBILE_URL @"http://waimai.honglingjinclub.com"
-//#define APP_REGISTER_URL @"http://waimai.honglingjinclub.com/web/register.html"
-//#define APP_RESETPWD_URL @"http://waimai.honglingjinclub.com/web/resetPwd.html"
-//#define APP_CHANNEL_BASE_URL @"http://waimai.honglingjinclub.com/web/index.html#"
-
-#define UTM_SOURCE @"testDev"
+    #define UTM_SOURCE @"testDev"
 #else
-//正式
-#define  REDSCARF_BASE_URL @"http://waimai.honglingjinclub.com"
-#define  REDSCARF_PAY_URL @""
-#define  REDSCARF_MOBILE_URL @"http://waimai.honglingjinclub.com"
-#define APP_REGISTER_URL @"http://waimai.honglingjinclub.com/web/register.html"
-#define APP_RESETPWD_URL @"http://waimai.honglingjinclub.com/web/resetPwd.html"
+    //正式
+    #define  REDSCARF_BASE_URL @"http://waimai.honglingjinclub.com"
+    #define  REDSCARF_PAY_URL @""
+    #define  REDSCARF_MOBILE_URL @"http://waimai.honglingjinclub.com"
+    #define APP_REGISTER_URL @"http://waimai.honglingjinclub.com/web/register.html"
+    #define APP_RESETPWD_URL @"http://waimai.honglingjinclub.com/web/resetPwd.html"
 
-#define APP_CHANNEL_BASE_URL @"http://waimai.honglingjinclub.com/web/index.html#"
+    #define APP_CHANNEL_BASE_URL @"http://waimai.honglingjinclub.com/web/index.html#"
 
-#define UTM_SOURCE @"AppStore"
+    #define UTM_SOURCE @"AppStore"
 #endif
 
-//#ifdef DEBUG
-//#   define NSLog(...) NSLog(__VA_ARGS__)
-//#else
-//#   define NSLog(...)
-//#endif
+#ifdef DEBUG
+    #define NSLog(...) NSLog(__VA_ARGS__)
+#else
+    #define NSLog(...)
+#endif
 
 #define iPhone4S ([UIScreen mainScreen].bounds.size.height == 480 ? YES : NO)
 #define iPhone5S ([UIScreen mainScreen].bounds.size.height == 568 ? YES : NO)
@@ -89,5 +88,8 @@
 
 #pragma mark 通知中心
 #define UPDATE_BOTTOM_CAR_TDATE @"updateBottomCartDate"
+
+#define HOMEVIEWCONTROLLER_VIEW_UPDATE @"HomeViewController_view_update"
+#define HOMEVIEWCONTROLLER_GOODLIST_GOODNUM_UPDATE @"Notification_UpadteCountLabel"
 
 #endif /* Constant_h */

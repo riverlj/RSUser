@@ -9,7 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UIViewController (Aspects)
-@property (nonatomic, assign)Boolean hasBackBtn;
 
-- (void)backUp;
 @end

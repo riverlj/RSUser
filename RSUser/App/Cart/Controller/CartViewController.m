@@ -269,6 +269,6 @@
 
 #pragma mark dealloc
 -(void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Notification_UpadteCountLabel" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Notification_UpadteCartCountLabel" object:nil];
 }
 @end

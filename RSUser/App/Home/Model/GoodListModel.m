@@ -52,6 +52,7 @@
              };
 }
 
+
 -(NSString *)headimg {
     if (!_headimg) {
         return nil;

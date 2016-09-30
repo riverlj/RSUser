@@ -18,6 +18,8 @@
 @property (nonatomic, strong) CartNumberLabel *countLabel;
 @property (nonatomic, strong) BottomCartView *bottomCartView;
 
+@property (nonatomic, assign)Boolean hasBackBtn;
+
 
 @property (nonatomic ,assign)Boolean showCartBottom;
 

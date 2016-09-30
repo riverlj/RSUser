@@ -234,36 +234,60 @@
     [_oneMoreBtn setBackgroundColor:RS_Theme_Color];
     _oneMoreBtn.titleLabel.font = RS_FONT_F2;
     
-    @weakify(self)
-    [[_oneMoreBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        @strongify(self)
-        if ([COMMUNTITYID integerValue] != self.orderInfoModel.communityid) {
-            RSAlertView *alert = [[RSAlertView alloc] initWithTile:@"温馨提示" msg:[NSString stringWithFormat:@"该订单位于%@，是否切学校?", self.orderInfoModel.address] leftButtonTitle:@"切换学校" rightButtonTitle:@"取消" AndLeftBlock:^{
-                [[LocationModel shareLocationModel] setCommuntityId:@(self.orderInfoModel.communityid)];
-                [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
-                    NSString *commutityName = schoolModel.name;
-                    [[LocationModel shareLocationModel] setCommuntityName:commutityName];
-                    [[LocationModel shareLocationModel] save];
-                    [self oneMoreAddGoodToCart];
-                }];
-            } RightBlock:^{}];
-            
-            [alert show];
-        }else {
-           [self oneMoreAddGoodToCart];
-        }
-    }];
+    [_oneMoreBtn addTarget:self action:@selector(oneMoreBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.bottomView addSubview:_oneMoreBtn];
     return _oneMoreBtn;
+}
+
+- (void)oneMoreBtnClicked {
+    if ([COMMUNTITYID integerValue] != self.orderInfoModel.communityid) {
+        
+        RSAlertView *alert = [[RSAlertView alloc] initWithTile:@"温馨提示" msg:[NSString stringWithFormat:@"该订单位于%@，是否切学校?", self.orderInfoModel.address] leftButtonTitle:@"切换学校" rightButtonTitle:@"取消" AndLeftBlock:^{
+            
+            [[LocationModel shareLocationModel] setCommuntityId:@(self.orderInfoModel.communityid)];
+            
+            [[RSToastView shareRSToastView] showHUD:@"加载中..."];
+            [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
+                [[RSToastView shareRSToastView] hidHUD];
+                
+                //本地存储学校信息
+                [[LocationModel shareLocationModel] setCommuntityId:@(schoolModel.communtityId)];
+                [[LocationModel shareLocationModel] setCommuntityName:schoolModel.name];
+                [[LocationModel shareLocationModel] save];
+                
+                [AppConfig getAPPDelegate].schoolModel = schoolModel;
+                
+                //更新首页数据
+                [[NSNotificationCenter defaultCenter]postNotificationName:HOMEVIEWCONTROLLER_VIEW_UPDATE object:nil];
+                
+                //添加购物车
+                [self oneMoreAddGoodToCart];
+                
+            } failure:^{
+                
+            } schoolid:[NSString stringFromNumber:@(self.orderInfoModel.communityid)]];
+            
+        } RightBlock:^{}];
+        
+        [alert show];
+    }else {
+        [self oneMoreAddGoodToCart];
+    }
+
 }
 
 - (void) oneMoreAddGoodToCart {
     
     if([[Cart sharedCart] getCartGoods].count > 0){
-        RSAlertView *alert = [[RSAlertView alloc] initWithTile:@"温馨提示" msg:@"确定清空当前购物车吗？" leftButtonTitle:@"确定" rightButtonTitle:@"取消" AndLeftBlock:^{
+        RSAlertView *alert = [[RSAlertView alloc] initWithTile:@"温馨提示" msg:@"确定清空当前购物车吗？" leftButtonTitle:@"清空" rightButtonTitle:@"不清空" AndLeftBlock:^{
+            
+            //清空购物车
             [[Cart sharedCart] clearAllCartGoods];
+            //添加到购物车
             [self addReOrderGoodsToCart];
         } RightBlock:^{
+            [self addReOrderGoodsToCart];
         }];
         [alert show];
     }else{
@@ -272,17 +296,27 @@
 }
 
 - (void)addReOrderGoodsToCart {
+    
+    [[RSToastView shareRSToastView] showHUD:@"加载中..."];
     [OrderInfoModel getReOrderInfo:^(NSArray *products) {
+        [[RSToastView shareRSToastView] hidHUD];
+        
         for (int i=0; i<products.count; i++) {
             GoodListModel *model = products[i];
             [[Cart sharedCart] addGoods:model];
         }
         
+        //更新购物车上的数字
         [[Cart sharedCart] updateCartCountLabelText];
+        
+        //更新首页商品列表上的数字
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"Notification_UpadteCountLabel" object:nil];
+        
         self.cyl_tabBarController.selectedIndex = 0;
+        
         RSCartButtion *button = (RSCartButtion *)CYLExternPlusButton;
         [button clickCart:button];
-        [self.navigationController popToRootViewControllerAnimated:NO];
+        [self.navigationController popToRootViewControllerAnimated:YES];
         
     } Orderid:self.orderInfoModel.orderId];
 }

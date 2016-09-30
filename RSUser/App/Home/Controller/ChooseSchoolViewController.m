@@ -16,6 +16,7 @@
     UISearchBar *mSearchBar;
     NSMutableArray *universityArr;
     UIImageView *imageView;
+    Boolean canBack;
 }
 @property (nonatomic, strong)RSLabel *clearHistoryLabel;
 
@@ -26,6 +27,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    self.hasBackBtn = YES;
     self.title = @"地址选择";
     self.models = [NSMutableArray array];
     
@@ -146,8 +148,24 @@
 {
     LocationModel *model = self.models[indexPath.row];
     [LOCATIONMODEL setLocationModelWhithModel:model];
-    [self saveSchoolArray];
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    __block AppDelegate *appDelegate = [AppConfig getAPPDelegate];
+    
+    [[RSToastView shareRSToastView] showHUD:@"加载中..."];
+    [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
+        canBack = true;
+        [[RSToastView shareRSToastView] hidHUD];
+        appDelegate.schoolModel = schoolModel;
+        [self saveSchoolArray];
+        [[NSNotificationCenter defaultCenter] postNotificationName:HOMEVIEWCONTROLLER_VIEW_UPDATE object:nil];
+        if ([self.navigationController.viewControllers[0] isKindOfClass:[ChooseSchoolViewController class]]) {
+            [[AppConfig getAPPDelegate] setHomeRootViewController];
+        }else {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } failure:^{
+        [[RSToastView shareRSToastView] showToast:@"获取学校信息失败"];
+    } schoolid:nil];
 }
 
 #pragma mark scrollView delegate
@@ -200,14 +218,21 @@
 #pragma mark 返回
 -(void)backUp
 {
-    NSLog(@"%@",COMMUNTITYID);
     if (!COMMUNTITYID)
     {
-        [[RSToastView shareRSToastView] showToast:@"请选择所在学校"];
+        [[RSToastView shareRSToastView] showToast:@"请选择学校"];
         return;
     }
-    [LOCATIONMODEL save];
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    if ([self.navigationController.viewControllers[0] isKindOfClass:[ChooseSchoolViewController class]]) {
+        if (canBack) {
+            [[AppConfig getAPPDelegate] setHomeRootViewController];
+        }else {
+            [[RSToastView shareRSToastView] showToast:@"获取学校信息失败，请重新选择"];
+        }
+    }else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

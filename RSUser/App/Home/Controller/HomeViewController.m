@@ -34,7 +34,7 @@
     
     NSMutableArray *_channelArray;
     NSMutableArray *_goodListArray;
-    Boolean canRefrash;
+//    Boolean canRefrash;
     
     NSNumber *preCommutityId;
     UIView *_goodTypeContentView;
@@ -45,6 +45,8 @@
     NSInteger selectedCategoryId;
     
     Boolean isrefrash;
+    
+    CGFloat header;
 }
 @end
 @implementation HomeViewController
@@ -58,82 +60,89 @@
     return self;
 }
 
--(void)initSourceDate {
-    self.models = [[NSMutableArray alloc]init];
-    
-    _channelArray = [[NSMutableArray alloc]init];
-    [self.models addObject:_channelArray];
-    
-    _goodListArray = [[NSMutableArray alloc]init];
-    [self.models addObject:_goodListArray];
-}
-
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.sections = [NSMutableArray new];
-    [self initSourceDate];
     
-    canRefrash = YES;
+    header = 0;
+    
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableHeaderView = self.cycleScrollView;
+    
+    [self initSourceDate];
     
     self.url = @"/product/list";
     self.useFooterRefresh = NO;
     self.useHeaderRefresh = YES;
     
-    self.bannerImageUrls = [NSMutableArray new];
-    self.bannerActionUrls = [NSMutableArray new];
-    self.bannerTitles = [NSMutableArray new];
-    
     [self createNaviView];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHomeVC) name:@"Notification_UpadteCountLabel" object:nil];
-    
-}
+    [self initLocationBtn];
+    [self.view addSubview:_locationBtn];
 
-- (void)updateHomeVC {
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    [self refeshTableWithType:@(selectedCategoryId)];
+    [self updateHomeVC];
+
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHomeVC) name:HOMEVIEWCONTROLLER_VIEW_UPDATE object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateGoodsCount) name:HOMEVIEWCONTROLLER_GOODLIST_GOODNUM_UPDATE object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    if (!COMMUNTITYID)
-    {
-        [self locationBtnClicked];
-        return;
-    }
-    
-    [self.locationBtn removeFromSuperview];
-    [self.view addSubview:self.locationBtn];
-    
-    if (![preCommutityId isEqual:COMMUNTITYID]) {
-        canRefrash = YES;
-    }
-    preCommutityId = COMMUNTITYID;
-    
-    
-    if (canRefrash) {
-        [self.tableView.mj_header beginRefreshing];
-    }
+    self.navigationController.navigationBar.hidden = YES;
+}
 
+-(void)initSourceDate {
+    //section
+    self.sections = [NSMutableArray new];
+    
+    self.models = [[NSMutableArray alloc]init];
+    //channel
+    _channelArray = [[NSMutableArray alloc]init];
+    [self.models addObject:_channelArray];
+    //goodlist
+    _goodListArray = [[NSMutableArray alloc]init];
+    [self.models addObject:_goodListArray];
+    
+    //banner
+    self.bannerImageUrls = [NSMutableArray new];
+    self.bannerActionUrls = [NSMutableArray new];
+    self.bannerTitles = [NSMutableArray new];
+}
+
+- (void)updateHomeVC {
+
+    [_bannerImageUrls removeAllObjects];
+    [_channelArray removeAllObjects];
+    [_goodListArray removeAllObjects];
+    [self.tableView reloadData];
+    
+    [self initChannelData];
     CGSize size;
     if (COMMUNITITYNAME.length > 8) {
         size = [[[COMMUNITITYNAME substringToIndex:8] stringByAppendingString:@"..."] sizeWithFont:RS_FONT_F1 byHeight:30.0];
-        [self.locationBtn setTitle:[[COMMUNITITYNAME substringToIndex:8] stringByAppendingString:@"..."] forState:UIControlStateNormal];
+        [_locationBtn setTitle:[[COMMUNITITYNAME substringToIndex:8] stringByAppendingString:@"..."] forState:UIControlStateNormal];
     }else {
-        [self.locationBtn setTitle:COMMUNITITYNAME forState:UIControlStateNormal];
+        [_locationBtn setTitle:COMMUNITITYNAME forState:UIControlStateNormal];
         size = [COMMUNITITYNAME sizeWithFont:RS_FONT_F1 byHeight:25.0];
     }
-    self.locationBtn.frame = CGRectMake((SCREEN_WIDTH-(size.width+50))/2, 25, size.width+30, 25);
-    
-    self.navigationController.navigationBar.hidden = YES;
+    _locationBtn.frame = CGRectMake((SCREEN_WIDTH-(size.width+50))/2, 25, size.width+30, 25);
 
+    groupSelectedIndex = 0;
+    selectedCategoryId = 0;
+    
+    [_categoryView removeFromSuperview];
+    _categoryView = nil;
+    _categoryView = [self creatTypeGroupView];
+    
+    [self.tableView.mj_header beginRefreshing];
+    
+}
+
+- (void)updateGoodsCount {
+    [self refeshTableWithType:@(selectedCategoryId)];
 }
 
 - (void)requestBanner{
@@ -164,7 +173,7 @@
 
 #pragma mark 逻辑处理
 - (void)initChannelData {
-    canRefrash = NO;
+//    canRefrash = NO;
     
     SchoolModel *schoolModel = [AppConfig getAPPDelegate].schoolModel;
     NSMutableArray *array = [[NSMutableArray alloc]init];
@@ -203,6 +212,7 @@
     channelViewModel.cellClassName = @"ChannelCell";
     channelViewModel.channelsArray = array;
     
+    [_channelArray removeAllObjects];
     [_channelArray addObject:channelViewModel];
 }
 
@@ -230,7 +240,6 @@
 }
 
 #pragma mark 创建View
-
 -(SDCycleScrollView *)cycleScrollView
 {
     if(_cycleScrollView)
@@ -276,7 +285,6 @@
 {
     isrefrash = YES;
     [super beforeHttpRequest];
-    [self initSourceDate];
     [self requestBanner];
     
     [self.params setValue:COMMUNTITYID forKey:@"communityid"];
@@ -293,7 +301,7 @@
 {
     _goodsArray = [data copy];
     NSError *error = nil;
-        
+    [_goodListArray removeAllObjects];
     for (int i=0; i<data.count; i++) {
         NSDictionary *dic = data[i];
         GoodListModel *goodListModel =[MTLJSONAdapter modelOfClass:[GoodListModel class] fromJSONDictionary:dic error:&error];
@@ -301,14 +309,8 @@
         [_goodListArray addObject:goodListModel];
     }
     
-    __weak HomeViewController *selfB = self;
-    [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
-        [AppConfig getAPPDelegate].schoolModel = schoolModel;
-        _categoryView = [selfB creatTypeGroupView];
-        [selfB initChannelData];
-        [selfB refeshTableWithType:@(selectedCategoryId)];
-        isrefrash = NO;
-    }];
+    [self refeshTableWithType:@(selectedCategoryId)];
+    
 }
 
 #pragma mark SDCycleScrollView广告滚动代理
@@ -368,12 +370,10 @@
 #pragma mark - ScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGFloat header = _categoryView.y;
+    
     if (header == 0) {
-        
+        header = _categoryView.y;
     }
-//    NSLog(@"contentOffset:%lf+++++++++header:%lf+++++++++%lf++++++++contentInset:%lf",scrollView.contentOffset.y, header, scrollView.contentOffset.y - header, scrollView.contentInset.top);
-    header -= scrollView.contentOffset.y;
     
     if (scrollView == self.tableView) {
         CGFloat naviAlpha = scrollView.contentOffset.y/(SCREEN_HEIGHT*0.25-64);
@@ -384,12 +384,13 @@
         CGFloat naviAlpha1 = scrollView.contentOffset.y/64+1;
         self.locationBtn.alpha = naviAlpha1;
         
-        if (!isrefrash && scrollView.contentOffset.y > 0 && header > 0) {
-            if (scrollView.contentOffset.y>=header-64) {
-                scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
-            }else if(scrollView.contentOffset.y<header-64 && scrollView.contentOffset.y>0){
-                scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-            }
+
+        if (header !=0 && scrollView.contentOffset.y>=header-64) {
+            NSLog(@"ifififfif     %lf    %lf   %lf",scrollView.contentOffset.y, header, header-64);
+            scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+        }else if( header !=0 && scrollView.contentOffset.y > 0){
+            NSLog(@"elseelseelse");
+            scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         }
     }
 }
@@ -407,31 +408,29 @@
 }
 
 #pragma mark getter setter
--(UIButton *)locationBtn
+-(void)initLocationBtn
 {
-    if (!_locationBtn) {
-        _locationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_locationBtn setImage:[UIImage imageNamed:@"icon_location"] forState:UIControlStateNormal];
-        [_locationBtn setImage:[UIImage imageNamed:@"icon_location"] forState:UIControlStateHighlighted];
-        _locationBtn.frame = CGRectMake(0, 25, SCREEN_WIDTH, 25);
-        _locationBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
-        _locationBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -5);
-        _locationBtn.backgroundColor = [UIColor clearColor];
-        _locationBtn.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-        _locationBtn.titleLabel.font = RS_FONT_F3;
-        _locationBtn.layer.cornerRadius = 12.5;
-        
-        @weakify(self)
-        [[_locationBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            @strongify(self)
-            [self locationBtnClicked];
-        }];
-    }
-    return _locationBtn;
+    _locationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_locationBtn setImage:[UIImage imageNamed:@"icon_location"] forState:UIControlStateNormal];
+    [_locationBtn setImage:[UIImage imageNamed:@"icon_location"] forState:UIControlStateHighlighted];
+    _locationBtn.frame = CGRectMake(0, 25, SCREEN_WIDTH, 25);
+    _locationBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
+    _locationBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -5);
+    _locationBtn.backgroundColor = [UIColor clearColor];
+//    _locationBtn.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    _locationBtn.titleLabel.font = RS_FONT_F3;
+    _locationBtn.layer.cornerRadius = 12.5;
+    
+    @weakify(self)
+    [[_locationBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        @strongify(self)
+        [self locationBtnClicked];
+    }];
 }
 
 
 - (UIView *)creatTypeGroupView {
+    
     NSArray *categorysArr = [AppConfig getAPPDelegate].schoolModel.categorys;
     if (categorysArr.count <=1) {
         return nil;
@@ -479,6 +478,7 @@
         [group addObj:title];
     }
     
+    
     [group setSelectedIndex:groupSelectedIndex];
     return view;
 }
@@ -493,6 +493,9 @@
 }
 
 - (void)refeshTableWithType:(id)obj{
+    
+    self.tableView.contentOffset = CGPointMake(0, 0);
+    
     NSArray *categroys = [AppConfig getAPPDelegate].schoolModel.categorys;
     NSMutableArray *allCategoryId = [[NSMutableArray alloc]init];
     for (int i=0; i<categroys.count; i++) {
@@ -529,11 +532,13 @@
     
     [self.tableView reloadData];
     [group setSelectedIndex:groupSelectedIndex];
-
 }
 
 -(void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Notification_UpadteCountLabel" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:HOMEVIEWCONTROLLER_VIEW_UPDATE object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:HOMEVIEWCONTROLLER_GOODLIST_GOODNUM_UPDATE object:nil];
+    
 }
 
 @end

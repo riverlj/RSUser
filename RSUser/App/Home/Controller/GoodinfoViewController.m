@@ -41,7 +41,7 @@
     
     self.useFooterRefresh = NO;
     self.useHeaderRefresh = NO;
-    self.url = @"/product/info";
+    self.url = @"/product/inf1o";
     
     if (!self.communityid) {
         self.communityid = [COMMUNTITYID integerValue];
@@ -60,6 +60,9 @@
 }
 
 - (void) updateCountLabel {
+    if (self.models.count <= 0) {
+        return;
+    }
     GoodModel *goodmodel = self.models[0];
     GoodListModel *goodListModel = [[Cart sharedCart] getGoodsCommuntityId:[COMMUNTITYID integerValue] productid:goodmodel.comproductid];
     if (goodListModel) {

@@ -401,6 +401,7 @@
 		B1C57AB51CFC2DAC00F52366 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
 		B1CA72391CFFDF7500C13231 /* UITextField+RSAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+RSAdd.h"; sourceTree = "<group>"; };
 		B1CA723A1CFFDF7500C13231 /* UITextField+RSAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+RSAdd.m"; sourceTree = "<group>"; };
+		B1CC0ED21D9E73DA007758AB /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = usr/lib/libc.tbd; sourceTree = SDKROOT; };
 		B1E3D01F1D59B086000F43EA /* SimulateActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulateActionSheet.h; sourceTree = "<group>"; };
 		B1E3D0201D59B086000F43EA /* SimulateActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulateActionSheet.m; sourceTree = "<group>"; };
 		B1E3D0221D59D91F000F43EA /* PromotionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromotionModel.h; sourceTree = "<group>"; };
@@ -523,6 +524,7 @@
 		89CD2143532C7CFFFAD5050B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B1CC0ED21D9E73DA007758AB /* libc.tbd */,
 				B15BA5251D64073900F16982 /* CoreMotion.framework */,
 				B15BA5231D64072A00F16982 /* CFNetwork.framework */,
 				B15BA5211D64070E00F16982 /* CoreText.framework */,

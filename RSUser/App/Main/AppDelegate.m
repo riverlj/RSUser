@@ -16,6 +16,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "UMSocialWechatHandler.h"
 #import "XHCustomShareView.h"
+#import "ChooseSchoolViewController.h"
 
 @interface AppDelegate (){
     NSString *updateUrl;
@@ -37,6 +38,7 @@
     _location =  [[RSLocation alloc]init];
     [_location startLocation];
     
+    
     [self UpdateVersion];
     self.window.rootViewController = [[LaunchimageViewController alloc]init];
     
@@ -45,6 +47,29 @@
 
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)updateSchoolMsg:(void(^)(void))success{
+    
+    if (COMMUNTITYID) {
+        __weak AppDelegate *selfWeak = self;
+        [SchoolModel getSchoolMsg:^(SchoolModel *schoolModel) {
+            selfWeak.schoolModel = schoolModel;
+            success();
+        } failure:^{
+            //获取失败跳转到选择学校页
+            ChooseSchoolViewController *vc = [[ChooseSchoolViewController alloc] init];
+            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+            selfWeak.window.rootViewController = nav;
+        }schoolid:nil];
+        
+    }else{
+        //获取失败跳转到选择学校页
+        ChooseSchoolViewController *vc = [[ChooseSchoolViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+        self.window.rootViewController = nav;
+        
+    }
 }
 
 -(void)UpdateVersion
@@ -88,10 +113,16 @@
 
 - (void)setappRootViewControler
 {
+    __weak AppDelegate *selfWeak = self;
+    [self updateSchoolMsg:^{
+        [selfWeak setHomeRootViewController];
+    }];
+}
+
+-(void)setHomeRootViewController{
     _tabBarControllerConfig = [[RSTabBarControllerConfig alloc] init];
     [self.window setRootViewController:_tabBarControllerConfig.tabBarController];
 }
-
 
 
 #pragma mark UIApplicationDelegate 代理方法
