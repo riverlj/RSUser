@@ -258,7 +258,6 @@
 #pragma mark tableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    NSLog(@"%ld", section);
     if (section == 0) {
         return 0;
     }

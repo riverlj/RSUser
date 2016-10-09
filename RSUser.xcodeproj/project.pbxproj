@@ -22,7 +22,7 @@
 		30A3C51E1CCF379E00F5E55E /* BuildingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A3C51D1CCF379E00F5E55E /* BuildingModel.m */; };
 		30A3C5211CCF6CA900F5E55E /* CouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A3C5201CCF6CA900F5E55E /* CouponViewController.m */; };
 		30A3C5271CCF6CD700F5E55E /* CouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A3C5261CCF6CD700F5E55E /* CouponCell.m */; };
-		5F7A372653905D51D93147BD /* libPods-RSUser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CB3F7704252080E8C7FC95 /* libPods-RSUser.a */; };
+		9AA9F0D09AA63F1E603F8437 /* libPods-RSUser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CB3F7704252080E8C7FC95 /* libPods-RSUser.a */; };
 		B1021DDD1CBF611B00050AEB /* ThrowLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B1021DDC1CBF611B00050AEB /* ThrowLineTool.m */; };
 		B10470881CFC1A2F008DAA7D /* JSPatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10470871CFC1A2F008DAA7D /* JSPatch.framework */; };
 		B10769A41CBE43E600586304 /* RSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769A31CBE43E600586304 /* RSLabel.m */; };
@@ -489,7 +489,7 @@
 				B1326E391CE42960001F90CE /* JavaScriptCore.framework in Frameworks */,
 				B162BC9F1CBE0B5200E27228 /* CoreLocation.framework in Frameworks */,
 				B123DCAD1CC7707600F08E8D /* libWeChatSDK.a in Frameworks */,
-				5F7A372653905D51D93147BD /* libPods-RSUser.a in Frameworks */,
+				9AA9F0D09AA63F1E603F8437 /* libPods-RSUser.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
