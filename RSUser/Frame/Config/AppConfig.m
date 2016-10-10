@@ -125,7 +125,7 @@
         case 403:{
             
             vc = [[BandleCellPhoneViewController alloc]init];
-            [[AppConfig getAPPDelegate].crrentNavCtl presentViewController:vc animated:YES completion:nil];
+            [[AppConfig getAPPDelegate].crrentNavCtl presentViewController:[[UINavigationController alloc]initWithRootViewController:vc] animated:YES completion:nil];
             break;
         }
         default:

@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"绑定手机";
+    self.hasBackBtn = YES;
     _loginModel = [[LoginModel alloc]init];
     
     cellphoneTextFiled = [RSTextFiled textFiledWithFrame:CGRectMake(18, 15, SCREEN_WIDTH-36, 45) cornerRadius:5 Placeholder:@"请输入要绑定的手机号"];
@@ -67,10 +68,9 @@
 
 - (void)bandleCellPhone
 {
-    @weakify(self)
+    __weak BandleCellPhoneViewController *selfWeak = self;
     [_loginModel bindMobile:^{
-        @strongify(self)
-        [self.navigationController popViewControllerAnimated:YES];
+        [selfWeak backUp];
     }];
 }
 
@@ -85,7 +85,7 @@
 #pragma mark back
 -(void)backUp{
     [AppConfig getAPPDelegate].tabBarControllerConfig.tabBarController.selectedIndex = 0;
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

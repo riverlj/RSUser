@@ -386,10 +386,10 @@
         
 
         if (header !=0 && scrollView.contentOffset.y>=header-64) {
-            NSLog(@"ifififfif     %lf    %lf   %lf",scrollView.contentOffset.y, header, header-64);
+//            NSLog(@"ifififfif     %lf    %lf   %lf",scrollView.contentOffset.y, header, header-64);
             scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
         }else if( header !=0 && scrollView.contentOffset.y > 0){
-            NSLog(@"elseelseelse");
+//            NSLog(@"elseelseelse");
             scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         }
     }
