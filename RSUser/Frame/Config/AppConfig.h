@@ -66,4 +66,6 @@
 + (NSString *)findControllerNameByHost:(NSString *)host;
 
 +(CGFloat)adapterDeviceHeight:(CGFloat)number;
+
++ (CGFloat)fontSizeScale;
 @end

@@ -27,4 +27,10 @@
     line.backgroundColor = RS_Line_Color;
     return line;
 }
+
++(UIView *)viewWithbgCoclor:(UIColor *)bgColor{
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = bgColor;
+    return view;
+}
 @end

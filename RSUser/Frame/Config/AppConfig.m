@@ -174,4 +174,12 @@
     }
 }
 
++ (CGFloat)fontSizeScale{
+
+    if (iPhone6Plus) {
+        return 1.2;
+    }else {
+        return 1.0;
+    }
+}
 @end

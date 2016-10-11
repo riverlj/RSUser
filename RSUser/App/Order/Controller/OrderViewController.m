@@ -263,7 +263,6 @@
     //再来一单
 //    [[RSToastView shareRSToastView]showToast:@"敬请期待"];
     
-    __weak OrderViewController *selfB = self;
     [[RSToastView shareRSToastView] showHUD:@"加载中..."];
     [OrderInfoModel getOrderInfo:^(OrderInfoModel *orderInfoModel) {
         [[RSToastView shareRSToastView] hidHUD];

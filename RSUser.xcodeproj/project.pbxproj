@@ -126,6 +126,10 @@
 		B1BD00821CD9A0BC00D41676 /* TicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BD00811CD9A0BC00D41676 /* TicketModel.m */; };
 		B1BD00851CD9A0CB00D41676 /* TicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BD00841CD9A0CB00D41676 /* TicketViewController.m */; };
 		B1BD00861CD9F2AC00D41676 /* OrderStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18322751CD8470A006E7EBC /* OrderStatusViewController.m */; };
+		B1BF0AC21DAB72F10083E89E /* AssessmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BF0AC11DAB72F10083E89E /* AssessmentViewController.m */; };
+		B1BF0AC51DAB737F0083E89E /* AssessmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BF0AC41DAB737F0083E89E /* AssessmentCell.m */; };
+		B1BF0AC81DAB7C270083E89E /* AssessmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BF0AC71DAB7C270083E89E /* AssessmentModel.m */; };
+		B1BF0ACB1DAB80820083E89E /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BF0ACA1DAB80820083E89E /* XHStarRateView.m */; };
 		B1C57AB61CFC2DAC00F52366 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = B1C57AB51CFC2DAC00F52366 /* main.js */; };
 		B1CA723B1CFFDF7500C13231 /* UITextField+RSAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA723A1CFFDF7500C13231 /* UITextField+RSAdd.m */; };
 		B1E3D0211D59B086000F43EA /* SimulateActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E3D0201D59B086000F43EA /* SimulateActionSheet.m */; };
@@ -398,6 +402,14 @@
 		B1BD00811CD9A0BC00D41676 /* TicketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketModel.m; sourceTree = "<group>"; };
 		B1BD00831CD9A0CB00D41676 /* TicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketViewController.h; sourceTree = "<group>"; };
 		B1BD00841CD9A0CB00D41676 /* TicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketViewController.m; sourceTree = "<group>"; };
+		B1BF0AC01DAB72F10083E89E /* AssessmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentViewController.h; sourceTree = "<group>"; };
+		B1BF0AC11DAB72F10083E89E /* AssessmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentViewController.m; sourceTree = "<group>"; };
+		B1BF0AC31DAB737F0083E89E /* AssessmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentCell.h; sourceTree = "<group>"; };
+		B1BF0AC41DAB737F0083E89E /* AssessmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentCell.m; sourceTree = "<group>"; };
+		B1BF0AC61DAB7C270083E89E /* AssessmentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentModel.h; sourceTree = "<group>"; };
+		B1BF0AC71DAB7C270083E89E /* AssessmentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentModel.m; sourceTree = "<group>"; };
+		B1BF0AC91DAB80820083E89E /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
+		B1BF0ACA1DAB80820083E89E /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
 		B1C57AB51CFC2DAC00F52366 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
 		B1CA72391CFFDF7500C13231 /* UITextField+RSAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+RSAdd.h"; sourceTree = "<group>"; };
 		B1CA723A1CFFDF7500C13231 /* UITextField+RSAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+RSAdd.m"; sourceTree = "<group>"; };
@@ -664,6 +676,8 @@
 		B1738D4D1CB65CCB006C7207 /* UIWidget */ = {
 			isa = PBXGroup;
 			children = (
+				B1BF0AC91DAB80820083E89E /* XHStarRateView.h */,
+				B1BF0ACA1DAB80820083E89E /* XHStarRateView.m */,
 				B123DC3E1CC4D27600F08E8D /* RSButton.h */,
 				B123DC3F1CC4D27600F08E8D /* RSButton.m */,
 				B1E81D691CB7B04100F587D1 /* RSAlertView.h */,
@@ -903,6 +917,8 @@
 				B18322751CD8470A006E7EBC /* OrderStatusViewController.m */,
 				B183227A1CD89D27006E7EBC /* OrderInfoAndStatusViewController.h */,
 				B183227B1CD89D27006E7EBC /* OrderInfoAndStatusViewController.m */,
+				B1BF0AC01DAB72F10083E89E /* AssessmentViewController.h */,
+				B1BF0AC11DAB72F10083E89E /* AssessmentViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -924,6 +940,8 @@
 				B183226F1CD8420F006E7EBC /* OrderLogModel.m */,
 				B1E3D0221D59D91F000F43EA /* PromotionModel.h */,
 				B1E3D0231D59D91F000F43EA /* PromotionModel.m */,
+				B1BF0AC61DAB7C270083E89E /* AssessmentModel.h */,
+				B1BF0AC71DAB7C270083E89E /* AssessmentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -945,6 +963,8 @@
 				B18322781CD84F64006E7EBC /* OrderStatusCell.m */,
 				B1E3D0251D5B0252000F43EA /* ConfirmGoodDetailCell.h */,
 				B1E3D0261D5B0252000F43EA /* ConfirmGoodDetailCell.m */,
+				B1BF0AC31DAB737F0083E89E /* AssessmentCell.h */,
+				B1BF0AC41DAB737F0083E89E /* AssessmentCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1413,17 +1433,20 @@
 				30221E7B1CCE41FE00126D72 /* AddressesViewController.m in Sources */,
 				B12484091D4633F8003C587A /* UIWebView+TS_JavaScriptContext.m in Sources */,
 				B168FF2B1CCB32670003B3FA /* Cart.m in Sources */,
+				B1BF0AC51DAB737F0083E89E /* AssessmentCell.m in Sources */,
 				30221E531CCDDD8700126D72 /* RSTitleModel.m in Sources */,
 				B1738DB21CB665C3006C7207 /* RSHeadView.m in Sources */,
 				B1A8D4B41CC09D3C00471E93 /* RSSearchView.m in Sources */,
 				B1E3D0271D5B0252000F43EA /* ConfirmGoodDetailCell.m in Sources */,
 				30221E811CCE427500126D72 /* AddressDetailCell.m in Sources */,
 				B1021DDD1CBF611B00050AEB /* ThrowLineTool.m in Sources */,
+				B1BF0ACB1DAB80820083E89E /* XHStarRateView.m in Sources */,
 				B123DCCF1CC8B9EF00F08E8D /* AddressModel.m in Sources */,
 				30A3C5211CCF6CA900F5E55E /* CouponViewController.m in Sources */,
 				B1B1EE451D069DE400F1A5F3 /* UIViewController+Aspects.m in Sources */,
 				30A3C5181CCE745600F5E55E /* AddressViewController.m in Sources */,
 				B1BD00821CD9A0BC00D41676 /* TicketModel.m in Sources */,
+				B1BF0AC81DAB7C270083E89E /* AssessmentModel.m in Sources */,
 				B123DC531CC74CFB00F08E8D /* CartModel.m in Sources */,
 				B10769AD1CBF344000586304 /* ChooseSchoolViewController.m in Sources */,
 				B1FFB8CE1CB6566100255F21 /* NSString+RSHttp.m in Sources */,
@@ -1458,6 +1481,7 @@
 				B18322761CD8470A006E7EBC /* OrderStatusViewController.m in Sources */,
 				B1422BFB1CBB9E4100C988FE /* CartNumberLabel.m in Sources */,
 				30221E3A1CC9FAFE00126D72 /* ProfileViewController.m in Sources */,
+				B1BF0AC21DAB72F10083E89E /* AssessmentViewController.m in Sources */,
 				B1422BF21CBB575500C988FE /* RSTabBarControllerConfig.m in Sources */,
 				B1E3D0611D61C32C000F43EA /* RSTwoTitleViewModel.m in Sources */,
 				30A3C5271CCF6CD700F5E55E /* CouponCell.m in Sources */,

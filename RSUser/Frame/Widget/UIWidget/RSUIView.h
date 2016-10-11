@@ -12,4 +12,5 @@
 //返回白色背景的UIView
 +(UIView *) roundRectViewWithFrame:(CGRect)frame;
 +(UIImageView *) lineWithFrame:(CGRect)frame;
++(UIView *)viewWithbgCoclor:(UIColor *)bgColor;
 @end

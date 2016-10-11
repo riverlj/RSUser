@@ -22,4 +22,6 @@
 +(UILabel *)twoLabel;
 +(UILabel *)themeLabel;
 
++(UILabel *)labelWithTextColor:(UIColor *)color font:(UIFont *)font;
+
 @end

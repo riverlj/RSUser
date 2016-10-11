@@ -33,7 +33,7 @@
 #define RS_COLOR_C8 [NSString colorFromHexString:@"ffa53a"]
 
 #define RS_Theme_Color  [NSString colorFromHexString:@"f9443e"]
-#define RS_Background_Color RS_COLOR_C6
+#define RS_Background_Color [NSString colorFromHexString:@"eeeeee"]
 #define RS_Line_Color  RGBA(238,238,238,1)
 #define RS_Clear_Clor [UIColor clearColor]
 #define RS_COLOR_WHITE RGB(255, 255, 255)
@@ -49,5 +49,23 @@
 #define RS_FONT_F5 Font(10)
 
 #define RS_BOLDFONT_F3 BoldFont(14)
+
+
+
+//字体适配
+
+#define RS_SIZE_SCALE [AppConfig fontSizeScale]
+
+#define RS_FONT_10 Font(10*(RS_SIZE_SCALE))
+#define RS_FONT_11 Font(11*(RS_SIZE_SCALE))
+#define RS_FONT_12 Font(12*(RS_SIZE_SCALE))
+#define RS_FONT_13 Font(13*(RS_SIZE_SCALE))
+#define RS_FONT_14 Font(14*(RS_SIZE_SCALE))
+#define RS_FONT_15 Font(15*(RS_SIZE_SCALE))
+#define RS_FONT_16 Font(16*(RS_SIZE_SCALE))
+#define RS_FONT_17 Font(17*(RS_SIZE_SCALE))
+#define RS_FONT_18 Font(18*(RS_SIZE_SCALE))
+#define RS_FONT_19 Font(19*(RS_SIZE_SCALE))
+#define RS_FONT_20 Font(20*(RS_SIZE_SCALE))
 
 #endif /* Theme_h */

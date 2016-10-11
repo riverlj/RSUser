@@ -81,4 +81,11 @@
     
     return label;
 }
+
++(UILabel *)labelWithTextColor:(UIColor *)color font:(UIFont *)font {
+    UILabel *label = [[UILabel alloc] init];
+    label.textColor = color;
+    label.font = font;
+    return  label;
+}
 @end
