@@ -77,7 +77,6 @@
 		B15BA52A1D640B9600F16982 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15BA5281D640B9600F16982 /* AlipaySDK.framework */; };
 		B162BC911CBC91FB00E27228 /* GoodListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC901CBC91FB00E27228 /* GoodListModel.m */; };
 		B162BC941CBC951500E27228 /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC931CBC951500E27228 /* BannerModel.m */; };
-		B162BC971CBCA3ED00E27228 /* GoodListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC961CBCA3ED00E27228 /* GoodListCell.m */; };
 		B162BC9A1CBCFE4E00E27228 /* BannerwebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC991CBCFE4E00E27228 /* BannerwebViewController.m */; };
 		B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC9C1CBDEA2200E27228 /* CartViewController.m */; };
 		B162BC9F1CBE0B5200E27228 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B162BC9E1CBE0B5200E27228 /* CoreLocation.framework */; };
@@ -132,6 +131,7 @@
 		B1BF0ACB1DAB80820083E89E /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BF0ACA1DAB80820083E89E /* XHStarRateView.m */; };
 		B1BF0ACE1DADED710083E89E /* RSTitleImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BF0ACD1DADED710083E89E /* RSTitleImageModel.m */; };
 		B1BF0AD11DADEDA70083E89E /* RSTitleImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BF0AD01DADEDA70083E89E /* RSTitleImageCell.m */; };
+		B1C183201DAF67C0006AF480 /* GoodListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B162BC961CBCA3ED00E27228 /* GoodListCell.m */; };
 		B1C57AB61CFC2DAC00F52366 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = B1C57AB51CFC2DAC00F52366 /* main.js */; };
 		B1CA723B1CFFDF7500C13231 /* UITextField+RSAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA723A1CFFDF7500C13231 /* UITextField+RSAdd.m */; };
 		B1E3D0211D59B086000F43EA /* SimulateActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E3D0201D59B086000F43EA /* SimulateActionSheet.m */; };
@@ -1411,6 +1411,7 @@
 				B1422BF81CBB733600C988FE /* RSCartButtion.m in Sources */,
 				B1738D891CB65E71006C7207 /* RSHttp.m in Sources */,
 				B168FF281CC9C6CF0003B3FA /* AddressCell.m in Sources */,
+				B1C183201DAF67C0006AF480 /* GoodListCell.m in Sources */,
 				B12484531D49D489003C587A /* GoodModel.m in Sources */,
 				B10769A71CBE490400586304 /* RSImageView.m in Sources */,
 				B1FFB8D01CB6566100255F21 /* UIDeviceAdditions.m in Sources */,
@@ -1518,7 +1519,6 @@
 				B123DC401CC4D27600F08E8D /* RSButton.m in Sources */,
 				B18322701CD8420F006E7EBC /* OrderLogModel.m in Sources */,
 				B13E53661D7964FB00577C3C /* XHCustomShareView.m in Sources */,
-				B162BC971CBCA3ED00E27228 /* GoodListCell.m in Sources */,
 				30A3C51E1CCF379E00F5E55E /* BuildingModel.m in Sources */,
 				B1FFB8D11CB6566100255F21 /* NSUserDefaults+Token.m in Sources */,
 				B1FFB87B1CB64DCA00255F21 /* main.m in Sources */,

@@ -47,8 +47,10 @@
              @"price" : @"price",
              @"topcategoryid" : @"topcategoryid",
              @"ishot" : @"ishot",
+             @"ishighrated" : @"ishighrated",
              @"isnew" : @"isnew",
-             @"promotions" : @"promotions"
+             @"promotions" : @"promotions",
+             @"ratescore" : @"ratescore"
              };
 }
 

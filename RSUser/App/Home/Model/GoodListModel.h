@@ -42,8 +42,11 @@
 
 @property (nonatomic ,assign)NSInteger topcategoryid;
 @property (nonatomic ,assign)Boolean ishot;
+@property (nonatomic ,assign)Boolean ishighrated;
+@property (nonatomic ,strong)NSString *ratescore;
 @property (nonatomic ,assign)Boolean isnew;
 @property (nonatomic ,strong)NSArray *promotions;
+
 
 /**表示该商品是不是赠品*/
 @property (nonatomic ,assign)NSInteger gift;

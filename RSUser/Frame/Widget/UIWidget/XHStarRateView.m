@@ -73,6 +73,17 @@ typedef void(^completeBlock)(CGFloat currentScore);
     }
     return self;
 }
+
+-(instancetype)initWithFrame:(CGRect)frame foregroundStarImage:(NSString *)fimagename backgroundStarImage:(NSString *)bimagename currentScore:(CGFloat)currentScore {
+    if (self = [self initWithFrame:frame]) {
+        _foregroundStarImage = fimagename;
+        _backgroundStarImage = bimagename;
+        self.rateType = IncompleteStar;
+        self.currentScore = currentScore;
+        [self rs_createStarView];
+    }
+    return self;
+}
 #pragma mark - block方式
 -(instancetype)initWithFrame:(CGRect)frame finish:(finishBlock)finish{
     if (self = [super initWithFrame:frame]) {
@@ -100,6 +111,21 @@ typedef void(^completeBlock)(CGFloat currentScore);
 }
 
 #pragma mark - private Method
+
+- (void)rs_createStarView
+{
+    self.foregroundStarView = [self createStarViewWithImage:_foregroundStarImage];
+    
+    self.backgroundStarView = [self createStarViewWithImage:_backgroundStarImage];
+    
+    self.foregroundStarView.frame = CGRectMake(0, 0, self.bounds.size.width*_currentScore/self.numberOfStars, self.bounds.size.height);
+    self.ponitStartView = self.foregroundStarView;
+
+    [self addSubview:self.backgroundStarView];
+    [self addSubview:self.foregroundStarView];
+
+}
+
 -(void)createStarView{
     
     self.foregroundStarView = [self createStarViewWithImage:_foregroundStarImage];

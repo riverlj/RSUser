@@ -47,4 +47,6 @@ typedef NS_ENUM(NSInteger, RateType)
 
 -(instancetype)initWithFrame:(CGRect)frame rateType:(RateType)rateType currentScore:(CGFloat)currentScore;
 
+-(instancetype)initWithFrame:(CGRect)frame foregroundStarImage:(NSString *)imagename backgroundStarImage:(NSString *)imagename currentScore:(CGFloat)currentScore;
+
 @end

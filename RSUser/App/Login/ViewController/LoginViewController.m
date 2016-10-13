@@ -54,7 +54,7 @@
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];
     [self.loginView addGestureRecognizer:recognizer];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame) name:UIKeyboardWillHideNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame) name:UIKeyboardWillHideNotification object:nil];
     
 }
 

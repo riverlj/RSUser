@@ -11,6 +11,7 @@
 #import "CartNumberLabel.h"
 #import "ThrowLineTool.h"
 #import "CartModel.h"
+#import "XHStarRateView.h"
 
 @implementation CartCell
 
@@ -34,7 +35,7 @@
     [self.contentView addSubview:self.priceLabel];
     
     CGSize addSize = [UIImage imageNamed:@"addActivate"].size;
-    self.addIV = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-32, 0, addSize.width+16, 49)];
+    self.addIV = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-addSize.width-10, 0, addSize.width+16, 49)];
     self.addIV.contentMode = UIViewContentModeLeft;
     [self.contentView addSubview:self.addIV];
     [self.addIV setImage:[UIImage imageNamed:@"addActivate"]];
@@ -185,6 +186,11 @@
     self.hotImageView.hidden = YES;
     [self.contentView addSubview:self.hotImageView];
     
+    //评价高
+    self.highRateView = [RSImageView imageViewWithFrame:CGRectZero ImageName:@"label_highrate"];
+    self.highRateView.hidden = YES;
+    [self.contentView addSubview:self.highRateView];
+    
     line = [RSLineView lineViewHorizontalWithFrame:CGRectZero Color:RS_Line_Color];
     line.hidden = YES;
     [self.contentView addSubview:line];
@@ -237,10 +243,31 @@
         self.newsImageView.hidden = YES;
     }
     
+    [self.starRateView removeFromSuperview];
+    [self.scoreLabel removeFromSuperview];
+    if ([model.ratescore integerValue] != 0) {
+        self.starRateView = [[XHStarRateView alloc] initWithFrame:CGRectMake(self.iconIV.right + 10, self.titleLabel.bottom + 4, 9*5+5*4, 9) foregroundStarImage:@"icon_home_star_yellow" backgroundStarImage:@"icon_home_star_gray" currentScore:[model.ratescore floatValue]];
+        [self.contentView addSubview:self.starRateView];
+        
+        NSString *ratescore = [NSString stringWithFormat:@"%.1lf",[model.ratescore floatValue]];
+        CGSize rateSize = [ratescore sizeWithFont:Font(12) byWidth:99999];
+        self.scoreLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.starRateView.right+2,  0, rateSize.width, rateSize.height)];
+        self.scoreLabel.font = Font(12);
+        self.scoreLabel.textColor = RS_Theme_Color;
+        self.scoreLabel.text = ratescore;
+        self.scoreLabel.bottom = self.starRateView.bottom+1;
+        [self.contentView addSubview:self.scoreLabel];
+    }
+    
     //已售数量
     self.saledLabel.text = [NSString stringWithFormat:@"已售%zd份", model.saled];
     CGSize saledLabelSize = [self.saledLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
-    self.saledLabel.frame = CGRectMake(self.iconIV.right + 10, self.titleLabel.bottom + 4, saledLabelSize.width, saledLabelSize.height);
+    if (model.ratescore.integerValue == 0) {
+        self.saledLabel.frame = CGRectMake(self.iconIV.right + 10, self.titleLabel.bottom + 4, saledLabelSize.width, saledLabelSize.height);
+    }else {
+        self.saledLabel.frame = CGRectMake(self.scoreLabel.right + 4, self.titleLabel.bottom + 4, saledLabelSize.width, saledLabelSize.height);
+        self.saledLabel.centerY = self.starRateView.centerY;
+    }
     
     //商品描述
     self.menuLabel.text = model.desc;
@@ -253,13 +280,23 @@
     CGSize priceSize = [self.priceLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, 40)];
     self.priceLabel.frame = CGRectMake(self.iconIV.right + 10, self.menuLabel.bottom+6, priceSize.width, priceSize.height);
     
+    //评价高
+    if (model.ishighrated) {
+        self.highRateView.frame = CGRectMake(SCREEN_WIDTH-37-16, self.iconIV.top, 37, 13);
+        self.highRateView.hidden = NO;
+    }else {
+        self.highRateView.hidden = YES;
+    }
+    
     //人气旺
     if (model.ishot) {
-        self.hotImageView.frame = CGRectMake(self.priceLabel.right + 10, self.priceLabel.top, 38, 14);
+        self.hotImageView.frame = CGRectMake(self.highRateView.left-37-5, self.iconIV.top, 37, 13);
         self.hotImageView.hidden = NO;
-        self.hotImageView.centerY = self.priceLabel.centerY;
     }else {
         self.hotImageView.hidden = YES;
+    }
+    if (model.ishot && !model.ishighrated) {
+        self.hotImageView.x = SCREEN_WIDTH-37-16;
     }
     
     //已售罄

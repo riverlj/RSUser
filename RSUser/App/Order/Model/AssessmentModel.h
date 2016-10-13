@@ -23,6 +23,7 @@ typedef enum : NSUInteger {
 
 @interface AssessmentGoodModel : RSModel<MTLJSONSerializing>
 @property (nonatomic ,strong)NSNumber *goodid;
+@property (nonatomic ,strong)NSNumber *num;
 @property (nonatomic ,strong)NSString *goodname;
 @property (nonatomic ,strong)NSDictionary *tag;
 @property (nonatomic ,strong)NSDictionary *tagObjs;

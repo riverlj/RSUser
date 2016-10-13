@@ -25,6 +25,7 @@
 @property (nonatomic, strong)GoodListModel *cartmodel;
 @end
 
+@class XHStarRateView;
 @interface GoodListCell : CartCell
 /**餐品图片*/
 @property (nonatomic, strong) UIImageView *iconIV;
@@ -43,6 +44,9 @@
 @property (nonatomic ,strong)UIImageView *labelImageView;
 @property (nonatomic ,strong)UIImageView *newsImageView;
 @property (nonatomic ,strong)UIImageView *hotImageView;
+@property (nonatomic ,strong)UIImageView *highRateView;
+@property (nonatomic ,strong)XHStarRateView *starRateView;
+@property (nonatomic ,strong)UILabel *scoreLabel;
 
 
 @property (nonatomic, strong) NSIndexPath *indexPath;

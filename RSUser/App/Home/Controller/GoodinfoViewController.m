@@ -41,7 +41,7 @@
     
     self.useFooterRefresh = NO;
     self.useHeaderRefresh = NO;
-    self.url = @"/product/inf1o";
+    self.url = @"/product/info";
     
     if (!self.communityid) {
         self.communityid = [COMMUNTITYID integerValue];

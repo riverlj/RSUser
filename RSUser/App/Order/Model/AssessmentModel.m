@@ -13,6 +13,7 @@
     
     return @{
              @"tagid" : @"id",
+             @"num" : @"num",
              @"tagcontent" : @"content",
              @"tagfavorable" : @"favorable"
              };
