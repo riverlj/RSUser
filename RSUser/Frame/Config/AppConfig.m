@@ -82,20 +82,15 @@
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent" : ua, @"User-Agent" : ua}];
 }
 
-
-
 +(void)baiduMobStat
 {
     BaiduMobStat *statTracker = [BaiduMobStat defaultStat];
-    [statTracker startWithAppId:RSUSER_BAIDU_KEY];
-    statTracker.shortAppVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    statTracker.enableExceptionLog = YES; //截获崩溃信息
+    statTracker.shortAppVersion = [UIDevice clientVersion];
     statTracker.logStrategy = BaiduMobStatLogStrategyAppLaunch;
     statTracker.logSendInterval = 1;
     statTracker.channelId = [UIDevice utm_source];
-    statTracker.logSendWifiOnly = NO;
     statTracker.sessionResumeInterval = 60;
-    statTracker.shortAppVersion = [UIDevice clientVersion];
+    [statTracker startWithAppId:RSUSER_BAIDU_KEY];
 }
 
 + (void)configJSPatch

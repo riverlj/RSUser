@@ -9,5 +9,6 @@
 #import "RSTableViewController.h"
 
 @interface AssessmentViewController : RSTableViewController
+@property (nonatomic, strong)NSString *orderid;
 
 @end

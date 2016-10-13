@@ -13,6 +13,7 @@
 - (void)goOrderInfo:(NSString *)orderId;
 - (void)goToPay:(NSString *)orderId;
 - (void)reCreatOrder:(NSString *)orderid;
+- (void)goRate:(NSString *)orderid;
 @end
 
 @interface OrderCell : RSTableViewCell

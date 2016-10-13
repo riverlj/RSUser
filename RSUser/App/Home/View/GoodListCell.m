@@ -307,8 +307,12 @@
         label.centerY = actionImageView.centerY;
         
         h = label.bottom;
+        if (i==promotions.count-1) {
+            h+=16;
+        }
     }
-    self.lineView.y = h+14;
+    
+    self.lineView.y = h;
     
     model.cellHeight = self.lineView.bottom;
 }

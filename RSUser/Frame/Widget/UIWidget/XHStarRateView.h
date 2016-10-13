@@ -17,25 +17,34 @@ typedef NS_ENUM(NSInteger, RateStyle)
     HalfStar = 1,  //允许半星评论
     IncompleteStar = 2  //允许不完整星评论
 };
+typedef NS_ENUM(NSInteger, RateType)
+{
+    RateTypeDelivery = 0,
+    RateTypeGood = 1
+};
 
 @protocol XHStarRateViewDelegate <NSObject>
 
 -(void)starRateView:(XHStarRateView *)starRateView currentScore:(CGFloat)currentScore;
-
+-(void)starRateView:(XHStarRateView *)starRateView beforeScore:(CGFloat)currentScore;
 @end
 
 @interface XHStarRateView : UIView
 
 @property (nonatomic,assign)BOOL isAnimation;       //是否动画显示，默认NO
 @property (nonatomic,assign)RateStyle rateStyle;    //评分样式    默认是WholeStar
+@property (nonatomic,assign)RateType rateType;    //评分样式    默认是WholeStar
 @property (nonatomic, weak) id<XHStarRateViewDelegate>delegate;
+
 
 
 -(instancetype)initWithFrame:(CGRect)frame;
 -(instancetype)initWithFrame:(CGRect)frame numberOfStars:(NSInteger)numberOfStars rateStyle:(RateStyle)rateStyle isAnination:(BOOL)isAnimation delegate:(id)delegate;
 
-
 -(instancetype)initWithFrame:(CGRect)frame finish:(finishBlock)finish;
 -(instancetype)initWithFrame:(CGRect)frame numberOfStars:(NSInteger)numberOfStars rateStyle:(RateStyle)rateStyle isAnination:(BOOL)isAnimation finish:(finishBlock)finish;
+-(instancetype)initWithFrame:(CGRect)frame rateType:(RateType)rateType;
+
+-(instancetype)initWithFrame:(CGRect)frame rateType:(RateType)rateType currentScore:(CGFloat)currentScore;
 
 @end

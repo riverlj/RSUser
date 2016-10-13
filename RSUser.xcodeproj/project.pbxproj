@@ -130,6 +130,8 @@
 		B1BF0AC51DAB737F0083E89E /* AssessmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BF0AC41DAB737F0083E89E /* AssessmentCell.m */; };
 		B1BF0AC81DAB7C270083E89E /* AssessmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BF0AC71DAB7C270083E89E /* AssessmentModel.m */; };
 		B1BF0ACB1DAB80820083E89E /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BF0ACA1DAB80820083E89E /* XHStarRateView.m */; };
+		B1BF0ACE1DADED710083E89E /* RSTitleImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BF0ACD1DADED710083E89E /* RSTitleImageModel.m */; };
+		B1BF0AD11DADEDA70083E89E /* RSTitleImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BF0AD01DADEDA70083E89E /* RSTitleImageCell.m */; };
 		B1C57AB61CFC2DAC00F52366 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = B1C57AB51CFC2DAC00F52366 /* main.js */; };
 		B1CA723B1CFFDF7500C13231 /* UITextField+RSAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA723A1CFFDF7500C13231 /* UITextField+RSAdd.m */; };
 		B1E3D0211D59B086000F43EA /* SimulateActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E3D0201D59B086000F43EA /* SimulateActionSheet.m */; };
@@ -410,6 +412,10 @@
 		B1BF0AC71DAB7C270083E89E /* AssessmentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentModel.m; sourceTree = "<group>"; };
 		B1BF0AC91DAB80820083E89E /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
 		B1BF0ACA1DAB80820083E89E /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
+		B1BF0ACC1DADED710083E89E /* RSTitleImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTitleImageModel.h; sourceTree = "<group>"; };
+		B1BF0ACD1DADED710083E89E /* RSTitleImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTitleImageModel.m; sourceTree = "<group>"; };
+		B1BF0ACF1DADEDA70083E89E /* RSTitleImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTitleImageCell.h; sourceTree = "<group>"; };
+		B1BF0AD01DADEDA70083E89E /* RSTitleImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTitleImageCell.m; sourceTree = "<group>"; };
 		B1C57AB51CFC2DAC00F52366 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
 		B1CA72391CFFDF7500C13231 /* UITextField+RSAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+RSAdd.h"; sourceTree = "<group>"; };
 		B1CA723A1CFFDF7500C13231 /* UITextField+RSAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+RSAdd.m"; sourceTree = "<group>"; };
@@ -745,6 +751,8 @@
 				B1422BF71CBB733600C988FE /* RSCartButtion.m */,
 				B10F65D01CDC7C2F003C5B23 /* RSJSWebViewController.h */,
 				B10F65D11CDC7C2F003C5B23 /* RSJSWebViewController.m */,
+				B1BF0ACF1DADEDA70083E89E /* RSTitleImageCell.h */,
+				B1BF0AD01DADEDA70083E89E /* RSTitleImageCell.m */,
 			);
 			name = Controller;
 			path = Widget/BaseView;
@@ -768,6 +776,8 @@
 				30221E521CCDDD8700126D72 /* RSTitleModel.m */,
 				B1E3D05F1D61C32C000F43EA /* RSTwoTitleViewModel.h */,
 				B1E3D0601D61C32C000F43EA /* RSTwoTitleViewModel.m */,
+				B1BF0ACC1DADED710083E89E /* RSTitleImageModel.h */,
+				B1BF0ACD1DADED710083E89E /* RSTitleImageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1425,6 +1435,7 @@
 				B1FF2AC61D3881B1005736AB /* ChannelCell.m in Sources */,
 				B1738DB31CB665C3006C7207 /* RSProgressView.m in Sources */,
 				30221E501CCDC04C00126D72 /* RSTitleCell.m in Sources */,
+				B1BF0ACE1DADED710083E89E /* RSTitleImageModel.m in Sources */,
 				B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */,
 				B1F4901A1D3DF0E9005A806C /* BrandinfoViewController.m in Sources */,
 				B1E3D0241D59D91F000F43EA /* PromotionModel.m in Sources */,
@@ -1476,6 +1487,7 @@
 				B18322791CD84F64006E7EBC /* OrderStatusCell.m in Sources */,
 				B123DCB71CC77D9C00F08E8D /* LoginViewController.m in Sources */,
 				B1738DB71CB665C3006C7207 /* RSRadioGroup.m in Sources */,
+				B1BF0AD11DADEDA70083E89E /* RSTitleImageCell.m in Sources */,
 				B1FFB8D81CB656DA00255F21 /* RSRoute.m in Sources */,
 				B1326E501CE9CB0C001F90CE /* ChooseCouponViewController.m in Sources */,
 				B18322761CD8470A006E7EBC /* OrderStatusViewController.m in Sources */,

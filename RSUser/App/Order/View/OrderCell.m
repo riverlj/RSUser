@@ -326,7 +326,7 @@
             break;
         case 3:
             //去评价
-            [[RSToastView shareRSToastView]showToast:@"敬请期待"];
+            [self goRate];
             break;
         default:
             break;
@@ -351,6 +351,13 @@
         [self.cellBtnClickedDelegate reCreatOrder:_orderModel.orderId];
     }
 }
+
+- (void)goRate {
+    if (self.cellBtnClickedDelegate && [self.cellBtnClickedDelegate respondsToSelector:@selector(goRate:)]) {
+        [self.cellBtnClickedDelegate goRate:_orderModel.orderId];
+    }
+}
+
 
 #pragma mark - 通知中心
 - (void)registerNSNotificationCenter {

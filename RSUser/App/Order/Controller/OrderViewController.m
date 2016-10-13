@@ -229,7 +229,10 @@
 - (void)goOrderInfo:(NSString *)orderId
 {
     //订单详情页面
-    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderId=%@", orderId]];
+//    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderId=%@", orderId]];
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://assessment?orderid=%@", orderId]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -302,6 +305,11 @@
         }
         
     } Orderid:orderid];
+}
+
+-(void)goRate:(NSString *)orderid {
+    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://assessment?orderid=%@", orderid]];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void) oneMoreAddGoodToCart:(NSString *)orderid {

@@ -402,7 +402,8 @@
     _rateBtn.titleLabel.font = RS_FONT_F2;
     
     [[_rateBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        [[RSToastView shareRSToastView] showToast:@"马上上线..."];
+        UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://assessment?orderid=%@", self.orderInfoModel.orderId]];
+        [self.navigationController pushViewController:vc animated:YES];
     }];
     
     [self.bottomView addSubview:_rateBtn];

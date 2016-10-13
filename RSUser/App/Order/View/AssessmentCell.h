@@ -8,6 +8,18 @@
 
 #import "RSTableViewCell.h"
 #import "XHStarRateView.h"
+#import "RSTitleImageCell.h"
+#import "AssessmentModel.h"
+
+@protocol AssessmentCellClickStar <NSObject>
+
+-(void)clickStart:(AssessmentGoodModel*)model;
+
+@end
+
+@interface AssessmentHeaderCell :RSTitleImageCell
+
+@end
 
 @interface AssessmentCell : RSTableViewCell<XHStarRateViewDelegate>
 @property (nonatomic ,strong)UILabel *goodNameLabel;
@@ -15,4 +27,6 @@
 @property (nonatomic ,strong)UIView *lineView;
 @property (nonatomic ,strong)UIView *tagsView;
 @property (nonatomic ,strong)UIView *celllineView;
+@property (nonatomic ,weak) id<AssessmentCellClickStar> assessmentCellClickStardelegate;
+
 @end
