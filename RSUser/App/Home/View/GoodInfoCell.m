@@ -69,6 +69,7 @@
     
     if (!model.lineHidden) {
         [self.contentView addSubview:self.lineView];
+        self.lineView.y = cellHeight;
         cellHeight += 1;
     }
     
@@ -90,6 +91,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self.contentView addSubview:self.hotImageView];
+        [self.contentView addSubview:self.highRateView];
         [self.contentView addSubview:self.newsImageView];
         [self.contentView addSubview:self.priceLabel];
         [self.contentView addSubview:self.addCartBtn];
@@ -120,6 +122,15 @@
     _hotImageView = [RSImageView imageViewWithFrame:CGRectZero ImageName:@"label_hot"];
     _hotImageView.hidden = YES;
     return _hotImageView;
+}
+
+- (UIImageView *)highRateView {
+    if (_highRateView) {
+        return _highRateView;
+    }
+    _highRateView = [RSImageView imageViewWithFrame:CGRectZero ImageName:@"label_highrate"];
+    _highRateView.hidden = YES;
+    return _highRateView;
 }
 
 -(UIImageView *)newsImageView {
@@ -214,23 +225,55 @@
         self.nameLabel.frame = CGRectMake(MARGIN_LEFT, 10, nameSize.width, nameSize.height);
     }
     
+    [self.starRateView removeFromSuperview];
+    [self.scoreLabel removeFromSuperview];
+    if ([model.ratescore integerValue] != 0) {
+        self.starRateView = [[XHStarRateView alloc] initWithFrame:CGRectMake(MARGIN_LEFT, self.nameLabel.bottom + 8, 9*5+5*4, 9) foregroundStarImage:@"icon_home_star_yellow" backgroundStarImage:@"icon_home_star_gray" currentScore:[model.ratescore floatValue]];
+        [self.contentView addSubview:self.starRateView];
+        
+        NSString *ratescore = [NSString stringWithFormat:@"%.1lf",[model.ratescore floatValue]];
+        CGSize rateSize = [ratescore sizeWithFont:Font(12) byWidth:99999];
+        self.scoreLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.starRateView.right+2,  0, rateSize.width, rateSize.height)];
+        self.scoreLabel.font = Font(12);
+        self.scoreLabel.textColor = RS_Theme_Color;
+        self.scoreLabel.text = ratescore;
+        self.scoreLabel.bottom = self.starRateView.bottom+2;
+        [self.contentView addSubview:self.scoreLabel];
+    }
+
     //商品销售量
     self.saledLabel.text = model.subText;
+    self.saledLabel.font = Font(10);
     CGSize saledSize = [self.saledLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
-    self.saledLabel.frame = CGRectMake(MARGIN_LEFT, self.nameLabel.bottom + 6, SCREEN_WIDTH-2*self.nameLabel.left, saledSize.height);
-
+    if ([model.ratescore integerValue] !=0) {
+        self.saledLabel.frame = CGRectMake(self.scoreLabel.right+4, self.nameLabel.bottom + 6, SCREEN_WIDTH-2*self.nameLabel.left, saledSize.height);
+        self.saledLabel.bottom = self.scoreLabel.bottom;
+    }else {
+        self.saledLabel.frame = CGRectMake(MARGIN_LEFT, self.nameLabel.bottom + 6, SCREEN_WIDTH-2*self.nameLabel.left, saledSize.height);
+    }
     // 商品价格
     self.priceLabel.text = [NSString stringWithFormat:@"¥%@", model.saleprice];
     CGSize priceSize = [self.priceLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
     _priceLabel.frame = CGRectMake(MARGIN_LEFT, self.saledLabel.bottom+10, priceSize.width, priceSize.height);
     
+    //评价高
+    if (model.ishighrated) {
+        self.highRateView.frame = CGRectMake(SCREEN_WIDTH-37-16, self.nameLabel.top, 37, 13);
+        self.highRateView.hidden = NO;
+    }else {
+        self.highRateView.hidden = YES;
+    }
+    
     //人气旺
     if (model.ishot) {
         self.hotImageView.hidden = NO;
-        self.hotImageView.frame = CGRectMake(self.priceLabel.right + 10, self.priceLabel.top, 38, 14);
-        self.hotImageView.centerY = self.priceLabel.centerY;
+        self.hotImageView.frame = CGRectMake(self.highRateView.left-37-5, self.nameLabel.top, 37, 13);
     }else{
         self.hotImageView.hidden = YES;
+    }
+    
+    if (model.ishot && !model.ishighrated) {
+        self.hotImageView.x = SCREEN_WIDTH-37-16;
     }
     
     //加入购物车按钮

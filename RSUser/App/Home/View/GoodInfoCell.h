@@ -9,7 +9,7 @@
 #import "RSTableViewCell.h"
 #import "ThrowLineTool.h"
 #import "GoodModel.h"
-
+#import "XHStarRateView.h"
 @interface GoodInfoSubCell : RSTableViewCell
 @property (nonatomic, strong)UILabel *nameLabel;
 @property (nonatomic, strong)UILabel *saledLabel;
@@ -35,6 +35,8 @@
 
 @property (nonatomic, strong)UIView *goodInfolineView;
 
-
+@property (nonatomic ,strong)UIImageView *highRateView;
+@property (nonatomic ,strong)XHStarRateView *starRateView;
+@property (nonatomic ,strong)UILabel *scoreLabel;
 
 @end

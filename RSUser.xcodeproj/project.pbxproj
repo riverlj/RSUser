@@ -31,6 +31,8 @@
 		B10769AD1CBF344000586304 /* ChooseSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B10769AC1CBF344000586304 /* ChooseSchoolViewController.m */; };
 		B10F65D21CDC7C2F003C5B23 /* RSJSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B10F65D11CDC7C2F003C5B23 /* RSJSWebViewController.m */; };
 		B118A0BC1CDB106D00598506 /* CodesView.m in Sources */ = {isa = PBXBuildFile; fileRef = B118A0BB1CDB106D00598506 /* CodesView.m */; };
+		B12316011DAFAA1F00743A04 /* GoodRateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B12316001DAFAA1F00743A04 /* GoodRateCell.m */; };
+		B12316041DAFABFC00743A04 /* GoodRateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B12316031DAFABFC00743A04 /* GoodRateModel.m */; };
 		B123DC401CC4D27600F08E8D /* RSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC3F1CC4D27600F08E8D /* RSButton.m */; };
 		B123DC461CC62DBF00F08E8D /* RSTextFiled.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC451CC62DBF00F08E8D /* RSTextFiled.m */; };
 		B123DC481CC637C400F08E8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B123DC471CC637C400F08E8D /* Assets.xcassets */; };
@@ -229,6 +231,10 @@
 		B10F65D11CDC7C2F003C5B23 /* RSJSWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSJSWebViewController.m; sourceTree = "<group>"; };
 		B118A0BA1CDB106D00598506 /* CodesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodesView.h; sourceTree = "<group>"; };
 		B118A0BB1CDB106D00598506 /* CodesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodesView.m; sourceTree = "<group>"; };
+		B12315FF1DAFAA1F00743A04 /* GoodRateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodRateCell.h; sourceTree = "<group>"; };
+		B12316001DAFAA1F00743A04 /* GoodRateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodRateCell.m; sourceTree = "<group>"; };
+		B12316021DAFABFC00743A04 /* GoodRateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodRateModel.h; sourceTree = "<group>"; };
+		B12316031DAFABFC00743A04 /* GoodRateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodRateModel.m; sourceTree = "<group>"; };
 		B123DC3E1CC4D27600F08E8D /* RSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSButton.h; sourceTree = "<group>"; };
 		B123DC3F1CC4D27600F08E8D /* RSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSButton.m; sourceTree = "<group>"; };
 		B123DC441CC62DBF00F08E8D /* RSTextFiled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTextFiled.h; sourceTree = "<group>"; };
@@ -873,6 +879,8 @@
 				B12484521D49D489003C587A /* GoodModel.m */,
 				B16A08B71D582E1600192531 /* DeliverytimeModel.h */,
 				B16A08B81D582E1600192531 /* DeliverytimeModel.m */,
+				B12316021DAFABFC00743A04 /* GoodRateModel.h */,
+				B12316031DAFABFC00743A04 /* GoodRateModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -896,6 +904,8 @@
 				B1F490161D3CB4A8005A806C /* BrandListCell.m */,
 				B12484541D49DE36003C587A /* GoodInfoView.h */,
 				B12484551D49DE36003C587A /* GoodInfoView.m */,
+				B12315FF1DAFAA1F00743A04 /* GoodRateCell.h */,
+				B12316001DAFAA1F00743A04 /* GoodRateCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1438,6 +1448,7 @@
 				30221E501CCDC04C00126D72 /* RSTitleCell.m in Sources */,
 				B1BF0ACE1DADED710083E89E /* RSTitleImageModel.m in Sources */,
 				B1738DCA1CB665EC006C7207 /* BaseViewController.m in Sources */,
+				B12316041DAFABFC00743A04 /* GoodRateModel.m in Sources */,
 				B1F4901A1D3DF0E9005A806C /* BrandinfoViewController.m in Sources */,
 				B1E3D0241D59D91F000F43EA /* PromotionModel.m in Sources */,
 				B162BC9D1CBDEA2200E27228 /* CartViewController.m in Sources */,
@@ -1508,6 +1519,7 @@
 				B123DCBA1CC77FAD00F08E8D /* LoginModel.m in Sources */,
 				B15395291CE1ADFB001763C7 /* UserInfoModel.m in Sources */,
 				30221E561CCE06C300126D72 /* HeadviewCell.m in Sources */,
+				B12316011DAFAA1F00743A04 /* GoodRateCell.m in Sources */,
 				B1F490171D3CB4A8005A806C /* BrandListCell.m in Sources */,
 				B18322551CD07709006E7EBC /* PayWebViewController.m in Sources */,
 				B10F65D21CDC7C2F003C5B23 /* RSJSWebViewController.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "GoodinfoViewController.h"
 #import "GoodModel.h"
+#import "GoodRateModel.h"
 
 #define kHEIGHT [AppConfig adapterDeviceHeight:215]
 
@@ -142,7 +143,7 @@
     }
     
     goodModel.cellClassName = @"GoodInfoSubCell";
-    for (int i=0; i<3; i++) {
+    for (int i=0; i<4; i++) {
          GoodModel *goodModel1 = [goodModel copy];
         switch (i) {
             case 0:{
@@ -162,7 +163,27 @@
             case 2:{
                 goodModel1.name = @"商品描述";
                 goodModel1.subText = goodModel1.desc;
+                goodModel1.hiddenLine = NO;
                 [self.models addObject:goodModel1];
+            }
+                break;
+            case 3: {
+                GoodRateModel *rateModel = [[GoodRateModel alloc] init];
+                rateModel.title = @"商品评价";
+                rateModel.tags = rateModel.tags;
+                
+//                NSMutableArray *array = [NSMutableArray array];
+//                for (int i=0; i<10; i++) {
+//                    TagModel *gM = [[TagModel alloc] init];
+//                    gM.num = @(100);
+//                    gM.tagfavorable = 1;
+//                    gM.tagcontent = @"好极了";
+//                    [array addObject:gM];
+//                }
+//                rateModel.tags = [array copy];
+                
+                rateModel.cellClassName = @"GoodRateCell";
+                [self.models addObject:rateModel];
             }
                 break;
             default:
@@ -173,14 +194,16 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.models[indexPath.row] isKindOfClass:[GoodModel class]]) {
+    if ([self.models[indexPath.row] isKindOfClass:[GoodModel class]]||
+        [self.models[indexPath.row] isKindOfClass:[GoodRateModel class]]) {
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
     return 10;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.models[indexPath.row] isKindOfClass:[GoodModel class]]) {
+    if ([self.models[indexPath.row] isKindOfClass:[GoodModel class]] ||
+        [self.models[indexPath.row] isKindOfClass:[GoodRateModel class]]) {
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
     

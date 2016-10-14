@@ -106,8 +106,6 @@ static const CGFloat k_tags_margin = 9;
         TagModel *tagModel = tags[i];
         UIButton *btn = [self assessTag:tagModel.tagcontent favorable:tagModel.isSelected];
         btn.tag = [tagModel.tagid integerValue];
-        if (tagModel.tagfavorable) {
-        }
         [self.tagsView addSubview:btn];
         btn.x = tempW;
         

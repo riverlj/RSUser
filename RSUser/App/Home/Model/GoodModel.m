@@ -28,7 +28,10 @@
              @"desc" : @"desc",
              @"ishot" : @"ishot",
              @"isnew" : @"isnew",
-             @"promotions" : @"promotions"
+             @"promotions" : @"promotions",
+             @"ratescore" : @"ratescore",
+             @"ishighrated" : @"ishighrated",
+             @"ratetag" : @"ratetag"
              };
 }
 
@@ -47,6 +50,10 @@
         _headimg = [_headimg stringByAppendingString:sizestr];
     }
     return _headimg;
+}
+
++ (NSValueTransformer *)ratetagJSONTransformer {
+    return [MTLJSONAdapter arrayTransformerWithModelClass:TagModel.class];
 }
 
 + (NSValueTransformer *)promotionsJSONTransformer {

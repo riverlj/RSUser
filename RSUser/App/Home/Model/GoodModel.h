@@ -7,6 +7,7 @@
 //
 
 #import "RSModel.h"
+#import "AssessmentModel.h"
 
 @class SeckillModel;
 @interface GoodModel : RSModel<MTLJSONSerializing>
@@ -23,9 +24,11 @@
 @property (nonatomic ,copy)NSString *name;
 @property (nonatomic ,copy)NSString *desc;
 @property (nonatomic ,assign)Boolean ishot;
+@property (nonatomic ,assign)Boolean ishighrated;
+@property (nonatomic, strong)NSString *ratescore;
+@property (nonatomic, strong)NSArray *ratetag;
 @property (nonatomic ,assign)Boolean isnew;
 @property (nonatomic, strong)NSArray *promotions;
-
 
 @property (nonatomic ,assign)Boolean lineHidden;
 @property (nonatomic, strong)NSString *subText;

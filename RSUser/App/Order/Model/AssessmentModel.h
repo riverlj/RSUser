@@ -10,6 +10,7 @@
 
 @interface TagModel : RSModel<MTLJSONSerializing>
 @property (nonatomic ,strong)NSNumber *tagid;
+@property (nonatomic ,strong)NSNumber *num;
 @property (nonatomic ,strong)NSString *tagcontent;
 @property (nonatomic ,assign)Boolean tagfavorable;
 @property (nonatomic, assign)Boolean isSelected;
