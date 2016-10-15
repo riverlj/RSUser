@@ -33,6 +33,7 @@
 		B118A0BC1CDB106D00598506 /* CodesView.m in Sources */ = {isa = PBXBuildFile; fileRef = B118A0BB1CDB106D00598506 /* CodesView.m */; };
 		B12316011DAFAA1F00743A04 /* GoodRateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B12316001DAFAA1F00743A04 /* GoodRateCell.m */; };
 		B12316041DAFABFC00743A04 /* GoodRateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B12316031DAFABFC00743A04 /* GoodRateModel.m */; };
+		B12316061DB0939300743A04 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12316051DB0939300743A04 /* Reveal.framework */; };
 		B123DC401CC4D27600F08E8D /* RSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC3F1CC4D27600F08E8D /* RSButton.m */; };
 		B123DC461CC62DBF00F08E8D /* RSTextFiled.m in Sources */ = {isa = PBXBuildFile; fileRef = B123DC451CC62DBF00F08E8D /* RSTextFiled.m */; };
 		B123DC481CC637C400F08E8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B123DC471CC637C400F08E8D /* Assets.xcassets */; };
@@ -235,6 +236,7 @@
 		B12316001DAFAA1F00743A04 /* GoodRateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodRateCell.m; sourceTree = "<group>"; };
 		B12316021DAFABFC00743A04 /* GoodRateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodRateModel.h; sourceTree = "<group>"; };
 		B12316031DAFABFC00743A04 /* GoodRateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodRateModel.m; sourceTree = "<group>"; };
+		B12316051DB0939300743A04 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		B123DC3E1CC4D27600F08E8D /* RSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSButton.h; sourceTree = "<group>"; };
 		B123DC3F1CC4D27600F08E8D /* RSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSButton.m; sourceTree = "<group>"; };
 		B123DC441CC62DBF00F08E8D /* RSTextFiled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTextFiled.h; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 				B15BA5201D6406FA00F16982 /* QuartzCore.framework in Frameworks */,
 				B10470881CFC1A2F008DAA7D /* JSPatch.framework in Frameworks */,
 				B1326E471CE42A0B001F90CE /* Foundation.framework in Frameworks */,
+				B12316061DB0939300743A04 /* Reveal.framework in Frameworks */,
 				B1738D8B1CB65FBF006C7207 /* UIKit.framework in Frameworks */,
 				B1326E451CE429F9001F90CE /* CoreGraphics.framework in Frameworks */,
 				B1326E361CE428DC001F90CE /* libBaiduMobStat.a in Frameworks */,
@@ -590,6 +593,7 @@
 		B123DCA71CC7704B00F08E8D /* ThreeLib */ = {
 			isa = PBXGroup;
 			children = (
+				B12316051DB0939300743A04 /* Reveal.framework */,
 				B15BA5161D64059F00F16982 /* Alipay */,
 				B10470861CFC1A14008DAA7D /* JSPatch */,
 				B1326E341CE428B1001F90CE /* Baidu */,
@@ -1748,6 +1752,10 @@
 					"\"TwitterKit\"",
 					"-framework",
 					"\"UIKit\"",
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.Breakfast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1852,6 +1860,10 @@
 					"\"TwitterKit\"",
 					"-framework",
 					"\"UIKit\"",
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.RedScarf.Breakfast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
