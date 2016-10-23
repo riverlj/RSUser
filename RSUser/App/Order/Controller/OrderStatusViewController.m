@@ -37,6 +37,9 @@
     model.cellClassName = @"OrderStatusCell";
     _orderInfoModel = model;
     
+    if (!model) {
+        return;
+    }
     [self.models addObject:model];
     [self.tableView reloadData];
 }

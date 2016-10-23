@@ -10,6 +10,7 @@
 #import "OrderInfoViewController.h"
 #import "OrderStatusViewController.h"
 #import "OrderInfoModel.h"
+#import "XHCustomShareView.h"
 
 @interface OrderInfoAndStatusViewController ()
 {
@@ -17,6 +18,8 @@
     NSMutableArray *_btnArray;
     CGFloat btnWidth;
     UIView *contentTopView;
+    UIImageView *sendRedPacketImageView;
+    NSDictionary *redPacketDic;
 }
 @property (nonatomic, strong)OrderInfoViewController *orderInfoVc;
 @property (nonatomic, strong)OrderStatusViewController *orderStatusVc;
@@ -54,6 +57,12 @@
                            };
     [_btnArray addObject:btn1];
     [_btnArray addObject:btn2];
+    
+    sendRedPacketImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-87-10, SCREEN_HEIGHT-72-58-10, 87, 72)];
+    [sendRedPacketImageView addTapAction:@selector(shareRedPacket) target:self];
+    sendRedPacketImageView.image = [UIImage imageNamed:@"icon_send_redpacket"];
+    sendRedPacketImageView.hidden = YES;
+    [[AppConfig getAPPDelegate].window addSubview:sendRedPacketImageView];
     
     [self initData];
 }
@@ -103,6 +112,12 @@
         NSError *error = nil;
         selfB.orderInfoModel  = [MTLJSONAdapter modelOfClass:[OrderInfoModel class] fromJSONDictionary:data error:&error];
         [[RSToastView shareRSToastView]hidHUD];
+        if (selfB.orderInfoModel.canbonus) {
+            sendRedPacketImageView.hidden = NO;
+            [selfB getShareMsg];
+        }else {
+            [sendRedPacketImageView removeFromSuperview];
+        }
         if (error) {
             NSLog(@"%@",error);
         }
@@ -117,6 +132,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [sendRedPacketImageView removeFromSuperview];
 }
 
 - (void)didClickBtn:(RSSubTitleView *)sender
@@ -542,4 +562,50 @@
         
     }];
 }
+
+- (void)shareRedPacket {
+    //TODO
+    
+    if (!redPacketDic) {
+        [[RSToastView shareRSToastView] showToast:@"获取分享信息失败"];
+        return;
+    }
+    
+    NSString *title = [redPacketDic valueForKey:@"title"];
+    NSString *context = [redPacketDic valueForKey:@"desc"];
+    NSString *clickUrl = [redPacketDic valueForKey:@"link"];
+    NSString *imageUrl = [redPacketDic valueForKey:@"imgurl"];
+    
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@",clickUrl];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@",clickUrl];
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = title;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = title;
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+    [UMSocialData defaultData].extConfig.wechatSessionData.shareText = context;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.shareText=  context;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            XHCustomShareView *shareView = [XHCustomShareView shareViewWithPresentedViewController:self items:@[UMShareToWechatSession,UMShareToWechatTimeline] title:nil image:image urlResource:nil];
+            shareView.tag = 9876;
+            [[UIApplication sharedApplication].keyWindow addSubview:shareView];
+        });
+    });
+}
+
+-(void)getShareMsg
+{
+    NSMutableDictionary *requestParams = [NSMutableDictionary dictionary];
+    //TODO
+    [requestParams setValue:@"bonus" forKey:@"campaign"];
+    [requestParams setValue:self.orderId forKey:@"orderid"];
+    
+    [RSHttp mobileRequestWithURL:@"/mobile/index/campaignconfig" params:requestParams httpMethod:@"GET" success:^(NSDictionary *data)  {
+        redPacketDic = data;
+    } failure:^(NSInteger code, NSString *errmsg) {
+        redPacketDic = nil;
+    }];
+}
+
 @end

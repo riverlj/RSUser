@@ -46,8 +46,8 @@
         @"canrefund" : @"canrefund",
         @"canrate" : @"canrate",
         @"canticket" : @"canticket",
-        
         @"deliverytime" : @"deliverytime",
+        @"canbonus" : @"canbonus",
     };
 }
 

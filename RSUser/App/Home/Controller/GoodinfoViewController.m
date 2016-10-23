@@ -169,19 +169,9 @@
                 break;
             case 3: {
                 GoodRateModel *rateModel = [[GoodRateModel alloc] init];
+                ;
                 rateModel.title = @"商品评价";
-                rateModel.tags = rateModel.tags;
-                
-//                NSMutableArray *array = [NSMutableArray array];
-//                for (int i=0; i<10; i++) {
-//                    TagModel *gM = [[TagModel alloc] init];
-//                    gM.num = @(100);
-//                    gM.tagfavorable = 1;
-//                    gM.tagcontent = @"好极了";
-//                    [array addObject:gM];
-//                }
-//                rateModel.tags = [array copy];
-                
+                rateModel.tags = goodModel1.ratetag;
                 rateModel.cellClassName = @"GoodRateCell";
                 [self.models addObject:rateModel];
             }

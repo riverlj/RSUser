@@ -36,6 +36,7 @@
 @property (nonatomic, strong) NSString *notifytime;
 @property (nonatomic, strong) NSArray *promotions;
 @property (nonatomic, strong) NSString *amount;
+@property (nonatomic, assign) Boolean canbonus;
 
 
 @property (nonatomic) NSInteger canpay; // 支付

@@ -111,9 +111,9 @@
                                @"tag" : array
                                };
 
-    NSMutableArray *products = [NSMutableArray array];
     
     NSInteger rateCount = 0;
+    NSMutableDictionary *goodDic = [NSMutableDictionary dictionary];
     for (int i=1; i<_productsAarray.count; i++) {
         AssessmentGoodModel *goodModel = _productsAarray[i];
         NSArray *fArray = [goodModel getSelectedTag];
@@ -122,13 +122,10 @@
                                @"tag" : fArray
                                };
         NSString *gid = [NSString stringFromNumber:goodModel.goodid];
-        NSDictionary *goodDic = @{
-                                gid : tagDic
-                                };
+        [goodDic setValue:tagDic forKey:gid];
         if (![goodModel.currentkey isEqualToString:@"0"]) {
             rateCount ++;
         }
-        [products addObject:goodDic];
     }
     
     if (rateCount == 0) {
@@ -139,7 +136,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:self.orderid forKey:@"orderid"];
     [params setValue:pdelivery forKey:@"delivery"];
-    [params setValue:products forKey:@"product"];
+    [params setValue:goodDic forKey:@"product"];
     
     __weak AssessmentViewController *selfWeak = self;
     [[RSToastView shareRSToastView] showHUD:@"提交中..."];

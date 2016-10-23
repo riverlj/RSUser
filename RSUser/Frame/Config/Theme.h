@@ -67,5 +67,11 @@
 #define RS_FONT_18 Font(18*(RS_SIZE_SCALE))
 #define RS_FONT_19 Font(19*(RS_SIZE_SCALE))
 #define RS_FONT_20 Font(20*(RS_SIZE_SCALE))
+#define RS_FONT_21 Font(21*(RS_SIZE_SCALE))
+
+#define RS_BOLDFONT_16 BoldFont(16*(RS_SIZE_SCALE))
+#define RS_BOLDFONT_18 BoldFont(18*(RS_SIZE_SCALE))
+#define RS_BOLDFONT_21 BoldFont(21*(RS_SIZE_SCALE))
+
 
 #endif /* Theme_h */

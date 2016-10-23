@@ -34,6 +34,7 @@
     CGFloat tempW = 16;
     CGFloat tempH = 0;
     CGFloat line = 0;
+    
     [self.tagsView removeAllSubviews];
     for (int i=0; i<model.tags.count; i++) {
         TagModel *tagModel = model.tags[i];

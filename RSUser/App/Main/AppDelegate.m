@@ -153,7 +153,6 @@
         //跳转支付宝钱包进行支付，处理支付结果
         __weak AppDelegate *selfB = self;
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            NSLog(@"%@", resultDic);
             [selfB handleALIPayResult:resultDic];
         }];
     }
@@ -163,17 +162,18 @@
 
 - (void)handleALIPayResult:(NSDictionary *)resultDic
 {
+    [self getPayResult];
 
-    NSInteger resultStatus = [[resultDic valueForKey:@"resultStatus"] integerValue];
-    if (resultStatus == 9000)
-    {
-        [[RSToastView shareRSToastView] showToast:@"支付成功"];
-        [self gotoOrderInfoViewController];
-    }
-    else
-    {
-        [[RSToastView shareRSToastView] showToast:@"支付未完成,请重新支付"];
-    }
+//    NSInteger resultStatus = [[resultDic valueForKey:@"resultStatus"] integerValue];
+//    if (resultStatus == 9000)
+//    {
+//        [[RSToastView shareRSToastView] showToast:@"支付成功"];
+//        [self gotoOrderInfoViewController];
+//    }
+//    else
+//    {
+//        [[RSToastView shareRSToastView] showToast:@"支付未完成,请重新支付"];
+//    }
 }
 
 - (void)gotoOrderInfoViewController
@@ -186,28 +186,7 @@
 -(void) onResp:(BaseResp*)resp
 {
     if ([resp isKindOfClass:[PayResp class]]){
-        PayResp*response=(PayResp*)resp;
-        switch(response.errCode){
-            case WXSuccess:
-            {
-                [[RSToastView shareRSToastView] showToast:@"支付成功"];
-                //跳转到订单详情
-                [self gotoOrderInfoViewController];
-                break;
-            }
-            case WXErrCodeUserCancel:  //用户取消并返回
-            {
-                [[RSToastView shareRSToastView] showToast:@"支付未完成,请重新支付"];
-                break;
-            }
-                
-            default: //其他类型的错误
-            {
-                [[RSToastView shareRSToastView] showToast:@"支付失败，请重新支付"];
-                [self gotoOrderInfoViewController];
-                break;
-            }
-        }
+        [self getPayResult];
         return;
     }
     
@@ -231,6 +210,27 @@
         [LoginModel getAccess_token:code];
     }
     
+}
+
+-(void)getPayResult
+{
+    NSString *creatorderid = [NSUserDefaults getValue:@"creatorderid"];
+    NSDictionary *params = @{
+                             @"orderid" : creatorderid
+                             };
+    [RSHttp requestWithURL:@"/order/info" params:params httpMethod:@"GET" success:^(NSDictionary *data) {
+         Boolean ispayed = [[data valueForKey:@"ispayed"] boolValue];
+        NSString *bonusnumber = [data valueForKey:@"bonusnumber"];
+        if (ispayed) {
+            UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://paySuccess?bousnumber=%@",bonusnumber]];
+            [self.crrentNavCtl presentViewController:[[UINavigationController alloc] initWithRootViewController:vc] animated:YES completion:nil];
+        }else {
+            [[RSToastView shareRSToastView] showToast:@"支付失败"];
+        }
+    } failure:^(NSInteger code, NSString *errmsg) {
+        //支付失败
+        [[RSToastView shareRSToastView] showToast:@"支付失败"];
+    }];
 }
 
 -(void)applicationWillEnterForeground:(UIApplication *)application {

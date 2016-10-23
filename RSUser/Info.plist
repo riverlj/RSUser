@@ -42,7 +42,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>5</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>weixin</string>
@@ -56,15 +56,13 @@
 		<true/>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>红领巾要访问您的联系人</string>
+	<string>是否允许此App访问你的通讯录？</string>
 	<key>NSCameraUsageDescription</key>
-	<string>红领巾要访问您的相机</string>
+	<string>是否允许此App使用你的相机？</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>红领巾要访问您的地理位置</string>
+	<string>我们需要通过您的地理位置信息获取您周边的相关数据</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>红领巾要访问您的相册</string>
-	<key>UIMainStoryboardFile</key>
-	<string></string>
+	<string>是否允许此App访问你的媒体资料库？</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

@@ -45,9 +45,9 @@
 //微信支付
 -(void)payWeChat:(id)param
 {
+    [self saveCreatOrderId];
     NSData *data = [param dataUsingEncoding:NSUTF8StringEncoding];
      NSDictionary *dic  = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-     
 
     PayReq *request = [[PayReq alloc] init];
     request.partnerId = [dic valueForKey:@"partnerid"];
@@ -69,6 +69,7 @@
 
 -(void)payAli:(id)str
 {
+    [self saveCreatOrderId];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *dic  = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
     NSString *payData = [dic valueForKey:@"payData"];
@@ -79,6 +80,10 @@
             [[AppConfig getAPPDelegate] handleALIPayResult:resultDic];
         }];
     });
+}
+
+- (void)saveCreatOrderId {
+    [NSUserDefaults setValue:self.orderId forKey:@"creatorderid"];
 }
 
 - (void)backUp

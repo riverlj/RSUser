@@ -219,8 +219,12 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OrderCell *cell = (OrderCell *)[super tableView:tableView cellForRowAtIndexPath:indexPath];
-    cell.cellBtnClickedDelegate = self;
+    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    if ([cell isKindOfClass:[OrderCell class] ]) {
+        OrderCell *ordercell = (OrderCell *)cell;
+        ordercell.cellBtnClickedDelegate = self;
+        return ordercell;
+    }
     return cell;
 }
 
@@ -229,10 +233,7 @@
 - (void)goOrderInfo:(NSString *)orderId
 {
     //订单详情页面
-//    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderId=%@", orderId]];
-//    [self.navigationController pushViewController:vc animated:YES];
-    
-    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://assessment?orderid=%@", orderId]];
+    UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://OrderInfoAndStatus?orderId=%@", orderId]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
