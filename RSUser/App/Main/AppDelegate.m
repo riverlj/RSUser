@@ -163,17 +163,6 @@
 - (void)handleALIPayResult:(NSDictionary *)resultDic
 {
     [self getPayResult];
-
-//    NSInteger resultStatus = [[resultDic valueForKey:@"resultStatus"] integerValue];
-//    if (resultStatus == 9000)
-//    {
-//        [[RSToastView shareRSToastView] showToast:@"支付成功"];
-//        [self gotoOrderInfoViewController];
-//    }
-//    else
-//    {
-//        [[RSToastView shareRSToastView] showToast:@"支付未完成,请重新支付"];
-//    }
 }
 
 - (void)gotoOrderInfoViewController

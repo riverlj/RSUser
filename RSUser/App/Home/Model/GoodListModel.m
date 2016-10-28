@@ -59,7 +59,7 @@
     if (!_headimg) {
         return nil;
     }
-    NSString *sizestr = @"@140w_140h_1e_1c";
+    NSString *sizestr = @"@150w_162h_1e_1c";
     if ([_headimg isAliyImageUrlStr] && ![_headimg hasSuffix:sizestr]) {
         _headimg = [_headimg stringByAppendingString:sizestr];
     }

@@ -51,14 +51,16 @@
     }];
     
     totalPrice = price;
-    NSString *priceStr = [NSString stringWithFormat:@"¥%.2f", price];
+    NSString *priceStr = [NSString stringWithFormat:@"共¥%.2f", price];
     
     if (array.count == 0) {
         priceStr = @"0.00";
         self.totalPriceLabel.text = priceStr;
     }else{
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:priceStr];
-        [attrStr addAttribute:NSFontAttributeName value:RS_FONT_F4 range:NSMakeRange(0, 1)];
+        [attrStr addAttribute:NSFontAttributeName value:RS_FONT_F4 range:NSMakeRange(0, 2)];
+        [attrStr addAttribute:NSForegroundColorAttributeName value:RS_COLOR_000000 range:NSMakeRange(0, 1)];
+        [attrStr addAttribute:NSForegroundColorAttributeName value:RS_Theme_Color range:NSMakeRange(1, 2)];
         self.totalPriceLabel.attributedText = attrStr;
     }
     
@@ -194,9 +196,13 @@
         return _totalPriceLabel;
     }
     
-    _totalPriceLabel = [RSLabel labellWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/3*2, BOTTOMVIIEW_HEIGHT) Text:@"" Font:RS_FONT_F1 TextColor:[UIColor whiteColor]];
-    _totalPriceLabel.backgroundColor=[NSString colorFromHexString:@"454545"];
+    _totalPriceLabel = [RSLabel labellWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/3*2, BOTTOMVIIEW_HEIGHT) Text:@"" Font:RS_FONT_F1 TextColor:RS_Theme_Color];
+    _totalPriceLabel.backgroundColor=[UIColor whiteColor];
     _totalPriceLabel.textAlignment = NSTextAlignmentCenter;
+    UIView *lineView = [RSLineView lineViewHorizontal];
+    lineView.width = _totalPriceLabel.width;
+    lineView.y = 0;
+    [_totalPriceLabel addSubview:lineView];
     return _totalPriceLabel;
 }
 @end

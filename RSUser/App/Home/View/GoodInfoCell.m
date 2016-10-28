@@ -28,6 +28,7 @@
         return _nameLabel;
     }
     _nameLabel = [RSLabel mainLabel];
+    _nameLabel.textColor = RS_COLOR_C3;
     _nameLabel.font = RS_FONT_F3;
     return _nameLabel;
 }
@@ -37,6 +38,7 @@
         return _saledLabel;
     }
     _saledLabel = [RSLabel twoLabel];
+    _saledLabel.textColor = RS_COLOR_C1;
     _saledLabel.textAlignment = NSTextAlignmentLeft;
     _saledLabel.numberOfLines = 0;
     return _saledLabel;
@@ -90,6 +92,12 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.nameLabel.font = Font(18);
+        self.nameLabel.textColor = RS_COLOR_C1;
+        
+        self.saledLabel.font = Font(10);
+        self.saledLabel.textColor = RS_COLOR_C3;
+        
         [self.contentView addSubview:self.hotImageView];
         [self.contentView addSubview:self.highRateView];
         [self.contentView addSubview:self.newsImageView];
@@ -232,18 +240,17 @@
         [self.contentView addSubview:self.starRateView];
         
         NSString *ratescore = [NSString stringWithFormat:@"%.1lf",[model.ratescore floatValue]];
-        CGSize rateSize = [ratescore sizeWithFont:Font(12) byWidth:99999];
+        CGSize rateSize = [ratescore sizeWithFont:Font(14) byWidth:99999];
         self.scoreLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.starRateView.right+2,  0, rateSize.width, rateSize.height)];
-        self.scoreLabel.font = Font(12);
+        self.scoreLabel.font = Font(14);
         self.scoreLabel.textColor = RS_Theme_Color;
         self.scoreLabel.text = ratescore;
-        self.scoreLabel.bottom = self.starRateView.bottom+2;
+        self.scoreLabel.bottom = self.starRateView.bottom+3;
         [self.contentView addSubview:self.scoreLabel];
     }
 
     //商品销售量
     self.saledLabel.text = model.subText;
-    self.saledLabel.font = Font(10);
     CGSize saledSize = [self.saledLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
     if ([model.ratescore integerValue] !=0) {
         self.saledLabel.frame = CGRectMake(self.scoreLabel.right+4, self.nameLabel.bottom + 6, SCREEN_WIDTH-2*self.nameLabel.left, saledSize.height);
@@ -278,7 +285,7 @@
     
     //加入购物车按钮
     self.addCartBtn.x = SCREEN_WIDTH - 10 - self.addCartBtn.width;
-    self.addCartBtn.y = self.priceLabel.top - 5;
+    self.addCartBtn.y = self.priceLabel.centerY;
     
     CGSize addSize = [UIImage imageNamed:@"addActivate"].size;
     self.addIV.frame = CGRectMake(SCREEN_WIDTH-32, 93/2, 2*addSize.width, 93/2);
@@ -324,7 +331,7 @@
         actionImageView.contentMode = UIViewContentModeScaleAspectFill;
         [self.contentView addSubview:actionImageView];
         
-        UILabel *label = [RSLabel labellWithFrame:CGRectMake(actionImageView.right+5, actionImageView.top, SCREEN_WIDTH-actionImageView.right-80, 15) Text:promotion.desc Font:Font(9) TextColor:[NSString colorFromHexString:@"818181"]];
+        UILabel *label = [RSLabel labellWithFrame:CGRectMake(actionImageView.right+5, actionImageView.top, SCREEN_WIDTH-actionImageView.right-80, 15) Text:promotion.desc Font:Font(10) TextColor:[NSString colorFromHexString:@"818181"]];
         label.tag = 10000+i;
         [self.contentView addSubview:label];
         

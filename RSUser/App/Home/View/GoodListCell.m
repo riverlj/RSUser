@@ -25,13 +25,14 @@
 - (void)createUI
 {
     // 商品名称
-    self.titleLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_COLOR_C1];
+    self.titleLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_COLOR_000000];
     self.titleLabel.textAlignment = NSTextAlignmentLeft;
-    self.titleLabel.font = Font(14);
+    self.titleLabel.font = RS_FONT_F2;
     [self.contentView addSubview:self.titleLabel];
     
     //商品价格
-    self.priceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_Theme_Color FontSize:14];
+    self.priceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_Theme_Color FontSize:0];
+    self.priceLabel.font = BoldFont(15);
     [self.contentView addSubview:self.priceLabel];
     
     CGSize addSize = [UIImage imageNamed:@"addActivate"].size;
@@ -114,25 +115,25 @@
 
 - (void)createUI
 {
-    _iconIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 12, 71, 71)];
+    _iconIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 12, 75, 81)];
     _iconIV.layer.cornerRadius = 3;
     _iconIV.layer.masksToBounds = YES;
     [self.contentView addSubview:_iconIV];
     
     //已售数量
     self.saledLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_COLOR_C3];
-    self.saledLabel.font = Font(9);
+    self.saledLabel.font = RS_FONT_F5;
     [self.contentView addSubview:self.saledLabel];
 
-    self.titleLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_COLOR_C1];
+    self.titleLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_COLOR_000000];
     self.titleLabel.textAlignment = NSTextAlignmentLeft;
-    self.self.titleLabel.font = RS_FONT_F2;
+    self.self.titleLabel.font = Font(16);
     [self.contentView addSubview:self.self.titleLabel];
     
     //商品描述
-    self.menuLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_COLOR_C2];
+    self.menuLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_COLOR_C3];
     self.menuLabel.textAlignment = NSTextAlignmentLeft;
-    self.menuLabel.font = RS_FONT_F5;
+    self.menuLabel.font = Font(12);
     [self.contentView addSubview:self.menuLabel];
     
     self.priceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_Theme_Color];
@@ -174,7 +175,7 @@
     self.labelImageView = [RSImageView imageViewWithFrame:CGRectZero ImageName:@""];
     self.labelImageView.layer.cornerRadius = 0;
     self.labelImageView.layer.masksToBounds = YES;
-    [self.iconIV addSubview:self.labelImageView];
+    [self.contentView addSubview:self.labelImageView];
     
     //新品
     self.newsImageView = [RSImageView imageViewWithFrame:CGRectZero ImageName:@"label_new"];
@@ -227,7 +228,7 @@
     //类别标签
     NSString *imageName = [model getImageNameBytopcategoryid];
     self.labelImageView.image = [UIImage imageNamed:imageName];
-    self.labelImageView.frame = CGRectMake(0, 0, 23, 23);
+    self.labelImageView.frame = CGRectMake(0, 0, 27, 27);
     
     //商品名称
     self.titleLabel.text = model.name;
@@ -242,20 +243,21 @@
         self.titleLabel.frame = CGRectMake(self.iconIV.right+10, self.iconIV.top, nameSize.width, nameSize.height);
         self.newsImageView.hidden = YES;
     }
+    self.titleLabel.width = SCREEN_WIDTH - 100 - self.titleLabel.x;
     
     [self.starRateView removeFromSuperview];
     [self.scoreLabel removeFromSuperview];
     if ([model.ratescore integerValue] != 0) {
-        self.starRateView = [[XHStarRateView alloc] initWithFrame:CGRectMake(self.iconIV.right + 10, self.titleLabel.bottom + 4, 9*5+5*4, 9) foregroundStarImage:@"icon_home_star_yellow" backgroundStarImage:@"icon_home_star_gray" currentScore:[model.ratescore floatValue]];
+        self.starRateView = [[XHStarRateView alloc] initWithFrame:CGRectMake(self.iconIV.right + 10, self.titleLabel.bottom + 8, 9*5+5*4, 9) foregroundStarImage:@"icon_home_star_yellow" backgroundStarImage:@"icon_home_star_gray" currentScore:[model.ratescore floatValue]];
         [self.contentView addSubview:self.starRateView];
         
         NSString *ratescore = [NSString stringWithFormat:@"%.1lf",[model.ratescore floatValue]];
-        CGSize rateSize = [ratescore sizeWithFont:Font(12) byWidth:99999];
+        CGSize rateSize = [ratescore sizeWithFont:Font(14) byWidth:99999];
         self.scoreLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.starRateView.right+2,  0, rateSize.width, rateSize.height)];
-        self.scoreLabel.font = Font(12);
+        self.scoreLabel.font = RS_FONT_F3;
         self.scoreLabel.textColor = RS_Theme_Color;
         self.scoreLabel.text = ratescore;
-        self.scoreLabel.bottom = self.starRateView.bottom+1;
+        self.scoreLabel.bottom = self.starRateView.bottom + 3;
         [self.contentView addSubview:self.scoreLabel];
     }
     
@@ -263,22 +265,26 @@
     self.saledLabel.text = [NSString stringWithFormat:@"已售%zd份", model.saled];
     CGSize saledLabelSize = [self.saledLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
     if (model.ratescore.integerValue == 0) {
-        self.saledLabel.frame = CGRectMake(self.iconIV.right + 10, self.titleLabel.bottom + 4, saledLabelSize.width, saledLabelSize.height);
+        self.saledLabel.frame = CGRectMake(self.iconIV.right + 10, self.titleLabel.bottom + 8, saledLabelSize.width, saledLabelSize.height);
     }else {
-        self.saledLabel.frame = CGRectMake(self.scoreLabel.right + 4, self.titleLabel.bottom + 4, saledLabelSize.width, saledLabelSize.height);
+        self.saledLabel.frame = CGRectMake(self.scoreLabel.right + 4, self.titleLabel.bottom + 8, saledLabelSize.width, saledLabelSize.height);
         self.saledLabel.centerY = self.starRateView.centerY;
     }
     
     //商品描述
     self.menuLabel.text = model.desc;
     CGSize menuLabelSize = [self.menuLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
-    self.menuLabel.frame = CGRectMake(self.iconIV.right + 10, self.saledLabel.bottom + 4, SCREEN_WIDTH-self.iconIV.right-10-80, menuLabelSize.height);
+    self.menuLabel.frame = CGRectMake(self.iconIV.right + 10, self.saledLabel.bottom + 8, SCREEN_WIDTH-self.iconIV.right-10-80, menuLabelSize.height);
     
 
     //商品价格
     self.priceLabel.text = [NSString stringWithFormat:@"￥%@", model.saleprice];
     CGSize priceSize = [self.priceLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, 40)];
-    self.priceLabel.frame = CGRectMake(self.iconIV.right + 10, self.menuLabel.bottom+6, priceSize.width, priceSize.height);
+    self.priceLabel.frame = CGRectMake(self.iconIV.right + 10, self.menuLabel.bottom+8, priceSize.width, priceSize.height);
+    
+    self.addIV.centerY = self.priceLabel.centerY;
+    self.subIV.centerY = self.priceLabel.centerY;
+    self.countLabel.centerY = self.priceLabel.centerY;
     
     //评价高
     if (model.ishighrated) {
@@ -318,7 +324,7 @@
     }else {
         line.hidden = YES;
     }
-    CGFloat h = self.priceLabel.bottom;
+    CGFloat h = self.iconIV.bottom;
     h += 20;
     
     if (promotions.count>maxCount) {

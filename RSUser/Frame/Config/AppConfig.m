@@ -114,6 +114,7 @@
         case 401:{
             [NSUserDefaults clearValueForKey:@"token"];
             vc = [[LoginViewController alloc]init];
+
             [[AppConfig getAPPDelegate].crrentNavCtl presentViewController:[[UINavigationController alloc]initWithRootViewController:vc] animated:YES completion:nil];
             break;
         }

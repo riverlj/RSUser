@@ -178,6 +178,9 @@
     SchoolModel *schoolModel = [AppConfig getAPPDelegate].schoolModel;
     NSMutableArray *array = [[NSMutableArray alloc]init];
     array = [schoolModel.channels mutableCopy];
+    if (array.count == 0) {
+        return;
+    }
     __weak HomeViewController *selfB = self;
     [array enumerateObjectsUsingBlock:^(ChannelModel *channelModel, NSUInteger idx, BOOL * _Nonnull stop) {
         channelModel.clickChennelBlock = ^void(ChannelModel *cmodel){

@@ -23,6 +23,7 @@
  *  颜色
  */
 
+#define RS_COLOR_000000 [NSString colorFromHexString:@"000000"]
 #define RS_COLOR_C1 [NSString colorFromHexString:@"222222"]
 #define RS_COLOR_C2 [NSString colorFromHexString:@"515151"]
 #define RS_COLOR_C3 [NSString colorFromHexString:@"7d7d7d"]
@@ -69,6 +70,7 @@
 #define RS_FONT_20 Font(20*(RS_SIZE_SCALE))
 #define RS_FONT_21 Font(21*(RS_SIZE_SCALE))
 
+#define RS_BOLDFONT_15 BoldFont(15*(RS_SIZE_SCALE))
 #define RS_BOLDFONT_16 BoldFont(16*(RS_SIZE_SCALE))
 #define RS_BOLDFONT_18 BoldFont(18*(RS_SIZE_SCALE))
 #define RS_BOLDFONT_21 BoldFont(21*(RS_SIZE_SCALE))
