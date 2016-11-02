@@ -208,8 +208,6 @@
 #pragma mark back
 -(void)backUp{
     [self dismissViewControllerAnimated:YES completion:nil];
-    [AppConfig getAPPDelegate].tabBarControllerConfig.tabBarController.selectedIndex = 0;
-    [[AppConfig getAPPDelegate].crrentNavCtl popToRootViewControllerAnimated:YES];
 }
 
 - (void)sendCode

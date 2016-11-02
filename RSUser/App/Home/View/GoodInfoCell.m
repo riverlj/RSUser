@@ -232,6 +232,7 @@
         self.newsImageView.hidden = YES;
         self.nameLabel.frame = CGRectMake(MARGIN_LEFT, 10, nameSize.width, nameSize.height);
     }
+    self.nameLabel.width = SCREEN_WIDTH - 140;
     
     [self.starRateView removeFromSuperview];
     [self.scoreLabel removeFromSuperview];
@@ -264,12 +265,15 @@
     _priceLabel.frame = CGRectMake(MARGIN_LEFT, self.saledLabel.bottom+10, priceSize.width, priceSize.height);
     
     //评价高
+    model.ishot = 1;
+    model.ishighrated = 1;
     if (model.ishighrated) {
         self.highRateView.frame = CGRectMake(SCREEN_WIDTH-37-16, self.nameLabel.top, 37, 13);
         self.highRateView.hidden = NO;
     }else {
         self.highRateView.hidden = YES;
     }
+    self.highRateView.centerY = self.nameLabel.centerY;
     
     //人气旺
     if (model.ishot) {
@@ -278,6 +282,7 @@
     }else{
         self.hotImageView.hidden = YES;
     }
+    self.hotImageView.centerY = self.nameLabel.centerY;
     
     if (model.ishot && !model.ishighrated) {
         self.hotImageView.x = SCREEN_WIDTH-37-16;

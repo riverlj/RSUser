@@ -32,7 +32,7 @@
     
     //商品价格
     self.priceLabel = [RSLabel lableViewWithFrame:CGRectZero bgColor:[UIColor clearColor] textColor:RS_Theme_Color FontSize:0];
-    self.priceLabel.font = BoldFont(15);
+    self.priceLabel.font = [UIFont fontWithName:@"TrebuchetMS-Bold" size:15];//加粗
     [self.contentView addSubview:self.priceLabel];
     
     CGSize addSize = [UIImage imageNamed:@"addActivate"].size;
@@ -109,6 +109,7 @@
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self createUI];
+        self.contentView.clipsToBounds = YES;
     }
     return self;
 }
@@ -116,7 +117,7 @@
 - (void)createUI
 {
     _iconIV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 12, 75, 81)];
-    _iconIV.layer.cornerRadius = 3;
+    _iconIV.layer.cornerRadius = 2;
     _iconIV.layer.masksToBounds = YES;
     [self.contentView addSubview:_iconIV];
     
@@ -155,8 +156,8 @@
     [self.countLabel addTapAction:@selector(countLabelClicked) target:self];
     [self.contentView addSubview:self.countLabel];
     
-    self.subIV = [[UIImageView alloc]initWithFrame:CGRectMake(self.countLabel.x-3*addSize.width, self.addIV.top, 3*addSize.width, self.addIV.height)];
-    self.subIV.contentMode = UIViewContentModeRight;
+    self.subIV = [[UIImageView alloc]initWithFrame:CGRectMake(self.countLabel.x-3*addSize.width+19, self.addIV.top, 3*addSize.width, self.addIV.height)];
+    self.subIV.contentMode = UIViewContentModeCenter;
     [self.subIV setImage:[UIImage imageNamed:@"subActivate"]];
     self.subIV.hidden = YES;
     [self.subIV addTapAction:@selector(subCountClick) target:self];
@@ -282,8 +283,8 @@
     CGSize priceSize = [self.priceLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, 40)];
     self.priceLabel.frame = CGRectMake(self.iconIV.right + 10, self.menuLabel.bottom+8, priceSize.width, priceSize.height);
     
-    self.addIV.centerY = self.priceLabel.centerY;
-    self.subIV.centerY = self.priceLabel.centerY;
+    self.addIV.centerY = self.priceLabel.centerY - 2;
+    self.subIV.centerY = self.priceLabel.centerY - 2;
     self.countLabel.centerY = self.priceLabel.centerY;
     
     //评价高
@@ -325,7 +326,7 @@
         line.hidden = YES;
     }
     CGFloat h = self.iconIV.bottom;
-    h += 20;
+    h += 10;
     
     if (promotions.count>maxCount) {
         maxCount = promotions.count;
