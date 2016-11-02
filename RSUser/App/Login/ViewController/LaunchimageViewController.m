@@ -36,7 +36,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self performSelector:@selector(switchRootViewController) withObject:nil afterDelay:2.5f];
+    [self performSelector:@selector(switchRootViewController) withObject:nil afterDelay:2.0f];
 }
 
 - (void)loadLaunchImage{

@@ -236,7 +236,7 @@
     CGSize nameSize = [self.titleLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
     self.newsImageView.hidden = YES;
     if (model.isnew) {
-        self.newsImageView.frame = CGRectMake(self.iconIV.right + 10, self.iconIV.top, 14, 14);
+        self.newsImageView.frame = CGRectMake(self.iconIV.right + 10, self.iconIV.top, 24, 13);
         self.newsImageView.hidden = NO;
         self.titleLabel.frame = CGRectMake(self.newsImageView.right+3, self.iconIV.top, nameSize.width, nameSize.height);
         self.titleLabel.centerY = self.newsImageView.centerY;

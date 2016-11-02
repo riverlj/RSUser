@@ -225,7 +225,7 @@
     CGSize nameSize = [self.nameLabel sizeThatFits:CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT)];
     if (model.isnew) { //是否是新品
         self.newsImageView.hidden = NO;
-        self.newsImageView.frame = CGRectMake(MARGIN_LEFT, 10, 14, 14);
+        self.newsImageView.frame = CGRectMake(MARGIN_LEFT, 10, 24, 13);
         self.nameLabel.frame = CGRectMake(MARGIN_LEFT + 14 + 4, 10, nameSize.width,nameSize.height);
         self.nameLabel.centerY = self.newsImageView.centerY;
     }else {
