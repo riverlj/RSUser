@@ -378,4 +378,137 @@ static  NSString *const k_route_method_name = @"action";
     }
 }
 
+#pragma mark 路由层整理
++(void)skipToViewController:(NSString *)viewControllerPath model:(RSRouteSkipViewControllerModel)model {
+    //1. 解析viewControllerPath
+    NSDictionary *result = [self parseViewControllerPath:viewControllerPath];
+    if (!result) {
+        //解析失败
+        return;
+    }
+    
+    UIViewController *vc = [self buildClassWithDic:result];
+    if (!vc) {
+        //获取vc失败
+        return;
+    }
+    [self skipWithModel:model viewController:vc];
+    
+}
+
++(void)skipWithModel:(RSRouteSkipViewControllerModel)model viewController:(UIViewController *)vc{
+    UIViewController *rootVc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    switch (model) {
+        case RSRouteSkipViewControllerPresent:{
+            [[self topViewControllerWithRootViewController:rootVc] presentViewController:vc animated:YES completion:nil];
+            break;
+        }
+        case RSRouteSkipViewControllerNavPresent:{
+            [[self topViewControllerWithRootViewController:rootVc] presentViewController:[[UINavigationController alloc] initWithRootViewController:vc] animated:YES completion:nil];
+            break;
+        }
+        case RSRouteSkipViewControllerPush:{
+            UINavigationController *nav = (UINavigationController *)[self getSeletedNavViewController:rootVc];
+            if (nav) {
+                [nav pushViewController:vc animated:YES];
+            }
+            break;
+        }
+        case RSRouteSkipViewControllerPop:{
+            UINavigationController *nav = (UINavigationController *)[self getSeletedNavViewController:rootVc];
+            if (nav) {
+                [nav popViewControllerAnimated:YES];
+            }
+            break;
+        }
+        case RSRouteSkipViewControllerDismiss:{
+            [[self topViewControllerWithRootViewController:rootVc] dismissViewControllerAnimated:YES completion:nil];
+            break;
+        }
+        default:
+            break;
+    }
+}
+
++ (UIViewController *)getSeletedNavViewController:(UIViewController*)rootViewController {
+    if ([rootViewController isKindOfClass:[UITabBarController class]]) {
+        UITabBarController* tabBarController = (UITabBarController*)rootViewController;
+        return [self getSeletedNavViewController:tabBarController.selectedViewController];
+    } else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController* navigationController = (UINavigationController*)rootViewController;
+        return navigationController;
+    }else {
+        return nil;
+    }
+}
+
++ (UIViewController*)topViewControllerWithRootViewController:(UIViewController*)rootViewController {
+    if ([rootViewController isKindOfClass:[UITabBarController class]]) {
+        UITabBarController* tabBarController = (UITabBarController*)rootViewController;
+        return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
+    } else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController* navigationController = (UINavigationController*)rootViewController;
+        return [self topViewControllerWithRootViewController:navigationController.visibleViewController];
+    } else if (rootViewController.presentedViewController) {
+        UIViewController* presentedViewController = rootViewController.presentedViewController;
+        return [self topViewControllerWithRootViewController:presentedViewController];
+    } else {
+        return rootViewController;
+    }
+}
+
++ (UIViewController *)buildClassWithDic:(NSDictionary *)dic {
+    NSString *vcName = dic[@"host"];
+    vcName = [[NSString firstLetterCapital:vcName] append:@"ViewController"];
+    UIViewController *vc = nil;
+    
+    if(NSClassFromString(vcName)) {
+        vc = [[NSClassFromString(vcName) alloc] init];
+        NSDictionary *params = dic[@"params"];
+        NSArray *keys = [params allKeys];
+        for (NSString *key in keys) {
+            [vc setValue:params[key] forKey:key];
+        }
+    }
+    return vc;
+}
+
++(NSDictionary *)parseViewControllerPath:(NSString *)viewControllerPath
+{
+    NSURL *url = [NSURL URLWithString:[viewControllerPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    if ([url.scheme isEqualToString:@"rsuser"]) {
+        NSString *path = @"";
+        if (url.path.length>0) {
+            path = [url.path substringWithRange:NSMakeRange(1, url.path.length)];
+        }
+        NSString *paramstr = nil;
+        if (url.query.length > 0) {
+            paramstr = url.query;
+#pragma mark 中文处理
+            paramstr = [paramstr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        }
+        
+        NSMutableDictionary *paramsDic = [NSMutableDictionary new];
+        if (paramstr.length > 0) {
+            NSArray *paramsArray =  [paramstr componentsSeparatedByString:@"&"];
+            for (NSString *param in paramsArray) {
+                NSArray *elts = [param componentsSeparatedByString:@"="];
+                if (elts.count < 2) continue;
+                [paramsDic setValue:elts.lastObject forKey:elts.firstObject];
+            }
+        }
+        
+        NSDictionary *result = @{
+                                 @"scheme" : url.scheme,
+                                 @"host" : url.host,
+                                 @"path" : path,
+                                 @"params" : paramsDic
+                                 };
+        return result;
+    }else {
+        return nil;
+    }
+}
+
 @end

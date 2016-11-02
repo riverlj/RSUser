@@ -243,9 +243,7 @@
         @strongify(self)
         [self disappearView];
         if(![AppConfig getAPPDelegate].userValid){
-            UIViewController *vc = [RSRoute getViewControllerByPath:@"RSUser://login"];
-            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
-            [[AppConfig getAPPDelegate].window.rootViewController presentViewController:nav animated:YES completion:nil];
+            [RSRoute skipToViewController:@"rsuser://login" model:RSRouteSkipViewControllerNavPresent];
         }else {
             NSString *path = [NSString stringWithFormat:@"RSUser://confirmOrder?totalprice=%.2f",totalPrice];
             UIViewController *vc = [RSRoute getViewControllerByPath:path];

@@ -24,7 +24,7 @@
               @{
                   @"title" : @"关于我们",
                   @"imgUrl" : @"icon_link",
-                  @"url" : @"RSUser://Aboutus",
+                  @"url" : @"rsuser://Aboutus",
                   }
               
               ];
@@ -59,11 +59,8 @@
 {
     
     ProfileModel *model = (ProfileModel *)[self getModelByIndexPath:indexPath];
-    UIViewController *vc = [RSRoute getViewControllerByPath:model.url];
-    if(vc) {
-        vc.title = model.title;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+    
+    [RSRoute skipToViewController:[NSString stringWithFormat:@"%@?title=%@", model.url, model.title] model:RSRouteSkipViewControllerPush];
 }
 
 @end

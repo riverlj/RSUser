@@ -32,4 +32,5 @@
 -(void)setHomeRootViewController;
 
 - (void)handleALIPayResult:(NSDictionary *)resultDic;
+@property (nonatomic, strong)NSString *skipUrl;
 @end

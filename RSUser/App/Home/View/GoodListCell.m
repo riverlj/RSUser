@@ -364,6 +364,7 @@
 
 - (void)addCountClick
 {
+    _listModel.num ++;
     if (self.countLabel.text.integerValue >= self.listModel.canbuymax && self.listModel.canbuymax!=-1) {
         
         [[RSToastView shareRSToastView] showToast:@"库存不足啦，先买这么多吧～"];

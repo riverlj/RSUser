@@ -28,7 +28,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-//        self.frame = CGRectMake(0, SCREEN_HEIGHT-BOTTOMVIIEW_HEIGHT, SCREEN_WIDTH, BOTTOMVIIEW_HEIGHT);
         [self addSubview:self.totalPriceLabel];
         [self addSubview:self.goCreatOrder];
         [self addSubview:self.cartImageView];
@@ -173,15 +172,9 @@
         @strongify(self)
         [self disappearView];
         if(![AppConfig getAPPDelegate].userValid){
-            UIViewController *vc = [RSRoute getViewControllerByPath:@"RSUser://login"];
-            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
-            [[AppConfig getAPPDelegate].window.rootViewController presentViewController:nav animated:YES completion:nil];
+            [RSRoute skipToViewController:@"rsuser://login" model:RSRouteSkipViewControllerNavPresent];
         }else {
-            NSString *path = [NSString stringWithFormat:@"RSUser://confirmOrder?totalprice=%.2f",totalPrice];
-            UIViewController *vc = [RSRoute getViewControllerByPath:path];
-            
-            //去下单
-            [[AppConfig getAPPDelegate].crrentNavCtl pushViewController:vc animated:YES];
+            [RSRoute skipToViewController:[NSString stringWithFormat:@"rsuser://confirmOrder?totalprice=%.2f",totalPrice] model:RSRouteSkipViewControllerPush];
         }
     }];
 }

@@ -90,6 +90,11 @@
     if(code == 0) {
         id body = [responseObject valueForKey:@"body"];
         success(body);
+    } else if(code == 302){
+        NSDictionary *body = [responseObject valueForKey:@"body"];
+        NSString *url = body[@"appurl"];
+        NSInteger kipMode = [body[@"skipmodel"] integerValue];
+        [RSRoute skipToViewController:url model:kipMode];
     } else {
         NSDictionary *userInfo;
         if([responseObject objectForKey:@"msg"]) {
@@ -112,13 +117,14 @@
         case 801:{
             CodesView *codeView = [[CodesView alloc]init];
             [codeView show];
+            break;
         }
+        
         case 500:{
-            [[RSToastView shareRSToastView] showToast:@"服务器吃撑了"];
+            [[RSToastView shareRSToastView] showToast:@"服务器死翘翘咯~"];
+            break;
         }
-            
-        default:
-        {
+        default: {
             NSString *errmsg = [error.userInfo valueForKey:@"NSLocalizedDescription"];
             failure(error.code, errmsg);
             break;

@@ -94,6 +94,14 @@
     self.navigationController.navigationBar.hidden = YES;
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if([AppConfig getAPPDelegate].skipUrl.length > 0 ){
+        [RSRoute skipToViewController:[AppConfig getAPPDelegate].skipUrl model:RSRouteSkipViewControllerPush];
+        [AppConfig getAPPDelegate].skipUrl = nil;
+    }
+}
+
 -(void)initSourceDate {
     //section
     self.sections = [NSMutableArray new];
@@ -200,9 +208,7 @@
                     vc.urlString = urlStr;
                     [selfB.navigationController pushViewController:vc animated:YES];
                 }else {
-                    UIViewController *vc = [RSRoute getViewControllerByPath:@"RSUser://login"];
-                    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
-                    [[AppConfig getAPPDelegate].window.rootViewController presentViewController:nav animated:YES completion:nil];
+                    [RSRoute skipToViewController:@"rsuser://login" model:RSRouteSkipViewControllerNavPresent];
                 }
             }
         };
@@ -261,8 +267,7 @@
 #pragma View响应方法
 - (void)locationBtnClicked
 {
-    UIViewController *vc = [RSRoute getViewControllerByPath:@"RSUser://chooseSchool"];
-    [self.navigationController pushViewController:vc animated:YES];
+    [RSRoute skipToViewController:@"rsuser://chooseSchool" model:RSRouteSkipViewControllerPush];
 }
 
 -(void)initBannerView
@@ -322,10 +327,10 @@
     NSString *urlStr = [_bannerActionUrls objectAtIndex:index];
     urlStr = [urlStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     urlStr = [NSString URLencode:urlStr stringEncoding:NSUTF8StringEncoding];
-    NSString *path = [NSString stringWithFormat:@"RSUser://bannerweb?title=%@&urlString=%@",[_bannerTitles objectAtIndex:index],urlStr];
+    NSString *path = [NSString stringWithFormat:@"rsuser://bannerweb?title=%@&urlString=%@",[_bannerTitles objectAtIndex:index],urlStr];
+    
+    [RSRoute skipToViewController:path model:RSRouteSkipViewControllerPush];
 
-    UIViewController *vc = [RSRoute getViewControllerByPath:path];
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -389,10 +394,8 @@
         
 
         if (header !=0 && scrollView.contentOffset.y>=header-64) {
-//            NSLog(@"ifififfif     %lf    %lf   %lf",scrollView.contentOffset.y, header, header-64);
             scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
         }else if( header !=0 && scrollView.contentOffset.y > 0){
-//            NSLog(@"elseelseelse");
             scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         }
     }
@@ -404,9 +407,9 @@
     
     if ([model isKindOfClass:[GoodListModel class]]) {
         GoodListModel *goodListModel = (GoodListModel*)model;
-        NSString *path = [NSString stringWithFormat:@"RSUser://goodinfo?communityid=%@&productid=%ld",COMMUNTITYID, goodListModel.comproductid];
-        UIViewController *vc = [RSRoute getViewControllerByPath:path];
-        [self.navigationController pushViewController:vc animated:YES];
+        NSString *path = [NSString stringWithFormat:@"rsuser://goodinfo?communityid=%@&productid=%d",COMMUNTITYID, goodListModel.comproductid];
+        
+        [RSRoute skipToViewController:path model:RSRouteSkipViewControllerPush];
      }
 }
 

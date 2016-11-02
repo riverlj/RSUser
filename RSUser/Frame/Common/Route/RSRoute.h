@@ -11,14 +11,13 @@
  scheme://host:port/path?query#fragment
  */
 
-enum RSRouteSkipViewControllerModel {
-    RSRouteSkipViewControllerPresent = 0,
-    RSRouteSkipViewControllerDismiss ,
-    RSRouteSkipViewControllerPush ,
-    RSRouteSkipViewControllerPop
-    
+typedef NS_ENUM(NSUInteger, RSRouteSkipViewControllerModel)  {
+    RSRouteSkipViewControllerPresent = 0,   //弹出
+    RSRouteSkipViewControllerNavPresent,    //弹出带导航的
+    RSRouteSkipViewControllerPush,      //入栈
+    RSRouteSkipViewControllerDismiss,   //销毁弹出
+    RSRouteSkipViewControllerPop        //出栈
 };
-typedef enum RSRouteSkipViewControllerModel RSRouteSkipViewControllerModel;
 
 
 @interface RSRoute : NSObject
@@ -41,4 +40,5 @@ typedef enum RSRouteSkipViewControllerModel RSRouteSkipViewControllerModel;
 - (void)actionMethodFromTarget:(id)target;
 
 - (void)skipToViewControllerWithModel:(RSRouteSkipViewControllerModel)model;
++(void)skipToViewController:(NSString *)viewControllerPath model:(RSRouteSkipViewControllerModel)model;
 @end

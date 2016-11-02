@@ -82,8 +82,7 @@
     @weakify(self)
     [[settingBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify(self)
-        UIViewController *vc = [RSRoute getViewControllerByPath:@"RSUser://setting"];
-        [self.navigationController pushViewController:vc animated:YES];
+        [RSRoute skipToViewController:@"rsuser://setting" model:RSRouteSkipViewControllerPush];
         
     }];
     

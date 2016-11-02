@@ -26,6 +26,12 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //通过URL打开APP
+    NSURL *url = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
+    if(url)
+    {
+        _skipUrl = url.absoluteString;
+    }
     [AppConfig checkToken];
     [self configThreeLib];
 
@@ -38,13 +44,12 @@
     _location =  [[RSLocation alloc]init];
     [_location startLocation];
     
-    
     [self UpdateVersion];
     self.window.rootViewController = [[LaunchimageViewController alloc]init];
     
     [AppConfig setUserAgent];
     [AppConfig customsizeInterface];
-
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -128,35 +133,26 @@
 #pragma mark UIApplicationDelegate 代理方法
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    if ([url.scheme isEqualToString:SCHEME_WEIXIN]) {
-        [WXApi handleOpenURL:url delegate:self];
-    }
-    
-    __weak AppDelegate *selfB = self;
-    if ([url.host isEqualToString:@"safepay"]) {
-        //跳转支付宝钱包进行支付，处理支付结果
-        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            [selfB handleALIPayResult:resultDic];
-        }];
-    }
-    return YES;
-    
+    return [self handleOpenURL:url];
 }
-
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
 {
-    if ([url.scheme isEqualToString:SCHEME_WEIXIN]) {
+    return [self handleOpenURL:url];
+}
+-(BOOL)handleOpenURL:(NSURL *)url {
+    if ([url.scheme isEqualToString:@"rsuser"] && _skipUrl.length == 0 && ![url.host isEqualToString:@"safepay"]) {
+        _skipUrl = url.absoluteString;
+        [RSRoute skipToViewController:_skipUrl model:RSRouteSkipViewControllerPush];
+        _skipUrl = nil;
+    }else if ([url.scheme isEqualToString:SCHEME_WEIXIN]) {
         [WXApi handleOpenURL:url delegate:self];
-    }
-    
-    if ([url.host isEqualToString:@"safepay"]) {
+    }else if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         __weak AppDelegate *selfB = self;
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
             [selfB handleALIPayResult:resultDic];
         }];
     }
-    
     return YES;
 }
 
@@ -211,8 +207,7 @@
          Boolean ispayed = [[data valueForKey:@"ispayed"] boolValue];
         NSString *bonusnumber = [data valueForKey:@"bonusnumber"];
         if (ispayed) {
-            UIViewController *vc = [RSRoute getViewControllerByPath:[NSString stringWithFormat:@"RSUser://paySuccess?bousnumber=%@",bonusnumber]];
-            [self.crrentNavCtl presentViewController:[[UINavigationController alloc] initWithRootViewController:vc] animated:YES completion:nil];
+            [RSRoute skipToViewController:[NSString stringWithFormat:@"rsuser://paySuccess?bousnumber=%@",bonusnumber] model:RSRouteSkipViewControllerNavPresent];
         }else {
             [[RSToastView shareRSToastView] showToast:@"支付失败"];
         }
