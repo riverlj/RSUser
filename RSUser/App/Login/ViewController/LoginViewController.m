@@ -36,6 +36,10 @@
     [self bandleRAC];
     [self dealAction];
     
+    if (!WXApi.isWXAppInstalled) {
+        self.loginView.loginByWeChatButton.hidden = YES;
+    }
+    
     //注册
      _registerBtn = [RSButton buttonWithFrame:CGRectMake(0, 0, 60, 44) ImageName:nil Text:@"注册" TextColor:RS_COLOR_C7];
     _registerBtn.titleLabel.font = RS_FONT_F2;
