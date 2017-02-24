@@ -2,4 +2,5 @@ Pods/
 RSUser.xcodeproj/xcuserdata/*.xcuserdatad/
 RSUser.xcworkspace/xcuserdata/*.xcuserdatad/
 RSUser.xcodeproj/project.xcworkspace/xcuserdata/
-
+.git
+.gitignore
